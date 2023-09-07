@@ -20,7 +20,7 @@ public class HomeController {
 		return "test";
 		
 		
-		//주석 지웠습니다11312321231123132312
+		//테스트할게요
 	}
 
 }
