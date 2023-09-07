@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+<typeAliases>
+	<typeAlias type="com.dowon.bds.dto.BookDto" alias="BookDto"/>
+	<typeAlias type="com.dowon.bds.dto.DeliveryDto" alias="DeliveryDto"/>
+	<typeAlias type="com.dowon.bds.dto.FaqBoardDto" alias="FaqBoardDto"/>
+	<typeAlias type="com.dowon.bds.dto.FileBoardDto" alias="FileBoardDto"/>
+	<typeAlias type="com.dowon.bds.dto.FreeBoardDto" alias="FreeBoardDto"/>
+	<typeAlias type="com.dowon.bds.dto.FreeCommentDto" alias="FreeCommentDto"/>
+	<typeAlias type="com.dowon.bds.dto.NoticeBoardDto" alias="NoticeBoardDto"/>
+	<typeAlias type="com.dowon.bds.dto.PayDto" alias="PayDto"/>
+	<typeAlias type="com.dowon.bds.dto.PointDto" alias="PointDto"/>
+	<typeAlias type="com.dowon.bds.dto.RentDto" alias="RentDto"/>
+	<typeAlias type="com.dowon.bds.dto.ResveDto" alias="ResveDto"/>
+	<typeAlias type="com.dowon.bds.dto.UserDto" alias="UserDto"/>
+</typeAliases>
+
+
+<mappers>
+</mappers>
+
+</configuration>
