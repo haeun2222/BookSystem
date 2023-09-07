@@ -27,7 +27,7 @@ public class TestController {
 	@RequestMapping(value = "/home.do", method = RequestMethod.POST)
 	public String home2(String name,Model model) {
 		logger.info("Post방식으로 요청받은 값 {}:",name);
-		String str = "두번째로 좋아하는 과일"+name;
+		String str = "두번째로 좋아하는 돼지"+name;
 		model.addAttribute("str",str);
 		return "home";
 	}
