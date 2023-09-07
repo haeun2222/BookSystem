@@ -36,6 +36,5 @@ public class BoardController {
 		}else {
 			return "error";
 		}
-		// 주석 추가합니다
 	}
 }
