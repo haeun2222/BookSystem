@@ -18,7 +18,9 @@ public class HomeController {
 	public String test(Model model) {
 		model.addAttribute("test","test");
 		return "test";
-		//테스트라공
+		
+		
+		//주석 지웠습니다11312321231123132312
 	}
 
 }
