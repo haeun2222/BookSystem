@@ -18,6 +18,7 @@ public class HomeController {
 	public String test(Model model) {
 		model.addAttribute("test","test");
 		return "test";
+		//테스트라공
 	}
 
 }
