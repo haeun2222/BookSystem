@@ -19,6 +19,7 @@
 
 
 <mappers>
+ <mapper resource="sqls/User_Statement.xml"/>
 </mappers>
 
 </configuration>
