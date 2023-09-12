@@ -1,7 +1,10 @@
 package com.dowon.bds;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -30,13 +33,17 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login.do", method = RequestMethod.POST)
-	public String login(@RequestParam Map<String,Object>map, HttpSession session) {
+	public String login(@RequestParam Map<String,Object>map, HttpSession session, HttpServletResponse response) throws IOException {
 		logger.info("로그인 처리 login {}",map);
 		UserDto loginVo = service.login(map);
 		
 		if(loginVo == null) {
 			logger.info("로그인실패 /test.do로 이동 {}",map);
-			return "redirect:/test.do";
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('로그인 실패'); location.href='test.do';</script>");
+			out.flush();
+			return "";
 		}else {
 			logger.info("로그인성공 /mainTest.do로 이동 {}",map);
 			session.setAttribute("loginVo", loginVo);

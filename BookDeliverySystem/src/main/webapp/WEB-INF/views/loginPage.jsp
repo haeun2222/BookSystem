@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="com.dowon.bds.dto.SocialDto"%>
+<%@page import="com.dowon.bds.dto.URLDto"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +13,16 @@
 </head>
 <body>
 <div class="container">
-<h2>로그인하기</h2>
+<h2>로그인하기 2023.09.12</h2>
+	
+	<%
+		URLDto uDto = new URLDto();
+		SocialDto dto = new SocialDto();
+		SecureRandom random = new SecureRandom();
+		String state = new BigInteger(130, random).toString();
+	%>
+  
+  <!-- 일반회원 로그인 -->
   <form action="./login.do" method="post">
     <div class="form-group">
       <label for="usr">아이디(이메일)</label>
@@ -19,8 +32,14 @@
       <label for="pwd">비밀번호</label>
       <input type="password" class="form-control" id="pwd" name="user_password">
     </div>
-    <input type="submit" class="btn btn-primary" value="로그인">
+    <input type="submit" class="btn btn-primary" value="로그인"><br>
   </form>
+  
+  <!-- 네이버 아이디로 로그인  -->
+  <a href="<%=uDto.getNaverUrl()+"&client_id="+dto.getNaverClientID()+"&redirect_uri="+uDto.getNaverRedirect()+"&state="+state%>">
+  <img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/>
+  </a>
+  
 </div>
 </body>
 </html>
