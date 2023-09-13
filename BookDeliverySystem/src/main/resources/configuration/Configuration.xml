@@ -15,12 +15,15 @@
 	<typeAlias type="com.dowon.bds.dto.RentDto" alias="RentDto"/>
 	<typeAlias type="com.dowon.bds.dto.ResveDto" alias="ResveDto"/>
 	<typeAlias type="com.dowon.bds.dto.UserDto" alias="UserDto"/>
+	<typeAlias type="com.dowon.bds.dto.GenderDto" alias="GenderDto"/>
+	<typeAlias type="com.dowon.bds.dto.AgeDto" alias="AgeDto"/>
 </typeAliases>
 
 
 <mappers>
  <mapper resource="sqls/User_Statement.xml"/>
  <mapper resource="sqls/SocialUser_Statement.xml"/>
+ <mapper resource="sqls/Statistics_Statement.xml"/>
 </mappers>
 
 </configuration>
