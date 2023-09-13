@@ -3,6 +3,12 @@
 <mapper namespace="com.dowon.bds.model.mapper.UserDaoImpl">
 
 
+<!-- 이메일체크 -->
+<select id="checkEmail" resultType="java.lang.Integer">
+SELECT COUNT(USER_EMAIL)
+	FROM TB_USER
+	WHERE USER_EMAIL= #{user_email}
+</select>
 
 
 <!-- 로그인 구현 -->
@@ -13,19 +19,17 @@ SELECT USER_SEQ,USER_EMAIL,USER_PHONE,USER_BIRTH,JOINDATE,USER_NAME,USER_AUTH,US
 	AND USER_PASSWORD = #{user_password}
 </select>
 
-<!-- 소셜로그인 시도 시 사용자가 기존 아이디가 있는지 확인하는 쿼리 -->
-<select id="checkSocial" resultType="UserDto">
-	SELECT USER_EMAIL
-	FROM TB_USER
-	WHERE SNS_KEY = #{sns_key}
-</select>
-
-<!-- 네이버 소셜 로그인(기존회원이 아닐 경우) 회원가입 -->
-<insert id="naverJoin" parameterType="UserDto">
+<!-- 일반 회원가입 -->
+<insert id="nomalRegist" parameterType="UserDto">
+INSERT INTO TB_USER
+	(USER_SEQ,USER_EMAIL,USER_PASSWORD,
+	USER_NAME,USER_PHONE,USER_BIRTH,
+	USER_AUTH,USER_DELFLAG,JOINDATE,USER_GENDER)
+	VALUES (SQ_USER.NEXTVAL,'test11@test.com','440138',
+			'김영진','010-1111-3333','1992-10-26',
+			'U','N',SYSDATE,NULL,#{user_gender});
 </insert>
 
-<!-- 카카오 소셜 로그인(기존회원이 아닐 경우) 회원가입 -->
-<insert id="kakaoJoin" parameterType="UserDto">
-</insert>
+
 
 </mapper>

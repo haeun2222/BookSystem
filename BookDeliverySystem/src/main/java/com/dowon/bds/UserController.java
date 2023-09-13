@@ -19,6 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IUserService;
 
+/**
+ * 
+ * @author 김영진
+ * @since 2023-09-13 일반 회원 로그인 컨트롤러
+ */
+
 @Controller
 public class UserController {
 	

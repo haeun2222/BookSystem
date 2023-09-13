@@ -9,10 +9,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>네이버 callback</title>
+<title>네이버 로그인 완료페이지</title>
 </head>
 <body>
-	
-
+	${info}
 </body>
 </html>
