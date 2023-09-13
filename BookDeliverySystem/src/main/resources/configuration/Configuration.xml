@@ -20,6 +20,7 @@
 
 <mappers>
  <mapper resource="sqls/User_Statement.xml"/>
+ <mapper resource="sqls/SocialUser_Statement.xml"/>
 </mappers>
 
 </configuration>

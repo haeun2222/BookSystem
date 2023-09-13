@@ -35,11 +35,16 @@
     <input type="submit" class="btn btn-primary" value="로그인"><br>
   </form>
   
+  <div>
+  <button type="button" onclick="location.href='./nomalRegistForm.do'">일반 회원 가입 하기</button>
+  </div>
+  
+  <div>
   <!-- 네이버 아이디로 로그인  -->
   <a href="<%=uDto.getNaverUrl()+"&client_id="+dto.getNaverClientID()+"&redirect_uri="+uDto.getNaverRedirect()+"&state="+state%>">
   <img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/>
   </a>
-  
+  </div>
 </div>
 </body>
 </html>

@@ -24,4 +24,5 @@ public class UserServiceImpl implements IUserService {
 		logger.info("login실행 {}",map);
 		return dao.login(map);
 	}
+	
 }
