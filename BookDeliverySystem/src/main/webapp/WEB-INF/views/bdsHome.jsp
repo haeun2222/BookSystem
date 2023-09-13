@@ -23,7 +23,7 @@ window.onload = function(){
             genderData.addColumn('string', 'Gender');
             genderData.addColumn('number', 'Count');
             
-  //           1위책 남,녀(2위책은 인덱스 번호 변경해주기)
+  //           1위책 남,녀(2위책은 인덱스 번호 변경해주기 데이터 더 들어오면 밑에 주석 풀기)
             genderData.addRow([data[0].user_gender,parseInt(data[0].percent)]);
 //             genderData.addRow([data[1].user_gender,parseInt(data[1].percent)]);
 
@@ -31,10 +31,10 @@ window.onload = function(){
             var options = {
 			    title: '성별 통계',
 			    chartArea: {
-			        width: '80%', // 차트 크기 조정
+			        width: '80%', 
 			        height: '80%'
 			    },
-			    width: 400, // 전체 크기
+			    width: 400, 
 			    height: 300,
 			    legend: 'right',
 			    titlePosition: 'out',
@@ -67,6 +67,7 @@ window.onload = function(){
             ageData.addColumn('number', 'Percent(%)');
             ageData.addColumn({type: 'string', role: 'style'});
 
+            // 데이터 더 들어오면 밑에 주석풀기
             ageData.addRow([data[0].age_group,parseInt(data[0].percent),'#00b894']);
 //             ageData.addRow([data[1].age_group,parseInt(data[1].percent),'#00d2d3']);
 //             ageData.addRow([data[2].age_group,parseInt(data[2].percent),'#74b9ff']);
@@ -77,10 +78,10 @@ window.onload = function(){
            var options = {
 			    title:'연령별 통계',
 			    chartArea: {
-			        width: '80%', // 차트 크기 조정
+			        width: '80%', 
 			        height: '80%'
 			    },
-			    width: 400, // 전체 크기
+			    width: 400, 
 			    height: 300,
 			    titlePosition: 'out',
 			    legend: { position: "none" },
@@ -93,8 +94,6 @@ window.onload = function(){
 	          	}
 				};
 
-//             차트를 그릴 요소 선택 후 차트 그리기
-          
             var chart = new google.visualization.ColumnChart(document.getElementById('ageChart'));
             chart.draw(ageData, options);
         });
@@ -106,7 +105,7 @@ window.onload = function(){
 <!-- <a href="./genderList.do">성별통계불러와라</a> -->
 <!-- <a href="./ageList.do">연령별통계불러와라</a> -->
 	<div class="rectangle">
-		<h2>이달의 베스트셀러!</h2>
+		<h2>실시간 베스트셀러!</h2>
 		<h4>누구에게 인기가 많을까?</h4>
 		<!-- Trigger the modal with a button -->
 		<button id="showModal" type="button" class="btn btn-info btn-lg" data-toggle="modal"
@@ -120,7 +119,7 @@ window.onload = function(){
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">이달의 베스트셀러</h4>
+						<h4 class="modal-title">실시간 베스트셀러</h4>
 					</div>
 					<div class="modal-body">
 						<h1 id="bookTitle" style="text-align: center;">

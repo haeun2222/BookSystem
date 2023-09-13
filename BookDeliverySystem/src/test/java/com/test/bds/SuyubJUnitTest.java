@@ -19,13 +19,17 @@ import com.dowon.bds.model.service.IStatisticsService;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author 김수엽
+ * @since 2023.09.14 DAO와 Service 테스트를 위한 JUnit
+ */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
 @Slf4j
 public class SuyubJUnitTest {
 
-	@Autowired
-	private SqlSessionTemplate session;
+	
 	
 	@Autowired
 	private IStatisticsService service;
@@ -34,16 +38,16 @@ public class SuyubJUnitTest {
 	 
 	
 //	@Test
-	public void img_test() {
-		List<GenderDto> lists = dao.imgSelect();
-		assertNotNull(lists);
-	}
+//	public void img_test() {
+//		List<GenderDto> lists = dao.imgSelect();
+//		assertNotNull(lists);
+//	}
 //	@Test
-	public void test() {
-		List<GenderDto> lists = service.imgSelect();
-		log.info("imgselect 실행테스트{}",lists);
-		assertNotNull(lists);
-	}
+//	public void test() {
+//		List<GenderDto> lists = service.imgSelect();
+//		log.info("imgselect 실행테스트{}",lists);
+//		assertNotNull(lists);
+//	}
 
 //	@Test
 	public void gender_test() {

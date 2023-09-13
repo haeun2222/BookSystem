@@ -7,7 +7,6 @@
 <title>index</title>
 </head>
 <body>
-도원결의 화이팅
 <a href="./test.do">테스트</a>
 <a href="./chartGo.do">스테디셀러 보기 테스트</a>
 
