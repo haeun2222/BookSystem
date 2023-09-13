@@ -37,7 +37,7 @@ public class Statistics_Controller {
 		List<GenderDto> imgTest = service.imgSelect();
 		model.addAttribute("imgTest",imgTest);
 		log.info("----------------imgTest{}",imgTest);
-		return "chartView";
+		return "bdsHome";
 	}
 	
 	@RequestMapping(value = "/genderList.do", method = RequestMethod.GET)
@@ -46,7 +46,7 @@ public class Statistics_Controller {
 		List<GenderDto> gender = service.genderStatistics();
 		model.addAttribute("gender",gender);
 		log.info("----------------gender{}",gender);
-		return "imgSelect";
+		return "bdsHome";
 	}
 	@RequestMapping(value = "/ageList.do", method = RequestMethod.GET)
 	public String chartAge(Model model) {
@@ -54,7 +54,7 @@ public class Statistics_Controller {
 		List<AgeDto> age = service.AgeStatistics();
 		model.addAttribute("age",age);
 		log.info("---------------age{}",age);
-		return "imgSelect";
+		return "bdsHome";
 	}
 
 	

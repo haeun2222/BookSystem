@@ -5,14 +5,10 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
+<link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 window.onload = function(){
 //     구글차트 
@@ -21,7 +17,7 @@ window.onload = function(){
     
     function drawGenderChart() {
  //        Ajax요청하기
-        $.get('/Spring_QueryTest/genderChart.do', function(data) {
+        $.get('/BookDeliverySystem/genderChart.do', function(data) {
             
             var genderData = new google.visualization.DataTable();
             genderData.addColumn('string', 'Gender');
@@ -29,7 +25,7 @@ window.onload = function(){
             
   //           1위책 남,녀(2위책은 인덱스 번호 변경해주기)
             genderData.addRow([data[0].user_gender,parseInt(data[0].percent)]);
-            genderData.addRow([data[1].user_gender,parseInt(data[1].percent)]);
+//             genderData.addRow([data[1].user_gender,parseInt(data[1].percent)]);
 
 //             차트 옵션 설정
             var options = {
@@ -65,17 +61,17 @@ window.onload = function(){
     
     function drawAgeChart() {
 //         Ajax 요청하기
-        $.get('/Spring_QueryTest/ageChart.do', function(data) {
+        $.get('/BookDeliverySystem/ageChart.do', function(data) {
             var ageData = new google.visualization.DataTable();
             ageData.addColumn('string', 'Age');
             ageData.addColumn('number', 'Percent(%)');
             ageData.addColumn({type: 'string', role: 'style'});
 
             ageData.addRow([data[0].age_group,parseInt(data[0].percent),'#00b894']);
-            ageData.addRow([data[1].age_group,parseInt(data[1].percent),'#00d2d3']);
-            ageData.addRow([data[2].age_group,parseInt(data[2].percent),'#74b9ff']);
-            ageData.addRow([data[3].age_group,parseInt(data[3].percent),'#55efc4']);
-            ageData.addRow([data[4].age_group,parseInt(data[4].percent),'#81ecec']);
+//             ageData.addRow([data[1].age_group,parseInt(data[1].percent),'#00d2d3']);
+//             ageData.addRow([data[2].age_group,parseInt(data[2].percent),'#74b9ff']);
+//             ageData.addRow([data[3].age_group,parseInt(data[3].percent),'#55efc4']);
+//             ageData.addRow([data[4].age_group,parseInt(data[4].percent),'#81ecec']);
             
  //            차트 옵션 설정
            var options = {
