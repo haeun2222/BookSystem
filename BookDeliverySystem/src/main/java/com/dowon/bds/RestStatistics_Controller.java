@@ -13,6 +13,10 @@ import com.dowon.bds.model.service.IStatisticsService;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author 김수엽
+ * @since 2023.09.14 구글차트API를 사용하기 위해 DB 통계값을 JSON으로 변환해서 jsp에 전달하기 위한 RestController
+ */
 
 
 	@RestController

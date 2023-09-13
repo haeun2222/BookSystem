@@ -12,6 +12,12 @@ import com.dowon.bds.model.mapper.IStatisticsDao;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author 김수엽
+ * @since 2023.09.14 성별과 연령별 통계를 위한 ServiceImpl
+ */
+
+
 @Service
 @Slf4j
 public class StatisticsServiceImpl implements IStatisticsService {
@@ -20,11 +26,11 @@ public class StatisticsServiceImpl implements IStatisticsService {
 	private IStatisticsDao dao;
 	
 	
-	@Override
-	public List<GenderDto> imgSelect() {
-		log.info("imgSelect 실행");
-		return dao.imgSelect();
-	}
+//	@Override
+//	public List<GenderDto> imgSelect() {
+//		log.info("imgSelect 실행");
+//		return dao.imgSelect();
+//	}
 
 
 	@Override

@@ -12,6 +12,11 @@ import com.dowon.bds.dto.GenderDto;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author 김수엽
+ * @since 2023.09.14 성별과 연령별 통계를 위한 DAOImpl
+ */
+
 @Repository
 @Slf4j
 public class StatisticsDaoImpl implements IStatisticsDao {
@@ -20,21 +25,21 @@ public class StatisticsDaoImpl implements IStatisticsDao {
 	@Autowired
 	private SqlSessionTemplate session;
 	
-	@Override
-	public List<GenderDto> imgSelect() {
-		log.info("ImgDaoImpl imgSelect top2책 이미지");
-		return session.selectList(NS+"imgSelect");
-	}
+//	@Override
+//	public List<GenderDto> imgSelect() {
+//		log.info("ImgDaoImpl imgSelect top2책 이미지");
+//		return session.selectList(NS+"imgSelect");
+//	}
 
 	@Override
 	public List<GenderDto> genderStatistics() {
-		log.info("ImgDaoImpl genderStatistics 성별통계");
+		log.info("StatisticsDaoImpl genderStatistics 성별통계");
 		return session.selectList(NS+"genderStatistics");
 	}
 
 	@Override
 	public List<AgeDto> AgeStatistics() {
-		log.info("ImgDaoImpl AgeStatistics 연령별통계");
+		log.info("StatisticsDaoImpl AgeStatistics 연령별통계");
 		return session.selectList(NS+"AgeStatistics");
 	}
 
