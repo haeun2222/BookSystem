@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class StatisticsDaoImpl implements IStatisticsDao {
 
-	private final static String NS ="com.min.edu.dao.ImgDaoImpl.";
+	private final static String NS ="com.dowon.bds.model.mapper.StatisticsDaoImpl.";
 	@Autowired
 	private SqlSessionTemplate session;
 	
