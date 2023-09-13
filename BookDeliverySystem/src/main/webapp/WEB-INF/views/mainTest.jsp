@@ -16,7 +16,7 @@
 test: ${loginVo.user_email} <br>
 
 <h2>메인테스트페이지</h2>
-<button>대출</button>
+<button>대출(대출/예약/관리자/회원목록 등)</button>
 <button>결제</button>
 <button>통계</button>
 </body>
