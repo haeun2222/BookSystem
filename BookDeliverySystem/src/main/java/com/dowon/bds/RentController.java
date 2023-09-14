@@ -111,12 +111,14 @@ public class RentController {
 	    List<String> filteredBookSeqList = service.selectFilteredBookSeqList();
 	    List<Map<String, Object>> rentData = service.rentCheck(userSeq);
 	    List<Map<String, Object>> resveData = service2.userResveStatus(userSeq);
+	    List<String> rentYBookSeqList = service.rentStatusYBookSeq();
 	    
 	    model.addAttribute("resveData",resveData);
 	    model.addAttribute("rentData", rentData);
 	    model.addAttribute("loginVo",loginVo);
 	    model.addAttribute("dto", dto);
         model.addAttribute("filteredBookSeqList", filteredBookSeqList);
+        model.addAttribute("rentYBookSeqList",rentYBookSeqList);
         
         System.out.println("@@@@@@@@@@@@@"+filteredBookSeqList);
         

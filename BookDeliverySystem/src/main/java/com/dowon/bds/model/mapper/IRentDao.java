@@ -31,4 +31,6 @@ public interface IRentDao {
 	
 	public List<BookDto> bookAll();
 	
+	public List<Map<String, Object>> rentY();
+	
 }
