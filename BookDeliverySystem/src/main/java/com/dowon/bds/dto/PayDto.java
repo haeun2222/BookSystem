@@ -21,7 +21,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PayDto {
-// 추가
+
 	private int pay_seq;
 	private int pay_imd;
 	private int user_seq;
