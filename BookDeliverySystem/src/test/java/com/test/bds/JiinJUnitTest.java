@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
+@Slf4j
 public class JiinJUnitTest {
 
 	@Autowired
@@ -18,7 +21,7 @@ public class JiinJUnitTest {
 	
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		assertNotNull(sqlSession);
 	}
 
 }
