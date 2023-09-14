@@ -32,7 +32,7 @@
                     </h3>
                     <span class="box int_id">
                         <input type="text" id="id" class="int" maxlength="20">
-                        <span class="step_url">@naver.com</span>
+                        <span class="step_url">ex) dowon@naver.com</span>
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -157,7 +157,7 @@
 
         </div> 
         <!-- wrapper -->
-    <script src="main.js"></script>
+    <script src="js/registForm.js"></script>
 	
 </body>
 </html>
