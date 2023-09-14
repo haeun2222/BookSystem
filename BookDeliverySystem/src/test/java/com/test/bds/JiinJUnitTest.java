@@ -21,7 +21,10 @@ public class JiinJUnitTest {
 	
 	@Test
 	public void test() {
+
+
 		assertNotNull(sqlSession);
+
 	}
 
 }
