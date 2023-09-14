@@ -30,5 +30,11 @@ public class UserServiceImpl implements IUserService {
 		log.info("UserServiceImpl nomalRegist 일반회원가입 : {}",dto);
 		return dao.nomalRegist(dto);
 	}
+
+	@Override
+	public int checkEmail(String email) {
+		log.info("UserServiceImpl checkEmail 이메일중복검사 : {}",email);
+		return dao.checkEmail(email);
+	}
 	
 }

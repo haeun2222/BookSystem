@@ -28,10 +28,11 @@
                         <label for="id">아이디(이메일)</label>
                     </h3>
                     <span class="box int_id">
-                        <input type="text" id="id" name="user_email" class="int" maxlength="20">
+                        <input type="text" id="user_email" name="user_email" class="int" maxlength="20">
                         <span class="step_url">ex) dowon@naver.com</span>
                     </span>
                     <span class="error_next_box"></span>
+                    <div id="emailStatus"></div>
                 </div>
 
                 <!-- PW1 -->

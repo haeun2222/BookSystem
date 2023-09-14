@@ -9,5 +9,5 @@ public interface IUserDao {
 	
 	public UserDto login(Map<String, Object> map);
 	public int nomalRegist(UserDto dto);
-
+	public int checkEmail(String user_email);
 }

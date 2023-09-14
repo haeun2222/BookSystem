@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IUserService;
@@ -53,4 +55,13 @@ public class RegistController {
 		logger.info("RegistController >> 소셜회원가입 이동 ");
 		return "socialRegistForm";
 	}
+	
+	//이메일 중복 체크 컨트롤러
+	@ResponseBody
+	@RequestMapping(value="/checkEmail.do", method = RequestMethod.POST)
+	public int checkEmail(@RequestParam String email) {
+		int cnt = service.checkEmail(email);
+		return cnt;
+	}
+	
 }

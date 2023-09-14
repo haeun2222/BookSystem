@@ -10,5 +10,5 @@ public interface IUserService {
 	
 	public UserDto login(Map<String, Object> map);
 	public int nomalRegist(UserDto dto);
-
+	public int checkEmail(String email);
 }

@@ -28,7 +28,7 @@ import com.dowon.bds.model.service.IUserService;
 @Controller
 public class UserController {
 	
-	private Logger logger = LoggerFactory.getLogger(UserController.class);
+	private Logger log = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	private IUserService service;
@@ -40,18 +40,18 @@ public class UserController {
 	
 	@RequestMapping(value="/login.do", method = RequestMethod.POST)
 	public String login(@RequestParam Map<String,Object>map, HttpSession session, HttpServletResponse response) throws IOException {
-		logger.info("로그인 처리 login {}",map);
+		log.info("로그인 처리 login {}",map);
 		UserDto loginVo = service.login(map);
-		
+		log.info("loginVo정보 {}",loginVo);
 		if(loginVo == null) {
-			logger.info("로그인실패 /test.do로 이동 {}",map);
+			log.info("로그인실패 /test.do로 이동 {}",map);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('로그인 실패'); location.href='test.do';</script>");
 			out.flush();
 			return "";
 		}else {
-			logger.info("로그인성공 /mainTest.do로 이동 {}",map);
+			log.info("로그인성공 /mainTest.do로 이동 {}",map);
 			session.setAttribute("loginVo", loginVo);
 			return "mainTest";
 		}
