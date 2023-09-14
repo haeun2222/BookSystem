@@ -94,7 +94,7 @@ function checkAvailability() {
         button2 = $('<button type="button" class="btn btn-primary ml-2">닫기</button>');
         
         button1.click(function() {
-        	window.location.href = "./배송지입력URL.do?book_seq=" + ${dto.book_seq};
+        	window.location.href = "./addr.do?book_seq=" + ${dto.book_seq};
         });
 
         button2.click(function() {
