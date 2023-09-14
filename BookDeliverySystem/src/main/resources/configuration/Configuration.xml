@@ -24,6 +24,8 @@
  <mapper resource="sqls/User_Statement.xml"/>
  <mapper resource="sqls/SocialUser_Statement.xml"/>
  <mapper resource="sqls/Statistics_Statement.xml"/>
+ <mapper resource="sqls/Rent_Statement.xml"/>
+ <mapper resource="sqls/Resve_Statement.xml"/>
 </mappers>
 
 </configuration>
