@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dowon.bds.dto.AgeDto;
 import com.dowon.bds.dto.GenderDto;
@@ -31,10 +32,14 @@ public class Statistics_Controller {
 	
 	@RequestMapping(value = "/chartGo.do", method = RequestMethod.GET)
 	public String goChart() {
-		log.info("Statistics_Controller goChart 페이지 이동");
+		log.info("Welcome Statistics_Controller goChart 페이지 이동");
 		return "bdsHome";
 	}
-	
+	@RequestMapping(value = "/bookDetail.do", method = RequestMethod.GET)
+	public String bookDetail() {
+		log.info("Welcome Statistics_Controller bookDetail 상세페이지로 이동");
+		return "bookDetailHaeun";
+	}
 	
 //	@RequestMapping(value = "/top1Img.do", method = RequestMethod.GET)
 //	public String chart(Model model) {

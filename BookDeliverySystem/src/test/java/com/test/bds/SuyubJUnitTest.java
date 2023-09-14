@@ -35,7 +35,10 @@ public class SuyubJUnitTest {
 	private IStatisticsService service;
 	@Autowired
 	private IStatisticsDao dao;
-	 
+	
+	
+
+	
 	
 //	@Test
 //	public void img_test() {
@@ -60,6 +63,8 @@ public class SuyubJUnitTest {
 		List<AgeDto> lists = service.AgeStatistics();
 		log.info("SuyubJUnitTest age_test {}", lists);
 		assertNotNull(lists);
+
 	}
 
+	
 }

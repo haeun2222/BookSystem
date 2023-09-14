@@ -82,10 +82,37 @@ ORDER BY
   T2B.BOOK_SEQ,
   age_group; 
 
+BEGIN
+  FOR i IN 501..700 LOOP
+    INSERT INTO TB_USER (
+      USER_SEQ, USER_PASSWORD, USER_NAME, USER_EMAIL, USER_PHONE,
+      USER_BIRTH, USER_AUTH, USER_DELFLAG, JOINDATE, USER_GENDER
+    ) VALUES (
+      i, '비밀번호' || i, '사용자 ' || i, 'user' || i || '@example.com', '010-0000-000' || i,
+      TO_CHAR(TO_DATE('1980-01-01', 'YYYY-MM-DD') + (i - 101) * 365, 'YYYY-MM-DD'), 'U', 'N',
+      TO_DATE('2018-09-06', 'YYYY-MM-DD'), CASE WHEN MOD(i, 2) = 0 THEN 'M' ELSE 'F' END
+    );
+  END LOOP;
+  COMMIT;
+END;
+
+SELECT *
+	FROM TB_USER;
 	
+-- SQL 스크립트: 100개의 더미 대출 데이터 삽입
+BEGIN
+  FOR i IN 501..550 LOOP
+    INSERT INTO TB_BOOK_RENT (
+      RENT_SEQ, USER_SEQ, BOOK_SEQ, RENT_DATE, RENT_RETURN_DATE, RENT_STATUS
+    ) VALUES (
+      i, MOD(i, 400) + 101, 5, TO_DATE('2023-06-10', 'YYYY-MM-DD'), TO_DATE('2023-06-10', 'YYYY-MM-DD')+7, 'N'
+    );
+  END LOOP;
+  COMMIT;
+END;
 
-
-
+SELECT *
+	FROM TB_BOOK_RENT tbr 
 
  
  
