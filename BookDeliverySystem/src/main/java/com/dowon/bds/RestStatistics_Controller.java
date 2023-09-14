@@ -19,9 +19,9 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 
-	@RestController
-	@Slf4j
-	public class RestStatistics_Controller {
+@RestController
+@Slf4j
+public class RestStatistics_Controller {
 
 		@Autowired
 		private IStatisticsService service;
@@ -30,13 +30,13 @@ import lombok.extern.slf4j.Slf4j;
 		@GetMapping("/genderChart.do")
 		public List<GenderDto> getGender(){
 			List<GenderDto> genderData = service.genderStatistics();
-			log.info("genderData{}",genderData);
+			log.info("RestStatistics_Controller genderData{}",genderData);
 			return genderData;
 		}
 		@GetMapping("/ageChart.do")
 		public List<AgeDto> getAge(){
 			List<AgeDto> ageData = service.AgeStatistics();
-			log.info("ageData {}",ageData);
+			log.info("RestStatistics_Controller getAge {}",ageData);
 			return ageData;
 		}
 
