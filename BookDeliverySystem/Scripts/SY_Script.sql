@@ -6,7 +6,7 @@ FROM (
   		ORDER BY COUNT(*) DESC
   		FETCH FIRST 1 ROWS ONLY
 		) Top2Books
-JOIN TB_BOOK B ON Top2Books.BOOK_SEQ = B.BOOK_SEQ
+JOIN TB_BOOK B ON Top2Books.BOOK_SEQ = B.BOOK_SEQ;
 
 WITH Top2Books AS (
   SELECT BOOK_SEQ , COUNT(*) AS loan_count
@@ -81,3 +81,13 @@ GROUP BY
 ORDER BY
   T2B.BOOK_SEQ,
   age_group; 
+
+	
+
+
+
+
+ 
+ 
+ 
+ 
