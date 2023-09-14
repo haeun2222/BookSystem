@@ -11,6 +11,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
+var book_img;
+
 window.onload = function(){
 //     구글차트 
     google.charts.load('current', {'packages':['corechart']}); 
@@ -51,11 +53,11 @@ window.onload = function(){
             var bookTitle = data[0].book_title;
             $('#bookTitle').text('['+ bookTitle + ']');
         
-            var bookInfo = data[0].book_img;
-            $('#bookInfo').html('<img src="'+bookInfo+'" alt="bookImgLoading....">');
+            book_img = data[0].book_img;
         });
     };
 };
+            
 </script>
  <script type="text/javascript">
 //     구글차트 
@@ -106,7 +108,7 @@ window.onload = function(){
 <!-- <a href="./imgSelect.do">책이미지좀불러와라</a> -->
 <!-- <a href="./genderList.do">성별통계불러와라</a> -->
 <!-- <a href="./ageList.do">연령별통계불러와라</a> -->
-	<div class="rectangle">
+<div class="container-md" style="background-image: url('./img/star.png'); width:500px; height:500px; background-size: cover; margin-top: 500px; margin-left: 20px;">
 		<h2>실시간 베스트셀러!</h2>
 		<h4>누구에게 인기가 많을까?</h4>
 		<!-- Trigger the modal with a button -->
@@ -155,10 +157,12 @@ window.onload = function(){
 </body>
 <script type="text/javascript">
 	function showBookInfo(){
+		$('#bookInfo').html('<img src="'+book_img+'" alt="bookImgLoading....">');
 		$('#bookInfo').fadeIn();
 // 		console.log("커서가 올라왔다");
 	}
 	function hideBookInfo(){
+		$('#bookInfo').html('<img src="'+book_img+'" alt="bookImgLoading....">');
 		$('#bookInfo').fadeOut();
 // 		console.log("커서가 내려갔다");
 	}
