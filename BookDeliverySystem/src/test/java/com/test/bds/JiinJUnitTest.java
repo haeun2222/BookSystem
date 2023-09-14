@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
 @Slf4j
 public class JiinJUnitTest {
-
+//업로드 확인
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
