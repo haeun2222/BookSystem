@@ -14,15 +14,21 @@ import com.dowon.bds.model.mapper.IUserDao;
 @Service
 public class UserServiceImpl implements IUserService {
 	
-	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired
 	private IUserDao dao;
 	
 	@Override
 	public UserDto login(Map<String, Object> map) {
-		logger.info("login실행 {}",map);
+		log.info("UserServiceImpl login 로그인 : {}",map);
 		return dao.login(map);
+	}
+
+	@Override
+	public int nomalRegist(UserDto dto) {
+		log.info("UserServiceImpl nomalRegist 일반회원가입 : {}",dto);
+		return dao.nomalRegist(dto);
 	}
 	
 }

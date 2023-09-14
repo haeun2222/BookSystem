@@ -2,9 +2,14 @@ package com.dowon.bds;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.dowon.bds.dto.UserDto;
+import com.dowon.bds.model.service.IUserService;
 
 
 /**
@@ -15,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class RegistController {
+	
+	@Autowired
+	private IUserService service;
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -27,10 +35,15 @@ public class RegistController {
 	
 	//일반회원가입 처리 컨트롤러
 	@RequestMapping(value="/nomalRegist.do", method = RequestMethod.POST)
-	public String nomalRegist(){
+	public String nomalRegist(UserDto dto, Model model){
 		logger.info("nomalRegistForm >> nomalRegist ");
-		
-		return null;
+		logger.info("일반회원가입 내용{}",dto);
+		int n = service.nomalRegist(dto);
+		if( n == 1) {
+			return "loginPage";
+		}else {
+			return "test";
+		}
 	}
 	
 	

@@ -25,5 +25,11 @@ public class UserDaoImpl implements IUserDao {
 	}
 
 
+	@Override
+	public int nomalRegist(UserDto dto) {
+		return sqlSession.insert(NS+"nomalRegist",dto);
+	}
+
+
 
 }
