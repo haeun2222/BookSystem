@@ -17,12 +17,12 @@
 
 
 
-	<insert id="saveAddress" parameterType="com.dowon.bds.dto.AddrDto">
-	INSERT INTO HR.TB_DELIVERY
+	<insert id="saveAddress" parameterType="AddrDto">
+		INSERT INTO TB_DELIVERY
 		(DELIVERY_SEQ, USER_SEQ, RENT_SEQ, DELIVERY_NAME, DELIVERY_PHONE, POSTCODE, ADDRESS, DETADDR, EXTADDR, DELIVERY_NUM)
 		VALUES(SQ_DELIVERY.NEXTVAL, #{user_seq}, #{rent_seq},#{delivery_name}, #{delivery_phone}, #{postcode}, #{address}, #{detaddr}, #{extaddr}, NULL)
 	</insert>
-
+	
 	<select id="checkAddress" resultMap="addrResultMap">
 		SELECT DELIVERY_SEQ, USER_SEQ, RENT_SEQ, DELIVERY_NAME, DELIVERY_PHONE, POSTCODE, ADDRESS, DETADDR, EXTADDR, DELIVERY_NUM
 		FROM TB_DELIVERY

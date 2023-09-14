@@ -29,6 +29,8 @@
  <mapper resource="sqls/Rent_Statement.xml"/>
  <mapper resource="sqls/Resve_Statement.xml"/>
  <mapper resource="sqls/Payment_Statement.xml"/>
+ <mapper resource="sqls/Addr_Statement.xml"/>
+ 
 </mappers>
 
 </configuration>

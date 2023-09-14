@@ -17,6 +17,7 @@
 </head>
 
 <body>
+${rentSeq}
 
 <c:set var="loginUser" value="${sessionScope.loginVo}"/>
 <h1 style="font-family: 'Hanna', fantasy;">${loginUser.user_name}님의 배송지 입력</h1>
@@ -31,7 +32,7 @@
 			            <td>
 		                <input class="form-control" type="text" value="${loginUser.user_seq}" readonly="readonly" id="user_seq" name="user_seq">
 <%-- 		                <input class="form-control" type="text" value="${loginUser.user_name}" readonly="readonly" id="user_seq" name="user_seq"> --%>
-<%-- 		                <input class="form-control" type="text" value="${rent_seq}" readonly="readonly" id="rent_seq" name="rent_seq"> --%>
+		                <input class="form-control" type="text" value="1" readonly="readonly" id="rent_seq" name="rent_seq">
 						</td>
 					</tr>
 				</thead>
