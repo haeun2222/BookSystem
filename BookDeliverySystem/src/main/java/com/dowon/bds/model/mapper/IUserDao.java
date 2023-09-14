@@ -8,5 +8,6 @@ import com.dowon.bds.dto.UserDto;
 public interface IUserDao {
 	
 	public UserDto login(Map<String, Object> map);
+	public int nomalRegist(UserDto dto);
 
 }

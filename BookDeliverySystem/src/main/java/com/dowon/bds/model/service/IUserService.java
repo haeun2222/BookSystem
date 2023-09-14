@@ -9,6 +9,6 @@ import com.dowon.bds.dto.UserDto;
 public interface IUserService {
 	
 	public UserDto login(Map<String, Object> map);
-	
+	public int nomalRegist(UserDto dto);
 
 }
