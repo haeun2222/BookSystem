@@ -69,5 +69,10 @@ public class RentDaoImpl implements IRentDao {
 	public List<BookDto> bookAll() {
 		return session.selectList(NS+"bookAll");
 	}
+
+	@Override
+	public List<Map<String, Object>> rentY() {
+		return session.selectList(NS+"rentY");
+	}
 	
 }

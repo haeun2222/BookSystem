@@ -90,4 +90,23 @@ public class RentServiceImpl implements IRentService {
 	    return filteredBookSeqList;
 	}
 
+	@Override
+	 public List<String> rentStatusYBookSeq() {
+		
+		List<String> rentYBookSeqList = new ArrayList<>();
+        
+        List<Map<String, Object>> yList = dao.rentY();
+        
+        for (Map<String, Object> map : yList) {
+        	Object rentStatus = map.get("RENT_STATUS");
+        	
+        	String rentStatusOrDefault = rentStatus.toString();
+        	if("Y".equals(rentStatusOrDefault)) {
+        		String bookSeq = map.get("BOOK_SEQ").toString();
+        		rentYBookSeqList.add(bookSeq);
+        	}
+        }
+        return rentYBookSeqList;
+	}
+
 }

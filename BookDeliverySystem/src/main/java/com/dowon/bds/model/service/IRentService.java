@@ -35,4 +35,6 @@ public interface IRentService {
 	
 	public List<String> selectFilteredBookSeqList();
 	
+	public List<String> rentStatusYBookSeq();
+	
 }

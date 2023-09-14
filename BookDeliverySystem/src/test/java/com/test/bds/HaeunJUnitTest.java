@@ -2,6 +2,9 @@ package com.test.bds;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +14,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.dowon.bds.model.mapper.IRentDao;
+import com.dowon.bds.model.service.IRentService;
 import com.dowon.bds.model.service.IResveService;
 
 
@@ -28,12 +33,14 @@ public class HaeunJUnitTest {
 	@Autowired
 	private ApplicationContext context;
 	
-//	@Autowired
-//	private IRentService service;
-	
 	@Autowired
-	private IResveService service;
+	private IRentService service;
 	
+//	@Autowired
+//	private IResveService service;
+
+	@Autowired
+	private IRentDao dao;
 	
 	@Before
 	public void test() {
@@ -44,6 +51,15 @@ public class HaeunJUnitTest {
 	
 	@Test
 	public void bookTest() {
+		
+		List<String> lists =service.rentStatusYBookSeq();
+		assertNotNull(lists);
+		System.out.println(lists);
+		
+		
+//		List<Map<String, Object>> lists = dao.rentY();
+//		assertNotNull(lists);
+//		System.out.println(lists);
 		
 		//rent
 //		Map<String, Object> map = new HashMap<String, Object>();

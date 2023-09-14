@@ -16,16 +16,19 @@
 <%-- ${rDto} --%>
 ${rentData.size()}
 @@@@@@@@@@@@@@@@@@@@@@@@@<br>
-${rentData}
+ddddddddd${rentData}<br>
+ddddddddddd${resveData}<br>
 ${rentData[0].USER_SEQ}
 ${loginVo.user_seq}
 @@@@@@@@@@@@@@@@@@@@@@@@@<br>
 @@@@@@@@@@@@@@@@@@@<br>
-${filteredBookSeqList}<br>
+aaaaaaaaaaaa${filteredBookSeqList}<br>
 @@@@@@@@@@@@@@@@@@@@@@@@@<br>
+${rentYBookSeqList}
 @@@@@@@@@@@@@@@@@@@<br>
-<div id="rentDataSize" data-rent-data-size="${rentData.size()}"></div>
-<div id="resveDataSize" data-resve-data-size="${resveData.size()}"></div>
+${dto.book_seq}
+
+
 <!-- <br>★★★★★★★★★★★<br> -->
 <%--     ${loginVo.user_name}님은 현재 ${rentData[0].BOOK_TITLE} 도서를 대출중입니다. --%>
 <%--     책번호 ${rentData[0].BOOK_SEQ} --%>
@@ -151,65 +154,6 @@ function showModal(content, button, modalFooter) {
     $('#myModal .modal-body').html(content);
     $('#myModal .modal-footer').html($(button));
     $('#myModal').modal('show');
-}
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 예약 모달 창 -->
-<div class="modal fade" id="newResve" role="dialog">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">예약 신청 정보 확인</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <h4>Title: ${dto.book_title}</h4>
-        <h4>Writer: ${dto.book_writer}</h4>
-      </div>
-      <div class="modal-body">
-        <h4>회원명: ${loginVo.user_name}<span id="userName"></span></h4>
-        <h4>이메일: ${loginVo.user_email}<span id="userEmail"></span></h4>
-      </div>
-      <div class="modal-body">
-        예약신청을 하시겠습니까?<br>
-        
-        예약신청 버튼을 누르시면 예약신청이 완료됩니다
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-success" onclick="applyForResve(${loginVo.user_seq})">예약신청</button>
-        <button class="btn btn-info" data-dismiss="modal">취소</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-<script>
-function newResve(bookDto) {
-    $('#newResve').modal('show');
-}
-
-function applyForResve() {
-    alert("예약신청이 완료되었습니다.");
-
-    window.location.href = "./userResveList.do?user_seq=${loginVo.user_seq}";
 }
 
 function impossibility(){

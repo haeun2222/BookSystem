@@ -56,6 +56,15 @@ WHERE R.RENT_STATUS = 'Y' OR RV.RESVE_STATUS = 'R'
 </select>
 
 
+<!-- 대출중인 책만 찾기 -->
+<select id="rentY" resultType="java.util.Map">
+    SELECT B.BOOK_SEQ AS book_seq, B.BOOK_TITLE AS book_title, R.RENT_STATUS AS rent_status
+    FROM TB_BOOK B
+    LEFT JOIN TB_BOOK_RENT R ON B.BOOK_SEQ = R.BOOK_SEQ
+    WHERE R.RENT_STATUS = 'Y'
+</select>
+
+
 <!-- 관리자의 반납 완료 처리 -->
 <update id="rentStatus" parameterType="java.lang.Integer">
 UPDATE TB_BOOK_RENT
