@@ -35,14 +35,14 @@ public class StatisticsServiceImpl implements IStatisticsService {
 
 	@Override
 	public List<GenderDto> genderStatistics() {
-		log.info("genderStatistics 실행");
+		log.info("StatisticsServiceImpl genderStatistics 실행");
 		return dao.genderStatistics();
 	}
 
 
 	@Override
 	public List<AgeDto> AgeStatistics() {
-		log.info("AgeStatistics 실행");
+		log.info("StatisticsServiceImpl AgeStatistics 실행");
 		return dao.AgeStatistics();
 	}
 

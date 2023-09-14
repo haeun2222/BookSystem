@@ -31,7 +31,7 @@ public class Statistics_Controller {
 	
 	@RequestMapping(value = "/chartGo.do", method = RequestMethod.GET)
 	public String goChart() {
-		log.info("페이지 이동");
+		log.info("Statistics_Controller goChart 페이지 이동");
 		return "bdsHome";
 	}
 	

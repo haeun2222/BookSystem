@@ -52,13 +52,13 @@ public class SuyubJUnitTest {
 //	@Test
 	public void gender_test() {
 		List<GenderDto> lists = dao.genderStatistics();
-		log.info("genderStatistics {}",lists);
+		log.info("SuyubJUnitTest gender_test {}",lists);
 		assertNotNull(lists);
 	}
 	@Test
 	public void age_test() {
 		List<AgeDto> lists = service.AgeStatistics();
-		log.info("AgeStatistics {}", lists);
+		log.info("SuyubJUnitTest age_test {}", lists);
 		assertNotNull(lists);
 	}
 
