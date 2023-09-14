@@ -30,13 +30,13 @@ public class RestStatistics_Controller {
 		@GetMapping("/genderChart.do")
 		public List<GenderDto> getGender(){
 			List<GenderDto> genderData = service.genderStatistics();
-			log.info("RestStatistics_Controller genderData{}",genderData);
+			log.info("Welcome RestStatistics_Controller genderData{} 성별통계",genderData);
 			return genderData;
 		}
 		@GetMapping("/ageChart.do")
 		public List<AgeDto> getAge(){
 			List<AgeDto> ageData = service.AgeStatistics();
-			log.info("RestStatistics_Controller getAge {}",ageData);
+			log.info("Welcome RestStatistics_Controller getAge 연령별통계{}",ageData);
 			return ageData;
 		}
 

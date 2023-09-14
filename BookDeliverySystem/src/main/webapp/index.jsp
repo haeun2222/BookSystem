@@ -8,7 +8,6 @@
 </head>
 <body>
 <a href="./test.do">테스트</a>
-<a href="./chartGo.do">스테디셀러 보기 테스트</a>
 
 </body>
 </html>

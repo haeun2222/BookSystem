@@ -24,6 +24,8 @@ ${loginVo.user_seq}
 ${filteredBookSeqList}<br>
 @@@@@@@@@@@@@@@@@@@@@@@@@<br>
 @@@@@@@@@@@@@@@@@@@<br>
+<div id="rentDataSize" data-rent-data-size="${rentData.size()}"></div>
+<div id="resveDataSize" data-resve-data-size="${resveData.size()}"></div>
 <!-- <br>★★★★★★★★★★★<br> -->
 <%--     ${loginVo.user_name}님은 현재 ${rentData[0].BOOK_TITLE} 도서를 대출중입니다. --%>
 <%--     책번호 ${rentData[0].BOOK_SEQ} --%>
@@ -73,35 +75,33 @@ ${filteredBookSeqList}<br>
 
 
 
-
 <script type="text/javascript">
 function checkAvailability() {
     var rentDataSize = ${rentData.size()};
     var resveDataSize = ${resveData.size()};
     
-    console.log("rentDataSize: " + rentDataSize); // 로그 추가
-    console.log("resveDataSize: " + resveDataSize); // 로그 추가
+    console.log("rentDataSize: " + rentDataSize);
+    console.log("resveDataSize: " + resveDataSize);
     
     var modalContent = "";
     var modalFooter = $('<div></div>');
-    var button1 = ""; // 버튼 변수 선언
+    var button1 = "";
     var button2 = "";
 
     if (rentDataSize == 0 && resveDataSize == 0) {
-        modalContent = "<b>회원정보</b><br>이름 : ${loginVo.user_name}<br>이메일 : ${loginVo.user_email}<br><br><b>대출정보 확인</b><br>대출신청을 하시겠습니까?<br>대출신청 버튼을 누르면 배송지 입력으로 이동합니다.";
+        modalContent = "<b>회원정보</b><br>이름 : ${loginVo.user_name}<br>이메일 : ${loginVo.user_email}<br><br><b>도서정보</b><br>도서명 : ${dto.book_title}<br>저자 : ${dto.book_writer}<br><br><b>대출신청 확인</b><br>대출신청을 하시겠습니까?<br>대출신청 버튼을 누르면 배송지 입력으로 이동합니다.";
         button1 = $('<button type="button" class="btn btn-primary ml-2">대출신청</button>');
         button2 = $('<button type="button" class="btn btn-primary ml-2">닫기</button>');
         
-        var user_seq = ${loginVo.user_seq};
         button1.click(function() {
-            window.location.href = "./addr.do?user_seq=" + user_seq;
+        	window.location.href = "./배송지입력URL.do?book_seq=" + ${dto.book_seq};
         });
 
         button2.click(function() {
             $('#myModal').modal('hide');
         });
         
-        modalFooter.append(button1); // 버튼1을 풋터에 추가
+        modalFooter.append(button1);
         modalFooter.append(button2);
         
     } else {
@@ -119,7 +119,7 @@ function checkAvailability() {
                 $('#myModal').modal('hide');
             });
             
-            modalFooter.append(button1); // 버튼1을 풋터에 추가
+            modalFooter.append(button1);
             modalFooter.append(button2);
         }
 
@@ -137,19 +137,19 @@ function checkAvailability() {
                 $('#myModal').modal('hide');
             });
             
-            modalFooter.append(button1); // 버튼1을 풋터에 추가
+            modalFooter.append(button1);
             modalFooter.append(button2);
         }
     }
 
-    showModal(modalContent, modalFooter); // 버튼 변수 전달
+    showModal(modalContent, modalFooter);
 }
 
 function showModal(content, button, modalFooter) {
-    console.log("showModal content: " , content); // 로그 추가
-    console.log("showModal content: " , modalFooter); // 로그 추가
+    console.log("showModal content: " , content);
+    console.log("showModal content: " , modalFooter);
     $('#myModal .modal-body').html(content);
-    $('#myModal .modal-footer').html($(button)); // 버튼을 jQuery 객체로 변환하여 추가
+    $('#myModal .modal-footer').html($(button));
     $('#myModal').modal('show');
 }
 </script>
@@ -202,7 +202,6 @@ function showModal(content, button, modalFooter) {
 
 
 <script>
-
 function newResve(bookDto) {
     $('#newResve').modal('show');
 }
