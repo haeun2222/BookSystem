@@ -31,5 +31,11 @@ public class UserDaoImpl implements IUserDao {
 	}
 
 
+	@Override
+	public int checkEmail(String email) {
+		return sqlSession.selectOne(NS+"checkEmail",email);
+	}
+
+
 
 }
