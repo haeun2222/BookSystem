@@ -16,7 +16,7 @@
 test: ${loginVo.user_email} <br>
 
 <h2>메인테스트페이지</h2>
-<button>대출(대출/예약등)</button>
+<button onclick="location.href='./bookListHaeun.do?user_seq=${loginVo.user_seq}'">대출(대출/예약등)</button>
 <button>결제</button>
 <button>통계</button>
 </body>

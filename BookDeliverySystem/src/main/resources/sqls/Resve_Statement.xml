@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dowon.bds.model.mapper.ResveDaoImpl">
+
+
+<!-- 예약걸려있는책이 반납완료 됐을때, 순번1에게 대출대기 상태로 업데이트 -->
+<update id="rentStandby" parameterType="java.lang.Integer">
+UPDATE BOOK.TB_RESVE
+SET RESVE_STATUS = 'R',
+    RESVE_STEP = CASE
+        WHEN RESVE_STEP = 1 THEN 0
+        ELSE RESVE_STEP
+    END
+WHERE BOOK_SEQ = #{book_seq} AND RESVE_STEP = 1 AND RESVE_STATUS ='Y'
+</update>
+
+
+<!-- 앞순번 빠지고 뒤에애들 순번 조정 -->
+<update id="stepMinus" parameterType="java.lang.Integer">
+UPDATE TB_RESVE
+SET RESVE_STEP = RESVE_STEP - 1
+WHERE BOOK_SEQ = #{book_seq} AND RESVE_STATUS = 'Y'
+</update>
+
+
+<!-- 예약 인서트 -->
+<insert id="resveBook" parameterType="map">
+INSERT INTO TB_RESVE
+(RESVE_SEQ, USER_SEQ, BOOK_SEQ, RESVE_STEP, RESVE_STATUS)
+SELECT
+    SQ_RESVE.NEXTVAL,
+    U.USER_SEQ,
+    B.BOOK_SEQ,
+    COALESCE((SELECT MAX(R2.RESVE_STEP) + 1
+              FROM TB_RESVE R2
+              WHERE R2.BOOK_SEQ = B.BOOK_SEQ AND R2.RESVE_STATUS = 'Y'
+             ), 1), 
+    'Y'
+FROM
+    TB_USER U
+CROSS JOIN
+    TB_BOOK B
+WHERE
+    U.USER_SEQ = #{user_seq}
+    AND B.BOOK_SEQ = #{book_seq}
+</insert>
+
+
+<!-- 예약취소하기 -->
+<update id="resveCancle" parameterType="map">
+UPDATE TB_RESVE
+SET RESVE_STATUS = 'N'
+WHERE BOOK_SEQ = #{book_seq} AND RESVE_STATUS = 'Y' AND USER_SEQ = #{user_seq}
+</update>
+
+
+<!-- 예약순번조회 -->
+<select id="selectStep" parameterType="java.lang.Integer" resultType="java.util.Map">
+SELECT U.USER_NAME AS user_name, B.BOOK_TITLE AS book_title, R.RESVE_STATUS, R.RESVE_STEP
+FROM BOOK.TB_RESVE R
+INNER JOIN BOOK.TB_USER U ON R.USER_SEQ = U.USER_SEQ
+INNER JOIN BOOK.TB_BOOK B ON R.BOOK_SEQ = B.BOOK_SEQ
+WHERE U.USER_SEQ = #{user_seq}
+</select>
+
+<!-- 특정 회원의 예약중or대출대기 여부 판단 -->
+<select id="userResveStatus" parameterType="java.lang.Integer" resultType="Map">
+SELECT U.USER_SEQ AS USER_SEQ, U.USER_NAME AS USER_NAME, B.BOOK_TITLE AS BOOK_TITLE, R.RESVE_STEP , R.RESVE_STATUS 
+FROM BOOK.TB_RESVE R
+INNER JOIN BOOK.TB_USER U ON R.USER_SEQ = U.USER_SEQ
+INNER JOIN BOOK.TB_BOOK B ON R.BOOK_SEQ = B.BOOK_SEQ
+WHERE U.USER_SEQ = #{user_seq} AND (R.RESVE_STATUS = 'Y' OR R.RESVE_STATUS = 'R')
+</select>
+
+
+
+</mapper>
