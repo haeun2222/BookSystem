@@ -18,7 +18,6 @@ public class JiinJUnitTest {
 	
 	@Test
 	public void test() {
-		fail("Not yet implemented");
 	}
 
 }

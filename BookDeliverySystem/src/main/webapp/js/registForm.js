@@ -57,20 +57,21 @@ mobile.addEventListener("focusout", checkPhoneNum);
 
 
 function checkId() {
-    var idPattern = /[a-zA-Z0-9_-]{5,20}/;
+	//이메일 유효성 검사
+    var idPattern = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     if(id.value === "") {
-        error[0].innerHTML = "필수 정보입니다.";
+        error[0].innerHTML = "이메일은 필수 정보입니다.";
         error[0].style.display = "block";
     } else if(!idPattern.test(id.value)) {
-        error[0].innerHTML = "5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.";
+        error[0].innerHTML = "이메일 형식에 맞게 입력해주세요.";
         error[0].style.display = "block";
     } else {
-        error[0].innerHTML = "멋진 아이디네요!";
+        error[0].innerHTML = "사용가능한 아이디(이메일) 입니다.";
         error[0].style.color = "#08A600";
         error[0].style.display = "block";
     }
 }
-
+//테스트
 function checkPw() {
     var pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}/;
     if(pw1.value === "") {
@@ -86,7 +87,7 @@ function checkPw() {
         pwImg1.src = "m_icon_not_use.png";
     } else {
         error[1].style.display = "none";
-        pwMsg.innerHTML = "안전";
+        pwMsg.innerHTML = "사용가능";
         pwMsg.style.display = "block";
         pwMsg.style.color = "#03c75a";
         pwImg1.src = "m_icon_safe.png";
@@ -164,13 +165,10 @@ function isBirthRight() {
 
 function checkAge() {
     if(Number(yy.value) < 1920) {
-        error[4].innerHTML = "정말이세요?";
+        error[4].innerHTML = "연도를 다시 입력해주세요";
         error[4].style.display = "block";
-    } else if(Number(yy.value) > 2020) {
-        error[4].innerHTML = "미래에서 오셨군요. ^^";
-        error[4].style.display = "block";
-    } else if(Number(yy.value) > 2005) {
-        error[4].innerHTML = "만 14세 미만의 어린이는 보호자 동의가 필요합니다.";
+    } else if(Number(yy.value) > 2024) {
+        error[4].innerHTML = "2024보다 낮은 값을 입력해주세요.";
         error[4].style.display = "block";
     } else {
         error[4].style.display = "none";
