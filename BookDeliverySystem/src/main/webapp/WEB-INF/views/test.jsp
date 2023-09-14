@@ -9,5 +9,7 @@
 <body>
 테스트화면
 <a href="./loginPage.do">로그인하기</a>
+${dto.book_seq}
+${sessionScope.loginVo}
 </body>
 </html>

@@ -34,7 +34,9 @@
             <td>
 			    <c:choose>
 			        <c:when test="${rent.RENT_STATUS eq 'Y'}">대출중</c:when>
-			        <c:otherwise>반납완료</c:otherwise>
+			        <c:when test="${rent.RENT_STATUS eq 'N'}">반납완료</c:when>
+			        <c:when test="${rent.RENT_STATUS eq 'A'}">대출 배송완료</c:when>
+                    <c:when test="${rent.RENT_STATUS eq 'B'}">반납 배송완료</c:when>
 			    </c:choose>
 			</td>
 			<td>
