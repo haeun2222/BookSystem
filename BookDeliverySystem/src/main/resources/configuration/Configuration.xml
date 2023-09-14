@@ -4,7 +4,7 @@
 
 <typeAliases>
 	<typeAlias type="com.dowon.bds.dto.BookDto" alias="BookDto"/>
-	<typeAlias type="com.dowon.bds.dto.DeliveryDto" alias="DeliveryDto"/>
+	<typeAlias type="com.dowon.bds.dto.AddrDto" alias="DeliveryDto"/>
 	<typeAlias type="com.dowon.bds.dto.FaqBoardDto" alias="FaqBoardDto"/>
 	<typeAlias type="com.dowon.bds.dto.FileBoardDto" alias="FileBoardDto"/>
 	<typeAlias type="com.dowon.bds.dto.FreeBoardDto" alias="FreeBoardDto"/>
@@ -17,6 +17,8 @@
 	<typeAlias type="com.dowon.bds.dto.UserDto" alias="UserDto"/>
 	<typeAlias type="com.dowon.bds.dto.GenderDto" alias="GenderDto"/>
 	<typeAlias type="com.dowon.bds.dto.AgeDto" alias="AgeDto"/>
+	<typeAlias type="com.dowon.bds.dto.PayDto" alias="PayDto"/>
+	<typeAlias type="com.dowon.bds.dto.AddrDto" alias="AddrDto"/>
 </typeAliases>
 
 
@@ -26,6 +28,7 @@
  <mapper resource="sqls/Statistics_Statement.xml"/>
  <mapper resource="sqls/Rent_Statement.xml"/>
  <mapper resource="sqls/Resve_Statement.xml"/>
+ <mapper resource="sqls/Payment_Statement.xml"/>
 </mappers>
 
 </configuration>

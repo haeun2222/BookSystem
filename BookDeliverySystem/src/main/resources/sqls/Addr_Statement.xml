@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dowon.bds.model.mapper.AddrDaoImpl">
+ 
+ <resultMap id="addrResultMap" type="com.dowon.bds.dto.AddrDto">
+    <id property="delivery_seq" column="DELIVERY_SEQ"/>
+    <result property="user_seq" column="USER_SEQ"/>
+    <result property="rent_seq" column="RENT_SEQ"/>
+    <result property="delivery_name" column="DELIVERY_NAME"/>
+    <result property="delivery_phone" column="DELIVERY_PHONE"/>
+    <result property="postcode" column="POSTCODE"/>
+    <result property="address" column="ADDRESS"/>
+    <result property="detaddr" column="DETADDR"/>
+    <result property="extaddr" column="EXTADDR"/>
+    <result property="delivery_num" column="DELIVERY_NUM"/>
+</resultMap>
+
+
+
+	<insert id="saveAddress" parameterType="com.dowon.bds.dto.AddrDto">
+	INSERT INTO HR.TB_DELIVERY
+		(DELIVERY_SEQ, USER_SEQ, RENT_SEQ, DELIVERY_NAME, DELIVERY_PHONE, POSTCODE, ADDRESS, DETADDR, EXTADDR, DELIVERY_NUM)
+		VALUES(SQ_DELIVERY.NEXTVAL, #{user_seq}, #{rent_seq},#{delivery_name}, #{delivery_phone}, #{postcode}, #{address}, #{detaddr}, #{extaddr}, NULL)
+	</insert>
+
+	<select id="checkAddress" resultMap="addrResultMap">
+		SELECT DELIVERY_SEQ, USER_SEQ, RENT_SEQ, DELIVERY_NAME, DELIVERY_PHONE, POSTCODE, ADDRESS, DETADDR, EXTADDR, DELIVERY_NUM
+		FROM TB_DELIVERY
+		WHERE DELIVERY_SEQ = #{delivery_seq}
+	</select>
+ 
+</mapper>

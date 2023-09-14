@@ -8,8 +8,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * @author 박하은
- * @since 2023.09.06 배송정보 Dto
+ * @author 김지인
+ * @since 2023.09.14 배송테이블 수정으로 배송DTO 수정
  */
 
 @Data
@@ -18,12 +18,18 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class DeliveryDto {
+
+public class AddrDto {
 
 	private int delivery_seq;
+	private int user_seq;
 	private int rent_seq;
-	private String delivery_address;
+	private String delivery_name;
 	private String delivery_phone;
+	private String postcode;
+	private String address;
+	private String detaddr;
+	private String extaddr;
 	private int delivery_num;
 	
 }
