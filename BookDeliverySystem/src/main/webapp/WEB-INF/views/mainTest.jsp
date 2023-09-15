@@ -23,7 +23,7 @@ test: ${loginVo} <br>
 
 
 <button>결제</button>
-<button onclick="location.href='./chartGo.do'">통계</button>
+
 
 </body>
 </html>
