@@ -62,6 +62,7 @@ public class RegistController {
 	public int checkEmail(@RequestParam String email) {
 		int cnt = service.checkEmail(email);
 		return cnt;
+		
 	}
 	
 }
