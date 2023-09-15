@@ -1,5 +1,9 @@
 package com.dowon.bds.model.mapper;
-
+/** 
+ * @author 김지인
+ * @since 2023.09.13
+ * 결제관련 메소드를 정의한 DAO Interface
+ */
 import com.dowon.bds.dto.PayDto;
 
 public interface IPaymentDao {
