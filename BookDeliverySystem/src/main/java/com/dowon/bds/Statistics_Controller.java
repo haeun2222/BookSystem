@@ -36,8 +36,9 @@ public class Statistics_Controller {
 //		return "bdsHome";
 //	}
 	@RequestMapping(value = "/bookDetail.do", method = RequestMethod.GET)
-	public String bookDetail() {
-		log.info("Welcome Statistics_Controller bookDetail 상세페이지로 이동");
+	public String bookDetail(@RequestParam("book_seq") int book_seq, Model model) {
+		log.info("Welcome Statistics_Controller bookDetail 상세페이지로 이동 book_seq: {}",book_seq);
+		model.addAttribute("bookSeq",book_seq);
 		return "bookDetailHaeun";
 	}
 	
