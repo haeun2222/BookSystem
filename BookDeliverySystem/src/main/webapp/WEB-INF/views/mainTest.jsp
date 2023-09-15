@@ -14,12 +14,12 @@
 <c:set var="loginVo" value="${sessionScope.loginVo}"/>
 
 <!-- loginVo 객체의 속성(필드) 값을 출력 -->
-test: ${loginVo} <br>
+test: ${loginDto} <br>
 
 <h2>메인테스트페이지</h2>
-<button onclick="location.href='./bookListHaeun.do?user_seq=${loginVo.user_seq}'">대출(대출/예약등)</button>
+<button onclick="location.href='./bookListHaeun.do?user_seq=${loginDto.user_seq}'">대출(대출/예약등)</button>
 
-<button onclick="location.href='./addr.do?user_seq=${loginVo.user_seq}'">배송</button>
+<button onclick="location.href='./addr.do?user_seq=${loginDto.user_seq}'">배송</button>
 
 
 
