@@ -49,7 +49,7 @@
 			    </c:choose>
 			</td>
 			<td>
-				<button onclick="">배송조회</button>
+				<button onclick="location.href='./delivery.do?user_seq=${loginVo.user_seq}'">배송조회</button>
 			</td>
         </tr>
     </c:forEach>
