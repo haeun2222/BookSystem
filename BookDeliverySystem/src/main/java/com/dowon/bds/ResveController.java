@@ -1,16 +1,23 @@
 package com.dowon.bds;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dowon.bds.dto.ResveDto;
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IResveService;
 
@@ -34,9 +41,48 @@ public class ResveController {
 	public String userResveList(@RequestParam("user_seq")int user_seq, Model model, HttpSession session){
 		log.info("ResveController userResveList 회원의 마이페이지-예약조회 부분에 들어갈 페이지 컨트롤러");
 		UserDto loginVo = (UserDto) session.getAttribute("loginVo");
-		List<Map<String, Object>> lists = service.selectStep(user_seq);
+		List<ResveDto> lists = service.selectStep(user_seq);
 		model.addAttribute("lists",lists);
 		model.addAttribute("loginVo",loginVo);
 		return "userResveList";
 	}
+	
+	
+
+    
+    
+    
+    
+    
+	@PostMapping("/cancelAndStepUpdate.do")
+	@ResponseBody
+	public String cancelAndStepUpdate(@RequestBody Map<String, Object> requestData) {
+	    int resveSeq = (int) requestData.get("resveSeq");
+	    int userSeq = (int) requestData.get("userSeq");
+	    
+	    boolean success = service.cancelAndStepUpdate(resveSeq, userSeq);
+	    
+	    if (success) {
+	        return "success";
+	    } else {
+	        return "failure";
+	    }
+	}
+	
+	
+	
+	@PostMapping("/updateStep.do")
+	@ResponseBody
+	public String updateStep(@RequestBody Map<String, Object> params) {
+	    boolean updateSuccess = service.updateStep(params);
+	    if (updateSuccess) {
+	        return "success";
+	    } else {
+	        return "failure";
+	    }
+	}
+
+    
+    
+
 }
