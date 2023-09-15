@@ -30,7 +30,8 @@ public class PayDto {
 	private String payImd;  // 결제번호
 	private int user_seq; // 회원 고유번호
 	private int payPayment; // 결제금액
-	private int payDate; // 결제시간
+	private Date payDate; // 결제시간
 	
+
 	
 }
