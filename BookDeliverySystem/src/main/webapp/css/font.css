@@ -71,3 +71,11 @@ table{
 button{
 	font-family: 'BMHANNAAir', fantasy;
 }
+
+html { background-color: papayawhip;} 
+body {
+    min-height: 600px;
+    max-width: 1280px;
+    background-color: papayawhip; 
+    margin: 0 auto;
+}

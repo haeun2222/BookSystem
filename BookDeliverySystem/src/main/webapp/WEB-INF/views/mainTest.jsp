@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/font.css">
 <title>메인페이지</title>
 </head>
 <body>
