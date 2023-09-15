@@ -26,7 +26,7 @@ var error = document.querySelectorAll('.error_next_box');
 
 /*이벤트 핸들러 연결*/
 
-user_email.addEventListener("focusout", checkId);
+user_email.addEventListener("focusout", checkEmail);
 pw1.addEventListener("focusout", checkPw);
 pw2.addEventListener("focusout", comparePw);
 userName.addEventListener("focusout", checkName);
@@ -47,46 +47,47 @@ mobile.addEventListener("focusout", checkPhoneNum);
 
 /*콜백 함수*/
 
+function checkEmail() {
+    // 이메일 유효성 검사
+    var user_email = $("#user_email").val(); // 이메일 입력란의 값 가져오기
 
-//function checkId() {
-//	//이메일 유효성 검사
-//    var idPattern = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-//    if(user_email.value === "") {
-//        error[0].innerHTML = "이메일은 필수 정보입니다.";
-//        error[0].style.display = "block";
-//    } else if(!idPattern.test(user_email.value)) {
-//        error[0].innerHTML = "이메일 형식에 맞게 입력해주세요.";
-//        error[0].style.display = "block";
-//    } else {
-//        error[0].innerHTML = "사용가능한 아이디(이메일) 입니다.";
-//        error[0].style.color = "#08A600";
-//        error[0].style.display = "block";
-//    }
-//}
-
-// jQuery를 사용하여 이메일 중복 검사 AJAX 요청
-$("#user_email").blur(function () {
-    var user_email = $(this).val(); // 이메일 입력란의 값 가져오기
-
-    $.ajax({
-        url: "/checkEmail.do", // 이메일 중복 확인을 처리하는 서버 엔드포인트의 URL
-        type: "post", // POST 요청 사용
-        async: true,
-        data: { "email": user_email }, // 파라미터 이름을 "email"로 변경
-        success: function (response) {
-            if (response > 0) {
-                // 이메일이 중복되는 경우
-                $("#emailStatus").text("중복된 이메일입니다.");
-            } else {
-                // 이메일이 중복되지 않는 경우
-                $("#emailStatus").text("사용 가능한 이메일입니다.");
+    // 이메일 형식 유효성 검사
+    var idPattern = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    
+    if (user_email === "") {
+        error[0].innerHTML = "이메일은 필수 정보입니다.";
+        error[0].style.display = "block";
+    } else if (!idPattern.test(user_email)) {
+        error[0].innerHTML = "이메일 형식에 맞게 입력해주세요.";
+        error[0].style.display = "block";
+    } else {
+        // 이메일 형식이 올바른 경우, 서버에 이메일 중복 확인 요청을 보냅니다.
+        $.ajax({
+            url: "./checkEmail.do", // 이메일 중복 확인을 처리하는 서버 엔드포인트의 URL
+            type: "post", // POST 요청 사용
+            async: true,
+            data: { "email": user_email }, // 파라미터 이름을 "email"로 변경
+            success: function (result) {
+                console.log('통신 성공!' + result);
+                if (result == 0) {
+                    console.log('중복값 없음');
+                    
+                    $('#user_email').css('background-color', 'aqua');
+                    $('#user_email').html('<b style="font-size: 14px; color: green">[아이디 사용이 가능하다.]</b>');
+                } else {
+                    // 이메일이 중복O
+                    console.log('중복값 있음');
+                    $('#user_email').css('background-color', 'pink');
+                    $('#user_email').html('<b style="font-size: 14px; color: red">[아이디 중복!.]</b>');
+                }
+            },
+            error: function (e) {
+                console.log("잘못된 요청 처리", e);
             }
-        },
-        error: function (e) {
-            console.log("잘못된 요청 처리", e);
-        }
-    });
-});
+        });
+    }
+}
+
 
 //테스트
 function checkPw() {

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>일반회원가입 페이지</title>
 <link rel="stylesheet" href="css/registForm.css">
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
