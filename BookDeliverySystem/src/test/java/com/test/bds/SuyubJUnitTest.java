@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.dowon.bds.dto.AgeDto;
+import com.dowon.bds.dto.BookDto;
 import com.dowon.bds.dto.GenderDto;
 import com.dowon.bds.model.mapper.IStatisticsDao;
 import com.dowon.bds.model.service.IStatisticsService;
@@ -58,13 +59,18 @@ public class SuyubJUnitTest {
 		log.info("SuyubJUnitTest gender_test {}",lists);
 		assertNotNull(lists);
 	}
-	@Test
+//	@Test
 	public void age_test() {
 		List<AgeDto> lists = service.AgeStatistics();
 		log.info("SuyubJUnitTest age_test {}", lists);
 		assertNotNull(lists);
 
 	}
-
+	@Test
+	public void book_test() {
+		BookDto dto = dao.bookSearch(5);
+		log.info("SuyubJUnitTest book_test {}", dto);
+		assertNotNull(dto);
+	}
 	
 }

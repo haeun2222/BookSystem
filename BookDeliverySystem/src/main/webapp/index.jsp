@@ -16,12 +16,14 @@ body {
     background-color: papayawhip; 
     margin: 0 auto;
 }
+svg > g > g:last-child { pointer-events: none }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 var book_img;
+var book_seq;
 window.onload = function(){
 //     구글차트 
     google.charts.load('current', {'packages':['corechart']}); 
@@ -59,7 +61,7 @@ window.onload = function(){
             var bookTitle = data[0].book_title;
             $('#bookTitle').text('['+ bookTitle + ']');
         
-            
+        	book_seq = data[0].book_seq,data[0].book_title,data[0].book_intro;   
             book_img = data[0].book_img;
         });
     };
@@ -115,7 +117,7 @@ window.onload = function(){
 <!-- <a href="./imgSelect.do">책이미지좀불러와라</a> -->
 <!-- <a href="./genderList.do">성별통계불러와라</a> -->
 <!-- <a href="./ageList.do">연령별통계불러와라</a> -->
-<div class="rectangle" style="background-image: url('./img/star.png'); width:500px; height:500px; background-size: cover; margin-top: 300px; margin-left: 20px;">
+<div class="rectangle" style="background-image: url('./img/star.png'); width:300px; height:300px; background-size: cover; margin-top: 580px; margin-left: 20px;">
 		<h2>실시간 베스트셀러!</h2>
 		<h4>누구에게 인기가 많을까?</h4>
 		<!-- Trigger the modal with a button -->
@@ -135,7 +137,6 @@ window.onload = function(){
 					<div class="modal-body">
 						<h1 id="bookTitle" style="text-align: center;" onmouseover="showBookInfo()" onmouseout="hideBookInfo()"></h1>
 						<div id="bookInfo">
-							
 						</div>
 						<!-- 여기에 차트 뿌리기 -->
 						<table>
@@ -152,8 +153,8 @@ window.onload = function(){
 						</table>
 		
 					</div>
-					<button type="submit" class="btn btn-primary btn-lg"
-						style="width: 500px; margin: 20px 50px;" onclick="location.href='./bookDetail.do?book_seq=${genderData.book_seq}'">상세보기</button>
+					<button class="btn btn-primary btn-lg"
+						style="width: 500px; margin: 20px 50px;" onclick="GobookDetail(${book_seq})">상세보기</button>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
@@ -163,6 +164,13 @@ window.onload = function(){
 	</div>
 </body>
 <script type="text/javascript">
+	function GobookDetail(${book_seq}){
+		
+		var url = '/BookDeliverySystem/bookDetail.do?book_seq=' + book_seq;
+		window.location.href = url;
+	}
+</script>
+<script type="text/javascript">
 $('#showModal').on('click', function () {
     drawAgeChart();
 });
@@ -171,6 +179,8 @@ $('#showModal').on('click', function () {
 	function showBookInfo(){
 		$('#bookInfo').html('<img src="'+book_img+'" alt="bookImgLoading....">');
 		$('#bookInfo').fadeIn();
+		console.log(book_img);
+		console.log(book_seq);
 // 		console.log("커서가 올라왔다");
 	}
 	function hideBookInfo(){

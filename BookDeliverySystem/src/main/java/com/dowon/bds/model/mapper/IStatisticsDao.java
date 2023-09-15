@@ -3,6 +3,7 @@ package com.dowon.bds.model.mapper;
 import java.util.List;
 
 import com.dowon.bds.dto.AgeDto;
+import com.dowon.bds.dto.BookDto;
 import com.dowon.bds.dto.GenderDto;
 
 /**
@@ -19,5 +20,8 @@ public interface IStatisticsDao {
 		public List<GenderDto> genderStatistics();
 		// 대출현황 연령별 통계 백분율
 		public List<AgeDto> AgeStatistics();
+		
+		//BOOK_SEQ값으로 책 정보를 가져오는 DAO
+		public BookDto bookSearch(int book_seq);
 	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dowon.bds.dto.AgeDto;
+import com.dowon.bds.dto.BookDto;
 import com.dowon.bds.dto.GenderDto;
 import com.dowon.bds.model.mapper.IStatisticsDao;
 
@@ -44,6 +45,13 @@ public class StatisticsServiceImpl implements IStatisticsService {
 	public List<AgeDto> AgeStatistics() {
 		log.info("StatisticsServiceImpl AgeStatistics 실행");
 		return dao.AgeStatistics();
+	}
+
+
+	@Override
+	public BookDto bookSearch(int book_seq) {
+		log.info("StatisticsServiceImpl bookSearch 실행");
+		return dao.bookSearch(book_seq);
 	}
 
 }
