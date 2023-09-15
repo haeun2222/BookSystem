@@ -33,7 +33,7 @@
                         <span class="step_url">ex) dowon@naver.com</span>
                     </span>
                     <span class="error_next_box"></span>
-                    <div id="emailStatus"></div>
+                   	<span class="successmsg"></span>
                 </div>
 
                 <!-- PW1 -->
@@ -45,6 +45,7 @@
                         <img src="m_icon_pass.png" id="pswd1_img1" class="pswdImg">
                     </span>
                     <span class="error_next_box"></span>
+                    <span class="successmsg"></span>
                 </div>
 
                 <!-- PW2 -->
@@ -61,7 +62,7 @@
                 <div>
                     <h3 class="join_title"><label for="name">이름</label></h3>
                     <span class="box int_name">
-                        <input type="text" id="name" name="user_name" class="int" maxlength="20">
+                        <input type="text" id="user_name" name="user_name" class="int" maxlength="20">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -146,7 +147,7 @@
                 <!-- JOIN BTN-->
                 <div class="btn_area">
 <!--                 <input type="submit" id="nomalRegist" name="nomalRegist" value="가입하기"> -->
-                    <button type="button" id="nomalRegist">
+                    <button type="button" id="nomalRegist" disabled>
                         가입하기
                     </button>
                 </div>
