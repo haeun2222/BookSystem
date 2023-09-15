@@ -55,7 +55,7 @@ public class PayController {
     @PostMapping("/payment.do")
     public String payment(@RequestBody PayDto payDto, Map<String,Object>map, HttpSession session,Model model ) {
     	logger.info("payment 결제요청");
-    	payDto.setUser_seq(0); // 나중에 로그인 정보로 대체 예정
+    	payDto.setUser_seq(1); // 나중에 로그인 정보로 대체 예정
     	paymentService.saveBookPayment(payDto); // 결제 정보를 처리하는 서비스 메서드 호출
     	UserDto loginVo = (UserDto) session.getAttribute("loginVo");
     	

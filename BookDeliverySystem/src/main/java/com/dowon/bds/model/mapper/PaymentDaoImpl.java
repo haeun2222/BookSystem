@@ -28,6 +28,7 @@ public class PaymentDaoImpl implements IPaymentDao {
 	@Override
 	public int saveBookPayment(PayDto payDto) {
 		logger.info("saveBookPayment 결제내역저장");
+//		return  sqlSession.insert(NS+"saveBookPayment", payDto);
 		int n = sqlSession.insert(NS+"saveBookPayment", payDto);
 		return 0;
 	}
