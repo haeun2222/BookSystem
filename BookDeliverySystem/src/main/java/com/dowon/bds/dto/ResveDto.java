@@ -20,10 +20,14 @@ import lombok.ToString;
 @AllArgsConstructor
 public class ResveDto {
 	
+
 	private int resve_seq;
-	private int user_seq;
-	private int book_seq;
-	private int resve_step;
-	private String resve_status;
+    private int user_seq;
+    private String user_name;
+    private int book_seq;
+    private String book_title;
+    private int resve_step;
+    private String resve_status;
+	
 	
 }

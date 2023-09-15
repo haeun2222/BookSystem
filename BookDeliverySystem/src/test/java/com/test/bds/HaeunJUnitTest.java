@@ -2,6 +2,7 @@ package com.test.bds;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.dowon.bds.dto.ResveDto;
 import com.dowon.bds.model.mapper.IRentDao;
 import com.dowon.bds.model.service.IRentService;
 import com.dowon.bds.model.service.IResveService;
@@ -32,12 +34,12 @@ public class HaeunJUnitTest {
 
 	@Autowired
 	private ApplicationContext context;
+
+//	@Autowired
+//	private IRentService service;
 	
 	@Autowired
-	private IRentService service;
-	
-//	@Autowired
-//	private IResveService service;
+	private IResveService service;
 
 	@Autowired
 	private IRentDao dao;
@@ -52,9 +54,31 @@ public class HaeunJUnitTest {
 	@Test
 	public void bookTest() {
 		
-		List<String> lists =service.rentStatusYBookSeq();
-		assertNotNull(lists);
-		System.out.println(lists);
+		
+		
+		boolean isc = service.cancelAndStepUpdate(43, 2);
+		System.out.println(isc);
+		
+//		List<ResveDto> lists = service.selectStep(1);
+//		System.out.println(lists);
+		
+		
+//		Map<String, Object> params = new HashMap<>();
+//        params.put("book_seq", 34);
+//        params.put("user_seq", 1);
+//        int bookSeq = 34;
+//        int userSeq = 1;
+//        
+//        // cancelReservationAndStepMinus 메소드 호출
+//        service.cancelReservationAndStepMinus(params, bookSeq, userSeq);
+//        
+//        System.out.println("params : "+params);
+//        System.out.println("bookSeq : "+bookSeq);
+//        System.out.println("userSeq : "+userSeq);
+		
+//		List<String> lists =service.rentStatusYBookSeq();
+//		assertNotNull(lists);
+//		System.out.println(lists);
 		
 		
 //		List<Map<String, Object>> lists = dao.rentY();

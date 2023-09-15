@@ -64,7 +64,7 @@ function confirmReturn(rentSeq) {
         data: { rentSeq: rentSeq }, // 서버에 전달할 데이터 (rentSeq를 전달)
         success: function(response) {
             // 요청이 성공적으로 처리되면 이 함수가 호출됩니다.
-            if (response === "success") {
+            if (response == "success") {
                 // 성공적으로 반납이 확인된 경우에 대한 처리
                 alert("반납이 확인되었습니다.");
                 // 페이지 새로고침 또는 필요한 작업 수행

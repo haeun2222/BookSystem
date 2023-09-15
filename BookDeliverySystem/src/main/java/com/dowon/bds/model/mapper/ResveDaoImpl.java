@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dowon.bds.dto.ResveDto;
+
 /** 
  * @author 박하은
  * @since 2023.09.13
@@ -27,8 +29,8 @@ public class ResveDaoImpl implements IResveDao {
 	}
 
 	@Override
-	public int stepMinus(int n) {
-		return session.update(NS+"stepMinus",n);
+	public int stepMinus(Map<String, Object> map) {
+		return session.update(NS+"stepMinus",map);
 	}
 
 	@Override
@@ -37,17 +39,39 @@ public class ResveDaoImpl implements IResveDao {
 	}
 
 	@Override
-	public int resveCancle(Map<String, Object> map) {
-		return session.update(NS+"resveCancle",map);
+	public int resveCancle(int n) {
+		return session.update(NS+"resveCancle",n);
 	}
 
 	@Override
-	public List<Map<String, Object>> selectStep(int n) {
+	public List<ResveDto> selectStep(int n) {
 		return session.selectList(NS+"selectStep",n);
 	}
 
 	@Override
 	public List<Map<String, Object>> userResveStatus(int n) {
 		return session.selectList(NS+"userResveStatus",n);
+	}
+
+	@Override
+	public boolean cancelReservation(int n) {
+		int rowsAffected = session.update(NS+"resveCancle",n);
+        return rowsAffected > 0;
+	}
+
+	@Override
+	public boolean updateStep(Map<String, Object> map) {
+		int rowsAffected = session.update("stepMinus", map);
+        return rowsAffected > 0;
+	}
+
+	@Override
+	public String getResveStatus(int n) {
+		return session.selectOne(NS+"getResveStatus",n);
+	}
+
+	@Override
+	public int getBookSeq(int n) {
+		return session.selectOne(NS+"getBookSeq",n);
 	}
 }
