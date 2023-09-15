@@ -30,11 +30,11 @@ public class Statistics_Controller {
 	
 
 	
-	@RequestMapping(value = "/chartGo.do", method = RequestMethod.GET)
-	public String goChart() {
-		log.info("Welcome Statistics_Controller goChart 페이지 이동");
-		return "bdsHome";
-	}
+//	@RequestMapping(value = "/chartGo.do", method = RequestMethod.GET)
+//	public String goChart() {
+//		log.info("Welcome Statistics_Controller goChart 페이지 이동");
+//		return "bdsHome";
+//	}
 	@RequestMapping(value = "/bookDetail.do", method = RequestMethod.GET)
 	public String bookDetail() {
 		log.info("Welcome Statistics_Controller bookDetail 상세페이지로 이동");
