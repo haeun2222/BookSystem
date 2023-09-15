@@ -39,12 +39,12 @@ public class ResveDaoImpl implements IResveDao {
 	}
 
 	@Override
-	public int resveCancle(int n) {
-		return session.update(NS+"resveCancle",n);
+	public int resveCancle(Map<String, Object> map) {
+		return session.update(NS+"resveCancle",map);
 	}
 
 	@Override
-	public List<ResveDto> selectStep(int n) {
+	public List<Map<String, Object>> selectStep(int n) {
 		return session.selectList(NS+"selectStep",n);
 	}
 
@@ -53,25 +53,6 @@ public class ResveDaoImpl implements IResveDao {
 		return session.selectList(NS+"userResveStatus",n);
 	}
 
-	@Override
-	public boolean cancelReservation(int n) {
-		int rowsAffected = session.update(NS+"resveCancle",n);
-        return rowsAffected > 0;
-	}
 
-	@Override
-	public boolean updateStep(Map<String, Object> map) {
-		int rowsAffected = session.update("stepMinus", map);
-        return rowsAffected > 0;
-	}
 
-	@Override
-	public String getResveStatus(int n) {
-		return session.selectOne(NS+"getResveStatus",n);
-	}
-
-	@Override
-	public int getBookSeq(int n) {
-		return session.selectOne(NS+"getBookSeq",n);
-	}
 }

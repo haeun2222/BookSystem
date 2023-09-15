@@ -13,25 +13,18 @@ import com.dowon.bds.dto.ResveDto;
 public interface IResveDao {
 
 	
-public int rentStandby(int n);
+	public int rentStandby(int n);
 	
 	public int stepMinus(Map<String, Object> map);
 	
 	public int resveBook(Map<String, Object> map);
 	
-	public int resveCancle(int n);
+	public int resveCancle(Map<String, Object> map);
 	
-	public List<ResveDto> selectStep(int n);
+	public List<Map<String, Object>> selectStep(int n);
 	
 	public List<Map<String, Object>> userResveStatus(int n);
 	
 	
-	public boolean cancelReservation(int n);
-	
-	public boolean updateStep(Map<String, Object> map);
-	
-	
-	public String getResveStatus(int n);
-	public int getBookSeq(int n);
-	
+
 }

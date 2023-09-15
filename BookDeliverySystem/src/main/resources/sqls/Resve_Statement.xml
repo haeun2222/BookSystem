@@ -14,18 +14,7 @@ SET RESVE_STATUS = 'R',
 WHERE BOOK_SEQ = #{book_seq} AND RESVE_STEP = 1 AND RESVE_STATUS ='Y'
 </update>
 
-<!-- 예약취소하기 -->
-<!-- <update id="resveCancle" parameterType="map"> -->
-<!-- UPDATE TB_RESVE -->
-<!-- SET RESVE_STATUS = 'N' -->
-<!-- WHERE BOOK_SEQ = #{book_seq} AND RESVE_STATUS = 'Y' AND USER_SEQ = #{user_seq} -->
-<!-- </update> -->
 
-<update id="resveCancle" parameterType="java.lang.Integer">
-UPDATE TB_RESVE
-SET RESVE_STATUS = 'N'
-WHERE RESVE_SEQ = #{resve_seq}
-</update>
 
 <!-- 앞순번 빠지고 뒤에애들 순번 조정 -->
 <update id="stepMinus" parameterType="Map">
@@ -67,34 +56,13 @@ WHERE
 
 <!-- 예약순번조회 -->
 
-
-
-
-<resultMap id="resveResultMap" type="com.dowon.bds.dto.ResveDto">
-    <result property="user_seq" column="user_seq"/>
-    <result property="user_name" column="user_name"/>
-    <result property="book_seq" column="book_seq"/>
-    <result property="book_title" column="book_title"/>
-    <result property="resve_seq" column="RESVE_SEQ"/>
-    <result property="resve_status" column="RESVE_STATUS"/>
-    <result property="resve_step" column="RESVE_STEP"/>
-</resultMap>
-<select id="selectStep" resultMap="resveResultMap">
-    SELECT U.USER_SEQ AS user_seq, U.USER_NAME AS user_name, B.BOOK_SEQ AS book_seq, B.BOOK_TITLE AS book_title, R.RESVE_SEQ, R.RESVE_STATUS, R.RESVE_STEP
-    FROM BOOK.TB_RESVE R
-    INNER JOIN BOOK.TB_USER U ON R.USER_SEQ = U.USER_SEQ
-    INNER JOIN BOOK.TB_BOOK B ON R.BOOK_SEQ = B.BOOK_SEQ
-    WHERE U.USER_SEQ = #{user_seq}
+<select id="selectStep" parameterType="java.lang.Integer" resultType="java.util.Map">
+SELECT U.USER_NAME AS user_name, B.BOOK_SEQ AS book_seq, B.BOOK_TITLE AS book_title, R.RESVE_SEQ, R.RESVE_STATUS, R.RESVE_STEP
+FROM BOOK.TB_RESVE R
+INNER JOIN BOOK.TB_USER U ON R.USER_SEQ = U.USER_SEQ
+INNER JOIN BOOK.TB_BOOK B ON R.BOOK_SEQ = B.BOOK_SEQ
+WHERE U.USER_SEQ = #{user_seq}
 </select>
-
-
-<!-- <select id="selectStep" parameterType="java.lang.Integer" resultType="java.util.Map"> -->
-<!-- SELECT U.USER_NAME AS user_name, B.BOOK_SEQ AS book_seq, B.BOOK_TITLE AS book_title, R.RESVE_SEQ, R.RESVE_STATUS, R.RESVE_STEP -->
-<!-- FROM BOOK.TB_RESVE R -->
-<!-- INNER JOIN BOOK.TB_USER U ON R.USER_SEQ = U.USER_SEQ -->
-<!-- INNER JOIN BOOK.TB_BOOK B ON R.BOOK_SEQ = B.BOOK_SEQ -->
-<!-- WHERE U.USER_SEQ = #{user_seq} -->
-<!-- </select> -->
 
 
 
@@ -113,33 +81,12 @@ WHERE U.USER_SEQ = #{user_seq} AND (R.RESVE_STATUS = 'Y' OR R.RESVE_STATUS = 'R'
 
 <!-- step 테스트 -->
 
-<update id="cancelReservation" parameterType="java.lang.Integer">
+<!-- 예약취소하기 -->
+<update id="resveCancle" parameterType="map">
 UPDATE TB_RESVE
 SET RESVE_STATUS = 'N'
-WHERE RESVE_SEQ = #{resve_seq}
+WHERE BOOK_SEQ = #{book_seq} AND RESVE_STATUS = 'Y' AND USER_SEQ = #{user_seq}
 </update>
 
-<!-- 앞순번 빠지고 뒤에애들 순번 조정 -->
-<update id="updateStep" parameterType="Map">
-UPDATE TB_RESVE
-SET RESVE_STEP = RESVE_STEP - 1
-WHERE BOOK_SEQ = #{book_seq} AND RESVE_STATUS = 'Y' AND RESVE_STEP > (
-    SELECT RESVE_STEP
-    FROM TB_RESVE
-    WHERE BOOK_SEQ = #{book_seq} AND RESVE_STATUS = 'N' AND USER_SEQ = #{user_seq}
-)
-</update>
 
-<select id="getResveStatus" resultType="java.lang.String">
-SELECT RESVE_STATUS 
-FROM TB_RESVE 
-WHERE RESVE_SEQ = #{resve_seq}
-</select>
-
-
-<select id="getBookSeq" resultType="java.lang.Integer">
-SELECT BOOK_SEQ
-FROM TB_BOOK
-WHERE BOOK_SEQ = #{book_seq}
-</select>
 </mapper>

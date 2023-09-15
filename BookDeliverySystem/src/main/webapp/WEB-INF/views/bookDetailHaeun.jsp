@@ -149,6 +149,23 @@ function checkAvailability() {
         modalFooter.append(button2);
         
     } else {
+        if (resveDataSize > 0) {
+        	modalContent = "<b>회원정보</b><br>이름 : ${loginVo.user_name}<br>이메일 : ${loginVo.user_email}<br><br><b>예약정보</b><br>${loginVo.user_name}님은 현재<br>${resveData[0].BOOK_TITLE} 도서를 예약중입니다.<br>예약신청이 불가합니다.";
+        	button1 = $('<button type="button" class="btn btn-warning ml-2">예약조회</button>');
+            button2 = $('<button type="button" class="btn btn-danger ml-2">닫기</button>');
+            
+            var user_seq = ${loginVo.user_seq};
+            button1.click(function() {
+                window.location.href = "./userResveList.do?user_seq=" + user_seq;
+            });
+
+            button2.click(function() {
+                $('#rentModal').modal('hide');
+            });
+            
+            modalFooter.append(button1);
+            modalFooter.append(button2);
+        }
         if (rentDataSize > 0) {
         	modalContent = "<b>회원정보</b><br>이름 : ${loginVo.user_name}<br>이메일 : ${loginVo.user_email}<br><br><b>대출정보</b><br>${loginVo.user_name}님은 현재<br>${rentData[0].BOOK_TITLE} 도서를 대출중입니다.<br>대출신청이 불가합니다.";
             button1 = $('<button type="button" class="btn btn-danger ml-2">대출조회</button>');
@@ -167,23 +184,6 @@ function checkAvailability() {
             modalFooter.append(button2);
         }
 
-        if (resveDataSize > 0) {
-        	modalContent = "<b>회원정보</b><br>이름 : ${loginVo.user_name}<br>이메일 : ${loginVo.user_email}<br><br><b>예약정보</b><br>${loginVo.user_name}님은 현재<br>${resveData[0].BOOK_TITLE} 도서를 예약중입니다.<br>대출신청이 불가합니다.";
-        	button1 = $('<button type="button" class="btn btn-warning ml-2">예약조회</button>');
-            button2 = $('<button type="button" class="btn btn-danger ml-2">닫기</button>');
-            
-            var user_seq = ${loginVo.user_seq};
-            button1.click(function() {
-                window.location.href = "./userResveList.do?user_seq=" + user_seq;
-            });
-
-            button2.click(function() {
-                $('#rentModal').modal('hide');
-            });
-            
-            modalFooter.append(button1);
-            modalFooter.append(button2);
-        }
     }
 
     showModal1(modalContent, modalFooter);
