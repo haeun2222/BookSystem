@@ -1,27 +1,31 @@
 
 /*변수 선언*/
-
+var joinButton = document.getElementById('nomalRegist');
 var user_email = document.querySelector('#user_email');
-
 var pw1 = document.querySelector('#pswd1');
 var pwMsg = document.querySelector('#alertTxt');
 var pwImg1 = document.querySelector('#pswd1_img1');
-
 var pw2 = document.querySelector('#pswd2');
 var pwImg2 = document.querySelector('#pswd2_img1');
 var pwMsgArea = document.querySelector('.int_pass');
-
-var userName = document.querySelector('#name');
-
+var userName = document.querySelector('#user_name');
 var yy = document.querySelector('#yy');
 var mm = document.querySelector('#mm');
 var dd = document.querySelector('#dd');
-
 var gender = document.querySelector('#gender');
-
 var mobile = document.querySelector('#mobile');
-
 var error = document.querySelectorAll('.error_next_box');
+var successmsg = document.querySelectorAll('.successmsg');
+
+var isEmailValid = false;
+var isPasswordValid = false;
+var isPasswordCheckValid = false;
+var isNameValid = false;
+var isYearValid = false;
+var isMonthValid = false;
+var isDayValid = false;
+var isGenderValid = false;
+var isMobileValid = false;
 
 
 /*이벤트 핸들러 연결*/
@@ -38,6 +42,7 @@ gender.addEventListener("focusout", function() {
         error[5].style.display = "block";
     } else {
         error[5].style.display = "none";
+        isGenderValid = true;
     }
 })
 //email.addEventListener("focusout", isEmailCorrect);
@@ -52,12 +57,12 @@ function checkEmail() {
     var user_email = $("#user_email").val(); // 이메일 입력란의 값 가져오기
 
     // 이메일 형식 유효성 검사
-    var idPattern = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    var emailPattern = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     
     if (user_email === "") {
         error[0].innerHTML = "이메일은 필수 정보입니다.";
         error[0].style.display = "block";
-    } else if (!idPattern.test(user_email)) {
+    } else if (!emailPattern.test(user_email)) {
         error[0].innerHTML = "이메일 형식에 맞게 입력해주세요.";
         error[0].style.display = "block";
     } else {
@@ -71,12 +76,14 @@ function checkEmail() {
                 console.log('통신 성공!' + result);
                 if (result == 0) {
                     console.log('중복값 없음');
-                    $('#user_email').html('<b style="font-size: 14px; color: green">[아이디 사용이 가능하다.]</b>');
-                    console.log('test');
+                    successmsg[0].innerHTML= "중복값,유효성검사 테스트 완료";
+                    isEmailValid = emailPattern.test(user_email);
+                    updateJoinButton();
+                    console.log(isEmailValid);
                 } else {
                     // 이메일이 중복O
                     console.log('중복값 있음');
-                    $('#user_email').html('<b style="font-size: 14px; color: red">[아이디 중복!.]</b>');
+                    successmsg[0].innerHTML= "아이디가 중복됩니다.";
                 }
             },
             error: function (e) {
@@ -102,6 +109,9 @@ function checkPw() {
         pwMsg.style.display = "block";
         pwImg1.src = "m_icon_not_use.png";
     } else {
+        console.log(isPasswordValid);
+        isPasswordValid = true;
+        updateJoinButton();
         error[1].style.display = "none";
         pwMsg.innerHTML = "사용가능";
         pwMsg.style.display = "block";
@@ -114,6 +124,9 @@ function comparePw() {
     if(pw2.value === pw1.value && pw2.value != "") {
         pwImg2.src = "m_icon_check_enable.png";
         error[2].style.display = "none";
+        isPasswordCheckValid = (pw1.value == pw2.value);
+        console.log(isPasswordCheckValid);
+        updateJoinButton();
     } else if(pw2.value !== pw1.value) {
         pwImg2.src = "m_icon_check_disable.png";
         error[2].innerHTML = "비밀번호가 일치하지 않습니다.";
@@ -124,6 +137,7 @@ function comparePw() {
         error[2].innerHTML = "필수 정보입니다.";
         error[2].style.display = "block";
     }
+    
 }
 
 function checkName() {
@@ -136,6 +150,9 @@ function checkName() {
         error[3].style.display = "block";
     } else {
         error[3].style.display = "none";
+        isNameValid = true;
+        console.log(isNameValid);
+        updateJoinButton();
     }
 }
 
@@ -148,6 +165,9 @@ function isBirthCompleted() {
         error[4].style.display = "block";
     } else {
         isMonthSelected();
+        isYearValid = true;
+        console.log("year 테스트" ,isYearValid);
+        updateJoinButton();
     }
 
 
@@ -156,6 +176,8 @@ function isBirthCompleted() {
             error[4].innerHTML = "태어난 월을 선택하세요.";
         } else {
             isDateCompleted();
+            isMonthValid = true;
+            updateJoinButton();
         }
     }
 
@@ -164,6 +186,8 @@ function isBirthCompleted() {
             error[4].innerHTML = "태어난 일(날짜) 2자리를 정확하게 입력하세요.";
         } else {
             isBirthRight();
+            isDayValid = true;
+            updateJoinButton();
         }
     }
 }
@@ -216,8 +240,20 @@ function checkPhoneNum() {
         error[6].style.display = "block";
     } else {
         error[6].style.display = "none";
+        isMobileValid = true;
+        updateJoinButton();
     }
 }
+
+function updateJoinButton() {
+    if (isEmailValid && isPasswordValid && isPasswordCheckValid && isYearValid
+    	 && isMonthValid && isDayValid && isGenderValid && isMobileValid) {
+        joinButton.disabled = false; // 모든 조건이 충족되면 버튼 활성화
+    } else {
+        joinButton.disabled = true; // 하나라도 조건이 충족되지 않으면 버튼 비활성화
+    }
+}
+
 
 document.getElementById('nomalRegist').addEventListener('click', function(){
 	var yy = document.getElementById('yy').value; // 년도 값 가져오기
