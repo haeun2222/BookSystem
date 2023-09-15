@@ -72,6 +72,7 @@ function checkEmail() {
                 if (result == 0) {
                     console.log('중복값 없음');
                     $('#user_email').html('<b style="font-size: 14px; color: green">[아이디 사용이 가능하다.]</b>');
+                    console.log('test');
                 } else {
                     // 이메일이 중복O
                     console.log('중복값 있음');
