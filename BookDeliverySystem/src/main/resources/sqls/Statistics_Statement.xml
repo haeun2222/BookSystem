@@ -93,5 +93,11 @@ ORDER BY
   age_group
 </select>
 
+<select id="bookSearch" resultType="BookDto" parameterType="Integer">
+SELECT BOOK_TITLE,BOOK_SEQ,BOOK_INTRO
+	FROM TB_BOOK
+	WHERE BOOK_SEQ = #{book_seq}
+</select>
+
 
 </mapper>

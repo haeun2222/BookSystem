@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dowon.bds.dto.AgeDto;
+import com.dowon.bds.dto.BookDto;
 import com.dowon.bds.dto.GenderDto;
+import com.dowon.bds.model.service.IRentService;
 import com.dowon.bds.model.service.IStatisticsService;
 
 
@@ -28,6 +30,7 @@ public class Statistics_Controller {
 	@Autowired
 	private IStatisticsService service;
 	
+	
 
 	
 //	@RequestMapping(value = "/chartGo.do", method = RequestMethod.GET)
@@ -35,11 +38,18 @@ public class Statistics_Controller {
 //		log.info("Welcome Statistics_Controller goChart 페이지 이동");
 //		return "bdsHome";
 //	}
-	@RequestMapping(value = "/bookDetail.do", method = RequestMethod.GET)
-	public String bookDetail(@RequestParam("book_seq") int book_seq, Model model) {
-		log.info("Welcome Statistics_Controller bookDetail 상세페이지로 이동 book_seq: {}",book_seq);
-		model.addAttribute("bookSeq",book_seq);
-		return "bookDetailHaeun";
+//	@RequestMapping(value = "/bookDetail.do", method = RequestMethod.GET)
+//	public String bookDetail(@RequestParam("book_seq") int book_seq, Model model) {
+//		log.info("Welcome Statistics_Controller bookDetail 상세페이지로 이동 book_seq: {}",book_seq);
+//		model.addAttribute("book_seq",book_seq);
+//		return "header";
+//	}
+	@RequestMapping(value = "/bookDetail.do",method = RequestMethod.GET)
+	public String bookSearch(int book_seq, Model model) {
+		log.info("Welcome Statistics_Controller bookSearch 상세페이지로 이동 book_seq: {}",book_seq);
+		BookDto dto = service.bookSearch(book_seq);
+		model.addAttribute("dto",dto);
+		return "header";
 	}
 	
 //	@RequestMapping(value = "/top1Img.do", method = RequestMethod.GET)
