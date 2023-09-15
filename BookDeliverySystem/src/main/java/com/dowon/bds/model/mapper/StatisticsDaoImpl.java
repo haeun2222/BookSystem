@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dowon.bds.dto.AgeDto;
+import com.dowon.bds.dto.BookDto;
 import com.dowon.bds.dto.GenderDto;
 
 
@@ -41,6 +42,12 @@ public class StatisticsDaoImpl implements IStatisticsDao {
 	public List<AgeDto> AgeStatistics() {
 		log.info("StatisticsDaoImpl AgeStatistics 연령별통계");
 		return session.selectList(NS+"AgeStatistics");
+	}
+
+	@Override
+	public BookDto bookSearch(int book_seq) {
+		log.info("StatisticsDaoImpl bookSearch 책정보가져오기");
+		return session.selectOne(NS+"bookSearch",book_seq);
 	}
 
 }

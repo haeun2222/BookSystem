@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,19 +41,19 @@ window.onload = function(){
             genderData.addRow([data[1].user_gender,parseInt(data[1].percent)]);
 //             차트 옵션 설정
             var options = {
-             title: '성별 통계',
-             chartArea: {
-                 width: '80%', 
-                 height: '80%'
-             },
-             width: 400, 
-             height: 300,
-             legend: 'right',
-             titlePosition: 'out',
-             is3D:true,
-             colors: ['#74b9ff', '#81ecec', '#a29bfe', '#dfe6e9', '#00cec9'],
-                fontSize: 15
-         };
+			    title: '성별 통계',
+			    chartArea: {
+			        width: '80%', 
+			        height: '80%'
+			    },
+			    width: 400, 
+			    height: 300,
+			    legend: 'right',
+			    titlePosition: 'out',
+			    is3D:true,
+			    colors: ['#74b9ff', '#81ecec', '#a29bfe', '#dfe6e9', '#00cec9'],
+	          	fontSize: 15
+			};
 //             차트 그리기
             var chart = new google.visualization.PieChart(document.getElementById('genderChart'));
             chart.draw(genderData, options);
@@ -61,7 +61,7 @@ window.onload = function(){
             var bookTitle = data[0].book_title;
             $('#bookTitle').text('['+ bookTitle + ']');
         
-           book_seq = data[0].book_seq;    
+        	book_seq = data[0].book_seq,data[0].book_title,data[0].book_intro;   
             book_img = data[0].book_img;
         });
     };
@@ -88,23 +88,23 @@ window.onload = function(){
             
  //            차트 옵션 설정
            var options = {
-             title:'연령별 통계',
-             chartArea: {
-                 width: '80%', 
-                 height: '80%'
-             },
-             width: 400, 
-             height: 300,
-             titlePosition: 'out',
-             legend: { position: "none" },
-             colors: ['#00b894', '#00d2d3', '#74b9ff', '#55efc4', '#81ecec'],
-                fontSize: 15,
-                animation: {
-                    duration: 1000,
-                    easing: 'in',
-                   startup: true
-                }
-            };
+			    title:'연령별 통계',
+			    chartArea: {
+			        width: '80%', 
+			        height: '80%'
+			    },
+			    width: 400, 
+			    height: 300,
+			    titlePosition: 'out',
+			    legend: { position: "none" },
+			    colors: ['#00b894', '#00d2d3', '#74b9ff', '#55efc4', '#81ecec'],
+	          	fontSize: 15,
+	          	animation: {
+	                 duration: 1000,
+	                 easing: 'in',
+	                startup: true
+	          	}
+				};
             var chart = new google.visualization.ColumnChart(document.getElementById('ageChart'));
             chart.draw(ageData, options);
         });
@@ -117,59 +117,58 @@ window.onload = function(){
 <!-- <a href="./imgSelect.do">책이미지좀불러와라</a> -->
 <!-- <a href="./genderList.do">성별통계불러와라</a> -->
 <!-- <a href="./ageList.do">연령별통계불러와라</a> -->
-<div class="rectangle" style="background-image: url('./img/star.png'); width:500px; height:500px; background-size: cover; margin-top: 300px; margin-left: 20px;">
-      <h2>실시간 베스트셀러!</h2>
-      <h4>누구에게 인기가 많을까?</h4>
-      <!-- Trigger the modal with a button -->
-      <button id="showModal" type="button" class="btn btn-info btn-lg" data-toggle="modal"
-         data-target="#myModal">
-         지금보러가자!
-      </button>
+<div class="rectangle" style="background-image: url('./img/star.png'); width:300px; height:300px; background-size: cover; margin-top: 580px; margin-left: 20px;">
+		<h2>실시간 베스트셀러!</h2>
+		<h4>누구에게 인기가 많을까?</h4>
+		<!-- Trigger the modal with a button -->
+		<button id="showModal" type="button" class="btn btn-info btn-lg" data-toggle="modal"
+			data-target="#myModal">
+			지금보러가자!
+		</button>
 
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" role="dialog">
-         <div class="modal-dialog modal-md">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">실시간 베스트셀러</h4>
-               </div>
-               <div class="modal-body">
-                  <h1 id="bookTitle" style="text-align: center;" onmouseover="showBookInfo()" onmouseout="hideBookInfo()"></h1>
-                  <div id="bookInfo">
-                     
-                  </div>
-                  <!-- 여기에 차트 뿌리기 -->
-                  <table>
-                     <tr>
-                        <td>
-                           <div id="genderChart" style="text-align: center; margin-left: 150px; margin-top: 25px"></div>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>
-                           <div id="ageChart" style="text-align: center; margin-left: 95px;"></div>
-                        </td>
-                     </tr>
-                  </table>
-      
-               </div>
-               <button class="btn btn-primary btn-lg"
-                  style="width: 500px; margin: 20px 50px;" onclick="GobookDetail(${book_seq})">상세보기</button>
-               <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog modal-md">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">실시간 베스트셀러</h4>
+					</div>
+					<div class="modal-body">
+						<h1 id="bookTitle" style="text-align: center;" onmouseover="showBookInfo()" onmouseout="hideBookInfo()"></h1>
+						<div id="bookInfo">
+						</div>
+						<!-- 여기에 차트 뿌리기 -->
+						<table>
+							<tr>
+								<td>
+									<div id="genderChart" style="text-align: center; margin-left: 150px; margin-top: 25px"></div>
+								</td>
+								</tr>
+								<tr>
+								<td>
+									<div id="ageChart" style="text-align: center; margin-left: 95px;"></div>
+								</td>
+							</tr>
+						</table>
+		
+					</div>
+					<button class="btn btn-primary btn-lg"
+						style="width: 500px; margin: 20px 50px;" onclick="GobookDetail(${book_seq})">상세보기</button>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 <script type="text/javascript">
-   function GobookDetail(${book_seq}){
-      
-      var url = '/BookDeliverySystem/bookDetail.do?book_seq=' + book_seq;
-      window.location.href = url;
-   }
+	function GobookDetail(${book_seq}){
+		
+		var url = '/BookDeliverySystem/bookDetail.do?book_seq=' + book_seq;
+		window.location.href = url;
+	}
 </script>
 <script type="text/javascript">
 $('#showModal').on('click', function () {
@@ -177,17 +176,17 @@ $('#showModal').on('click', function () {
 });
 </script>
 <script type="text/javascript">
-   function showBookInfo(){
-      $('#bookInfo').html('<img src="'+book_img+'" alt="bookImgLoading....">');
-      $('#bookInfo').fadeIn();
-      console.log(book_img);
-      console.log(book_seq);
-//       console.log("커서가 올라왔다");
-   }
-   function hideBookInfo(){
-      $('#bookInfo').html('<img src="'+book_img+'" alt="bookImgLoading....">');
-      $('#bookInfo').fadeOut();
-//       console.log("커서가 내려갔다");
-   }
+	function showBookInfo(){
+		$('#bookInfo').html('<img src="'+book_img+'" alt="bookImgLoading....">');
+		$('#bookInfo').fadeIn();
+		console.log(book_img);
+		console.log(book_seq);
+// 		console.log("커서가 올라왔다");
+	}
+	function hideBookInfo(){
+		$('#bookInfo').html('<img src="'+book_img+'" alt="bookImgLoading....">');
+		$('#bookInfo').fadeOut();
+// 		console.log("커서가 내려갔다");
+	}
 </script>
 </html>

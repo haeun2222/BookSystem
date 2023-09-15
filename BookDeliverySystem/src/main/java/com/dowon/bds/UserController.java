@@ -41,19 +41,29 @@ public class UserController {
 	@RequestMapping(value="/login.do", method = RequestMethod.POST)
 	public String login(@RequestParam Map<String,Object>map, HttpSession session, HttpServletResponse response) throws IOException {
 		log.info("로그인 처리 login {}",map);
-		UserDto loginVo = service.login(map);
-		log.info("loginVo정보 {}",loginVo);
-		if(loginVo == null) {
+		UserDto loginDto = service.login(map);
+		log.info("loginVo정보 {}",loginDto);
+		
+		if(loginDto == null) {
 			log.info("로그인실패 /test.do로 이동 {}",map);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('로그인 실패'); location.href='test.do';</script>");
 			out.flush();
 			return "";
-		}else {
-			log.info("로그인성공 /mainTest.do로 이동 {}",map);
-			session.setAttribute("loginVo", loginVo);
+		
+		}else{
+			if(loginDto.getUser_auth().equals("U")) {
+			log.info(loginDto.getUser_auth());
+			log.info("유저 로그인성공  이동 {}",map);
+			session.setAttribute("loginDto", loginDto);
 			return "mainTest";
+			}
+			else {
+			log.info("어드민 로그인성공 {}",map);
+			session.setAttribute("loginDto", loginDto);
+			return "adminPage";
+			}
 		}
 		
 	}

@@ -43,7 +43,9 @@
             <td>${resve.RESVE_STEP}</td>
             <td>
 			    <c:choose>
-			        <c:when test="${resve.RESVE_STATUS eq 'Y'}"><button onclick="">예약취소</button></c:when>
+			        <c:when test="${resve.RESVE_STATUS eq 'Y'}">
+			        <button onclick="cancelReservation(${resve.BOOK_SEQ}, ${resve.USER_SEQ})">예약취소</button>
+			        </c:when>
 			        <c:otherwise></c:otherwise>
 			    </c:choose>
 			</td>
@@ -64,7 +66,26 @@
 
 
 
-
+<script type="text/javascript">
+    // 예약 취소 요청을 서버로 보내는 JavaScript 함수
+    function cancelReservation(bookSeq, userSeq) {
+        $.ajax({
+            url: './cancle.do', // 컨트롤러 URL을 입력하세요
+            type: 'POST', // 또는 'GET', HTTP 요청 방식에 맞게 설정하세요
+            data: { book_seq: bookSeq, user_seq: userSeq },
+            success: function(data) {
+                // 성공적으로 서버에서 응답을 받았을 때 실행할 코드
+                alert('예약이 취소되었습니다.');
+                // 페이지 새로고침 또는 다른 동작을 수행하세요.
+            },
+            error: function(xhr, status, error) {
+                // 서버 요청 중 오류가 발생했을 때 실행할 코드
+                alert('예약 취소 중 오류가 발생했습니다.');
+                // 오류 처리 로직을 구현하세요.
+            }
+        });
+    }
+</script>
 
 
 

@@ -14,16 +14,16 @@ public interface IResveService {
 
 	public int rentStandby(int n);
 	
-	public int stepMinus(Map<String, Object> map);
-	
 	public int resveBook(Map<String, Object> map);
-	
-	public int resveCancle(Map<String, Object> map);
 	
 	public List<Map<String, Object>> selectStep(int n);
 	
 	public List<Map<String, Object>> userResveStatus(int n);
 	
 	
+	
+	public int stepUpdate(Map<String, Object> map);
+	
+	public int resveCancle(Map<String, Object> map);
 	
 }

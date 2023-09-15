@@ -35,11 +35,11 @@ public class HaeunJUnitTest {
 	@Autowired
 	private ApplicationContext context;
 
-	@Autowired
-	private IRentService service;
-	
 //	@Autowired
-//	private IResveService service;
+//	private IRentService service;
+	
+	@Autowired
+	private IResveService service;
 
 	@Autowired
 	private IRentDao dao;
@@ -53,6 +53,22 @@ public class HaeunJUnitTest {
 	
 	@Test
 	public void bookTest() {
+		
+		
+		
+//		Map<String, Object>map = new HashMap<String, Object>();
+//		map.put("book_seq", 440);
+//		map.put("user_seq", 17);
+//		int m = service.stepUpdate(map);
+//		System.out.println(m);
+		
+		
+		
+		Map<String, Object>map = new HashMap<String, Object>();
+		map.put("book_seq", 440);
+		map.put("user_seq", 17);
+		int n = service.resveCancle(map);
+		
 		
 		
 		
@@ -164,9 +180,9 @@ public class HaeunJUnitTest {
 //		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@"+lists);
 		
 		
-		List<String> a = service.selectFilteredBookSeqList();
-		System.out.println("zzzzzzzzzzzzzzzzz"+a);
-		assertNotNull(a);
+//		List<String> a = service.selectFilteredBookSeqList();
+//		System.out.println("zzzzzzzzzzzzzzzzz"+a);
+//		assertNotNull(a);
 		
 		
 	}

@@ -71,6 +71,33 @@ public class ResveController {
     
     
     
+    @PostMapping("/cancle.do")
+    @ResponseBody
+    public String cancelReservation(@RequestParam("book_seq") int bookSeq, @RequestParam("user_seq") int userSeq) {
+        Map<String, Object> updateMap = new HashMap<>();
+        updateMap.put("book_seq", bookSeq);
+        updateMap.put("user_seq", userSeq);
+        
+        int updateResult = service.stepUpdate(updateMap);
+        
+        if (updateResult > 0) {
+            Map<String, Object> deleteMap = new HashMap<>();
+            deleteMap.put("book_seq", bookSeq);
+            deleteMap.put("user_seq", userSeq);
+            
+            int deleteResult = service.resveCancle(deleteMap);
+            
+            if (deleteResult > 0) {
+                return "success";
+            } else {
+                return "delete_failed";
+            }
+        } else {
+            return "update_failed";
+        }
+    }
+
+    
     
     
 
