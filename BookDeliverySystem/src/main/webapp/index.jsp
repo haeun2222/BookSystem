@@ -26,11 +26,9 @@ window.onload = function(){
             var genderData = new google.visualization.DataTable();
             genderData.addColumn('string', 'Gender');
             genderData.addColumn('number', 'Count');
-            
   //           1위책 남,녀
             genderData.addRow([data[0].user_gender,parseInt(data[0].percent)]);
             genderData.addRow([data[1].user_gender,parseInt(data[1].percent)]);
-
 //             차트 옵션 설정
             var options = {
 			    title: '성별 통계',
@@ -46,7 +44,6 @@ window.onload = function(){
 			    colors: ['#74b9ff', '#81ecec', '#a29bfe', '#dfe6e9', '#00cec9'],
 	          	fontSize: 15
 			};
-
 //             차트 그리기
             var chart = new google.visualization.PieChart(document.getElementById('genderChart'));
             chart.draw(genderData, options);
@@ -58,7 +55,6 @@ window.onload = function(){
         });
     };
 };
-            
 </script>
  <script type="text/javascript">
 //     구글차트 
@@ -93,12 +89,11 @@ window.onload = function(){
 			    colors: ['#00b894', '#00d2d3', '#74b9ff', '#55efc4', '#81ecec'],
 	          	fontSize: 15,
 	          	animation: {
-	                 duration: 3000,
+	                 duration: 1000,
 	                 easing: 'in',
 	                startup: true
 	          	}
 				};
-
             var chart = new google.visualization.ColumnChart(document.getElementById('ageChart'));
             chart.draw(ageData, options);
         });
@@ -158,6 +153,11 @@ window.onload = function(){
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+$('#showModal').on('click', function () {
+    drawAgeChart();
+});
+</script>
 <script type="text/javascript">
 	function showBookInfo(){
 		$('#bookInfo').html('<img src="'+book_img+'" alt="bookImgLoading....">');
