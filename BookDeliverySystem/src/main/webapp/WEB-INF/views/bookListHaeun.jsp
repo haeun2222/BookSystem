@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/font.css">
 <title>Insert title here</title>
 </head>
 <body>
