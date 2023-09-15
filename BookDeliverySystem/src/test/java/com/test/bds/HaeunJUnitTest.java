@@ -56,8 +56,8 @@ public class HaeunJUnitTest {
 		
 		
 		
-		boolean isc = service.cancelAndStepUpdate(43, 2);
-		System.out.println(isc);
+//		boolean isc = service.cancelAndStepUpdate(43, 2);
+//		System.out.println(isc);
 		
 //		List<ResveDto> lists = service.selectStep(1);
 //		System.out.println(lists);

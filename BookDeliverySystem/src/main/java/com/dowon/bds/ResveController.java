@@ -42,7 +42,7 @@ public class ResveController {
 	public String userResveList(@RequestParam("user_seq")int user_seq, Model model, HttpSession session){
 		log.info("ResveController userResveList 회원의 마이페이지-예약조회 부분에 들어갈 페이지 컨트롤러");
 		UserDto loginVo = (UserDto) session.getAttribute("loginVo");
-		List<ResveDto> lists = service.selectStep(user_seq);
+		List<Map<String, Object>>  lists = service.selectStep(user_seq);
 		model.addAttribute("lists",lists);
 		model.addAttribute("loginVo",loginVo);
 		return "userResveList";
@@ -73,32 +73,7 @@ public class ResveController {
     
     
     
-	@PostMapping("/cancelAndStepUpdate.do")
-	@ResponseBody
-	public String cancelAndStepUpdate(@RequestBody Map<String, Object> requestData) {
-	    int resveSeq = (int) requestData.get("resveSeq");
-	    int userSeq = (int) requestData.get("userSeq");
-	    boolean success = service.cancelAndStepUpdate(resveSeq, userSeq);
-	    
-	    if (success) {
-	        return "success";
-	    } else {
-	        return "failure";
-	    }
-	}
-	
-	
-	
-	@PostMapping("/updateStep.do")
-	@ResponseBody
-	public String updateStep(@RequestBody Map<String, Object> params) {
-	    boolean updateSuccess = service.updateStep(params);
-	    if (updateSuccess) {
-	        return "success";
-	    } else {
-	        return "failure";
-	    }
-	}
+
 
     
     
