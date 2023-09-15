@@ -34,8 +34,9 @@ public class AddrController {
 	private IAddrService service;
 	
 	@RequestMapping(value = "/addr.do", method = RequestMethod.GET)
-	public String addr(Locale locale, Model model, @RequestParam("book_seq") int bookSeq) {
+	public String addr(Locale locale, Model model, AddrDto addrDto, @RequestParam("book_seq") int bookSeq, HttpSession session)  {
 		logger.info("Welcome IAddrController! 주소입력 addr.do 실행");
+		addrDto.setUser_seq(((UserDto)session.getAttribute("loginVo")).getUser_seq());
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -46,8 +47,8 @@ public class AddrController {
 		return "addr";
 	}
 	
-	@RequestMapping(value ="/addr.do", method = RequestMethod.POST)
-	public String addr(AddrDto addrDto , HttpSession session) {
+	@RequestMapping(value ="/addrCheck.do", method = RequestMethod.POST)
+	public String addrCheck(AddrDto addrDto , HttpSession session) {
 		logger.info("Welcome! AddrController 주소입력{}", addrDto);
 		addrDto.setUser_seq(((UserDto)session.getAttribute("loginVo")).getUser_seq());
 		int n = service.saveAddress(addrDto);

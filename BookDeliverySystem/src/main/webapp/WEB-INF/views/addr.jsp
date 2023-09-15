@@ -24,7 +24,7 @@ ${rentSeq}
 <%-- <c:set var="loginSeq" value="${sessionScope.loginVo}" /> --%>
 <%-- ${loginUser.user_seq} --%>
 <br>
-	<form action="./addr.do" method="post"  onsubmit="return validateForm();">
+	<form action="./addrCheck.do" method="post"  onsubmit="return validateForm();">
 		<table class="table table-bordered form-group">
 				<thead>
 					<tr>

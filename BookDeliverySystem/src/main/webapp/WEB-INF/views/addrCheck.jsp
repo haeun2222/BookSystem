@@ -13,9 +13,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+${sessionScope.loginVo.user_name}님
 <c:set var="loginUser" value="${sessionScope.loginVo}"/>
-<h1 style="font-family: 'Hanna', fantasy;">${loginUser.user_name}님의 배송지 확인</h1>
+<h1 style="font-family: 'Hanna', fantasy;">${sessionScope.loginVo.user_name}님의 배송지 확인</h1>
 
     <div id="container" style="width: 800px; height: 900px;">
         <h2>입력한 주소 확인</h2>
