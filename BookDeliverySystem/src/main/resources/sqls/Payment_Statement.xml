@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.dowon.bds.model.mapper.PaymentDaoImpl">
 
-	<insert id="saveBookPayment" parameterType="map">
+	<insert id="saveBookPayment" parameterType="java.util.Map">
                INSERT INTO TB_PAY
         (PAY_SEQ, PAY_IMD, USER_SEQ, PAY_PAYMENT, PAY_DATE)
         VALUES (SQ_PAY.NEXTVAL, #{payImd}, #{user_seq}, #{payPayment}, SYSDATE)

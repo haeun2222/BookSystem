@@ -1,5 +1,4 @@
--- book_seq 47 
---user_seq 2
+
 
 SELECT *
 	FROM TB_RESVE tr 

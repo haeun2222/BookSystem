@@ -18,7 +18,7 @@ public class PaymentDaoImpl implements IPaymentDao {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private final String NS ="com.dowon.bds.model.mapperPaymentDaoImpl.";
+	private final String NS ="com.dowon.bds.model.mapper.PaymentDaoImpl.";
 	
 	private final SqlSession sqlSession;
 	

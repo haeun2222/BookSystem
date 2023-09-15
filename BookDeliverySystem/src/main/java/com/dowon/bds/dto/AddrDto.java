@@ -23,7 +23,6 @@ public class AddrDto {
 
 	private int delivery_seq;
 	private int user_seq;
-	private int rent_seq;
 	private String delivery_name;
 	private String delivery_phone;
 	private String postcode;

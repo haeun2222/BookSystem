@@ -17,12 +17,10 @@
 </head>
 
 <body>
-${rentSeq}
+
 
 <c:set var="loginUser" value="${sessionScope.loginVo}"/>
 <h1 style="font-family: 'Hanna', fantasy;">${loginUser.user_name}님의 배송지 입력</h1>
-<%-- <c:set var="loginSeq" value="${sessionScope.loginVo}" /> --%>
-<%-- ${loginUser.user_seq} --%>
 <br>
 	<form action="./addrCheck.do" method="post"  onsubmit="return validateForm();">
 		<table class="table table-bordered form-group">
@@ -31,10 +29,14 @@ ${rentSeq}
 						<th class="center-text" style="padding-bottom: auto;">회원번호</th>
 			            <td>
 		                <input class="form-control" type="text" value="${loginUser.user_seq}" readonly="readonly" id="user_seq" name="user_seq">
-<%-- 		                <input class="form-control" type="text" value="${loginUser.user_name}" readonly="readonly" id="user_seq" name="user_seq"> --%>
-		                <input class="form-control" type="text" value="1" readonly="readonly" id="rent_seq" name="rent_seq">
 						</td>
 					</tr>
+<!-- 						<tr> -->
+<!-- 						<th class="center-text" style="padding-bottom: auto;">도서번호</th> -->
+<!-- 			            <td> -->
+<!-- 		                <input class="form-control" type="text" value="1" readonly="readonly" id="rent_seq" name="rent_seq"> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
 				</thead>
 		
 				<tbody>   
