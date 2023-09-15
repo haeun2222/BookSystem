@@ -83,10 +83,13 @@ public class RentServiceImpl implements IRentService {
 	        String resveStatusOrDefault = (resveStatus != null) ? resveStatus.toString() : "";
 	        
 	        if ("Y".equals(rentStatusOrDefault) || "R".equals(resveStatusOrDefault)) {
-	            String bookSeq = map.get("BOOK_SEQ").toString();
+	            System.out.println("cccccccccccc"+resveStatusOrDefault);
+	        	String bookSeq = map.get("BOOK_SEQ").toString();
 	            filteredBookSeqList.add(bookSeq);
 	        }
 	    }
+	    System.out.println("222222222222"+filteredBookSeqList);
+	    System.out.println("333333333333"+filteredBookSeqList);
 	    return filteredBookSeqList;
 	}
 

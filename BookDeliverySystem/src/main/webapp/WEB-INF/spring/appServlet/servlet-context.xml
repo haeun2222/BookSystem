@@ -18,28 +18,28 @@
 
 
 
-<mvc:interceptors>
-	<mvc:interceptor>
+<!-- <mvc:interceptors> -->
+<!-- 	<mvc:interceptor> -->
 <!-- 		인터셉터를 통해서 로그인 Session을 확인하게 되는 URL -->
-		<mvc:mapping path=""/>
+<!-- 		<mvc:mapping path=""/> -->
 		
 <!-- 		제외되는 URL -->
-		<mvc:exclude-mapping path=""/>
+<!-- 		<mvc:exclude-mapping path=""/> -->
 		
 <!-- 		인터셉터에서를 통해서 Session을 확인하는 Bean 클래스 -->
-		<bean class="com.dowon.bds.interceptor.LoginCheckInterceptor"/>
-	</mvc:interceptor>
-	<bean class="org.springframework.web.servlet.mvc.WebContentInterceptor">
-			<property name="cacheSeconds" value="0"/>
-			<property name="useExpiresHeader" value="true"/>
-			<property name="useCacheControlHeader" value="true"/>
-			<property name="useCacheControlNoStore" value="true"/>
-			<property name="cacheMappings">
-				<props>
-					<prop key="/image/**">86400</prop>
-				</props>
-			</property>
-		</bean>
-</mvc:interceptors>
+<!-- 		<bean class="com.dowon.bds.interceptor.LoginCheckInterceptor"/> -->
+<!-- 	</mvc:interceptor> -->
+<!-- 	<bean class="org.springframework.web.servlet.mvc.WebContentInterceptor"> -->
+<!-- 			<property name="cacheSeconds" value="0"/> -->
+<!-- 			<property name="useExpiresHeader" value="true"/> -->
+<!-- 			<property name="useCacheControlHeader" value="true"/> -->
+<!-- 			<property name="useCacheControlNoStore" value="true"/> -->
+<!-- 			<property name="cacheMappings"> -->
+<!-- 				<props> -->
+<!-- 					<prop key="/image/**">86400</prop> -->
+<!-- 				</props> -->
+<!-- 			</property> -->
+<!-- 		</bean> -->
+<!-- </mvc:interceptors> -->
 
 </beans>
