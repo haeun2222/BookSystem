@@ -30,6 +30,9 @@ ${dto.book_seq}
 
 
 
+${rentData[0].BOOK_TITLE}
+
+
 
 <div>SEQ: ${dto.book_seq}</div>
 <div>도서명: ${dto.book_title}</div>
@@ -212,7 +215,7 @@ function newResve1() {
             // alert("회원 가입 후 예약신청이 가능합니다.");
             // window.location.href = "./main.do"; // 메인 페이지 URL로 리다이렉트
         }else{
-        	if(resveDataSize == 0){
+        	if(rentDataSize==0&&resveDataSize == 0){
         
             modalContent = "<b>회원정보</b><br>이름 : ${loginVo.user_name}<br>이메일 : ${loginVo.user_email}<br><br><b>도서정보</b><br>도서명 : ${dto.book_title}<br>저자 : ${dto.book_writer}<br><br><b>예약신청 확인</b><br>예약신청을 하시겠습니까?<br>예약신청 버튼을 누르면 신청이 완료됩니다.";
             button1 = $('<button type="button" class="btn btn-primary ml-2">예약신청</button>');
@@ -247,21 +250,36 @@ function newResve1() {
 
             modalFooter.append(button1);
             modalFooter.append(button2);
-        } else if(resveDataSize > 0){
+        } 
+        	else if(rentDataSize == 0 && resveDataSize > 0){
         	modalContent = "<b>회원정보</b><br>이름 : ${loginVo.user_name}<br>이메일 : ${loginVo.user_email}<br><br><b>예약정보</b><br>${loginVo.user_name}님은 현재<br>${resveData[0].BOOK_TITLE} 도서를 예약중입니다.<br>예약신청이 불가합니다.";
-        	button1 = $('<button type="button" class="btn btn-danger ml-2">닫기</button>');
-        	
-        	 button1.click(function () {
-                 $('#myModal1').modal('hide');
-             });
+        	button1 = $('<button type="button" class="btn btn-warning ml-2">예약조회</button>');
+            button2 = $('<button type="button" class="btn btn-danger ml-2">닫기</button>');
+                    	
+        	var user_seq = ${loginVo.user_seq};
+            button1.click(function() {
+            	window.location.href = "./userResveList.do?user_seq=" + user_seq;
+            });
+        	button2.click(function () {
+                $('#myModal1').modal('hide');
+            });
         	 modalFooter.append(button1);
-        } else if(rentDataSize > 0){
-        	modalContent = "테스트.";
-        	button1 = $('<button type="button" class="btn btn-danger ml-2">닫기</button>');
+        	 modalFooter.append(button2);
+        } 
+        	else if(resveDataSize == 0 && rentDataSize > 0){
+        	modalContent = "<b>회원정보</b><br>이름 : ${loginVo.user_name}<br>이메일 : ${loginVo.user_email}<br><br><b>대출정보</b><br>${loginVo.user_name}님은 현재<br>${rentData[0].BOOK_TITLE} 도서를 대출중입니다.<br>예약신청이 불가합니다.";
+        	button1 = $('<button type="button" class="btn btn-danger ml-2">대출조회</button>');
+        	button2 = $('<button type="button" class="btn btn-danger ml-2">닫기</button>');
         	
-        	 button1.click(function () {
-                 $('#myModal1').modal('hide');
-             });
+        	var user_seq = ${loginVo.user_seq};
+            button1.click(function() {
+                window.location.href = "./userRentList.do?user_seq=" + user_seq;
+            });
+        	button2.click(function () {
+                $('#myModal1').modal('hide');
+            });
+        	modalFooter.append(button1);
+        	modalFooter.append(button2);
         }
     
 

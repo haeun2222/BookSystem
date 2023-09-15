@@ -3,30 +3,23 @@
 <mapper namespace="com.dowon.bds.model.mapper.ResveDaoImpl">
 
 
-<!-- 예약걸려있는책이 반납완료 됐을때, 순번1에게 대출대기 상태로 업데이트 -->
-<update id="rentStandby" parameterType="java.lang.Integer">
-UPDATE BOOK.TB_RESVE
-SET RESVE_STATUS = 'R',
-    RESVE_STEP = CASE
-        WHEN RESVE_STEP = 1 THEN 0
-        ELSE RESVE_STEP
-    END
-WHERE BOOK_SEQ = #{book_seq} AND RESVE_STEP = 1 AND RESVE_STATUS ='Y'
-</update>
+<!-- 예약순번조회 -->
+<select id="selectStep" parameterType="java.lang.Integer" resultType="java.util.Map">
+SELECT U.USER_NAME AS user_name, B.BOOK_SEQ AS book_seq, B.BOOK_TITLE AS book_title, R.RESVE_SEQ, R.RESVE_STATUS, R.RESVE_STEP
+FROM BOOK.TB_RESVE R
+INNER JOIN BOOK.TB_USER U ON R.USER_SEQ = U.USER_SEQ
+INNER JOIN BOOK.TB_BOOK B ON R.BOOK_SEQ = B.BOOK_SEQ
+WHERE U.USER_SEQ = #{user_seq}
+</select>
 
-
-
-<!-- 앞순번 빠지고 뒤에애들 순번 조정 -->
-<update id="stepMinus" parameterType="Map">
-UPDATE TB_RESVE
-SET RESVE_STEP = RESVE_STEP - 1
-WHERE BOOK_SEQ = #{book_seq} AND RESVE_STATUS = 'Y' AND RESVE_STEP > (
-    SELECT RESVE_STEP
-    FROM TB_RESVE
-    WHERE BOOK_SEQ = #{book_seq} AND RESVE_STATUS = 'N' AND USER_SEQ = #{user_seq}
-)
-</update>
-
+<!-- 특정 회원의 예약중or대출대기 여부 판단 -->
+<select id="userResveStatus" parameterType="java.lang.Integer" resultType="Map">
+SELECT U.USER_SEQ AS USER_SEQ, U.USER_NAME AS USER_NAME, B.BOOK_SEQ AS BOOK_SEQ, B.BOOK_TITLE AS BOOK_TITLE, R.RESVE_STEP , R.RESVE_STATUS 
+FROM BOOK.TB_RESVE R
+INNER JOIN BOOK.TB_USER U ON R.USER_SEQ = U.USER_SEQ
+INNER JOIN BOOK.TB_BOOK B ON R.BOOK_SEQ = B.BOOK_SEQ
+WHERE U.USER_SEQ = #{user_seq} AND (R.RESVE_STATUS = 'Y' OR R.RESVE_STATUS = 'R')
+</select>
 
 <!-- 예약 인서트 -->
 <insert id="resveBook" parameterType="map">
@@ -54,39 +47,74 @@ WHERE
 
 
 
-<!-- 예약순번조회 -->
-
-<select id="selectStep" parameterType="java.lang.Integer" resultType="java.util.Map">
-SELECT U.USER_NAME AS user_name, B.BOOK_SEQ AS book_seq, B.BOOK_TITLE AS book_title, R.RESVE_SEQ, R.RESVE_STATUS, R.RESVE_STEP
-FROM BOOK.TB_RESVE R
-INNER JOIN BOOK.TB_USER U ON R.USER_SEQ = U.USER_SEQ
-INNER JOIN BOOK.TB_BOOK B ON R.BOOK_SEQ = B.BOOK_SEQ
-WHERE U.USER_SEQ = #{user_seq}
-</select>
 
 
 
+<!-- 예약걸려있는책이 반납완료 됐을때, 순번1에게 대출대기 상태로 업데이트 -->
+<update id="rentStandby" parameterType="java.lang.Integer">
+UPDATE BOOK.TB_RESVE
+SET RESVE_STATUS = 'R',
+    RESVE_STEP = CASE
+        WHEN RESVE_STEP = 1 THEN 0
+        ELSE RESVE_STEP
+    END
+WHERE BOOK_SEQ = #{book_seq} AND RESVE_STEP = 1 AND RESVE_STATUS ='Y'
+</update>
 
-<!-- 특정 회원의 예약중or대출대기 여부 판단 -->
-<select id="userResveStatus" parameterType="java.lang.Integer" resultType="Map">
-SELECT U.USER_SEQ AS USER_SEQ, U.USER_NAME AS USER_NAME, B.BOOK_SEQ AS BOOK_SEQ, B.BOOK_TITLE AS BOOK_TITLE, R.RESVE_STEP , R.RESVE_STATUS 
-FROM BOOK.TB_RESVE R
-INNER JOIN BOOK.TB_USER U ON R.USER_SEQ = U.USER_SEQ
-INNER JOIN BOOK.TB_BOOK B ON R.BOOK_SEQ = B.BOOK_SEQ
-WHERE U.USER_SEQ = #{user_seq} AND (R.RESVE_STATUS = 'Y' OR R.RESVE_STATUS = 'R')
-</select>
+<!-- 대출대기인 회원이 대출신청 완료됐을때 (예약테이블에선 업데이트, 대출테이블엔 새로 insert) -->
 
 
 
 
-<!-- step 테스트 -->
+
+
+
+
+
+
+
+
+
 
 <!-- 예약취소하기 -->
-<update id="resveCancle" parameterType="map">
-UPDATE TB_RESVE
-SET RESVE_STATUS = 'N'
-WHERE BOOK_SEQ = #{book_seq} AND RESVE_STATUS = 'Y' AND USER_SEQ = #{user_seq}
+<!-- <update id="resveCancle" parameterType="map"> -->
+<!-- UPDATE TB_RESVE -->
+<!-- SET RESVE_STATUS = 'N' -->
+<!-- WHERE BOOK_SEQ = #{book_seq} AND RESVE_STATUS = 'Y' AND USER_SEQ = #{user_seq} -->
+<!-- </update> -->
+<!-- 앞순번 빠지고 뒤에애들 순번 조정 -->
+<!-- <update id="stepMinus" parameterType="Map"> -->
+<!-- UPDATE TB_RESVE -->
+<!-- SET RESVE_STEP = RESVE_STEP - 1 -->
+<!-- WHERE BOOK_SEQ = #{book_seq} AND RESVE_STATUS = 'Y' AND RESVE_STEP > ( -->
+<!--     SELECT RESVE_STEP -->
+<!--     FROM TB_RESVE -->
+<!--     WHERE BOOK_SEQ = #{book_seq} AND RESVE_STATUS = 'N' AND USER_SEQ = #{user_seq} -->
+<!-- ) -->
+<!-- </update> -->
+
+
+
+
+
+<!-- 취소 딜리트버전 -->
+<!-- 스텝 밀어주기 먼저 -->
+<update id="stepUpdate" parameterType="Map">
+UPDATE TB_RESVE SET RESVE_STEP = RESVE_STEP-1
+WHERE RESVE_STEP  > 
+			(SELECT RESVE_STEP 
+				FROM TB_RESVE
+				WHERE BOOK_SEQ = #{book_seq} AND USER_SEQ = #{user_seq})
 </update>
+<!-- 예약취소 데이터는 날리기 -->
+<delete id="resveCancle" parameterType="Map">
+DELETE FROM TB_RESVE
+WHERE BOOK_SEQ = #{book_seq} AND USER_SEQ =#{user_seq}
+</delete>
+
+
+
+
 
 
 </mapper>
