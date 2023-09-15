@@ -28,20 +28,12 @@ public class ResveDaoImpl implements IResveDao {
 		return session.update(NS+"rentStandby",n);
 	}
 
-	@Override
-	public int stepMinus(Map<String, Object> map) {
-		return session.update(NS+"stepMinus",map);
-	}
 
 	@Override
 	public int resveBook(Map<String, Object> map) {
 		return session.insert(NS+"resveBook",map);
 	}
 
-	@Override
-	public int resveCancle(Map<String, Object> map) {
-		return session.update(NS+"resveCancle",map);
-	}
 
 	@Override
 	public List<Map<String, Object>> selectStep(int n) {
@@ -52,6 +44,23 @@ public class ResveDaoImpl implements IResveDao {
 	public List<Map<String, Object>> userResveStatus(int n) {
 		return session.selectList(NS+"userResveStatus",n);
 	}
+
+
+	
+	
+	@Override
+	public int stepUpdate(Map<String, Object> map) {
+		return session.update(NS+"stepUpdate",map);
+	}
+	
+	
+	@Override
+	public int resveCancle(Map<String, Object> map) {
+		return session.delete(NS+"resveCancle",map);
+	}
+
+
+
 
 
 

@@ -28,20 +28,12 @@ public class ResveServiceImpl implements IResveService {
 		return dao.rentStandby(n);
 	}
 
-	@Override
-	public int stepMinus(Map<String, Object> map) {
-		return dao.stepMinus(map);
-	}
 
 	@Override
 	public int resveBook(Map<String, Object> map) {
 		return dao.resveBook(map);
 	}
 
-	@Override
-	public int resveCancle(Map<String, Object> map) {
-		return dao.resveCancle(map);
-	}
 
 	@Override
 	public List<Map<String, Object>> selectStep(int n) {
@@ -54,8 +46,19 @@ public class ResveServiceImpl implements IResveService {
 	}
 	
 	
+	
+	
 
 
+	@Override
+	public int stepUpdate(Map<String, Object> map) {
+		return dao.stepUpdate(map);
+	}
+	
+	@Override
+	public int resveCancle(Map<String, Object> map) {
+		return dao.resveCancle(map);
+	}
 
 
 
