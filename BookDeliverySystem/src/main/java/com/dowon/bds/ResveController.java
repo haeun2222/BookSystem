@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,7 +49,25 @@ public class ResveController {
 	}
 	
 	
+    @PostMapping("/resveBook.do")
+    public ResponseEntity<String> resveBook(@RequestBody Map<String, Object> request) {
+        try {
+            int bookSeq = (int) request.get("book_seq");
+            int userSeq = (int) request.get("user_seq");
 
+            int result = service.resveBook(request);
+
+            if (result > 0) {
+                return ResponseEntity.ok("예약 신청이 완료되었습니다.");
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body("예약 신청에 실패했습니다. 다시 시도해주세요.");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("예약 신청에 실패했습니다. 다시 시도해주세요.");
+        }
+    }
     
     
     
@@ -59,7 +78,6 @@ public class ResveController {
 	public String cancelAndStepUpdate(@RequestBody Map<String, Object> requestData) {
 	    int resveSeq = (int) requestData.get("resveSeq");
 	    int userSeq = (int) requestData.get("userSeq");
-	    
 	    boolean success = service.cancelAndStepUpdate(resveSeq, userSeq);
 	    
 	    if (success) {
