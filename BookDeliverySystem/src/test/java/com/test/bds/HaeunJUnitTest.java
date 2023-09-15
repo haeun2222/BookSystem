@@ -35,11 +35,11 @@ public class HaeunJUnitTest {
 	@Autowired
 	private ApplicationContext context;
 
-//	@Autowired
-//	private IRentService service;
-	
 	@Autowired
-	private IResveService service;
+	private IRentService service;
+	
+//	@Autowired
+//	private IResveService service;
 
 	@Autowired
 	private IRentDao dao;
@@ -164,9 +164,9 @@ public class HaeunJUnitTest {
 //		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@"+lists);
 		
 		
-//		List<String> a = service.selectFilteredBookSeqList();
-//		System.out.println("zzzzzzzzzzzzzzzzz"+a);
-//		assertNotNull(a);
+		List<String> a = service.selectFilteredBookSeqList();
+		System.out.println("zzzzzzzzzzzzzzzzz"+a);
+		assertNotNull(a);
 		
 		
 	}
