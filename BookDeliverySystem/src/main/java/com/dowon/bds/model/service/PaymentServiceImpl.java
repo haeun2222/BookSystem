@@ -18,8 +18,8 @@ public class PaymentServiceImpl implements IPaymentService {
 	
 	@Override
 	public void saveBookPayment(PayDto payDto) {
-		System.out.println("");
-		logger.info("배송지 주소입력 saveAddress");
+		System.out.println(payDto.toString());
+		logger.info("결제 실행");
 		dao.saveBookPayment(payDto);
 
 	}

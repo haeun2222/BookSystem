@@ -30,7 +30,7 @@
                     name: "배송비 결제",
                     amount: payPayment,
                     buyer_email: "deliverytest@testemail.com",
-                    buyer_name: "김지인",
+                    buyer_name: "User_name",
                     buyer_tel: "010-6703-3555",
                     buyer_addr: "서울시 금천구 가산동",// 입력된 배송주소
                     buyer_postcode: "123-456",
@@ -71,6 +71,7 @@
                         msg += '에러내용 : ' + rsp.error_msg;
                         console.log('결제실패'); // 결제 실패 시 콘솔에 메시지 출력
                         alert(msg);
+                        window.location.href = "./userRentList.do";
                     }
                 }
             );

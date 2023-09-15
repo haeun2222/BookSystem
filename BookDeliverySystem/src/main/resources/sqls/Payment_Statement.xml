@@ -3,8 +3,9 @@
 <mapper namespace="com.dowon.bds.model.mapper.PaymentDaoImpl">
 
 	<insert id="saveBookPayment" parameterType="map">
-        INSERT INTO TB_PAY(PAY_SEQ, PAY_IMD, USER_SEQ, PAY_PAYMENT, PAY_DATE)
-        VALUES (PAY_SEQ.NEXTVAL, #{payImd}, #{user_seq}, #{payPayment}, SYSDATE)
+               INSERT INTO TB_PAY
+        (PAY_SEQ, PAY_IMD, USER_SEQ, PAY_PAYMENT, PAY_DATE)
+        VALUES (SQ_PAY.NEXTVAL, #{payImd}, #{user_seq}, #{payPayment}, SYSDATE)
     </insert>
 
 </mapper>
