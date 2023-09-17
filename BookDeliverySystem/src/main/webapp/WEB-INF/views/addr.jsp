@@ -17,7 +17,7 @@
 </head>
 
 <body>
-
+${rentSeq}
 
 <c:set var="loginUser" value="${sessionScope.loginDto}"/>
 <h1 style="font-family: 'Hanna', fantasy;">${loginUser.user_name}님의 배송지 입력</h1>

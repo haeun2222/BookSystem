@@ -47,8 +47,27 @@ public class AddrController {
 		return "addr";
 	}
 	
+
+	
+	
+//	@RequestMapping(value ="/addrCheck.do", method = RequestMethod.POST)
+//	public String addrCheck(AddrDto addrDto , HttpSession session, Model model) {
+//		logger.info("Welcome! AddrController 주소입력{}", addrDto);
+//		addrDto.setUser_seq(((UserDto)session.getAttribute("loginDto")).getUser_seq());
+//		int n = service.saveAddress(addrDto);
+//		session.setAttribute("savedAddress", addrDto);
+	
+//		model.addAttribute("rentSeq",rentSeq);
+//		return (n==1)?"redirect:/addrCheck.do":"redirect:/addr.do";
+		//  @RequestParam("rent_seq") int rentSeq
+//		model.addAttribute("bookTitle", bookTitle);
+//		model.addAttribute("rentSeq",rentSeq);
+
+//		return "addrCheck";
+//	}
+	
 	@RequestMapping(value ="/addrCheck.do", method = RequestMethod.POST)
-	public String addrCheck(AddrDto addrDto , HttpSession session, Model model, @RequestParam("book_seq") String bookTitle) {
+	public String addrCheck(AddrDto addrDto , HttpSession session) {
 		logger.info("Welcome! AddrController 주소입력{}", addrDto);
 		addrDto.setUser_seq(((UserDto)session.getAttribute("loginDto")).getUser_seq());
 		int n = service.saveAddress(addrDto);
@@ -56,11 +75,9 @@ public class AddrController {
 //		model.addAttribute("rentSeq",rentSeq);
 //		return (n==1)?"redirect:/addrCheck.do":"redirect:/addr.do";
 		//  @RequestParam("rent_seq") int rentSeq
-		model.addAttribute("bookTitle", bookTitle);
-//		model.addAttribute("rentSeq",rentSeq);
 		return "addrCheck";
 	}
 	
-
+	
 	
 }

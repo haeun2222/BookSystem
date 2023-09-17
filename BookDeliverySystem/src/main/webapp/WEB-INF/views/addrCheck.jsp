@@ -15,8 +15,7 @@
 <body>
 ${sessionScope.loginDto.user_name}님
 <c:set var="loginUser" value="${sessionScope.loginDto}"/>
-<h1 style="font-family: 'Hanna', fantasy; margin-top: 150px;">${sessionScope.loginDto.user_name}님의 배송지 확인</h1>
-
+<h1 style="font-family: 'Hanna', fantasy;">${sessionScope.loginDto.user_name}님의 배송지 확인</h1>
     <div id="container" style="width: 800px; height: 900px;">
         <h2>입력한 주소 확인</h2>
         <table>
