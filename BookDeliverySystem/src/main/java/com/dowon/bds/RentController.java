@@ -106,6 +106,21 @@ public class RentController {
 	            return "error";
 	        }
 	    }
+	 
+	 @PostMapping("/rentStandby.do")
+	 @ResponseBody
+	 public String rentStandby(@RequestParam("bookSeq") int bookSeq, Model model) {
+	     int success = service2.rentStandby(bookSeq);
+
+	     if (success > 0) {
+	         return "success";
+	     } else {
+	         return "no_reservation"; // 예약이 없을 때
+	     }
+	 }
+	 
+	 
+	 
 	
 	
 	@GetMapping("/bookDetailHaeun.do")

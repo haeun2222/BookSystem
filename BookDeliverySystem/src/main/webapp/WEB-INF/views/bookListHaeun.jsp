@@ -13,7 +13,9 @@
 <!-- 세션에서 loginDto 속성을 불러옴 -->
 <c:set var="loginDto" value="${sessionScope.loginDto}"/>
 bookListHaeun bookDetailHaeun
-<!-- loginVo 객체의 속성(필드) 값을 출력 -->
+
+<!-- loginDto 객체의 속성(필드) 값을 출력 -->
+
 test: ${loginDto.user_email} <br>
 test: ${loginDto.user_seq} <br>
 test: ${loginDto.user_name} <br>

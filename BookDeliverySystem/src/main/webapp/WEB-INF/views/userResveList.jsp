@@ -14,7 +14,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
+
 <body>
+
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
 <c:choose>
     <c:when test="${not empty lists}">
@@ -44,7 +46,7 @@
             <td>
 			    <c:choose>
 			        <c:when test="${resve.RESVE_STATUS eq 'Y'}">
-			        <button onclick="cancelReservation(${resve.BOOK_SEQ}, ${resve.USER_SEQ})">예약취소</button>
+			        <button onclick="cancelReservation(${resve.BOOK_SEQ}, ${loginUser.user_seq})">예약취소</button>
 			        </c:when>
 			        <c:otherwise></c:otherwise>
 			    </c:choose>
@@ -65,35 +67,34 @@
 </c:choose>
 
 
-
 <script type="text/javascript">
-    // 예약 취소 요청을 서버로 보내는 JavaScript 함수
     function cancelReservation(bookSeq, userSeq) {
+        // 예약 취소 요청을 서버에 보냅니다.
+        console.log(bookSeq, userSeq);
         $.ajax({
-            url: './cancle.do', // 컨트롤러 URL을 입력하세요
-            type: 'POST', // 또는 'GET', HTTP 요청 방식에 맞게 설정하세요
-            data: { book_seq: bookSeq, user_seq: userSeq },
-            success: function(data) {
-                // 성공적으로 서버에서 응답을 받았을 때 실행할 코드
-                alert('예약이 취소되었습니다.');
-                // 페이지 새로고침 또는 다른 동작을 수행하세요.
+            type: "POST",
+            url: "./cancel.do",
+            contentType: "application/json",
+            data: JSON.stringify({
+                book_seq: bookSeq, // bookSeq 파라미터를 그대로 사용
+                user_seq: userSeq // userSeq 파라미터를 그대로 사용
+            }),
+            success: function(response) {
+                if (response == "success") {
+                    alert("예약이 취소되었습니다.");
+                    window.location.replace("./userResveList.do?user_seq=${loginDto.user_seq}");
+                    window.location.reload(true);
+                } else {
+                    alert("예약 취소에 실패했습니다. 다시 시도해주세요.");
+                }
             },
             error: function(xhr, status, error) {
-                // 서버 요청 중 오류가 발생했을 때 실행할 코드
-                alert('예약 취소 중 오류가 발생했습니다.');
-                // 오류 처리 로직을 구현하세요.
+                alert("예약 취소 요청에 실패했습니다. 다시 시도해주세요.");
             }
         });
     }
+
 </script>
-
-
-
-
-
-
-
-<br>
 
 
 

@@ -25,7 +25,6 @@ public interface IResveDao {
 	
 	
 	
-	public int stepUpdate(Map<String, Object> map);
 	
 	public int resveCancle(Map<String, Object> map);
 	

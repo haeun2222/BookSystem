@@ -70,32 +70,27 @@ public class ResveController {
     }
     
     
-    
-    @PostMapping("/cancle.do")
-    @ResponseBody
-    public String cancelReservation(@RequestParam("book_seq") int bookSeq, @RequestParam("user_seq") int userSeq) {
-        Map<String, Object> updateMap = new HashMap<>();
-        updateMap.put("book_seq", bookSeq);
-        updateMap.put("user_seq", userSeq);
-        
-        int updateResult = service.stepUpdate(updateMap);
-        
-        if (updateResult > 0) {
-            Map<String, Object> deleteMap = new HashMap<>();
-            deleteMap.put("book_seq", bookSeq);
-            deleteMap.put("user_seq", userSeq);
-            
-            int deleteResult = service.resveCancle(deleteMap);
-            
-            if (deleteResult > 0) {
-                return "success";
+    @PostMapping("/cancel.do")
+    public ResponseEntity<String> cancelReservation(@RequestBody Map<String, Object> params) {
+        try {
+            int bookSeq = (int) params.get("book_seq");
+            int userSeq = (int) params.get("user_seq");
+
+            int result = service.resveCancle(params);
+            if (result > 0) {
+                return ResponseEntity.ok("success");
             } else {
-                return "delete_failed";
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body("예약취소에 실패했습니다. 다시 시도해주세요.");
             }
-        } else {
-            return "update_failed";
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("예약취소에 실패했습니다. 다시 시도해주세요.");
         }
     }
+
+    
+    
 
     
     
