@@ -55,7 +55,8 @@ public class HaeunJUnitTest {
 	public void bookTest() {
 		
 		
-		
+		int n = service.resveAsRent(3);
+		System.out.println(n);
 		
 		
 		

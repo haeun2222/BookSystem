@@ -144,7 +144,6 @@ public class RentController {
         model.addAttribute("filteredBookSeqList", filteredBookSeqList);
         model.addAttribute("rentYBookSeqList",rentYBookSeqList);
         
-        System.out.println("@@@@@@@@@@@@@"+filteredBookSeqList);
         
         return "bookDetailHaeun";
 	}

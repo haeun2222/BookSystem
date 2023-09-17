@@ -56,6 +56,12 @@ public class ResveDaoImpl implements IResveDao {
 	}
 
 
+	@Override
+	public int resveAsRent(int n) {
+		return session.update(NS+"resveAsRent",n);
+	}
+
+
 
 
 

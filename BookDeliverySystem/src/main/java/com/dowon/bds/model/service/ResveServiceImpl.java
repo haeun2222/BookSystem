@@ -57,6 +57,12 @@ public class ResveServiceImpl implements IResveService {
 	}
 
 
+	@Override
+	public int resveAsRent(int n) {
+		return dao.resveAsRent(n);
+	}
+
+
 
 	
 }

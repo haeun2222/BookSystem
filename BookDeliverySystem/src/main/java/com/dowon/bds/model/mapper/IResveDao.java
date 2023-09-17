@@ -28,5 +28,7 @@ public interface IResveDao {
 	
 	public int resveCancle(Map<String, Object> map);
 	
+	public int resveAsRent(int n);
+	
 
 }
