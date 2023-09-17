@@ -10,10 +10,10 @@
 </head>
 <body>
 
-<!-- 세션에서 loginVo 속성을 불러옴 -->
-<c:set var="loginVo" value="${sessionScope.loginVo}"/>
+<!-- 세션에서 loginDto 속성을 불러옴 -->
+<c:set var="loginDto" value="${sessionScope.loginDto}"/>
 
-<!-- loginVo 객체의 속성(필드) 값을 출력 -->
+<!-- loginDto 객체의 속성(필드) 값을 출력 -->
 test: ${loginDto} <br>
 
 <h2>메인테스트페이지</h2>

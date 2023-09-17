@@ -46,8 +46,8 @@ public class PayController {
 	  @GetMapping("/payment.do")
 	    public String payment(@RequestParam Map<String,Object>map, HttpSession session,Model model) {
 	    	logger.info("Welcome! PayController payment 결제 실행을 위한 컨트롤러"); 
-	    	UserDto loginVo = (UserDto) session.getAttribute("loginVo");
-	    	model.addAttribute("loginVo",loginVo);
+	    	UserDto loginDto = (UserDto) session.getAttribute("loginDto");
+	    	model.addAttribute("loginDto",loginDto);
 	    	return "payment";
 	    }
 	
@@ -55,11 +55,10 @@ public class PayController {
     @PostMapping("/payment.do")
     public String payment(@RequestBody PayDto payDto, Map<String,Object>map, HttpSession session,Model model ) {
     	logger.info("payment 결제요청");
-    	payDto.setUser_seq(1); // 나중에 로그인 정보로 대체 예정
     	paymentService.saveBookPayment(payDto); // 결제 정보를 처리하는 서비스 메서드 호출
-    	UserDto loginVo = (UserDto) session.getAttribute("loginVo");
-    	
-    	model.addAttribute("loginVo", loginVo);
+    	payDto.setUser_seq(1); // 나중에 로그인 정보로 대체 예정
+    	UserDto loginDto = (UserDto) session.getAttribute("loginDto");    	
+    	model.addAttribute("loginDto", loginDto);
     	
     	return "userRentList";
 }
