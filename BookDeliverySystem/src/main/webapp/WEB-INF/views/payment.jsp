@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,7 @@
         var payPayment = 5000; // 배송비 5000원 결제되도록 설정
         var IMP = window.IMP;
         IMP.init("imp84153337");
-
+		var User_name
         	 // 사용자가 입력한 주소를 가져옵니다. (입력 필드의 id가 "addressInput"이라고 가정합니다.)
 //            var userAddress = document.getElementById("address").value;
             
@@ -79,16 +80,22 @@
 </script>
   
 </head>
-<body>
-<div class="flex-container">
-  <div style="width: 600px;">
- 	 <img src="./img/img-bike.png" width="70%">
-  </div>
-  <div style="text-align: center;padding-top: 150px;">
-	<h1 style="padding-top: 100px;">계발의 민족<br>배송신청 결제페이지</h1>	 
+<body style=" background-image: url('./img/book.png'); background-repeat : no-repeat; background-size: 100%; background-position: bottom;">
+<!-- 세션에서 loginDto 속성을 불러옴 -->
+<c:set var="loginDto" value="${sessionScope.loginDto}"/>
+<!-- 세션에서 addrDto 속성을 불러옴 -->
+<c:set var="loginDto" value="${sessionScope.loginDto}"/>
+
+<!-- loginDto 객체의 속성(필드) 값을 출력 -->
+test: ${sessionScope.loginDto.user_name} <br>
+
+<!-- <div class="flex-container"> -->
+
+  <div style="text-align: center;">
+	<h1 style="padding-top: 100px;">${sessionScope.loginDto.user_name}님 배송비 결제페이지</h1>	 
 	<button class="button" onclick="requestPay()">결제하기</button>
   </div>
-</div>
+
 
 </body>
 </html>

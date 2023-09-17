@@ -10,16 +10,16 @@
 </head>
 <body>
 
-<!-- 세션에서 loginVo 속성을 불러옴 -->
-<c:set var="loginVo" value="${sessionScope.loginVo}"/>
+<!-- 세션에서 loginDto 속성을 불러옴 -->
+<c:set var="loginDto" value="${sessionScope.loginDto}"/>
 bookListHaeun bookDetailHaeun
 <!-- loginVo 객체의 속성(필드) 값을 출력 -->
-test: ${loginVo.user_email} <br>
-test: ${loginVo.user_seq} <br>
-test: ${loginVo.user_name} <br>
+test: ${loginDto.user_email} <br>
+test: ${loginDto.user_seq} <br>
+test: ${loginDto.user_name} <br>
 
-<button onclick="location.href='./userRentList.do?user_seq=${loginVo.user_seq}'">대출목록조회</button>
-<button onclick="location.href='./userResveList.do?user_seq=${loginVo.user_seq}'">예약순번조회</button>
+<button onclick="location.href='./userRentList.do?user_seq=${loginDto.user_seq}'">대출목록조회</button>
+<button onclick="location.href='./userResveList.do?user_seq=${loginDto.user_seq}'">예약순번조회</button>
 
 <button onclick="location.href='./adminRentList.do'">관리자 대출조회</button>
   <br>

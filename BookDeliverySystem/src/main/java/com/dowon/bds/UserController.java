@@ -42,7 +42,7 @@ public class UserController {
 	public String login(@RequestParam Map<String,Object>map, HttpSession session, HttpServletResponse response) throws IOException {
 		log.info("로그인 처리 login {}",map);
 		UserDto loginDto = service.login(map);
-		log.info("loginVo정보 {}",loginDto);
+		log.info("loginDto정보 {}",loginDto);
 		
 		if(loginDto == null) {
 			log.info("로그인실패 /test.do로 이동 {}",map);

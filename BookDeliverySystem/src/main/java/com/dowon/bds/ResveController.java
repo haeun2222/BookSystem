@@ -41,10 +41,10 @@ public class ResveController {
 	@GetMapping("/userResveList.do")
 	public String userResveList(@RequestParam("user_seq")int user_seq, Model model, HttpSession session){
 		log.info("ResveController userResveList 회원의 마이페이지-예약조회 부분에 들어갈 페이지 컨트롤러");
-		UserDto loginVo = (UserDto) session.getAttribute("loginVo");
+		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
 		List<Map<String, Object>>  lists = service.selectStep(user_seq);
 		model.addAttribute("lists",lists);
-		model.addAttribute("loginVo",loginVo);
+		model.addAttribute("loginDto",loginDto);
 		return "userResveList";
 	}
 	

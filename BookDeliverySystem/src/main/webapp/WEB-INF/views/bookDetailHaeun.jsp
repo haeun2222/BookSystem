@@ -125,7 +125,7 @@ function checkAvailability() {
     var button2 = "";
 
     if (rentDataSize == 0 && resveDataSize == 0) {
-        modalContent = "<b>회원정보</b><br>이름 : ${loginVo.user_name}<br>이메일 : ${loginVo.user_email}<br><br><b>도서정보</b><br>도서명 : ${dto.book_title}<br>저자 : ${dto.book_writer}<br><br><b>대출신청 확인</b><br>대출신청을 하시겠습니까?<br>대출신청 버튼을 누르면 배송지 입력으로 이동합니다.";
+        modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>도서정보</b><br>도서명 : ${dto.book_title}<br>저자 : ${dto.book_writer}<br><br><b>대출신청 확인</b><br>대출신청을 하시겠습니까?<br>대출신청 버튼을 누르면 배송지 입력으로 이동합니다.";
         button1 = $('<button type="button" class="btn btn-primary ml-2">대출신청</button>');
         button2 = $('<button type="button" class="btn btn-primary ml-2">닫기</button>');
         
@@ -142,11 +142,11 @@ function checkAvailability() {
         
     } else {
         if (resveDataSize > 0) {
-        	modalContent = "<b>회원정보</b><br>이름 : ${loginVo.user_name}<br>이메일 : ${loginVo.user_email}<br><br><b>예약정보</b><br>${loginVo.user_name}님은 현재<br>${resveData[0].BOOK_TITLE} 도서를 예약중입니다.<br>예약신청이 불가합니다.";
+        	modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>예약정보</b><br>${loginDto.user_name}님은 현재<br>${resveData[0].BOOK_TITLE} 도서를 예약중입니다.<br>예약신청이 불가합니다.";
         	button1 = $('<button type="button" class="btn btn-warning ml-2">예약조회</button>');
             button2 = $('<button type="button" class="btn btn-danger ml-2">닫기</button>');
             
-            var user_seq = ${loginVo.user_seq};
+            var user_seq = ${loginDto.user_seq};
             button1.click(function() {
                 window.location.href = "./userResveList.do?user_seq=" + user_seq;
             });
@@ -159,11 +159,11 @@ function checkAvailability() {
             modalFooter.append(button2);
         }
         if (rentDataSize > 0) {
-        	modalContent = "<b>회원정보</b><br>이름 : ${loginVo.user_name}<br>이메일 : ${loginVo.user_email}<br><br><b>대출정보</b><br>${loginVo.user_name}님은 현재<br>${rentData[0].BOOK_TITLE} 도서를 대출중입니다.<br>대출신청이 불가합니다.";
+        	modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>대출정보</b><br>${loginDto.user_name}님은 현재<br>${rentData[0].BOOK_TITLE} 도서를 대출중입니다.<br>대출신청이 불가합니다.";
             button1 = $('<button type="button" class="btn btn-danger ml-2">대출조회</button>');
             button2 = $('<button type="button" class="btn btn-danger ml-2">닫기</button>');
             
-            var user_seq = ${loginVo.user_seq};
+            var user_seq = ${loginDto.user_seq};
             button1.click(function() {
                 window.location.href = "./userRentList.do?user_seq=" + user_seq;
             });
@@ -195,7 +195,7 @@ function newResve1() {
     var resveDataSize = ${resveData.size()};
     var rentYBookSeqList = ${rentYBookSeqList};
     var isReservable = ${rentYBookSeqList.contains(dto.book_seq)};
-    var user_seq = ${loginVo.user_seq};
+    var user_seq = ${loginDto.user_seq};
 
     console.log("rentDataSize: " , rentDataSize);
     console.log("resveDataSize: " , resveDataSize);
@@ -217,7 +217,7 @@ function newResve1() {
         }else{
         	if(rentDataSize==0&&resveDataSize == 0){
         
-            modalContent = "<b>회원정보</b><br>이름 : ${loginVo.user_name}<br>이메일 : ${loginVo.user_email}<br><br><b>도서정보</b><br>도서명 : ${dto.book_title}<br>저자 : ${dto.book_writer}<br><br><b>예약신청 확인</b><br>예약신청을 하시겠습니까?<br>예약신청 버튼을 누르면 신청이 완료됩니다.";
+            modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>도서정보</b><br>도서명 : ${dto.book_title}<br>저자 : ${dto.book_writer}<br><br><b>예약신청 확인</b><br>예약신청을 하시겠습니까?<br>예약신청 버튼을 누르면 신청이 완료됩니다.";
             button1 = $('<button type="button" class="btn btn-primary ml-2">예약신청</button>');
             button2 = $('<button type="button" class="btn btn-primary ml-2">닫기</button>');
 
@@ -230,12 +230,12 @@ function newResve1() {
                     contentType: "application/json", // Content-Type 설정
                     data: JSON.stringify({
                         book_seq: ${dto.book_seq},
-                        user_seq: ${loginVo.user_seq}
+                        user_seq: ${loginDto.user_seq}
                     }),
                     success: function (response) {
                         // 예약이 성공하면 실행되는 함수
                         alert("예약신청이 완료되었습니다.");
-                        window.location.href = "./userResveList.do?user_seq=" + ${loginVo.user_seq};
+                        window.location.href = "./userResveList.do?user_seq=" + ${loginDto.user_seq};
                     },
                     error: function (error) {
                         // 예약이 실패하면 실행되는 함수
@@ -252,11 +252,11 @@ function newResve1() {
             modalFooter.append(button2);
         } 
         	else if(rentDataSize == 0 && resveDataSize > 0){
-        	modalContent = "<b>회원정보</b><br>이름 : ${loginVo.user_name}<br>이메일 : ${loginVo.user_email}<br><br><b>예약정보</b><br>${loginVo.user_name}님은 현재<br>${resveData[0].BOOK_TITLE} 도서를 예약중입니다.<br>예약신청이 불가합니다.";
+        	modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>예약정보</b><br>${loginDto.user_name}님은 현재<br>${resveData[0].BOOK_TITLE} 도서를 예약중입니다.<br>예약신청이 불가합니다.";
         	button1 = $('<button type="button" class="btn btn-warning ml-2">예약조회</button>');
             button2 = $('<button type="button" class="btn btn-danger ml-2">닫기</button>');
                     	
-        	var user_seq = ${loginVo.user_seq};
+        	var user_seq = ${loginDto.user_seq};
             button1.click(function() {
             	window.location.href = "./userResveList.do?user_seq=" + user_seq;
             });
@@ -267,11 +267,11 @@ function newResve1() {
         	 modalFooter.append(button2);
         } 
         	else if(resveDataSize == 0 && rentDataSize > 0){
-        	modalContent = "<b>회원정보</b><br>이름 : ${loginVo.user_name}<br>이메일 : ${loginVo.user_email}<br><br><b>대출정보</b><br>${loginVo.user_name}님은 현재<br>${rentData[0].BOOK_TITLE} 도서를 대출중입니다.<br>예약신청이 불가합니다.";
+        	modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>대출정보</b><br>${loginDto.user_name}님은 현재<br>${rentData[0].BOOK_TITLE} 도서를 대출중입니다.<br>예약신청이 불가합니다.";
         	button1 = $('<button type="button" class="btn btn-danger ml-2">대출조회</button>');
         	button2 = $('<button type="button" class="btn btn-danger ml-2">닫기</button>');
         	
-        	var user_seq = ${loginVo.user_seq};
+        	var user_seq = ${loginDto.user_seq};
             button1.click(function() {
                 window.location.href = "./userRentList.do?user_seq=" + user_seq;
             });

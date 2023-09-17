@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<c:set var="loginUser" value="${sessionScope.loginVo}" />
+<c:set var="loginUser" value="${sessionScope.loginDto}" />
 
 <h1>${loginUser.user_name}님의 대출 도서 목록입니다</h1>
 
@@ -49,7 +49,7 @@
 			    </c:choose>
 			</td>
 			<td>
-				<button onclick="location.href='./delivery.do?user_seq=${loginVo.user_seq}'">배송조회</button>
+				<button onclick="location.href='./delivery.do?user_seq=${loginDto.user_seq}'">배송조회</button>
 			</td>
         </tr>
     </c:forEach>

@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<c:set var="loginUser" value="${sessionScope.loginVo}" />
+<c:set var="loginUser" value="${sessionScope.loginDto}" />
 <c:choose>
     <c:when test="${not empty lists}">
 		<h1>${loginUser.user_name}님의 현재 예약 현황 입니다</h1>
