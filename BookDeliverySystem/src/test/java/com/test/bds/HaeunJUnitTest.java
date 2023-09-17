@@ -56,6 +56,9 @@ public class HaeunJUnitTest {
 		
 		
 		
+		
+		
+		
 //		Map<String, Object>map = new HashMap<String, Object>();
 //		map.put("book_seq", 440);
 //		map.put("user_seq", 17);
@@ -64,10 +67,10 @@ public class HaeunJUnitTest {
 		
 		
 		
-		Map<String, Object>map = new HashMap<String, Object>();
-		map.put("book_seq", 440);
-		map.put("user_seq", 17);
-		int n = service.resveCancle(map);
+//		Map<String, Object>map = new HashMap<String, Object>();
+//		map.put("book_seq", 440);
+//		map.put("user_seq", 17);
+//		int n = service.resveCancle(map);
 		
 		
 		
@@ -134,9 +137,8 @@ public class HaeunJUnitTest {
 		
 		
 		//예약걸려있는 대출완료된책의 1빠예약을 대출대기만들기
-//		int n = service.rentStandby(440);
-//		assertEquals(1, n);
-		
+//		int n = service.rentStandby(1);
+//		assertEquals(0, n);
 		
 		//순번밀기
 //		int n = service.stepMinus(440);
@@ -153,15 +155,16 @@ public class HaeunJUnitTest {
 		
 		//예약취소
 //		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("user_seq", 16);
-//		map.put("book_seq", 440);
+//		map.put("user_seq", 11);
+//		map.put("book_seq", 100);
 //		int n = service.resveCancle(map);
 //		assertEquals(1, n);
 		
 		
 		//순번조회
-//		List<Map<String, Object>> lists = service.selectStep(44);
+//		List<Map<String, Object>> lists = service.selectStep(7);
 //		assertNotNull(lists);
+//		System.out.println("@@@@@@@@@@@"+lists);
 		
 		
 		//특정회원 예약판단

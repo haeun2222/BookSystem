@@ -41,7 +41,7 @@
                 <td>
                     <c:choose>
                         <c:when test="${rent.RENT_STATUS eq 'B'}">
-                        <button onclick="confirmReturn(${rent.RENT_SEQ})">반납확인</button>
+                        <button onclick="handleActions(${rent.RENT_SEQ}, ${rent.BOOK_SEQ})">반납확인</button>
                         </c:when>
                     </c:choose>
                 </td>
@@ -49,36 +49,45 @@
             	    	<input type="text">
   					  <button>입력</button>
                 </td>
-                <!-- 코드 합칠때 상태가 @@@배송완료@@@ 일때 로 수정해야함 -->
-                <!-- 버튼에 업데이트(반납완료처리) 메소드 달아야함 -->
             </tr>
         </c:forEach>
     </table>
 </body>
 <script>
-function confirmReturn(rentSeq) {
-    // AJAX를 사용하여 서버에 요청을 보냅니다.
-    $.ajax({
-        type: "POST", // 요청 메서드 (POST 또는 GET 등)
-        url: "./confirmReturn.do", // 요청을 처리할 서버의 URL
-        data: { rentSeq: rentSeq }, // 서버에 전달할 데이터 (rentSeq를 전달)
-        success: function(response) {
-            // 요청이 성공적으로 처리되면 이 함수가 호출됩니다.
-            if (response == "success") {
-                // 성공적으로 반납이 확인된 경우에 대한 처리
-                alert("반납이 확인되었습니다.");
-                // 페이지 새로고침 또는 필요한 작업 수행
-                location.reload(); // 페이지를 새로고침하거나, 필요한 작업을 수행하세요.
-            } else {
-                // 실패한 경우에 대한 처리
-                alert("반납 확인에 실패했습니다.");
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error("AJAX 요청이 오류와 함께 실패했습니다: " + error);
-            alert("요청을 처리하는 동안 오류가 발생했습니다.");
+//버튼 클릭 시 두 개의 메소드를 호출하는 함수
+async function handleActions(rentSeq, bookSeq) {
+    try {
+        // 첫 번째 AJAX 요청 (rentSeq 사용)
+        const confirmResponse = await $.ajax({
+            type: "POST",
+            url: "./confirmReturn.do",
+            data: { rentSeq: rentSeq }
+        });
+
+        if (confirmResponse == "success") {
+            alert("반납확인 완료");
+        } else {
+            alert("반납확인 실패");
         }
-    });
+
+        // 두 번째 AJAX 요청 (bookSeq 사용)
+        const rentStandbyResponse = await $.ajax({
+            type: "POST",
+            url: "./rentStandby.do",
+            data: { bookSeq: bookSeq }
+        });
+
+        if (rentStandbyResponse == "success") {
+            alert("대출대기 완료");
+        } else {
+            alert("예약이 없어 대출대기 X");
+        }
+        location.reload();
+    } catch (error) {
+        console.error("오류 발생: " + error);
+        alert("요청을 처리하는 동안 오류가 발생했습니다.");
+    }
 }
+
 </script>
 </html>

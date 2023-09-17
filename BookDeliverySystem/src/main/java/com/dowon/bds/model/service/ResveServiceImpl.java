@@ -50,10 +50,6 @@ public class ResveServiceImpl implements IResveService {
 	
 
 
-	@Override
-	public int stepUpdate(Map<String, Object> map) {
-		return dao.stepUpdate(map);
-	}
 	
 	@Override
 	public int resveCancle(Map<String, Object> map) {

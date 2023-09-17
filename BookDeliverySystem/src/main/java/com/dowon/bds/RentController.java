@@ -54,10 +54,10 @@ public class RentController {
 	@GetMapping("/bookListHaeun.do")
 	public String bookListHaeun(@RequestParam Map<String,Object>map, HttpSession session,Model model) {
 		log.info("RentController bookListHaeun 테스트를 위한 도서 전체목록 페이지 컨트롤러");
-		UserDto loginVo = (UserDto) session.getAttribute("loginVo");
+		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
 		List<BookDto> lists = service.bookAll();
 		
-		model.addAttribute("loginVo",loginVo);
+		model.addAttribute("loginDto",loginDto);
 		model.addAttribute("books",lists);
 		
 		return "bookListHaeun";
@@ -66,9 +66,9 @@ public class RentController {
 	@GetMapping("/userRentList.do")
 	public String userRentList(HttpSession session, Model model, HttpServletResponse response) {
 		log.info("RentController userRentList 회원의 마이페이지-대출도서목록에 들어갈 페이지 컨트롤러");
-		UserDto loginVo = (UserDto) session.getAttribute("loginVo");
-	    if (loginVo != null) {
-	        int user_seq = loginVo.getUser_seq();
+		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
+	    if (loginDto != null) {
+	        int user_seq = loginDto.getUser_seq();
 	        List<Map<String, Object>> lists = service.selectMyBookRent(user_seq);
 	        model.addAttribute("userRentList", lists);
 	        model.addAttribute("seq", user_seq);
@@ -106,6 +106,21 @@ public class RentController {
 	            return "error";
 	        }
 	    }
+	 
+	 @PostMapping("/rentStandby.do")
+	 @ResponseBody
+	 public String rentStandby(@RequestParam("bookSeq") int bookSeq, Model model) {
+	     int success = service2.rentStandby(bookSeq);
+
+	     if (success > 0) {
+	         return "success";
+	     } else {
+	         return "no_reservation"; // 예약이 없을 때
+	     }
+	 }
+	 
+	 
+	 
 	
 	
 	@GetMapping("/bookDetailHaeun.do")
@@ -113,8 +128,8 @@ public class RentController {
 		log.info("RentController bookDetail 도서 상세화면 테스트를 위한 페이지 컨트롤러");
 		System.out.println("bookSeq: " + bookSeq); 
 		
-		UserDto loginVo = (UserDto) session.getAttribute("loginVo");
-		int userSeq = loginVo.getUser_seq();
+		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
+		int userSeq = loginDto.getUser_seq();
 	    
 		BookDto dto = service.bookDetail(bookSeq);
 	    List<String> filteredBookSeqList = service.selectFilteredBookSeqList();
@@ -124,7 +139,7 @@ public class RentController {
 	    
 	    model.addAttribute("resveData",resveData);
 	    model.addAttribute("rentData", rentData);
-	    model.addAttribute("loginVo",loginVo);
+	    model.addAttribute("loginDto",loginDto);
 	    model.addAttribute("dto", dto);
         model.addAttribute("filteredBookSeqList", filteredBookSeqList);
         model.addAttribute("rentYBookSeqList",rentYBookSeqList);

@@ -48,10 +48,6 @@ public class ResveDaoImpl implements IResveDao {
 
 	
 	
-	@Override
-	public int stepUpdate(Map<String, Object> map) {
-		return session.update(NS+"stepUpdate",map);
-	}
 	
 	
 	@Override

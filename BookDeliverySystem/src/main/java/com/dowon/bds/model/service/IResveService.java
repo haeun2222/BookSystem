@@ -22,7 +22,6 @@ public interface IResveService {
 	
 	
 	
-	public int stepUpdate(Map<String, Object> map);
 	
 	public int resveCancle(Map<String, Object> map);
 	
