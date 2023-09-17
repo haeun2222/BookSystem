@@ -78,7 +78,11 @@ WHERE BOOK_SEQ = #{book_seq} AND RESVE_STEP = (SELECT MIN(RESVE_STEP) FROM BOOK.
 </update>
 
 <!-- 대출대기인 회원이 대출신청 완료됐을때 (예약테이블에선 업데이트, 대출테이블엔 새로 insert) -->
-
+<update id="resveAsRent" parameterType="java.lang.Integer">
+UPDATE BOOK.TB_RESVE
+SET RESVE_STATUS='S'
+WHERE RESVE_SEQ = #{resve_seq}
+</update>
 
 
 
