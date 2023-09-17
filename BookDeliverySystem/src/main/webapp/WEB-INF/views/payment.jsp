@@ -15,7 +15,7 @@
         var payPayment = 5000; // 배송비 5000원 결제되도록 설정
         var IMP = window.IMP;
         IMP.init("imp84153337");
-		var User_name
+// 		var User_name
         	 // 사용자가 입력한 주소를 가져옵니다. (입력 필드의 id가 "addressInput"이라고 가정합니다.)
 //            var userAddress = document.getElementById("address").value;
             
@@ -84,7 +84,7 @@
 <!-- 세션에서 loginDto 속성을 불러옴 -->
 <c:set var="loginDto" value="${sessionScope.loginDto}"/>
 <!-- 세션에서 addrDto 속성을 불러옴 -->
-<c:set var="loginDto" value="${sessionScope.loginDto}"/>
+<%-- <c:set var="loginDto" value="${sessionScope.loginDto}"/> --%>
 
 <!-- loginDto 객체의 속성(필드) 값을 출력 -->
 test: ${sessionScope.loginDto.user_name} <br>
@@ -94,6 +94,7 @@ test: ${sessionScope.loginDto.user_name} <br>
   <div style="text-align: center;">
 	<h1 style="padding-top: 100px;">${sessionScope.loginDto.user_name}님 배송비 결제페이지</h1>	 
 	<button class="button" onclick="requestPay()">결제하기</button>
+	<button class="button" onclick="history.back(-1)">취소</button>
   </div>
 
 

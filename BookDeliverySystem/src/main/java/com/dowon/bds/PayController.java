@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.dowon.bds.dto.AddrDto;
 import com.dowon.bds.dto.PayDto;
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IPaymentService;
@@ -53,14 +54,22 @@ public class PayController {
 	
     // 아임포트 결제 요청을 처리
     @PostMapping("/payment.do")
-    public String payment(@RequestBody PayDto payDto, Map<String,Object>map, HttpSession session,Model model ) {
+    public String payment(@RequestBody PayDto payDto, Map<String,Object>map, HttpSession session, Model model) {
+    	UserDto loginDto = (UserDto) session.getAttribute("loginDto"); 
+    	AddrDto addrDto = (AddrDto) session.getAttribute("addrDto");
     	logger.info("payment 결제요청");
-    	paymentService.saveBookPayment(payDto); // 결제 정보를 처리하는 서비스 메서드 호출
-    	payDto.setUser_seq(1); // 나중에 로그인 정보로 대체 예정
-    	UserDto loginDto = (UserDto) session.getAttribute("loginDto");    	
-    	model.addAttribute("loginDto", loginDto);
-    	
-    	return "userRentList";
+        if (loginDto != null) {
+            // 로그인 정보가 있을 때만 이름을 PayDto에 설정
+            payDto.setUser_seq(loginDto.getUser_seq());
+            paymentService.saveBookPayment(payDto); // 결제 정보를 처리하는 서비스 메서드 호출
+            model.addAttribute("loginDto", loginDto);
+//            model.addAttribute("addrDto",addrDto);
+      
+            
+            return "userRentList";
+        } else {
+        	 return "redirect:/loginPage.do";
+        }
 }
 	
 	
