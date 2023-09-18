@@ -66,7 +66,7 @@ WHERE BOOK_SEQ = #{book_seq} AND RESVE_STATUS = 'Y' AND USER_SEQ = #{user_seq}
 
 
 
-<!-- 예약걸려있는책이 반납완료 됐을때, 순번가장빠른회원 대출대기 상태로 업데이트 -->
+<!-- 예약 앞순번 빠지고 , 그다음 순번가장빠른회원 대출대기 상태로 업데이트 -->
 <update id="rentStandby" parameterType="java.lang.Integer">
 UPDATE BOOK.TB_RESVE
 SET RESVE_STATUS = 'R',
@@ -77,11 +77,16 @@ SET RESVE_STATUS = 'R',
 WHERE BOOK_SEQ = #{book_seq} AND RESVE_STEP = (SELECT MIN(RESVE_STEP) FROM BOOK.TB_RESVE WHERE BOOK_SEQ = #{book_seq} AND RESVE_STATUS = 'Y') AND RESVE_STATUS = 'Y'
 </update>
 
+
+
+
+
 <!-- 대출대기인 회원이 대출신청 완료됐을때 (예약테이블에선 업데이트, 대출테이블엔 새로 insert) -->
 <update id="resveAsRent" parameterType="java.lang.Integer">
-UPDATE BOOK.TB_RESVE
-SET RESVE_STATUS='S'
-WHERE RESVE_SEQ = #{resve_seq}
+UPDATE TB_RESVE
+    SET RESVE_STATUS = 'S'
+    WHERE BOOK_SEQ = #{book_seq}
+      AND RESVE_STATUS = 'R'
 </update>
 
 
