@@ -41,7 +41,6 @@ ${sessionScope.loginDto.user_name}님
        <div class="container">
 			<input class="btn btn-info" type="button" value="결제요청" onclick="location.href='./payment.do'">
 		    <button class="btn"  onclick="history.back(-1)">취소</button>
-<%-- <input class="btn btn-info" type="button" value="결제요청" onclick="deleteOne('${vo.seq}')"> --%>
      
 		</div>
     </div>

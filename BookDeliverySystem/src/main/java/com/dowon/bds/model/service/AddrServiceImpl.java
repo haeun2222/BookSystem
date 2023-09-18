@@ -28,4 +28,9 @@ public class AddrServiceImpl implements IAddrService {
 		return dao.checkAddress(delivery_seq);
 	}
 
+	@Override
+	public AddrDto getAddrUserSeq(int user_seq) {
+		return dao.getAddrUserSeq(user_seq);
+	}
+
 }

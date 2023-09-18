@@ -35,4 +35,11 @@ public class AddrDaoImpl implements IAddrDao {
 		 return sqlSession.selectOne(NS + "checkAddress", delivery_seq);
 	}
 
+	@Override
+	public AddrDto getAddrUserSeq(int user_seq) {
+		return sqlSession.selectOne(NS + "getAddrUserSeq", user_seq);
+	}
+
+
+
 }

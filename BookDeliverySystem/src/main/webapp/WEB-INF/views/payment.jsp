@@ -1,3 +1,4 @@
+<%@page import="com.dowon.bds.dto.AddrDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -15,12 +16,16 @@
         var payPayment = 5000; // 배송비 5000원 결제되도록 설정
         var IMP = window.IMP;
         IMP.init("imp84153337");
-// 		var User_name
-        	 // 사용자가 입력한 주소를 가져옵니다. (입력 필드의 id가 "addressInput"이라고 가정합니다.)
-//            var userAddress = document.getElementById("address").value;
-            
-            // 사용자의 seq를 가져옵니다. (사용자 ID를 저장하는 변수 "userid"가 있다고 가정합니다.)
-            //var userSeq = "사용자_아이디_여기에_입력"; // 실제 사용자 아이디로 대체하세요
+     // User_name 설정
+        var User_name = "${sessionScope.loginDto.user_name}";
+
+        // 주소 정보를 JavaScript 변수에 할당
+        var buyer_email = "${sessionScope.loginDto.user_email}";
+        var buyer_tel = "${sessionScope.savedAddress.delivery_phone}";
+        var buyer_addr = "${sessionScope.savedAddress.address}"; // 주소 정보 수정
+        var buyer_postcode = "${sessionScope.savedAddress.postcode}"; // 우편번호 정보 수정
+        
+
         function requestPay() {
         	
             IMP.request_pay(
@@ -30,11 +35,11 @@
                     merchant_uid: merchant_uid,
                     name: "배송비 결제",
                     amount: payPayment,
-                    buyer_email: "deliverytest@testemail.com",
-                    buyer_name: "User_name",
-                    buyer_tel: "010-6703-3555",
-                    buyer_addr: "서울시 금천구 가산동",// 입력된 배송주소
-                    buyer_postcode: "123-456",
+                    buyer_email: buyer_email,
+                    buyer_name: User_name,
+                    buyer_tel: buyer_tel,
+                    buyer_addr: buyer_addr,// 입력된 배송주소
+                    buyer_postcode: buyer_postcode,
                 },
                 function (rsp) {
                     console.log(rsp);
@@ -83,18 +88,17 @@
 <body style=" background-image: url('./img/book.png'); background-repeat : no-repeat; background-size: 100%; background-position: bottom;">
 <!-- 세션에서 loginDto 속성을 불러옴 -->
 <c:set var="loginDto" value="${sessionScope.loginDto}"/>
-<!-- 세션에서 addrDto 속성을 불러옴 -->
-<%-- <c:set var="loginDto" value="${sessionScope.loginDto}"/> --%>
+
 
 <!-- loginDto 객체의 속성(필드) 값을 출력 -->
-test: ${sessionScope.loginDto.user_name} <br>
-
+<%-- test: ${sessionScope.loginDto} <br> --%>
+<%-- test: ${sessionScope.savedAddress.delivery_name} --%>
 <!-- <div class="flex-container"> -->
 
   <div style="text-align: center;">
 	<h1 style="padding-top: 100px;">${sessionScope.loginDto.user_name}님 배송비 결제페이지</h1>	 
 	<button class="button" onclick="requestPay()">결제하기</button>
-	<button class="button" onclick="history.back(-1)">취소</button>
+	<button class="button2" onclick="location.href='./bookDetailHaeun.do?user_seq=${loginDto.user_seq}'">취소</button>
   </div>
 
 

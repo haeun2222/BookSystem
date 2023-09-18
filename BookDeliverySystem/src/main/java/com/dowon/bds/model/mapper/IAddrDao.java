@@ -14,4 +14,5 @@ public interface IAddrDao {
 	public int saveAddress(AddrDto addrDto);
 	public AddrDto checkAddress(String delivery_seq);
 	
+	public AddrDto getAddrUserSeq(int user_seq);
 }
