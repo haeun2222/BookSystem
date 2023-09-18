@@ -16,7 +16,6 @@
 
 
 <body>
-
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
 <c:choose>
     <c:when test="${not empty lists}">
@@ -53,7 +52,7 @@
 			</td>
 			<td>
 			    <c:choose>
-			        <c:when test="${resve.RESVE_STATUS eq 'R'}"><button onclick="">대출신청</button></c:when>
+			        <c:when test="${resve.RESVE_STATUS eq 'R'}"><button onclick="location.href = './addr.do?book_seq=' + ${resve.BOOK_SEQ}">대출신청</button></c:when>
 			        <c:otherwise></c:otherwise>
 			    </c:choose>
 			</td>
