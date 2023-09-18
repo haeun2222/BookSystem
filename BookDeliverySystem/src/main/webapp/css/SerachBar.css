@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+/* 검색창 컨테이너 스타일링 */
+.search-container {
+  display: flex;
+  background-color: papayawhip;
+  border-radius: 20px;
+  padding: 15px; /* 상하 패딩 유지 */
+}
+
+/* 검색 입력 필드 스타일링 */
+.search-container input[type="text"] {
+  border: none;
+  padding: 15px; /* 상하 패딩 유지 */
+  width: 80%;
+  border-radius: 20px 0 0 20px;
+  outline: none;
+  font-size: 16px;
+  margin-right: 0; /* 오른쪽 마진 추가 */
+  margin-left: 500px;
+}
+
+/* 검색 버튼 스타일링 */
+.search-container button[type="submit"] {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+  padding: 15px; /* 상하 패딩 유지 */
+}
+
+/* 검색 아이콘 스타일링 (Font Awesome 아이콘 사용) */
+.search-container button[type="submit"] i {
+  padding: 10px;
+}
