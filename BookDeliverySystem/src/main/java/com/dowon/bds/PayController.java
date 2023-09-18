@@ -68,7 +68,7 @@ public class PayController {
 	            AddrDto addrDto = addrService.getAddrUserSeq(loginDto.getUser_seq());
 	            model.addAttribute("loginDto", loginDto);
 	            model.addAttribute("addrDto", addrDto); // 주소 정보를 Model에 추가
-	            model.addAttribute("bookSeq", bookSeq); 
+	            model.addAttribute("bookSeq",bookSeq);
 	            return "payment";
 	        } else {
 	             return "redirect:/loginPage.do";
