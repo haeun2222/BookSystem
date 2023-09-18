@@ -8,14 +8,24 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font.css">
+<link rel="stylesheet" href="css/header.css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
-html { background-color: #papayawhip; } 
-body {
-    min-height: 600px;
-    max-width: 1280px;
-    background-color: papayawhip; 
-    margin: 0 auto;
+
+svg > g > g:last-child { pointer-events: none }
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: papayawhip;
 }
+.flex-container > div {
+  background-color: papayawhip;
+  width: 400px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -111,15 +121,15 @@ window.onload = function(){
     };
 </script>
 </head>
+<%@ include file="/WEB-INF/views/header.jsp" %>
 <body>
-<h1 style="text-align: center; font-size: 50px;">계발의민족</h1>
-<button style="float: right; " onclick="location.href='./loginPage.do'">로그인</button>
 
 
 <!-- <a href="./imgSelect.do">책이미지좀불러와라</a> -->
 <!-- <a href="./genderList.do">성별통계불러와라</a> -->
 <!-- <a href="./ageList.do">연령별통계불러와라</a> -->
-<div class="rectangle" style="background-image: url('./img/star.png'); width:300px; height:300px; background-size: cover; margin-top: 580px; margin-left: 20px;">
+<div id="content">
+<div class="rectangle" style="background-image: url('./img/star.png'); width:300px; height:300px; background-size: cover; margin-top: 400px; margin-left: 20px;">
 		<h2>실시간 베스트셀러!</h2>
 		<h4>누구에게 인기가 많을까?</h4>
 		<!-- Trigger the modal with a button -->
@@ -138,7 +148,7 @@ window.onload = function(){
 					</div>
 					<div class="modal-body">
 						<h1 id="bookTitle" style="text-align: center;" onmouseover="showBookInfo()" onmouseout="hideBookInfo()"></h1>
-						<div id="bookInfo">
+						<div id="bookInfo" style="position: fixed; left: -200px;">
 						</div>
 						<!-- 여기에 차트 뿌리기 -->
 						<table>
@@ -164,7 +174,9 @@ window.onload = function(){
 			</div>
 		</div>
 	</div>
+	</div>
 </body>
+<%@ include file="/WEB-INF/views/footer.jsp" %>
 <script type="text/javascript">
 	function GobookDetail(${book_seq}){
 		

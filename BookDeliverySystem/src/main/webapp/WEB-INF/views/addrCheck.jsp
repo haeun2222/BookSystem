@@ -1,6 +1,9 @@
 <%@page import="com.dowon.bds.dto.AddrDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +17,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-   <div id="header">
-   <h1>header             header</h1>
-   </div>
+
+
+${sessionScope.loginDto.user_seq} <br>
+
 ${sessionScope.loginDto.user_name}님
 <c:set var="loginUser" value="${sessionScope.loginDto}"/>
 <h1 style="font-family: 'Hanna', fantasy;">${sessionScope.loginDto.user_name}님의 배송지 확인</h1>
@@ -43,15 +47,21 @@ ${sessionScope.loginDto.user_name}님
            </thead>
         </table>
        <div class="container">
-			<input class="btn btn-info" type="button" value="결제요청" onclick="location.href='./payment.do'">
+			<input class="btn btn-info" type="button" value="결제요청" onclick="redirectToPayment()">
 		    <button class="btn"  onclick="history.back(-1)">취소</button>
      
 		</div>
     </div>
-    
-    <div id="footer">
-    
-    <h1>냥냥이          footer</h1>
-    </div>
+
+
+    ${bookSeq}
+<script>
+    // JavaScript를 사용하여 bookSeq 값을 전달하고 페이지 이동
+    function redirectToPayment() {
+        var bookSeq = ${bookSeq}; // JavaScript로 bookSeq 값을 얻어오는 코드
+        var url = "./payment.do?book_seq=" + bookSeq; // book_seq로 수정
+        location.href = url;
+    }
+</script>
 </body>
 </html>

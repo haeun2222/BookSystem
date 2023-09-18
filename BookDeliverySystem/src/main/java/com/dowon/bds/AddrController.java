@@ -68,11 +68,14 @@ public class AddrController {
 //	}
 	
 	@RequestMapping(value ="/addrCheck.do", method = RequestMethod.POST)
-	public String addrCheck(AddrDto addrDto , HttpSession session) {
+	public String addrCheck(AddrDto addrDto , HttpSession session, Model model, @RequestParam("book_seq") int bookSeq) {
 		logger.info("Welcome! AddrController 주소입력{}", addrDto);
 		addrDto.setUser_seq(((UserDto)session.getAttribute("loginDto")).getUser_seq());
 		int n = service.saveAddress(addrDto);
 		session.setAttribute("savedAddress", addrDto);
+		
+		model.addAttribute("bookSeq",bookSeq);
+		
 		return "addrCheck";
 	}
 	

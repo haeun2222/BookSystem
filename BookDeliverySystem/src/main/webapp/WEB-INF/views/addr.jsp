@@ -17,8 +17,8 @@
 </head>
 
 <body>
-${rentSeq}
-
+33${rentSeq}<br>
+22${bookSeq}
 <c:set var="loginUser" value="${sessionScope.loginDto}"/>
 <h1 style="font-family: 'Hanna', fantasy;">${loginUser.user_name}님의 배송지 입력</h1>
 <br>
@@ -50,6 +50,7 @@ ${rentSeq}
 							<input type="text" id="sample6_address" placeholder="주소" name="address"><br>
 							<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="detaddr">
 							<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="extaddr">
+							<input type="hidden" name="book_seq" value="${bookSeq}"/> 
 						</td>
 					</tr>
 		    </tbody>
