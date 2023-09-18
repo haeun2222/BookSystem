@@ -36,5 +36,11 @@
 		    ORDER BY D.DELIVERY_SEQ DESC
 		    FETCH FIRST 1 ROW ONLY
 	</select>
+	
+	<update id="updateDeliveryNum" parameterType="java.util.Map">
+        UPDATE TB_DELIVERY
+        SET DELIVERY_NUM = #{delivery_num}
+        WHERE DELIVERY_SEQ = #{delivery_seq}
+    </update>
  
 </mapper>

@@ -47,7 +47,7 @@
                 </td>
                 <td style="display: flex; align-items: center;">
             	    	<input type="text">
-  					  <button>입력</button>
+  					  <button type="submit">입력</button>
                 </td>
             </tr>
         </c:forEach>

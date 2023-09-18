@@ -150,7 +150,7 @@ public class RentController {
 	}
 	
 /*
- * 23.09.18 배송지 조회를 위한 컨트롤러 작성
+ * 23.09.18 배송지 조회를 위한 컨트롤러 작성 // 김지인
  */
 	
 	@RequestMapping(value = "/delivery.do", method = RequestMethod.GET)
