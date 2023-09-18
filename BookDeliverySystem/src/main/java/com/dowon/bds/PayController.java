@@ -28,7 +28,7 @@ import com.dowon.bds.model.service.IPaymentService;
 @Controller
 public class PayController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(PayController.class);
 	
 	@Autowired
 	private IPaymentService paymentService;

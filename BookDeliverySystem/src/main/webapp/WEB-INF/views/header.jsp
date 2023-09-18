@@ -13,8 +13,8 @@
   </div>
   <div><h1 style="text-align: center; font-size: 60px;">계발의민족</h1></div>
   <div class="topLogo" style="margin-top: 30px;" id="loginBtn">
-  		<button class="btn btn-info" onclick="#">회원가입</button>
-  		<button class="btn btn-info" onclick="#">로그인</button>
+  		<button class="btn btn-info" onclick="location.href='./nomalRegistForm.do'">회원가입</button>
+  		<button class="btn btn-info" onclick="location.href='./loginPage.do'">로그인</button>
   </div>  
 </div>
 <nav class="navbar navbar-default" style="border-radius: 20px; background-color: aliceblue; margin: 0 auto;">
