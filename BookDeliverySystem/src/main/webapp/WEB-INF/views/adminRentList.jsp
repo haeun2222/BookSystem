@@ -46,8 +46,8 @@
                     </c:choose>
                 </td>
                 <td style="display: flex; align-items: center;">
-            	    	<input type="text">
-  					  <button type="submit">입력</button>
+            	    	<input type="text" id="deliveryNum${rent.USER_SEQ}" placeholder="운송장번호 입력">
+  					    <button onclick="updateDelivery('${rent.USER_SEQ}', ${rent.RENT_SEQ})">입력</button>
                 </td>
             </tr>
         </c:forEach>
@@ -88,6 +88,33 @@ async function handleActions(rentSeq, bookSeq) {
         alert("요청을 처리하는 동안 오류가 발생했습니다.");
     }
 }
+
+</script>
+<script type="text/javascript">
+async function updateDelivery(userSeq, rentSeq) {
+    try {
+        const deliveryNumInputId = `deliveryNumInput${userSeq}`;
+        const deliveryNum = document.getElementById(deliveryNumInputId).value;
+
+        // AJAX 요청을 사용하여 서버에 운송장 번호 업데이트 요청 보내기
+        const updateResponse = await $.ajax({
+            type: "POST",
+            url: "./updateDeliveryNum.do",
+            data: { userSeq: userSeq, rentSeq: rentSeq, deliveryNum: deliveryNum }
+        });
+
+        if (updateResponse == "success") {
+            alert("운송장 번호 업데이트 완료");
+            location.reload(); // 페이지 새로고침
+        } else {
+            alert("운송장 번호 업데이트 실패");
+        }
+    } catch (error) {
+        console.error("오류 발생: " + error);
+        alert("요청을 처리하는 동안 오류가 발생했습니다.");
+    }
+}
+
 
 </script>
 </html>
