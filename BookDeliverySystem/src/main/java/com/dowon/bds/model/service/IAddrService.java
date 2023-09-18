@@ -13,6 +13,9 @@ public interface IAddrService {
 	
 	//주소확인
 	public AddrDto checkAddress(String delivery_seq);
+	
+	//유저, 주소 조인
+	public AddrDto getAddrUserSeq(int user_seq);
 
 	
 }

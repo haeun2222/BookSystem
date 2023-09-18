@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.dowon.bds.dto.AddrDto;
 import com.dowon.bds.dto.PayDto;
 import com.dowon.bds.dto.UserDto;
+import com.dowon.bds.model.service.IAddrService;
 import com.dowon.bds.model.service.IPaymentService;
 
 @Controller
@@ -31,6 +32,9 @@ public class PayController {
 	
 	@Autowired
 	private IPaymentService paymentService;
+	
+	@Autowired
+	private IAddrService addrService;
 //	@RequestMapping(value = "/payment.do", method = RequestMethod.GET)
 //	public String payment(Locale locale, Model model) {
 //		logger.info("Welcome! payment.do 실행");
@@ -48,9 +52,25 @@ public class PayController {
 	    public String payment(@RequestParam Map<String,Object>map, HttpSession session,Model model) {
 	    	logger.info("Welcome! PayController payment 결제 실행을 위한 컨트롤러"); 
 	    	UserDto loginDto = (UserDto) session.getAttribute("loginDto");
-	    	model.addAttribute("loginDto",loginDto);
-	    	return "payment";
+	    	
+	    	
+	    	 // 여기서 유저의 배송지 정보를 가져옵니다.
+	        if (loginDto != null) {
+	            AddrDto addrDto = addrService.getAddrUserSeq(loginDto.getUser_seq());
+	            model.addAttribute("loginDto", loginDto);
+	            model.addAttribute("addrDto", addrDto); // 주소 정보를 Model에 추가
+	            return "payment";
+	        } else {
+	             return "redirect:/loginPage.do";
+	        }
 	    }
+	    	
+	    	
+//	    	  AddrDto addrDto = (AddrDto) session.getAttribute("addrDto");
+//	    	    model.addAttribute("loginDto", loginDto);
+//	    	    model.addAttribute("addrDto", addrDto); // 주소 정보를 Model에 추가
+//	    	return "payment";
+//	    }
 	
     // 아임포트 결제 요청을 처리
     @PostMapping("/payment.do")
@@ -63,8 +83,8 @@ public class PayController {
             payDto.setUser_seq(loginDto.getUser_seq());
             paymentService.saveBookPayment(payDto); // 결제 정보를 처리하는 서비스 메서드 호출
             model.addAttribute("loginDto", loginDto);
-//            model.addAttribute("addrDto",addrDto);
-      
+            model.addAttribute("addrDto",addrDto);
+            
             
             return "userRentList";
         } else {

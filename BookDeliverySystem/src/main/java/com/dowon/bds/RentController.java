@@ -39,6 +39,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author 김지인
  * @since 2023.09.15
  * 배송상태확인 버튼 구현
+ * 배송지 조회 구현
  */
 @Controller
 @Slf4j
@@ -148,10 +149,13 @@ public class RentController {
         return "bookDetailHaeun";
 	}
 	
+/*
+ * 23.09.18 배송지 조회를 위한 컨트롤러 작성
+ */
 	
 	@RequestMapping(value = "/delivery.do", method = RequestMethod.GET)
 	public String delivery(Locale locale, Model model) {
-		log.info("Welcome! delivery.do 실행");
+		log.info("Welcome! delivery 도서 배송지 조회를 위한 페이지 컨트롤러");
 		log.info("배송지 조회 이동");
 		
 		Date date = new Date();

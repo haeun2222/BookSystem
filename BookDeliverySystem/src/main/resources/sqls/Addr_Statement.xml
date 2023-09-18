@@ -27,5 +27,14 @@
 		FROM TB_DELIVERY
 		WHERE DELIVERY_SEQ = #{delivery_seq}
 	</select>
+	
+	<select id="getAddrUserSeq" resultMap="addrResultMap" parameterType="java.lang.Integer">
+	    SELECT D.DELIVERY_SEQ, D.USER_SEQ, D.DELIVERY_NAME, D.DELIVERY_PHONE, D.POSTCODE, D.ADDRESS, D.DETADDR, D.EXTADDR, D.DELIVERY_NUM
+		    FROM TB_DELIVERY D
+		    LEFT JOIN TB_USER U ON D.USER_SEQ = U.USER_SEQ
+		    WHERE D.USER_SEQ = #{user_seq}
+		    ORDER BY D.DELIVERY_SEQ DESC
+		    FETCH FIRST 1 ROW ONLY
+	</select>
  
 </mapper>
