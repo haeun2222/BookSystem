@@ -2,6 +2,8 @@ package com.dowon.bds.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -31,6 +33,7 @@ public class UserDto {
 	private String user_birth;
 	private String user_auth;
 	private String user_delflag;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date joindate;
 	private String user_gender;
 	

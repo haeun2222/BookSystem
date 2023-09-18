@@ -2,6 +2,8 @@ package com.dowon.bds.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -29,6 +31,7 @@ public class BookDto {
 	private String book_isbn;
 	private String book_intro;
 	private String book_publisher;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date book_published_date;
 	private String book_index;
 	private String book_summary;

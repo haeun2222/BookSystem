@@ -2,6 +2,7 @@ package com.dowon.bds;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IUserService;
@@ -66,6 +68,14 @@ public class UserController {
 			}
 		}
 		
+	}
+	
+	@RequestMapping(value="/getAllUser.do",method = RequestMethod.GET)
+	@ResponseBody
+	public List<UserDto> getAlluser() {
+		log.info("getAlluser 모든회원정보 가져오기");
+		List<UserDto> getAllusers = service.getAllUser();
+		return getAllusers;
 	}
 
 }

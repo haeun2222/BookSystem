@@ -1,5 +1,6 @@
 package com.dowon.bds.model.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -36,6 +37,8 @@ public class UserDaoImpl implements IUserDao {
 		return sqlSession.selectOne(NS+"checkEmail",email);
 	}
 
-
+	public List<UserDto> getAllUser(){
+		return sqlSession.selectList(NS+"getAllUser");
+	}
 
 }
