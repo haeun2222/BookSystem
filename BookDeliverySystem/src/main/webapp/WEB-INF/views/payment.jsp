@@ -59,17 +59,39 @@ async function requestPay() {
             alert(msg);
 
             // 결제 성공 시에만 서버로의 AJAX 요청을 수행
-            await rentBook(userSeq, bookSeq);
+            // 결제가 성공한 후에 payment.do 컨트롤러로 요청을 보냅니다.
+            $.ajax({
+                type: "POST",
+                url: "./payment.do", // payment.do 컨트롤러로 요청
+                data: JSON.stringify ({
+                    // imp_uid를 payImd 대신 payImd로 전달
+                             payImd: rsp.imp_uid,
+                             payPayment: payPayment,
+                             book_seq: bookSeq
+                         }), // 결제 정보를 서버로 보냅니다.
+                contentType: "application/json",
+                success: function (data) {
+                    // 이후 처리 (예: 리다이렉션 등)
+                    if (data == "success") {
+                        // payment.do 요청이 성공하면 rentBook 함수 실행
+                        rentBook(userSeq, bookSeq);
+                    } else {
+                        console.log('payment.do 요청 실패');
+                    }
+                },
+                error: function (error) {
+                    console.error('payment.do 요청 오류:', error);
+                }
+            });
         } else {
             var msg = '결제에 실패하였습니다.';
             msg += '에러내용 : ' + rsp.error_msg;
             console.log('결제실패');
-
-            
         }
     } catch (error) {
         console.error('결제 요청 오류:', error);
     }
+}
 
     async function rentBook(userSeq, bookSeq) { // rentBook 함수도 async로 수정
     	console.log(userSeq, bookSeq);
@@ -121,7 +143,7 @@ async function requestPay() {
                 console.error('예약 요청 오류:', error);
             }
         }
-    }
+    
 </script>
 
 
