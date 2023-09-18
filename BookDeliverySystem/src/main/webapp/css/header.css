@@ -8,6 +8,7 @@ html, body {
 }
 
 #header {
+
   height: 100px; /* 헤더 높이를 116px로 고정 */
   background-color:papayawhip; /* 헤더 배경색을 원하는 색상으로 설정 */
   color:black; /* 헤더 텍스트 색상을 원하는 색상으로 설정 */
@@ -25,3 +26,4 @@ html, body {
 /*   margin: 0 auto; */
 /*   background-color: papayawhip; 콘텐츠 배경색을 원하는 색상으로 설정 */
 /* } */
+

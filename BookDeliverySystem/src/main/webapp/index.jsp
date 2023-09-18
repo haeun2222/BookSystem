@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="css/header.css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
+
 svg > g > g:last-child { pointer-events: none }
 .flex-container {
   display: flex;
@@ -24,6 +25,7 @@ svg > g > g:last-child { pointer-events: none }
   text-align: center;
   line-height: 75px;
   font-size: 30px;
+
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -121,6 +123,8 @@ window.onload = function(){
 </head>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <body>
+
+
 <!-- <a href="./imgSelect.do">책이미지좀불러와라</a> -->
 <!-- <a href="./genderList.do">성별통계불러와라</a> -->
 <!-- <a href="./ageList.do">연령별통계불러와라</a> -->

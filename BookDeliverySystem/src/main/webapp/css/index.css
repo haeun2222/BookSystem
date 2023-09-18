@@ -1,0 +1,74 @@
+body {
+  background-color: white;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  text-align: center;
+}
+
+img {
+  width: 200px;
+}
+
+.inner {
+  position: relative;
+  width: 600px;
+  height: 40px;
+  margin: 20px auto;
+  border: 1px solid #bdc1c6;
+  border-radius: 20px;
+}
+
+input {
+  width: 90%;
+  height: 100%;
+  border-color: #bdc1c6;
+  border: 0px;
+  font-size: 16px;
+  outline: none;
+}
+
+.searching {
+  position: absolute;
+  left: 10px;
+  top: 20%;
+}
+
+i:hover {
+  cursor: pointer;
+}
+
+.icon_ect {
+  position: absolute;
+  right: 10px;
+  top: 20%;
+}
+
+.fa-keyboard {
+  margin-right: 10px;
+}
+
+.weegle_inner {
+  width: 160px;
+  height: 40px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  border: 0px;
+  vertical-align: middle;
+}
+
+.weegle_inner:hover {
+  cursor: pointer;
+}
+
+footer {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+}

@@ -1,5 +1,7 @@
 package com.dowon.bds.model.mapper;
 
+import java.util.Map;
+
 /** 
  * @author 김지인
  * @since 2023.09.14
@@ -13,11 +15,14 @@ import org.springframework.stereotype.Repository;
 
 import com.dowon.bds.dto.AddrDto;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Repository
+@Slf4j
 public class AddrDaoImpl implements IAddrDao {
 
 	private final String NS = "com.dowon.bds.model.mapper.AddrDaoImpl.";
-			
+	
 	@Autowired
 	private final SqlSession sqlSession;
 	
@@ -38,6 +43,13 @@ public class AddrDaoImpl implements IAddrDao {
 	@Override
 	public AddrDto getAddrUserSeq(int user_seq) {
 		return sqlSession.selectOne(NS + "getAddrUserSeq", user_seq);
+	}
+
+	@Override
+	public boolean updateDeliveryNum(Map<String, Object> map) {
+		log.info("updateDeliveryNum 운송장번호 등록"+map);
+		int row = sqlSession.update(NS+"updateDeliveryNum", map);
+		return row >0;
 	}
 
 

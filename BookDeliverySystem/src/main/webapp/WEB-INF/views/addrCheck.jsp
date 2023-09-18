@@ -11,16 +11,20 @@
 <title>주소 정보</title>
 <link rel="stylesheet" href="css/addrCheck.css" />
 <link rel="stylesheet" href="css/font.css">
+<link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+
 ${sessionScope.loginDto.user_seq} <br>
+
 ${sessionScope.loginDto.user_name}님
 <c:set var="loginUser" value="${sessionScope.loginDto}"/>
 <h1 style="font-family: 'Hanna', fantasy;">${sessionScope.loginDto.user_name}님의 배송지 확인</h1>
-    <div id="container" style="width: 800px; height: 900px;">
+    <div id="container" style="width: 800px; height: 360px;">
         <h2>입력한 주소 확인</h2>
         <table>
         <thead>
@@ -48,6 +52,8 @@ ${sessionScope.loginDto.user_name}님
      
 		</div>
     </div>
+
+
     ${bookSeq}
 <script>
     // JavaScript를 사용하여 bookSeq 값을 전달하고 페이지 이동
