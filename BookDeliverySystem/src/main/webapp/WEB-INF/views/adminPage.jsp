@@ -7,61 +7,41 @@
 <title>관리자 페이지</title>
 <link rel="stylesheet" href="css/adminPage.css"/>
 <script type="text/javascript"src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="js/adminUser.js"></script>
+<script src="js/adminBook.js"></script>
+
 </head>
 <body>
 
-<h1>도서 등록 시스템</h1>
+<h1>비대면 도서 대출 시스템 [관리자페이지]</h1>
 
 <body>
-    <input type="text" id="bookName" placeholder="도서명 입력">
-    <button id="search">검색</button>
+		<button onclick="getAllUsers()">회원관리</button>
+		<button onclick="getAllBooks()">도서관리</button>
+		<button onclick="getAllRentLists()">대출관리</button>
+		
+		<div id="userInfoTable"></div>
+		<div id="bookinfoTable"></div>
+		
+<!-- 	    <input type="text" id="bookName" placeholder="도서명 입력"> -->
+<!--     <button id="search">검색</button> -->
 
-    <table class="book-table" style="width: 1200px">
-        <thead>
-            <tr>
-                <th>도서이미지</th>
-                <th>도서제목</th>
-                <th>도서내용</th>
-                <th>저자</th>
-                <th>출판사</th>
-                <th>도서등록하기</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
+<!--     <table class="book-table" style="width: 1200px"> -->
+<!--         <thead> -->
+<!--             <tr> -->
+<!--                 <th>도서이미지</th> -->
+<!--                 <th>도서제목</th> -->
+<!--                 <th>도서내용</th> -->
+<!--                 <th>저자</th> -->
+<!--                 <th>출판사</th> -->
+<!--                 <th>도서등록하기</th> -->
+<!--             </tr> -->
+<!--         </thead> -->
+<!--         <tbody id="tableBody"> -->
   
-        </tbody>
-    </table>
-
+<!--         </tbody> -->
+<!--      </table> --> 
 </body>
 
-<script type="text/javascript">
-$(document).ready(function(){
-    $("#search").click(function(){
-        $.ajax({
-            method: "GET",
-            url: "https://dapi.kakao.com/v3/search/book?target=title",
-            data: { query: $("#bookName").val() },
-            headers: { "Authorization": "KakaoAK deebb5b9fe3604c7cbb30baeb31b856e" }
-        })
-        .done(function(res){
-            var table = $(".book-table tbody");
-            table.empty();
 
-            for (var i = 0; i <= 4 && i < res.documents.length; i++) {
-                var rowData = res.documents[i];
-                var row = '<tr>';
-                row += '<td><img src="' + rowData.thumbnail + '" /></td>';
-                row += '<td>' + rowData.title + '</td>';
-                row += '<td>' + rowData.contents + '</td>';
-                row += '<td>' + rowData.authors + '</td>';
-                row += '<td>' + rowData.publisher + '</td>';
-                row += '<td><button>등록하기</button></td>';
-                row += '</tr>';
-                table.append(row);
-            }
-        });
-    });
-});
-
-</script>
 </html>

@@ -30,6 +30,7 @@
  <mapper resource="sqls/Resve_Statement.xml"/>
  <mapper resource="sqls/Payment_Statement.xml"/>
  <mapper resource="sqls/Addr_Statement.xml"/>
+ <mapper resource="sqls/Book_Statement.xml"/>
 </mappers>
 
 </configuration>

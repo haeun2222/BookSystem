@@ -1,5 +1,6 @@
 package com.dowon.bds.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -11,4 +12,5 @@ public interface IUserService {
 	public UserDto login(Map<String, Object> map);
 	public int nomalRegist(UserDto dto);
 	public int checkEmail(String email);
+	public List<UserDto> getAllUser();
 }

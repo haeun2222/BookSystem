@@ -156,7 +156,7 @@
 			</form>
         </div> 
         <!-- wrapper -->
-<script src="js/registForm.js"></script>    
+<script src="js/registForm.js"></script>
 	
 </body>
 </html>

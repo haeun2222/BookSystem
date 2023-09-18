@@ -1,6 +1,7 @@
 package com.dowon.bds.model.service;
 
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -35,6 +36,12 @@ public class UserServiceImpl implements IUserService {
 	public int checkEmail(String email) {
 		log.info("UserServiceImpl checkEmail 이메일중복검사 : {}",email);
 		return dao.checkEmail(email);
+	}
+
+	@Override
+	public List<UserDto> getAllUser() {
+		log.info("UserServiceImpl getAllUser 모든회원리스트 : {}");
+		return dao.getAllUser();
 	}
 	
 }

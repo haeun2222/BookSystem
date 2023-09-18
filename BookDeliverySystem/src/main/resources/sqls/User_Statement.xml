@@ -30,6 +30,10 @@ INSERT INTO TB_USER
 			'U','N',SYSDATE,#{user_gender})
 </insert>
 
-
+<!-- 모든회원정보가져오기 -->
+<select id="getAllUser" resultType="UserDto">
+SELECT USER_SEQ,USER_EMAIL,USER_PHONE,USER_BIRTH,JOINDATE,USER_NAME,USER_GENDER
+	FROM TB_USER
+</select>
 
 </mapper>
