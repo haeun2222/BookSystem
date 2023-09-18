@@ -3,44 +3,32 @@
 <!DOCTYPE html>
 <html>
 <head>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style type="text/css">
-  	header{
-  		background: grey;
-  		height: 100px;
-  		color: #000000;
-  	}
-  	#container{
-  		width: 800px;
-  		margin: 60px auto;
-  		height: 70vh;
-  	}
-  	footer{
-  		background: grey;
-  		text-align: center;
-  		line-height: 20px;
-  		padding: 20px;
-  	}
-  </style>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-<header>
-<nav class="navbar navbar-inverse">
+
+<div class="flex-container" id="header">
+  <div class="topLogo" style="margin-top: 30px;">
+  </div>
+  <div><h1 style="text-align: center; font-size: 60px;">계발의민족</h1></div>
+  <div class="topLogo" style="margin-top: 30px;" id="loginBtn">
+  		<button class="btn btn-info" onclick="#">회원가입</button>
+  		<button class="btn btn-info" onclick="#">로그인</button>
+  </div>  
+</div>
+<nav class="navbar navbar-default" style="border-radius: 20px; background-color: aliceblue; margin: 0 auto;">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
     </div>
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav" style="margin: 0 auto;">
       <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>
+      <li><a href="#">게시판</a></li>
+      <li><a href="#">도서목록</a></li>
     </ul>
   </div>
 </nav>
-</header>
-    ${dto}
+
+
 </body>
 </html>
