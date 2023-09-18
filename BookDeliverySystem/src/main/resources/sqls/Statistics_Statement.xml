@@ -99,5 +99,12 @@ SELECT BOOK_TITLE,BOOK_SEQ,BOOK_INTRO
 	WHERE BOOK_SEQ = #{book_seq}
 </select>
 
+<select id="SearchBook" resultType="BookDto">
+	SELECT BOOK_SEQ ,BOOK_TITLE ,BOOK_WRITER ,BOOK_IMG ,BOOK_INTRO 
+		FROM TB_BOOK tb
+		WHERE BOOK_TITLE =#{book_title} 
+		OR BOOK_WRITER =#{book_writer}
+</select>
+
 
 </mapper>

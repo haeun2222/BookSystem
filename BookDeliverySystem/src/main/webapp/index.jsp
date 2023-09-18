@@ -9,9 +9,9 @@
 <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/SerachBar.css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
-
 svg > g > g:last-child { pointer-events: none }
 .flex-container {
   display: flex;
@@ -25,106 +25,20 @@ svg > g > g:last-child { pointer-events: none }
   text-align: center;
   line-height: 75px;
   font-size: 30px;
-
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-var book_img;
-var book_seq;
-window.onload = function(){
-//     구글차트 
-    google.charts.load('current', {'packages':['corechart']}); 
-    google.charts.setOnLoadCallback(drawGenderChart);
-    
-    function drawGenderChart() {
- //        Ajax요청하기
-        $.get('/BookDeliverySystem/genderChart.do', function(data) {
-            
-            var genderData = new google.visualization.DataTable();
-            genderData.addColumn('string', 'Gender');
-            genderData.addColumn('number', 'Count');
-  //           1위책 남,녀
-            genderData.addRow([data[0].user_gender,parseInt(data[0].percent)]);
-            genderData.addRow([data[1].user_gender,parseInt(data[1].percent)]);
-//             차트 옵션 설정
-            var options = {
-			    title: '성별 통계',
-			    chartArea: {
-			        width: '80%', 
-			        height: '80%'
-			    },
-			    width: 400, 
-			    height: 300,
-			    legend: 'right',
-			    titlePosition: 'out',
-			    is3D:true,
-			    colors: ['#74b9ff', '#81ecec', '#a29bfe', '#dfe6e9', '#00cec9'],
-	          	fontSize: 15
-			};
-//             차트 그리기
-            var chart = new google.visualization.PieChart(document.getElementById('genderChart'));
-            chart.draw(genderData, options);
-            
-            var bookTitle = data[0].book_title;
-            $('#bookTitle').text('['+ bookTitle + ']');
-        
-        	book_seq = data[0].book_seq,data[0].book_title,data[0].book_intro;   
-            book_img = data[0].book_img;
-        });
-    };
-};
-</script>
- <script type="text/javascript">
-//     구글차트 
-    google.charts.load('current', {'packages':['corechart']}); 
-    google.charts.setOnLoadCallback(drawAgeChart);
-    
-    function drawAgeChart() {
-//         Ajax 요청하기
-        $.get('/BookDeliverySystem/ageChart.do', function(data) {
-            var ageData = new google.visualization.DataTable();
-            ageData.addColumn('string', 'Age');
-            ageData.addColumn('number', 'Percent(%)');
-            ageData.addColumn({type: 'string', role: 'style'});
-
-            ageData.addRow([data[0].age_group,parseInt(data[0].percent),'#00b894']);
-            ageData.addRow([data[1].age_group,parseInt(data[1].percent),'#00d2d3']);
-            ageData.addRow([data[2].age_group,parseInt(data[2].percent),'#74b9ff']);
-            ageData.addRow([data[3].age_group,parseInt(data[3].percent),'#55efc4']);
-            ageData.addRow([data[4].age_group,parseInt(data[4].percent),'#81ecec']);
-            
- //            차트 옵션 설정
-           var options = {
-			    title:'연령별 통계',
-			    chartArea: {
-			        width: '80%', 
-			        height: '80%'
-			    },
-			    width: 400, 
-			    height: 300,
-			    titlePosition: 'out',
-			    legend: { position: "none" },
-			    colors: ['#00b894', '#00d2d3', '#74b9ff', '#55efc4', '#81ecec'],
-	          	fontSize: 15,
-	          	animation: {
-	                 duration: 1000,
-	                 easing: 'in',
-	                startup: true
-	          	}
-				};
-            var chart = new google.visualization.ColumnChart(document.getElementById('ageChart'));
-            chart.draw(ageData, options);
-        });
-    };
-</script>
+<script type="text/javascript" src="js/Statistics.js"></script>
 </head>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <body>
-
-
+<!-- 검색창 -->
+<div class="search-container">
+  <input type="text" placeholder="도서명 또는 저자를 입력하세요.">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</div>
 <!-- <a href="./imgSelect.do">책이미지좀불러와라</a> -->
 <!-- <a href="./genderList.do">성별통계불러와라</a> -->
 <!-- <a href="./ageList.do">연령별통계불러와라</a> -->
@@ -132,13 +46,10 @@ window.onload = function(){
 <div class="rectangle" style="background-image: url('./img/star.png'); width:300px; height:300px; background-size: cover; margin-top: 400px; margin-left: 20px;">
 		<h2>실시간 베스트셀러!</h2>
 		<h4>누구에게 인기가 많을까?</h4>
-		<!-- Trigger the modal with a button -->
 		<button id="showModal" type="button" class="btn btn-info btn-lg" data-toggle="modal"
 			data-target="#myModal">
 			지금보러가자!
 		</button>
-
-		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog modal-md">
 				<div class="modal-content">
@@ -178,29 +89,29 @@ window.onload = function(){
 </body>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 <script type="text/javascript">
-	function GobookDetail(${book_seq}){
+ 	function GobookDetail(${book_seq}){
 		
-		var url = '/BookDeliverySystem/bookDetail.do?book_seq=' + book_seq;
-		window.location.href = url;
-	}
+ 		var url = '/BookDeliverySystem/bookDetail.do?book_seq=' + book_seq;
+ 		window.location.href = url;
+ 	}
 </script>
 <script type="text/javascript">
 $('#showModal').on('click', function () {
     drawAgeChart();
 });
 </script>
-<script type="text/javascript">
+<script type="text/javascript"> 
 	function showBookInfo(){
 		$('#bookInfo').html('<img src="'+book_img+'" alt="bookImgLoading....">');
 		$('#bookInfo').fadeIn();
 		console.log(book_img);
 		console.log(book_seq);
-// 		console.log("커서가 올라왔다");
+ 		console.log("커서가 올라왔다");
 	}
 	function hideBookInfo(){
 		$('#bookInfo').html('<img src="'+book_img+'" alt="bookImgLoading....">');
 		$('#bookInfo').fadeOut();
-// 		console.log("커서가 내려갔다");
+ 		console.log("커서가 내려갔다");
 	}
 </script>
 </html>
