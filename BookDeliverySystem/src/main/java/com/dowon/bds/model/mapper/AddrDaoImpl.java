@@ -1,5 +1,9 @@
 package com.dowon.bds.model.mapper;
-
+/** 
+ * @author 김지인
+ * @since 2023.09.19
+ * 도서 배송관련 메소드를 구현한 DAO Interface implements 클래스
+ */
 import java.util.Map;
 
 /** 
@@ -10,6 +14,7 @@ import java.util.Map;
 
 
 import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +30,9 @@ public class AddrDaoImpl implements IAddrDao {
 	
 	@Autowired
 	private final SqlSession sqlSession;
+	
+	@Autowired
+	private SqlSessionTemplate session;
 	
 	 public AddrDaoImpl(SqlSession sqlSession) {
 	        this.sqlSession = sqlSession;
@@ -50,6 +58,12 @@ public class AddrDaoImpl implements IAddrDao {
 		log.info("updateDeliveryNum 운송장번호 등록"+map);
 		int row = sqlSession.update(NS+"updateDeliveryNum", map);
 		return row >0;
+	}
+
+	@Override
+	public int deliRentStatus(int n) {
+		
+		return session.update(NS+"deliRentStatus",n);
 	}
 
 

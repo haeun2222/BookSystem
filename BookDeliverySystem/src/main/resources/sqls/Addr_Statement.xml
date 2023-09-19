@@ -42,5 +42,18 @@
         SET DELIVERY_NUM = #{delivery_num}
         WHERE DELIVERY_SEQ = #{delivery_seq}
     </update>
+    
+    <update id="deliRentStatus" parameterType="java.lang.Integer">
+		UPDATE TB_BOOK_RENT
+		SET RENT_STATUS = 'A'
+		WHERE RENT_SEQ = #{rent_seq}
+	</update>
+	
+	
+    <update id="returnRentStatus" parameterType="java.lang.Integer">
+		UPDATE TB_BOOK_RENT
+		SET RENT_STATUS = 'B'
+		WHERE RENT_SEQ = #{rent_seq}
+	</update>
  
 </mapper>
