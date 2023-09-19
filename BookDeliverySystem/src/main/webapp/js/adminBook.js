@@ -51,7 +51,7 @@ function getAllBooks() {
             	$("<tr>").append(
             	"<td>"+ book.book_seq + "</td>",
             	"<td>"+ book.book_img + "</td>",
-            	"<td>"+ book.book_title + "</td>",
+            	"<td onclick=\"location.href='./getDetailBook.do?book_seq="+book.book_seq+"'\">" + book.book_title + "</td>",
             	"<td>"+ book.book_writer + "</td>",
             	"<td>"+ book.book_isbn + "</td>",
             	"<td>"+ book.book_publisher + "</td>",
@@ -70,6 +70,7 @@ function hideBookTable() {
 }
 
 
+//도서 검색 js
 $(document).ready(function(){
     $("#search").click(function(){
         $.ajax({

@@ -20,8 +20,14 @@ public class BookServiceImpl implements IBookService {
 
 	@Override
 	public List<BookDto> getAllBook() {
-		log.info("BookServiceImpl getAllBook 모든책리스트가져오기 : ");
+		log.info("BookServiceImpl getAllBook 모든 도서 리스트 가져오기 : ");
 		return dao.getAllBook();
+	}
+
+	@Override
+	public BookDto detailBook(int seq) {
+		log.info("BookServiceImpl detailBook 도서 상세보기 ");
+		return dao.detailBook(seq);
 	}
 
 }

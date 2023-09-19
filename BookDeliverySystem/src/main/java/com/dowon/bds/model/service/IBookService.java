@@ -8,5 +8,5 @@ import com.dowon.bds.dto.BookDto;
 public interface IBookService {
 	
 	public List<BookDto> getAllBook();
-
+	public BookDto detailBook(int seq);
 }

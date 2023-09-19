@@ -6,8 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dowon.bds.dto.BookDto;
@@ -34,6 +36,16 @@ public class BookController {
 		log.info("getAllBooks 모든책정보 가져오기");
 		List<BookDto> getAllBooks = service.getAllBook();
 		return getAllBooks;
+	}
+	
+	//도서상세보기
+	@RequestMapping(value="/getDetailBook.do", method = RequestMethod.GET)
+	public String detailBook(@RequestParam("book_seq")int seq, Model model) {
+		log.info("detailBook 도서 상세 보기");
+		log.info("★★★★★★★seq? : {}",seq);
+		BookDto dto = service.detailBook(seq);
+		model.addAttribute("detailBook",dto);
+		return "detailBook";
 	}
 
 }
