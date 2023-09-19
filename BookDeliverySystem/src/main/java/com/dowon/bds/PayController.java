@@ -84,6 +84,7 @@ public class PayController {
 	
     // 아임포트 결제 요청을 처리
     @PostMapping("/payment.do")
+    @ResponseBody
     public String payment(@RequestBody PayDto payDto, Map<String,Object>map, HttpSession session, Model model, @RequestParam("book_seq") int bookSeq) {
     	UserDto loginDto = (UserDto) session.getAttribute("loginDto"); 
     	AddrDto addrDto = (AddrDto) session.getAttribute("addrDto");
@@ -97,9 +98,9 @@ public class PayController {
             model.addAttribute("bookSeq",bookSeq);
             
             
-            return "userRentList";
+            return "success";
         } else {
-        	 return "redirect:/loginPage.do";
+        	 return "failure";
         }
            
 }
@@ -112,8 +113,8 @@ public class PayController {
     @ResponseBody
     public String rentBook(@RequestBody Map<String, Object> params, HttpSession session) {
         try {
-            int bookSeq = Integer.parseInt((String) params.get("book_seq"));
-            int userSeq = Integer.parseInt((String) params.get("user_seq"));
+        	int bookSeq = Integer.parseInt(params.get("book_seq").toString());
+        	int userSeq = Integer.parseInt(params.get("user_seq").toString());
             
             int success = rentService.bookRent(params);
             

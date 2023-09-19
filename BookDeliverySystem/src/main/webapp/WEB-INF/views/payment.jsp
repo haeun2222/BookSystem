@@ -48,7 +48,7 @@ async function requestPay() {
             });
         });
 
-        console.log(rsp);
+        console.log("rsp : ", rsp);
 
         if (rsp.success) {
             var msg = '결제가 완료되었습니다.';
@@ -62,7 +62,7 @@ async function requestPay() {
             // 결제가 성공한 후에 payment.do 컨트롤러로 요청을 보냅니다.
             $.ajax({
                 type: "POST",
-                url: "./payment.do", // payment.do 컨트롤러로 요청
+                url: "./payment.do?book_seq=" + bookSeq, // payment.do 컨트롤러로 요청"./payment.do?book_seq=" + bookSeq,
                 data: JSON.stringify ({
                     // imp_uid를 payImd 대신 payImd로 전달
                              payImd: rsp.imp_uid,
@@ -75,9 +75,12 @@ async function requestPay() {
                     if (data == "success") {
                         // payment.do 요청이 성공하면 rentBook 함수 실행
                         rentBook(userSeq, bookSeq);
+                        window.location.href = "./userRentList.do";
                     } else {
                         console.log('payment.do 요청 실패');
                     }
+                    console.log(data);
+                    alert(data);
                 },
                 error: function (error) {
                     console.error('payment.do 요청 오류:', error);
@@ -101,7 +104,6 @@ async function requestPay() {
             data: JSON.stringify({
                 user_seq: userSeq,
                 book_seq: bookSeq
-                
             }),
             contentType: "application/json"
         });
@@ -109,20 +111,19 @@ async function requestPay() {
         if (rentBook == "success") {
             console.log('대출 요청 성공');
             // 예약 메소드 호출
-            await reserveBook(bookSeq);
-            alert(msg);
+           // await reserveBook(bookSeq);
+          //  alert(msg);
             window.location.href = "./userRentList.do";
         } else {
         	 console.log('대출 요청 실패');
              console.error('대출 요청 실패', rentBook); 
         }
-        }catch (error) {
-            console.error('대출 요청 오류:', error);
-        }
-    }
+//         }catch (error) {
+//             console.error('대출 요청 오류:', error);
+//         }
+//     }
 
-        async function reserveBook(bookSeq) { // reserveBook 함수도 async로 수정
-            try { const reserveBook = await $.ajax({
+        const reserveBook = await $.ajax({
             type: "POST",
             url: "./reserveBook.do",
             data: JSON.stringify({
@@ -133,11 +134,13 @@ async function requestPay() {
 
         if (reserveBook == "success") {
             console.log('예약 요청 성공');
+            alert("예약어쩌고 완료");
             // 여기에서 추가적인 처리 가능
             // 대출 및 예약 완료 후에 대출 목록 조회 페이지로 이동
             window.location.href = "./userRentList.do";
         } else {
             console.log('예약 요청 실패');
+            alert("뒤에 예약 X");
         }
             } catch (error) {
                 console.error('예약 요청 오류:', error);
