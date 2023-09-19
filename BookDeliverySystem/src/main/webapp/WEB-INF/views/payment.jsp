@@ -109,6 +109,7 @@ async function requestPay() {
         });
 
         if (rentBook == "success") {
+        	alert("대출신청이 완료되었습니다.");
             console.log('대출 요청 성공');
             window.location.href = "./userRentList.do";
         } else {
@@ -134,7 +135,7 @@ async function requestPay() {
             window.location.href = "./userRentList.do";
         } else {
             console.log('예약 요청 실패');
-            alert("뒤에 예약 X");
+            
         }
             } catch (error) {
                 console.error('예약 요청 오류:', error);
@@ -164,8 +165,5 @@ async function requestPay() {
 		<button class="button2"
 			onclick="location.href='./bookDetailHaeun.do?user_seq=${loginDto.user_seq}'">취소</button>
 	</div>
-${bookSeq}
-					${sessionScope.loginDto.user_seq}
-
 </body>
 </html>
