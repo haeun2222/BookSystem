@@ -1,14 +1,23 @@
 package com.dowon.bds;
 
+/** 
+ * 
+ * @author 김지인
+ * @since 2023.09.18
+ * 결제 관련 Controller
+ * 
+ */
+
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +43,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PayController {
 
-	private static final Logger logger = LoggerFactory.getLogger(PayController.class);
 	
 	@Autowired
 	private IPaymentService paymentService;
@@ -47,22 +55,11 @@ public class PayController {
 	
 	@Autowired
 	private IResveService resveService;
-//	@RequestMapping(value = "/payment.do", method = RequestMethod.GET)
-//	public String payment(Locale locale, Model model) {
-//		logger.info("Welcome! payment.do 실행");
-//		logger.info("payment.jsp 이동");
-//		
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//		String formattedDate = dateFormat.format(date);
-//		model.addAttribute("serverTime", formattedDate );
-//		
-//		return "payment";
-//	}
+
 	
 	  @GetMapping("/payment.do")
 	    public String payment(@RequestParam Map<String,Object>map, HttpSession session,Model model, @RequestParam("book_seq") int bookSeq) {
-	    	logger.info("Welcome! PayController payment 결제 실행을 위한 컨트롤러"); 
+	    	log.info("Welcome! PayController payment 결제 실행을 위한 컨트롤러"); 
 	    	UserDto loginDto = (UserDto) session.getAttribute("loginDto");
 	    	
 	    	
@@ -78,20 +75,14 @@ public class PayController {
 	        }
 	    }
 	    	
-	    	
-//	    	  AddrDto addrDto = (AddrDto) session.getAttribute("addrDto");
-//	    	    model.addAttribute("loginDto", loginDto);
-//	    	    model.addAttribute("addrDto", addrDto); // 주소 정보를 Model에 추가
-//	    	return "payment";
-//	    }
-	
+
     // 아임포트 결제 요청을 처리
     @PostMapping("/payment.do")
     @ResponseBody
     public String payment(@RequestBody PayDto payDto, Map<String,Object>map, HttpSession session, Model model, @RequestParam("book_seq") int bookSeq) {
     	UserDto loginDto = (UserDto) session.getAttribute("loginDto"); 
     	AddrDto addrDto = (AddrDto) session.getAttribute("addrDto");
-    	logger.info("payment 결제요청");
+    	log.info("payment 결제요청");
         if (loginDto != null) {
             // 로그인 정보가 있을 때만 이름을 PayDto에 설정
             payDto.setUser_seq(loginDto.getUser_seq());
@@ -106,7 +97,23 @@ public class PayController {
         	 return "failure";
         }
            
-}
+    }
+    
+    @GetMapping("/paymentList.do")
+    public String paymentList(HttpSession session, Model model, HttpServletResponse response) {
+    	log.info("Welcome PayController paymentList 회원의 결제내역 컨트롤러");
+    	UserDto loginDto = (UserDto)session.getAttribute("loginDto");
+    		if (loginDto != null) {
+				int user_seq =loginDto.getUser_seq();
+				List<Map<String, Object>> lists = paymentService.selectMypayList(user_seq);
+				model.addAttribute("paymentList",lists);
+				model.addAttribute("seq",user_seq);
+				return "paymentList";
+			}else {
+				 return "redirect:/loginPage.do";
+			}
+	}
+    
 	/**
 	 * 
 	 * @author 박하은

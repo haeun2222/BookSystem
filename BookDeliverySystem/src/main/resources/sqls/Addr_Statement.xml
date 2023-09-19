@@ -14,13 +14,32 @@
     <result property="delivery_num" column="DELIVERY_NUM"/>
 </resultMap>
 
-
+    <!-- 배송지 주소 입력 -->
 
 	<insert id="saveAddress" parameterType="AddrDto">
 		INSERT INTO TB_DELIVERY
 		(DELIVERY_SEQ, USER_SEQ, DELIVERY_NAME, DELIVERY_PHONE, POSTCODE, ADDRESS, DETADDR, EXTADDR, DELIVERY_NUM)
 		VALUES(SQ_DELIVERY.NEXTVAL, #{user_seq}, #{delivery_name}, #{delivery_phone}, #{postcode}, #{address}, #{detaddr}, #{extaddr}, NULL)
 	</insert>
+	
+	<!-- 수거요청 주소입력 -->
+	<insert id="saveAddressReturn" parameterType="AddrDto">
+		INSERT INTO TB_DELIVERY
+		(DELIVERY_SEQ, USER_SEQ, DELIVERY_NAME, DELIVERY_PHONE, POSTCODE, ADDRESS, DETADDR, EXTADDR, DELIVERY_NUM)
+		VALUES(SQ_DELIVERY.NEXTVAL, #{user_seq}, #{delivery_name}, #{delivery_phone}, #{postcode}, #{address}, #{detaddr}, #{extaddr}, NULL)
+	</insert>
+	<!-- 렌트 상태 업데이트 -->
+	<update id="deliRentStatus" parameterType="java.lang.Integer">
+		UPDATE TB_BOOK_RENT
+			SET RENT_STATUS = 'B'
+			WHERE (USER_SEQ, RENT_SEQ) IN (
+			    SELECT USER_SEQ, MAX(RENT_SEQ)
+			    FROM TB_BOOK_RENT
+			    WHERE USER_SEQ = #{user_seq}
+			    GROUP BY USER_SEQ
+			)
+	</update>
+	
 	
 	<select id="checkAddress" resultMap="addrResultMap">
 		SELECT DELIVERY_SEQ, USER_SEQ, DELIVERY_NAME, DELIVERY_PHONE, POSTCODE, ADDRESS, DETADDR, EXTADDR, DELIVERY_NUM
@@ -36,24 +55,6 @@
 		    ORDER BY D.DELIVERY_SEQ DESC
 		    FETCH FIRST 1 ROW ONLY
 	</select>
-	
-	<update id="updateDeliveryNum" parameterType="java.util.Map">
-        UPDATE TB_DELIVERY
-        SET DELIVERY_NUM = #{delivery_num}
-        WHERE DELIVERY_SEQ = #{delivery_seq}
-    </update>
-    
-    <update id="deliRentStatus" parameterType="java.lang.Integer">
-		UPDATE TB_BOOK_RENT
-		SET RENT_STATUS = 'A'
-		WHERE RENT_SEQ = #{rent_seq}
-	</update>
-	
-	
-    <update id="returnRentStatus" parameterType="java.lang.Integer">
-		UPDATE TB_BOOK_RENT
-		SET RENT_STATUS = 'B'
-		WHERE RENT_SEQ = #{rent_seq}
-	</update>
+
  
 </mapper>

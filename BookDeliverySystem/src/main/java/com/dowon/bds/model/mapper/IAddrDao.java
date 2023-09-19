@@ -14,6 +14,7 @@ import com.dowon.bds.dto.AddrDto;
 @Mapper
 public interface IAddrDao {
 	public int saveAddress(AddrDto addrDto);
+	public int saveAddressReturn(AddrDto addrDto);
 	public AddrDto checkAddress(String delivery_seq);
 	
 	public AddrDto getAddrUserSeq(int user_seq);
@@ -25,5 +26,5 @@ public interface IAddrDao {
 	 */
 	public boolean updateDeliveryNum(Map<String, Object> map);
 	
-	public int deliRentStatus(int n);
+	public int deliRentStatus(int user_seq);
 }

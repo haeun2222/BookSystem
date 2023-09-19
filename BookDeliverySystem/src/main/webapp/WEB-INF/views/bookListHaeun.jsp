@@ -22,6 +22,7 @@ test: ${loginDto.user_name} <br>
 
 <button onclick="location.href='./userRentList.do?user_seq=${loginDto.user_seq}'">대출목록조회</button>
 <button onclick="location.href='./userResveList.do?user_seq=${loginDto.user_seq}'">예약순번조회</button>
+<button onclick="location.href='./paymentList.do?user_seq=${loginDto.user_seq}'">결제내역조회</button>
 
 <button onclick="location.href='./adminRentList.do'">관리자 대출조회</button>
   <br>
