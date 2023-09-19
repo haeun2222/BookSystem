@@ -28,7 +28,10 @@ import com.dowon.bds.model.service.IPaymentService;
 import com.dowon.bds.model.service.IRentService;
 import com.dowon.bds.model.service.IResveService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class PayController {
 
 	private static final Logger logger = LoggerFactory.getLogger(PayController.class);
@@ -104,15 +107,18 @@ public class PayController {
         }
            
 }
-	
-    
-    
-    
+	/**
+	 * 
+	 * @author 박하은
+	 * @since 2023.09.19
+	 * 결제 승인시 대출 완료 처리 Controller / 대출 완료시 동일 도서 예약 대출대기->진행완료 처리 Controller
+	 */
     // 대출 요청을 처리하는 컨트롤러 메서드
     @PostMapping("/rentBook.do")
     @ResponseBody
     public String rentBook(@RequestBody Map<String, Object> params, HttpSession session) {
-        try {
+    	log.info("Welcome PayController rentBook 대출요청 처리 AJAX Controller");
+    	try {
         	int bookSeq = Integer.parseInt(params.get("book_seq").toString());
         	int userSeq = Integer.parseInt(params.get("user_seq").toString());
             
@@ -124,18 +130,16 @@ public class PayController {
                 return "failure";
             }
         } catch (Exception e) {
-            logger.error("대출 요청 오류: " + e.getMessage(), e);
+            log.error("대출 요청 오류: " + e.getMessage(), e);
             return "failure";
         }
     }
 
-    
-    
-
-    // 예약 요청을 처리하는 컨트롤러 메서드
+    // 예약 대출대기 처리하는 컨트롤러 메서드
     @PostMapping("/reserveBook.do")
     @ResponseBody
     public String reserveBook(@RequestBody Map<String, Integer> data) {
+    	log.info("Welcome PayController reserveBook 예약상태 대출대기->진행완료 처리 AJAX Controller");
         try {
         	int bookSeq = Integer.parseInt(data.get("book_seq").toString());
             // 예약 로직을 수행하고 성공 여부를 반환
@@ -146,7 +150,7 @@ public class PayController {
                 return "failure";
             }
         } catch (Exception e) {
-            logger.error("예약 요청 오류: " + e.getMessage(), e);
+            log.error("예약 요청 오류: " + e.getMessage(), e);
             return "failure";
         }
     }

@@ -35,14 +35,14 @@ import lombok.extern.slf4j.Slf4j;
 public class ResveController {
 
 	@Autowired
-	private IResveService service;
+	private IResveService resveService;
 
 	
 	@GetMapping("/userResveList.do")
 	public String userResveList(@RequestParam("user_seq")int user_seq, Model model, HttpSession session){
-		log.info("ResveController userResveList 회원의 마이페이지-예약조회 부분에 들어갈 페이지 컨트롤러");
+		log.info("Welcome ResveController userResveList 회원의 마이페이지-예약조회 부분에 들어갈 페이지 컨트롤러");
 		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
-		List<Map<String, Object>>  lists = service.selectStep(user_seq);
+		List<Map<String, Object>>  lists = resveService.selectStep(user_seq);
 		model.addAttribute("lists",lists);
 		model.addAttribute("loginDto",loginDto);
 		return "userResveList";
@@ -51,11 +51,12 @@ public class ResveController {
 	
     @PostMapping("/resveBook.do")
     public ResponseEntity<String> resveBook(@RequestBody Map<String, Object> request) {
-        try {
+    	log.info("Welcome ResveController resveBook 예약 신청 처리 Controller");
+    	try {
             int bookSeq = (int) request.get("book_seq");
             int userSeq = (int) request.get("user_seq");
 
-            int result = service.resveBook(request);
+            int result = resveService.resveBook(request);
 
             if (result > 0) {
                 return ResponseEntity.ok("예약 신청이 완료되었습니다.");
@@ -72,11 +73,12 @@ public class ResveController {
     
     @PostMapping("/cancel.do")
     public ResponseEntity<String> cancelReservation(@RequestBody Map<String, Object> params) {
-        try {
+    	log.info("Welcome ResveController cancelReservation 예약 신청 취소 처리 Controller");
+    	try {
             int bookSeq = (int) params.get("book_seq");
             int userSeq = (int) params.get("user_seq");
 
-            int result = service.resveCancle(params);
+            int result = resveService.resveCancle(params);
             if (result > 0) {
                 return ResponseEntity.ok("success");
             } else {

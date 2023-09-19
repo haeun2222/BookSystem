@@ -14,7 +14,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body style="background-color: papayawhip;">
-<%-- ${rDto} --%>
 ${rentData.size()}
 @@@@@@@@@@@@@@@@@@@@@@@@@<br>
 빌린책 있는지 : ${rentData}<br>

@@ -13,13 +13,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-
+${lists}
 
 <body>
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
 <c:choose>
     <c:when test="${not empty lists}">
-		<h1>${loginUser.user_name}님의 현재 예약 현황 입니다</h1>
+		<h1>${loginUser.user_name}님의 예약 도서 목록 입니다</h1>
             <table border="1">
     <tr>
         <th>No.</th>
@@ -39,9 +39,18 @@
 			        <c:when test="${resve.RESVE_STATUS eq 'R'}">대출대기</c:when>
 			        <c:when test="${resve.RESVE_STATUS eq 'N'}">예약취소</c:when>
 			        <c:when test="${resve.RESVE_STATUS eq 'C'}">자동취소</c:when>
+			        <c:when test="${resve.RESVE_STATUS eq 'S'}">대출진행완료</c:when>
 			    </c:choose>
 			</td>
-            <td>${resve.RESVE_STEP}</td>
+            <td>
+            	<c:choose>
+            		<c:when test="${resve.RESVE_STATUS eq 'R'}">대출가능</c:when>
+            		<c:when test="${resve.RESVE_STATUS eq 'S'}">&nbsp;</c:when>
+            		<c:when test="${resve.RESVE_STEP eq 0}">&nbsp;</c:when>
+            		<c:otherwise>${resve.RESVE_STEP}</c:otherwise>
+            	</c:choose>
+            
+            </td>
             <td>
 			    <c:choose>
 			        <c:when test="${resve.RESVE_STATUS eq 'Y'}">
@@ -61,7 +70,7 @@
 </table>
     </c:when>
     <c:otherwise>
-        <h1>예약 현황이 없습니다</h1>
+        <h1>${loginUser.user_name}님은 예약 도서가 없습니다</h1>
     </c:otherwise>
 </c:choose>
 
