@@ -10,44 +10,35 @@
 </head>
 <%@ include file="header.jsp" %>
 <body>
-${detailBook}
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-.tg .tg-0lax{text-align:left;vertical-align:top}
-</style>
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-0pky" rowspan="5">이미지영역<br></th>
-    <th class="tg-0pky">도서 제목</th>
+    <th class="tg-0pky" rowspan="5"><img src="./img/bamin_1.png" width="50%"></th>
+    <th class="tg-0pky">${detailBook.book_title}</th>
   </tr>
   <tr>
-    <th class="tg-0pky">저자명</th>
+    <th class="tg-0pky">${detailBook.book_writer}</th>
   </tr>
   <tr>
-    <th class="tg-0pky">isbn</th>
+    <th class="tg-0pky">${detailBook.book_isbn}</th>
   </tr>
   <tr>
-    <th class="tg-0lax">book_publisher</th>
+    <th class="tg-0lax">${detailBook.book_publisher}</th>
   </tr>
   <tr>
-    <th class="tg-0lax">book_publisher_date</th>
+    <th class="tg-0lax">${detailBook.book_published_date}</th>
   </tr>
+ 
 </thead>
-<tbody>
+<tbody style="text-align: center;">
   <tr>
-    <td class="tg-0lax" colspan="2">book_intro</td>
+    <td class="tg-0lax" colspan="2">${detailBook.book_intro}</td>
   </tr>
   <tr>
-    <td class="tg-0lax" colspan="2">book_index</td>
+    <td class="tg-0lax" colspan="2">${detailBook.book_index}</td>
   </tr>
   <tr>
-    <td class="tg-0lax" colspan="2">book_summary</td>
+    <td class="tg-0lax" colspan="2">${detailBook.book_summary}</td>
   </tr>
 </tbody>
 </table>

@@ -47,5 +47,15 @@ public class BookController {
 		model.addAttribute("detailBook",dto);
 		return "detailBook";
 	}
-
+	
+	@RequestMapping(value="//registBook.do", method = RequestMethod.POST)
+	public String regitstBook() {
+		log.info("regitstBook 도서 등록하기");
+		return "";
+	}
 }
+
+
+
+
+
