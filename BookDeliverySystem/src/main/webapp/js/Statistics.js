@@ -37,7 +37,7 @@ window.onload = function(){
             var bookTitle = data[0].book_title;
             $('#bookTitle').text('['+ bookTitle + ']');
         
-        	book_seq = data[0].book_seq,data[0].book_title,data[0].book_intro;   
+        	book_seq = data[0].book_seq;
             book_img = data[0].book_img;
         });
     };
