@@ -7,6 +7,6 @@ import com.dowon.bds.dto.BookDto;
 public interface IBookDao {
 	
 	public List<BookDto> getAllBook();
-
+	public BookDto detailBook(int seq);
 }
 

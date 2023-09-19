@@ -21,4 +21,9 @@ public class BookDaoImpl implements IBookDao {
 		return sqlSession.selectList(NS+"getAllBooks");
 	}
 
+	@Override
+	public BookDto detailBook(int seq) {
+		return sqlSession.selectOne(NS+"getDetailBook",seq);
+	}
+
 }
