@@ -25,7 +25,7 @@
 </select>
 
 
-<!-- 특정 회원의 여태 대출했던 책 전부 조회 -->
+<!-- 특정 회원의 대출목록 전부 조회 -->
 <select id="selectMyBookRent" parameterType="java.lang.Integer" resultType="java.util.Map">
     SELECT R.RENT_SEQ, R.USER_SEQ, R.BOOK_SEQ, R.RENT_DATE, R.RENT_RETURN_DATE, R.RENT_STATUS,
            U.USER_NAME AS user_name, B.BOOK_TITLE AS book_title
@@ -36,7 +36,7 @@
 </select>
 
 
-<!-- 관리자가 회원들 대출목록 조회 -->
+<!-- 관리자가 회원들의 대출목록 조회 -->
 <select id="selectAdminRent" resultType="java.util.Map">
     SELECT B.BOOK_SEQ, R.RENT_SEQ, U.USER_NAME AS USER_NAME, B.BOOK_TITLE AS BOOK_TITLE, R.RENT_DATE, R.RENT_RETURN_DATE, R.RENT_STATUS
     FROM BOOK.TB_BOOK_RENT R
@@ -45,7 +45,7 @@
 </select>
 	
 	
-<!-- 대출불가한 책 찾기 -->
+<!-- 대출불가한 책 찾기(대출Y,예약R) -->
 <select id="selectRentImpossibility" resultType="java.util.Map">
 SELECT
     B.BOOK_SEQ AS book_seq, B.BOOK_TITLE AS book_title, R.RENT_STATUS AS rent_status, RV.RESVE_STATUS AS resve_status
@@ -56,7 +56,7 @@ WHERE R.RENT_STATUS = 'Y' OR RV.RESVE_STATUS = 'R'
 </select>
 
 
-<!-- 대출중인 책만 찾기 -->
+<!-- 대출중인 책만 찾기(대출Y) -->
 <select id="rentY" resultType="java.util.Map">
     SELECT B.BOOK_SEQ AS book_seq, B.BOOK_TITLE AS book_title, R.RENT_STATUS AS rent_status
     FROM TB_BOOK B
@@ -73,7 +73,7 @@ WHERE RENT_SEQ = #{rent_seq}
 </update>
 
 
-<!-- 책상세 -->
+<!-- 책상세(test) -->
 <select id="bookDetail" parameterType="java.lang.Integer" resultType="BookDto">
 SELECT BOOK_SEQ, BOOK_TITLE , BOOK_WRITER , BOOK_ISBN
 	FROM TB_BOOK 
@@ -81,7 +81,7 @@ SELECT BOOK_SEQ, BOOK_TITLE , BOOK_WRITER , BOOK_ISBN
 </select>
 
 
-<!-- 책전체 -->
+<!-- 책전체(test) -->
 <select id="bookAll" resultType="BookDto">
 SELECT BOOK_SEQ, BOOK_TITLE , BOOK_WRITER , BOOK_ISBN
 	FROM TB_BOOK 

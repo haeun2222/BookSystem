@@ -96,7 +96,7 @@ async function requestPay() {
     }
 }
 
-    async function rentBook(userSeq, bookSeq) { // rentBook 함수도 async로 수정
+    async function rentBook(userSeq, bookSeq) {
     	console.log(userSeq, bookSeq);
         try { const rentBook = await $.ajax({
             type: "POST",
@@ -110,18 +110,12 @@ async function requestPay() {
 
         if (rentBook == "success") {
             console.log('대출 요청 성공');
-            // 예약 메소드 호출
-           // await reserveBook(bookSeq);
-          //  alert(msg);
             window.location.href = "./userRentList.do";
         } else {
         	 console.log('대출 요청 실패');
              console.error('대출 요청 실패', rentBook); 
         }
-//         }catch (error) {
-//             console.error('대출 요청 오류:', error);
-//         }
-//     }
+
 
         const reserveBook = await $.ajax({
             type: "POST",

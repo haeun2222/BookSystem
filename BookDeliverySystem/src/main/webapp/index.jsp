@@ -13,19 +13,7 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 svg > g > g:last-child { pointer-events: none }
-.flex-container {
-  display: flex;
-  flex-wrap: nowrap;
-  background-color: papayawhip;
-}
-.flex-container > div {
-  background-color: papayawhip;
-  width: 400px;
-  margin: 10px;
-  text-align: center;
-  line-height: 75px;
-  font-size: 30px;
-}
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -76,8 +64,8 @@ svg > g > g:last-child { pointer-events: none }
 						</table>
 		
 					</div>
-					<button class="btn btn-primary btn-lg"
-						style="width: 500px; margin: 20px 50px;" onclick="GobookDetail(${book_seq})">상세보기</button>
+					<button id="bookDetail" class="btn btn-primary btn-lg"
+						style="width: 500px; margin: 20px 50px;" onclick="location.href='./detail.do?book_seq='+book_seq">상세보기</button>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
@@ -88,13 +76,6 @@ svg > g > g:last-child { pointer-events: none }
 	</div>
 </body>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
-<script type="text/javascript">
- 	function GobookDetail(${book_seq}){
-		
- 		var url = '/BookDeliverySystem/bookDetail.do?book_seq=' + book_seq;
- 		window.location.href = url;
- 	}
-</script>
 <script type="text/javascript">
 $('#showModal').on('click', function () {
     drawAgeChart();

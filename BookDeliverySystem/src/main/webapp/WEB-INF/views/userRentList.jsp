@@ -15,7 +15,7 @@
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
 
 <h1>${loginUser.user_name}님의 대출 도서 목록입니다</h1>
-
+${userRentList}
 <table border="1">
     <tr>
     	<th>No.</th>
@@ -43,7 +43,10 @@
 			<td>
 			    <c:choose>
 			        <c:when test="${rent.RENT_STATUS eq 'Y'}">
+
                        <button onclick="location.href='./returnAddr.do?user_seq=${loginDto.user_seq}&book_seq=${rent.BOOK_SEQ}'">수거요청</button>
+
+
                     </c:when>
 			        <c:otherwise></c:otherwise>
 			    </c:choose>

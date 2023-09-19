@@ -47,16 +47,16 @@ public class RentController {
 
 	
 	@Autowired
-	private IRentService service;
+	private IRentService rentService;
 	
 	@Autowired
-	private IResveService service2;
+	private IResveService resveService;
 
 	@GetMapping("/bookListHaeun.do")
 	public String bookListHaeun(@RequestParam Map<String,Object>map, HttpSession session,Model model) {
 		log.info("RentController bookListHaeun 테스트를 위한 도서 전체목록 페이지 컨트롤러");
 		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
-		List<BookDto> lists = service.bookAll();
+		List<BookDto> lists = rentService.bookAll();
 		
 		model.addAttribute("loginDto",loginDto);
 		model.addAttribute("books",lists);
@@ -66,11 +66,11 @@ public class RentController {
 	
 	@GetMapping("/userRentList.do")
 	public String userRentList(HttpSession session, Model model, HttpServletResponse response) {
-		log.info("RentController userRentList 회원의 마이페이지-대출도서목록에 들어갈 페이지 컨트롤러");
+		log.info("Welcome RentController userRentList 회원의 마이페이지-대출도서목록에 들어갈 페이지 컨트롤러");
 		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
 	    if (loginDto != null) {
 	        int user_seq = loginDto.getUser_seq();
-	        List<Map<String, Object>> lists = service.selectMyBookRent(user_seq);
+	        List<Map<String, Object>> lists = rentService.selectMyBookRent(user_seq);
 	        model.addAttribute("userRentList", lists);
 	        model.addAttribute("seq", user_seq);
 	        return "userRentList";
@@ -82,8 +82,8 @@ public class RentController {
 	
 	@GetMapping("/adminRentList.do")
 	public String adminRentList(Model model) {
-		log.info("RentController adminRentList 관리자페이지-회원도서대출목록 에 들어갈 페이지 컨트롤러");
-		List<Map<String, Object>> lists = service.selectAdminRent();
+		log.info("Welcome RentController adminRentList 관리자페이지-회원도서대출목록 에 들어갈 페이지 컨트롤러");
+		List<Map<String, Object>> lists = rentService.selectAdminRent();
 		model.addAttribute("lists",lists);
 		return "adminRentList";
 	}
@@ -93,9 +93,9 @@ public class RentController {
 	 @PostMapping("/confirmReturn.do")
 	 @ResponseBody
 	 public String confirmReturn(@RequestParam("rentSeq") int rentSeq, Model model) {
-	     log.info("RentController RentController 관리자의 도서대출 반납처리를 위한 Ajax 컨트롤러"); 
+	     log.info("Welcome RentController confirmReturn 관리자의 도서대출 반납처리 AJAX Controller"); 
 		 try {
-	         int rowsAffected = service.rentStatus(rentSeq);
+	         int rowsAffected = rentService.rentStatus(rentSeq);
 	            
 	         if (rowsAffected > 0) {
 	              return "success";
@@ -111,7 +111,8 @@ public class RentController {
 	 @PostMapping("/rentStandby.do")
 	 @ResponseBody
 	 public String rentStandby(@RequestParam("bookSeq") int bookSeq, Model model) {
-	     int success = service2.rentStandby(bookSeq);
+		 log.info("Welcome RentController rentStandby 예약도서 반납완료시 예약순번 가장 빠른회원 대출대기 상태 업데이트 AJAX Controller");
+	     int success = resveService.rentStandby(bookSeq);
 
 	     if (success > 0) {
 	         return "success";
@@ -126,17 +127,17 @@ public class RentController {
 	
 	@GetMapping("/bookDetailHaeun.do")
 	public String bookDetail(@RequestParam("seq") int bookSeq, Model model, HttpSession session) {
-		log.info("RentController bookDetail 도서 상세화면 테스트를 위한 페이지 컨트롤러");
+		log.info("Welcome RentController bookDetail 도서 상세화면 테스트를 위한 페이지 컨트롤러");
 		System.out.println("bookSeq: " + bookSeq); 
 		
 		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
 		int userSeq = loginDto.getUser_seq();
 	    
-		BookDto dto = service.bookDetail(bookSeq);
-	    List<String> filteredBookSeqList = service.selectFilteredBookSeqList();
-	    List<Map<String, Object>> rentData = service.rentCheck(userSeq);
-	    List<Map<String, Object>> resveData = service2.userResveStatus(userSeq);
-	    List<String> rentYBookSeqList = service.rentStatusYBookSeq();
+		BookDto dto = rentService.bookDetail(bookSeq);
+	    List<String> filteredBookSeqList = rentService.selectFilteredBookSeqList();
+	    List<Map<String, Object>> rentData = rentService.rentCheck(userSeq);
+	    List<Map<String, Object>> resveData = resveService.userResveStatus(userSeq);
+	    List<String> rentYBookSeqList = rentService.rentStatusYBookSeq();
 	    
 	    model.addAttribute("resveData",resveData);
 	    model.addAttribute("rentData", rentData);
