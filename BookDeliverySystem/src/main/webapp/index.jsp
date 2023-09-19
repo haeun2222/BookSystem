@@ -11,14 +11,13 @@
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/SerachBar.css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<style type="text/css">
-svg > g > g:last-child { pointer-events: none }
-
-</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="js/Statistics.js"></script>
+<style type="text/css">
+svg > g > g:last-child { pointer-events: none }
+</style>
 </head>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <body>
@@ -53,7 +52,7 @@ svg > g > g:last-child { pointer-events: none }
 						<table>
 							<tr>
 								<td>
-									<div id="genderChart" style="text-align: center; margin-left: 150px; margin-top: 25px"></div>
+									<div id="genderChart" style="text-align: center; margin-left: 90px; margin-top: 25px"></div>
 								</td>
 								</tr>
 								<tr>
@@ -65,7 +64,7 @@ svg > g > g:last-child { pointer-events: none }
 		
 					</div>
 					<button id="bookDetail" class="btn btn-primary btn-lg"
-						style="width: 500px; margin: 20px 50px;" onclick="location.href='./detail.do?book_seq='+book_seq">상세보기</button>
+						style="width: 500px; margin: 20px 50px;" onclick="location.href='./getDetailBook.do?book_seq='+book_seq">상세보기</button>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
@@ -79,6 +78,7 @@ svg > g > g:last-child { pointer-events: none }
 <script type="text/javascript">
 $('#showModal').on('click', function () {
     drawAgeChart();
+    drawGenderChart();
 });
 </script>
 <script type="text/javascript"> 

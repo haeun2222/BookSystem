@@ -24,11 +24,13 @@ window.onload = function(){
 			    },
 			    width: 400, 
 			    height: 300,
-			    legend: 'right',
+			    legend: 'none',
 			    titlePosition: 'out',
 			    is3D:true,
 			    colors: ['#74b9ff', '#81ecec', '#a29bfe', '#dfe6e9', '#00cec9'],
-	          	fontSize: 15
+	          	fontSize: 15,
+	          	pieSliceText: 'label'
+	          	
 			};
 //             차트 그리기
             var chart = new google.visualization.PieChart(document.getElementById('genderChart'));
