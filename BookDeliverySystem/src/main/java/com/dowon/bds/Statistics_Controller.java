@@ -44,12 +44,12 @@ public class Statistics_Controller {
 //		model.addAttribute("book_seq",book_seq);
 //		return "header";
 //	}
-	@RequestMapping(value = "/detail.do",method = RequestMethod.GET)
-	public String bookDetail(@RequestParam("book_seq") int book_seq,Model model) {
-		log.info("Welcome Statistics_Controller bookDetail 상세페이지로 이동 book_seq: {}",book_seq);
-		model.addAttribute("book_seq",book_seq);
-		return "detailTest";
-	}
+//	@RequestMapping(value = "/detail.do",method = RequestMethod.GET)
+//	public String bookDetail(@RequestParam("book_seq") int book_seq,Model model) {
+//		log.info("Welcome Statistics_Controller bookDetail 상세페이지로 이동 book_seq: {}",book_seq);
+//		model.addAttribute("book_seq",book_seq);
+//		return "detailTest";
+//	}
 	
 //	@RequestMapping(value = "/top1Img.do", method = RequestMethod.GET)
 //	public String chart(Model model) {
