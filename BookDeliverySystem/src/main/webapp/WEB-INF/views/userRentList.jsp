@@ -43,7 +43,10 @@ ${userRentList}
 			<td>
 			    <c:choose>
 			        <c:when test="${rent.RENT_STATUS eq 'Y'}">
-                    	<button onclick="location.href='./addr.do?user_seq=${loginDto.user_seq}&book_seq=${rent.BOOK_SEQ}'">수거요청</button>
+
+                       <button onclick="location.href='./returnAddr.do?user_seq=${loginDto.user_seq}&book_seq=${rent.BOOK_SEQ}'">수거요청</button>
+
+
                     </c:when>
 			        <c:otherwise></c:otherwise>
 			    </c:choose>
@@ -53,6 +56,9 @@ ${userRentList}
 			</td>
         </tr>
     </c:forEach>
+    
 </table>
+ 
 </body>
+
 </html>

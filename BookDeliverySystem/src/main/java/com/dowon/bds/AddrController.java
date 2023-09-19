@@ -65,6 +65,32 @@ public class AddrController {
 		return "addrCheck";
 	}
 	
+	@RequestMapping(value = "/returnAddr.do", method = RequestMethod.GET)
+	public String returnAddr(Locale locale, Model model, AddrDto addrDto, @RequestParam("book_seq") int bookSeq, HttpSession session)  {
+		logger.info("Welcome IAddrController! 주소입력 returnAddr.do 실행");
+		addrDto.setUser_seq(((UserDto)session.getAttribute("loginDto")).getUser_seq());
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("bookSeq",bookSeq);
+		
+		return "returnAddr";
+	}
+	
+	
+	@RequestMapping(value ="/returnAddrCheck.do", method = RequestMethod.POST)
+	public String returnAddrCheck(AddrDto addrDto , HttpSession session, Model model, @RequestParam("book_seq") int bookSeq) {
+		logger.info("Welcome! AddrController 수거요청 입력 returnAddrCheck {}", addrDto);
+		addrDto.setUser_seq(((UserDto)session.getAttribute("loginDto")).getUser_seq());
+		int n = service.saveAddress(addrDto);
+		session.setAttribute("savedAddress", addrDto);
+		
+		model.addAttribute("bookSeq",bookSeq);
+		
+		return "returnAddrCheck";
+	}
 	
 	
 }
