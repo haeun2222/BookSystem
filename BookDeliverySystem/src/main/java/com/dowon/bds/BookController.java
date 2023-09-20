@@ -38,9 +38,17 @@ public class BookController {
 	@RequestMapping(value="/getAllBooks.do", method = RequestMethod.GET)
 	@ResponseBody
 	public List<BookDto> getAllBooks() {
-		log.info("getAllBooks 모든책정보 가져오기");
+		log.info("관리자 getAllBooks 모든책정보 가져오기");
 		List<BookDto> getAllBooks = service.getAllBook();
 		return getAllBooks;
+	}
+	
+	@GetMapping(value="/userBookList.do")
+	public String userBookList(Model model){
+		log.info("사용자 userBookList 모든책정보 가져오기");
+		List<BookDto> userBookList = service.getAllBook();
+		model.addAttribute("userBookList",userBookList);
+		return "userBookList";
 	}
 	
 	//도서상세보기
@@ -53,7 +61,7 @@ public class BookController {
 		return "detailBook";
 	}
 	
-	@RequestMapping(value="//registBook.do", method = RequestMethod.POST)
+	@RequestMapping(value="/registBook.do", method = RequestMethod.POST)
 	public String regitstBook() {
 		log.info("regitstBook 도서 등록하기");
 		return "";
@@ -71,6 +79,7 @@ public class BookController {
 				return "redirect:/bookDetailHaeun.do";
 		}
 	}
+	
 }
 
 

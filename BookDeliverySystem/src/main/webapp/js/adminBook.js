@@ -48,10 +48,10 @@ function getAllBooks() {
     $.get("./getAllBooks.do", function(getAllBooks) { 
         $.each(getAllBooks, function(index, book) {
             bookList.append(
-            	$("<tr>").append(
+            	$("<tr onclick=\"location.href='./getDetailBook.do?book_seq="+book.book_seq+"'\">").append(
             	"<td>"+ book.book_seq + "</td>",
             	"<td>"+ book.book_img + "</td>",
-            	"<td onclick=\"location.href='./getDetailBook.do?book_seq="+book.book_seq+"'\">" + book.book_title + "</td>",
+            	"<td>"+ book.book_title + "</td>",
             	"<td>"+ book.book_writer + "</td>",
             	"<td>"+ book.book_isbn + "</td>",
             	"<td>"+ book.book_publisher + "</td>",
@@ -92,7 +92,7 @@ $(document).ready(function(){
                         row += '<td>' + rowData.contents + '</td>';
                         row += '<td>' + rowData.authors + '</td>';
                         row += '<td>' + rowData.publisher + '</td>';
-                        row += '<td><button class="register-button">등록하기</button></td>';
+                        row += '<td><button onclick="location.href=\'./registBook.do\'"> 도서 등록하기 </button></td>';
                         row += '</tr>';
                         tbody.append(row);
                     }
@@ -100,27 +100,5 @@ $(document).ready(function(){
                     $("#bookSearchTable").html(table);
                 });
             });
-            
-            $("body").on("click", ".register-button", function() {
-       		var bookTitle = $(this).closest("tr").find(".book-title").text();
- 		$.ajax({
-			method : "post",
-			url : "./registBook.do",
-			data : {title:title,
-					author:author,
-					isbn:isbn,
-					publisher:publisher,
-					publisherdate:datetime,
-					thumbnail:thumbnail,
-					publish_date:publish_date} ,
-			
-			success : function(response){
-				alert("등록완료");
-			},
-			error: function(error){
-				alert("등록실패");
-			}
-	
-		});
- 	});	
-  });      
+	 	});	
+     
