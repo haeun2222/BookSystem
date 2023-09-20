@@ -14,8 +14,9 @@
 
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
 <c:set var="payment" value="${sessionScope.payDto}" />
-
 <h1>${loginUser.user_name}님의 결제내역</h1>
+
+<h3> 총 마일리지 : ${paymentList[0].PAY_SUMPOINT}입니다.</h3>
 <%-- ${paymentList} --%>
 <table border="1">
     <tr>
@@ -28,18 +29,16 @@
         <th>총마일리지</th>
        
     </tr>
-    <c:forEach var="payment" items="${paymentList}" varStatus="status">
+    <c:forEach var="payment" items="${paymentList}">
         <tr>
         	<td>${payment.PAY_SEQ}</td>
             <td>${payment.PAY_IMD}</td>
             <td>${payment.USER_SEQ}</td>
             <td>${payment.PAY_PAYMENT}</td>
             <td>${payment.PAY_DATE}</td>
-            <td>DD</td>
-            <td>DD</td>
-		     <td>
-				<button onclick="location.href='./delivery.do?user_seq=${loginDto.user_seq}'">결제취소</button>
-			</td>
+         	<td>${payment.PAY_POINT}</td>
+         	<td>${payment.PAY_SUMPOINT}</td>
+		     
         </tr>
     </c:forEach>
     

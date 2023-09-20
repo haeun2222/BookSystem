@@ -1,6 +1,8 @@
+<%@page import="com.dowon.bds.dto.UserDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,9 +28,9 @@
         <c:forEach var="freeBoard" items="${freeBoardList}">
             <tr>
                 <td>${freeBoard.free_bseq}</td>
-                <td><a href="./freeBoardDetail.do">${freeBoard.free_title}</a></td>
-                <td>${freeBoard.user_seq}</td>
-                <td>${freeBoard.free_regdate}</td>
+                <td><a href="./freeBoardDetail.do?free_bseq=${freeBoard.free_bseq}">${freeBoard.free_title}</a></td>
+                <td>${freeBoard.user_name}</td>
+                <td><fmt:formatDate value="${freeBoard.free_regdate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
             </tr>
         </c:forEach>
     </table>

@@ -10,12 +10,11 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * @author 박하은
- * @since 2023.09.06 결제 Dto
- * 
  * @author 김지인
  * @since 2023.09.14  payImd 컬럼타입 수정
  * 
+ * @author 김지인
+ * @since 2023.09.20  마일리지및 누적 마일리지
  */
 
 @Data

@@ -38,14 +38,29 @@ public class ResveController {
 	private IResveService resveService;
 
 	
+//	@GetMapping("/userResveList.do")
+//	public String userResveList(@RequestParam("user_seq")int user_seq, Model model, HttpSession session){
+//		log.info("Welcome ResveController userResveList 회원의 마이페이지-예약조회 부분에 들어갈 페이지 컨트롤러");
+//		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
+//		List<Map<String, Object>>  lists = resveService.selectStep(user_seq);
+//		model.addAttribute("lists",lists);
+//		model.addAttribute("loginDto",loginDto);
+//		return "userResveList";
+//	}
+	
 	@GetMapping("/userResveList.do")
-	public String userResveList(@RequestParam("user_seq")int user_seq, Model model, HttpSession session){
+	public String userResveList(Model model, HttpSession session){
 		log.info("Welcome ResveController userResveList 회원의 마이페이지-예약조회 부분에 들어갈 페이지 컨트롤러");
 		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
+		 if (loginDto != null) {
+		     int user_seq = loginDto.getUser_seq();
 		List<Map<String, Object>>  lists = resveService.selectStep(user_seq);
 		model.addAttribute("lists",lists);
-		model.addAttribute("loginDto",loginDto);
+		model.addAttribute("seq",user_seq);
 		return "userResveList";
+	  } else {
+		  return "redirect:/loginPage.do";
+	  }
 	}
 	
 	
@@ -91,15 +106,5 @@ public class ResveController {
         }
     }
 
-    
-    
-
-    
-    
-    
-
-
-    
-    
 
 }

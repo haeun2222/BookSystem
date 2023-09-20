@@ -7,15 +7,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font.css">
+<link rel="stylesheet" href="css/header.css">
 <title>Insert title here</title>
 </head>
+<%@ include file="header.jsp" %>
 <body>
-
-
+<div class="container">
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
-
-<h1>${loginUser.user_name}님의 대출 도서 목록입니다</h1>
+<h1>${loginUser.user_name}님의 대출 도서 목록 입니다</h1>
     <button id="refreshButton">대출내역 갱신</button>
 
     <!-- JavaScript 코드 -->
@@ -69,9 +70,8 @@
 			</td>
         </tr>
     </c:forEach>
-    
 </table>
- 
+</div>
 </body>
-
+<%@ include file="footer.jsp" %>
 </html>

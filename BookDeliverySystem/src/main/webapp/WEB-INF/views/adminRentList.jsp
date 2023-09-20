@@ -8,10 +8,15 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font.css">
+<link rel="stylesheet" href="css/header.css">
 <title>Insert title here</title>
 </head>
+<%@include file="/WEB-INF/views/header.jsp"%>
 <body>
-    <h1>관리자 대출 도서 목록</h1>
+<div class="container">
+    <h1>계발의민족 회원 도서 대출 목록</h1>
     <table border="1">
         <tr>
         	<th>No.</th>
@@ -57,7 +62,9 @@
             </tr>
         </c:forEach>
     </table>
+</div>
 </body>
+<%@ include file="footer.jsp" %>
 <script>
 //버튼 클릭 시 두 개의 메소드를 호출하는 함수
 async function handleActions(rentSeq, bookSeq) {
@@ -83,9 +90,9 @@ async function handleActions(rentSeq, bookSeq) {
         });
 
         if (rentStandbyResponse == "success") {
-            alert("대출대기 완료");
+            alert("해당도서의 예약회원의 상태가 대출대기로 변경되었습니다.");
         } else {
-            alert("예약이 없어 대출대기 X");
+            alert("해당도서는 예약건이 없어 예약상태변경이 진행되지 않습니다.");
         }
         location.reload();
     } catch (error) {

@@ -3,16 +3,30 @@
 <mapper namespace="com.dowon.bds.model.mapper.PaymentDaoImpl">
 
 <!-- 결제정보 입력 -->
-	<insert id="saveBookPayment" parameterType="java.util.Map">
-         INSERT INTO TB_PAY
-	        (PAY_SEQ, PAY_IMD, USER_SEQ, PAY_PAYMENT, PAY_DATE)
-	        VALUES (SQ_PAY.NEXTVAL, #{payImd}, #{user_seq}, #{payPayment}, SYSDATE)
-    </insert>
+<!-- 	<insert id="saveBookPayment" parameterType="java.util.Map"> -->
+<!--          INSERT INTO TB_PAY -->
+<!-- 	        (PAY_SEQ, PAY_IMD, USER_SEQ, PAY_PAYMENT, PAY_DATE) -->
+<!-- 	        VALUES (SQ_PAY.NEXTVAL, #{payImd}, #{user_seq}, #{payPayment}, SYSDATE) -->
+<!--     </insert> -->
 
+    
+    <insert id="saveBookPayment" parameterType="java.util.Map">
+        INSERT INTO BOOK.TB_PAY (PAY_SEQ, PAY_IMD, USER_SEQ, PAY_PAYMENT, PAY_DATE, PAY_POINT, PAY_SUMPOINT)
+        VALUES (SQ_PAY.NEXTVAL, #{payImd}, #{user_seq}, #{payPayment}, SYSDATE, #{payPoint}, #{paySumpoint})
+    </insert>
+    
+    <!-- 마일리지 총합 -->
+    <select id="selectSumPoint" parameterType="Integer" resultType="Integer">
+	     SELECT SUM(PAY_POINT) AS TOTAL_PAY_POINT
+		    FROM TB_PAY
+		    WHERE USER_SEQ = #{user_seq}
+		    GROUP BY USER_SEQ
+		    HAVING SUM(PAY_POINT) >= 0
+	</select>
 
 <!-- 특정 회원의 결제내역조회 -->
 	<select id="selectMypayList" parameterType="java.lang.Integer" resultType="java.util.Map">
-		SELECT P.PAY_SEQ, P.PAY_IMD, P.USER_SEQ, P.PAY_PAYMENT, P.PAY_DATE
+		SELECT P.PAY_SEQ, P.PAY_IMD, P.USER_SEQ, P.PAY_PAYMENT, P.PAY_DATE, P.PAY_POINT, P.PAY_SUMPOINT
 			FROM TB_PAY P
 			INNER JOIN TB_USER U ON P.USER_SEQ = U.USER_SEQ
 			WHERE U.USER_SEQ = #{user_seq}

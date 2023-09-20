@@ -3,8 +3,10 @@
 <mapper namespace="com.dowon.bds.model.mapper.IFreeBoardDaoImpl">
 <!-- 전체조회 -->
 <select id="freeBoardList" resultType="FreeBoardDto">
-SELECT FREE_BSEQ ,USER_SEQ ,FREE_TITLE ,FREE_REGDATE
-	FROM TB_FREE_BOARD tfb
+SELECT tfb.FREE_BSEQ, tfb.USER_SEQ, tfb.FREE_TITLE, tfb.FREE_REGDATE, tu.USER_NAME
+    FROM TB_FREE_BOARD tfb
+    JOIN TB_USER tu ON tfb.USER_SEQ = tu.USER_SEQ
+    WHERE FREE_DELFLAG = 'N'
 </select>
 <!-- 새글등록 -->
 <insert id="freeBoardInsert" parameterType="FreeBoardDto">
@@ -13,14 +15,15 @@ SELECT FREE_BSEQ ,USER_SEQ ,FREE_TITLE ,FREE_REGDATE
 </selectKey>	
 INSERT INTO BOOK.TB_FREE_BOARD
 (FREE_BSEQ, USER_SEQ, FREE_TITLE, FREE_CONTENT, FREE_REGDATE, FREE_DELFLAG)
-VALUES(SQ_FREE_BOARD.NEXTVAL, SQ_FREE_BOARD.NEXTVAL, #{free_title}, #{free_content}, SYSDATE, 'N')
+VALUES(SQ_FREE_BOARD.NEXTVAL,#{user_seq}, #{free_title}, #{free_content}, SYSDATE, 'N')
 </insert>
 
 <!-- 상세조회 -->
 <select id="freeBoardDetail" resultType="FreeBoardDto">
-SELECT FREE_BSEQ ,FREE_TITLE ,FREE_CONTENT ,FREE_REGDATE 
-	FROM TB_FREE_BOARD tfb 
-	WHERE FREE_BSEQ =#{free_bseq}
+SELECT tfb.FREE_BSEQ, tfb.FREE_TITLE, tfb.FREE_CONTENT, tfb.FREE_REGDATE, tu.USER_NAME
+	FROM TB_FREE_BOARD tfb
+	INNER JOIN TB_USER tu ON tfb.USER_SEQ = tu.USER_SEQ
+	WHERE tfb.FREE_BSEQ = #{free_bseq}
 </select>
 
 <!-- 게시글삭제 -->

@@ -7,15 +7,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/font.css">
-<title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/resveCancle.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font.css">
+<link rel="stylesheet" href="css/header.css">
+<title>Insert title here</title>
 </head>
-${lists}
-
+<%@ include file="header.jsp" %>
 <body>
+<div class="container">
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
 <c:choose>
     <c:when test="${not empty lists}">
@@ -75,36 +76,7 @@ ${lists}
 </c:choose>
 
 
-<script type="text/javascript">
-    function cancelReservation(bookSeq, userSeq) {
-        // 예약 취소 요청을 서버에 보냅니다.
-        console.log(bookSeq, userSeq);
-        $.ajax({
-            type: "POST",
-            url: "./cancel.do",
-            contentType: "application/json",
-            data: JSON.stringify({
-                book_seq: bookSeq, // bookSeq 파라미터를 그대로 사용
-                user_seq: userSeq // userSeq 파라미터를 그대로 사용
-            }),
-            success: function(response) {
-                if (response == "success") {
-                    alert("예약이 취소되었습니다.");
-                    window.location.replace("./userResveList.do?user_seq=${loginDto.user_seq}");
-                    window.location.reload(true);
-                } else {
-                    alert("예약 취소에 실패했습니다. 다시 시도해주세요.");
-                }
-            },
-            error: function(xhr, status, error) {
-                alert("예약 취소 요청에 실패했습니다. 다시 시도해주세요.");
-            }
-        });
-    }
-
-</script>
-
-
-
+</div>
 </body>
+<%@ include file="footer.jsp" %>
 </html>

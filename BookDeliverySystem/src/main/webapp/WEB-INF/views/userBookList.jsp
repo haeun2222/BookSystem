@@ -7,8 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font.css">
+<link rel="stylesheet" href="css/header.css">
 <title>도서목록조회</title>
 </head>
+<%@ include file="header.jsp" %>
 <body>
 	<table>
 		<tr>
@@ -31,4 +35,5 @@
 			</c:forEach>
 	</table>
 </body>
+<%@ include file="footer.jsp" %>
 </html>
