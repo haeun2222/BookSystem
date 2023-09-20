@@ -27,6 +27,9 @@
       <li><a href="./freeBoardList.do">자유게시판</a></li>
       <li><a href="./userBookList.do">도서목록</a></li>
       <li><a href="./paymentList.do">결제내역</a></li>
+      <li><a href="./userRentList.do">회원대출목록</a></li>
+      <li><a href="./userResveList.do">회원예약목록</a></li>
+      <li><a href="./adminRentList.do">관리자대출관리</a></li>
     </ul>
   </div>
 </nav>
