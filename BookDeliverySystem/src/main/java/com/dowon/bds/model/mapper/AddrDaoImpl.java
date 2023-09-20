@@ -14,7 +14,6 @@ import java.util.Map;
 
 
 import org.apache.ibatis.session.SqlSession;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -30,9 +29,6 @@ public class AddrDaoImpl implements IAddrDao {
 	
 	@Autowired
 	private final SqlSession sqlSession;
-	
-	@Autowired
-	private SqlSessionTemplate session;
 	
 	 public AddrDaoImpl(SqlSession sqlSession) {
 	        this.sqlSession = sqlSession;
@@ -61,9 +57,13 @@ public class AddrDaoImpl implements IAddrDao {
 	}
 
 	@Override
-	public int deliRentStatus(int n) {
-		
-		return session.update(NS+"deliRentStatus",n);
+	public int deliRentStatus(int user_seq) {
+		return sqlSession.update(NS+"deliRentStatus",user_seq);
+	}
+
+	@Override
+	public int saveAddressReturn(AddrDto addrDto) {
+		return sqlSession.insert(NS+"saveAddressReturn", addrDto);
 	}
 
 
