@@ -6,13 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/font.css">
+<link rel="stylesheet" href="css/header.css">
 <title>Insert title here</title>
 </head>
+<%@include file="/WEB-INF/views/header.jsp"%>
 <body>
 
-<!-- 세션에서 loginDto 속성을 불러옴 -->
-<c:set var="loginDto" value="${sessionScope.loginDto}"/>
+    <!-- 세션에서 loginDto 속성을 불러옴 -->
+    <c:set var="loginDto" value="${sessionScope.loginDto}"/>
 
+    <!-- 로그인 정보에 따라 회원 여부를 히든 필드로 전달 -->
+<%--     <c:choose> --%>
+<%--         <c:when test="${loginDto != null}"> --%>
+<!--             회원인 경우 -->
+<!--             <input type="hidden" name="isMember" value="true"> -->
+<%--         </c:when> --%>
+<%--         <c:otherwise> --%>
+<!--             비회원인 경우 -->
+<!--             <input type="hidden" name="isMember" value="false"> -->
+<%--         </c:otherwise> --%>
+<%--     </c:choose> --%>
 
 <!-- loginDto 객체의 속성(필드) 값을 출력 -->
 
@@ -40,6 +53,7 @@ test: ${loginDto.user_name} <br>
       <c:forEach items="${books}" var="book">
         <tr>
 			<td>${book.book_seq}</td>
+<%-- 			<td><a href="./bookDetailHaeun.do?seq=${book.book_seq}">${book.book_title}</a></td> --%>
 			<td><a href="./bookDetailHaeun.do?seq=${book.book_seq}">${book.book_title}</a></td>
 			<td>${book.book_writer}</td>
          	 <td>${book.book_isbn}</td>
