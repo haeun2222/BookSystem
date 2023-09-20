@@ -111,6 +111,8 @@ ${rentData[0].BOOK_TITLE}
 
 <script type="text/javascript">
 function checkAvailability() {
+	
+
     var rentDataSize = ${rentData.size()};
     var resveDataSize = ${resveData.size()};
     
@@ -122,6 +124,7 @@ function checkAvailability() {
     var modalFooter = $('<div></div>');
     var button1 = "";
     var button2 = "";
+
 
     if (rentDataSize == 0 && resveDataSize == 0) {
         modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>도서정보</b><br>도서명 : ${dto.book_title}<br>저자 : ${dto.book_writer}<br><br><b>대출신청 확인</b><br>대출신청을 하시겠습니까?<br>대출신청 버튼을 누르면 배송지 입력으로 이동합니다.";
@@ -210,9 +213,9 @@ function newResve1() {
 
   
         if (user_seq == null || user_seq == "") {
-            // 사용자가 비회원인 경우
-            // alert("회원 가입 후 예약신청이 가능합니다.");
-            // window.location.href = "./main.do"; // 메인 페이지 URL로 리다이렉트
+            //사용자가 비회원인 경우
+//             alert("회원 가입 후 예약신청이 가능합니다.");
+//             window.location.href = "./main.do"; // 메인 페이지 URL로 리다이렉트
         }else{
         	if(rentDataSize==0&&resveDataSize == 0){
         

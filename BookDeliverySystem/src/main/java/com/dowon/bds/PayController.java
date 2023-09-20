@@ -120,7 +120,6 @@ public class PayController {
 	 * @since 2023.09.19
 	 * 결제 승인시 대출 완료 처리 Controller / 대출 완료시 동일 도서 예약 대출대기->진행완료 처리 Controller
 	 */
-    // 대출 요청을 처리하는 컨트롤러 메서드
     @PostMapping("/rentBook.do")
     @ResponseBody
     public String rentBook(@RequestBody Map<String, Object> params, HttpSession session) {
@@ -142,14 +141,12 @@ public class PayController {
         }
     }
 
-    // 예약 대출대기 처리하는 컨트롤러 메서드
     @PostMapping("/reserveBook.do")
     @ResponseBody
     public String reserveBook(@RequestBody Map<String, Integer> data) {
     	log.info("Welcome PayController reserveBook 예약상태 대출대기->진행완료 처리 AJAX Controller");
         try {
         	int bookSeq = Integer.parseInt(data.get("book_seq").toString());
-            // 예약 로직을 수행하고 성공 여부를 반환
             int success = resveService.resveAsRent(bookSeq);
             if (success > 0) {
                 return "success";
