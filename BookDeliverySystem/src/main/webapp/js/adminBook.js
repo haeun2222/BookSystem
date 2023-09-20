@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
     $("#userTableButton").click(function() {
         toggleUserTable();
@@ -79,26 +81,50 @@ $(document).ready(function(){
             data: { query: $("#bookName").val() },
             headers: { "Authorization": "KakaoAK deebb5b9fe3604c7cbb30baeb31b856e" }
         })
-        .done(function(res){
-                    var table = $('<table class="book-table" style="width: 1200px">');
-                    table.append('<thead><tr><th>도서이미지</th><th>도서제목</th><th>도서내용</th><th>저자</th><th>출판사</th><th>도서등록하기</th></tr></thead>');
-                    var tbody = $("<tbody>");
+        .done(function(response){
+			res=response;
+            var table = $('<table class="book-table" style="width: 1200px">');
+            table.append('<thead><tr><th>도서이미지</th><th>도서제목</th><th>도서내용</th><th>저자</th><th>출판사</th><th>도서등록하기</th></tr></thead>');
+            var tbody = $('<tbody>');
 
-                    for (var i = 0; i <= 4 && i < res.documents.length; i++) {
-                        var rowData = res.documents[i];
-                        var row = '<tr>';
-                        row += '<td><img src="' + rowData.thumbnail + '" /></td>';
-                        row += '<td>' + rowData.title + '</td>';
-                        row += '<td>' + rowData.contents + '</td>';
-                        row += '<td>' + rowData.authors + '</td>';
-                        row += '<td>' + rowData.publisher + '</td>';
-                        row += '<td><button onclick="location.href=\'./registBook.do\'"> 도서 등록하기 </button></td>';
-                        row += '</tr>';
-                        tbody.append(row);
-                    }
-                    table.append(tbody);
-                    $("#bookSearchTable").html(table);
-                });
-            });
-	 	});	
-     
+            for (var i = 0; i <= 4 && i < res.documents.length; i++) {
+                var bookData = res.documents[i];
+                var book = '<tr>';
+                book += '<td><img src="' + bookData.thumbnail + '" /></td>';
+                book += '<td>' + bookData.title + '</td>';
+                book += '<td>' + bookData.contents + '</td>';
+                book += '<td>' + bookData.authors + '</td>';
+                book += '<td>' + bookData.publisher + '</td>';
+                book += '<td><button onclick="location.href=\'./registBook.do?book_title=' + bookData.title 
+                		+ '&book_writer=' + bookData.authors.join(', ') + '&book_img=' + bookData.thumbnail
+                		+ '&book_isbn=' + bookData.isbn + '&book_publisher=' + bookData.publisher
+                		+ '&book_intro=' + bookData.contents + '\'">도서 등록하기</button>';
+//                <button type="button" onclick="confirmApproval(${holiday.id}, '${holiday.type}', 1)">승인</button>
+               
+                book += '</tr>';
+                tbody.append(book);
+            }
+            table.append(tbody);
+            $("#bookSearchTable").html(table);
+        });
+    });
+
+//    $("body").on("click", ".regist", function(){
+//        var dataIndex = $(this).closest("tr").index();
+//        var bookData = res.documents[dataIndex]; // 클릭된 행의 도서 데이터 가져오기
+//        var jsonData = JSON.stringify(bookData);
+//        console.log(bookData);
+//        $.ajax({
+//            method : "POST",
+//            url : "./registBook.do",
+//            data : jsonData,
+//            contentType: "application/json",
+//            success : function(response){
+//                location.href = "./registBook.do";
+//            },
+//            error : function(error){
+//                alert("등록실패");
+//            }
+//        });
+//    });
+});
