@@ -15,7 +15,7 @@
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
 
 <h1>${loginUser.user_name}님의 대출 도서 목록입니다</h1>
-${userRentList}
+
 <table border="1">
     <tr>
     	<th>No.</th>
@@ -29,8 +29,12 @@ ${userRentList}
     <c:forEach var="rent" items="${userRentList}" varStatus="status">
         <tr>
         	<td>${status.index + 1}</td>
-            <td>${rent.RENT_DATE}</td>
-            <td>${rent.RENT_RETURN_DATE}</td>
+        	<td>
+                <fmt:formatDate value="${rent.RENT_DATE}" pattern="yyyy.MM.dd"/>
+            </td>
+            <td>
+                <fmt:formatDate value="${rent.RENT_RETURN_DATE}" pattern="yyyy.MM.dd"/>
+            </td>
             <td>${rent.BOOK_TITLE}</td>
             <td>
 			    <c:choose>

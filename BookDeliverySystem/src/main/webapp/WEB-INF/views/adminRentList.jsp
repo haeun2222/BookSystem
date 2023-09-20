@@ -17,19 +17,24 @@
         	<th>No.</th>
             <th>사용자 이름</th>
             <th>도서 제목</th>
-            <th>대출 일자</th>
-            <th>반납 일자</th>
+            <th>대출일</th>
+            <th>반납예정일</th>
             <th>대출 상태</th>
             <th>처리</th>
             <th>운송장</th>
         </tr>
         <c:forEach var="rent" items="${lists}" varStatus="status">
             <tr>
-        	    <td>${rent.BOOK_SEQ}</td>
+<%--         	    <td>${rent.BOOK_SEQ}</td> --%>
+				<td>${status.index + 1}</td>
                 <td>${rent.USER_NAME}</td>
                 <td>${rent.BOOK_TITLE}</td>
-                <td>${rent.RENT_DATE}</td>
-                <td>${rent.RENT_RETURN_DATE}</td>
+                <td>
+                	<fmt:formatDate value="${rent.RENT_DATE}" pattern="yyyy.MM.dd"/>
+                </td>
+                <td>
+                	<fmt:formatDate value="${rent.RENT_RETURN_DATE}" pattern="yyyy.MM.dd"/>
+                </td>
                 <td>
                 <c:choose>
                         <c:when test="${rent.RENT_STATUS eq 'Y'}">대출중</c:when>

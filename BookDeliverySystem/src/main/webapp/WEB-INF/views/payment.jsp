@@ -80,7 +80,7 @@ async function requestPay() {
                         console.log('payment.do 요청 실패');
                     }
                     console.log(data);
-                    alert(data);
+                   // alert(data);
                 },
                 error: function (error) {
                     console.error('payment.do 요청 오류:', error);
@@ -128,10 +128,8 @@ async function requestPay() {
         });
 
         if (reserveBook == "success") {
+            alert("대출신청이 완료되었습니다\n예약 대출대기 상태가 변경되었습니다.");
             console.log('예약 요청 성공');
-            alert("예약어쩌고 완료");
-            // 여기에서 추가적인 처리 가능
-            // 대출 및 예약 완료 후에 대출 목록 조회 페이지로 이동
             window.location.href = "./userRentList.do";
         } else {
             console.log('예약 요청 실패');

@@ -42,7 +42,7 @@
   </tr>
 </tbody>
 </table>
-
+<button type="button" onclick="location.href='./check.do'">테스트버튼</button>
 
 </body>
 <%@ include file="footer.jsp" %>
