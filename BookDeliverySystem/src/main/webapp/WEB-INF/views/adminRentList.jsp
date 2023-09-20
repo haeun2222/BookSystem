@@ -10,6 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <title>Insert title here</title>
 </head>
+<%@include file="/WEB-INF/views/header.jsp"%>
 <body>
     <h1>관리자 대출 도서 목록</h1>
     <table border="1">
@@ -83,9 +84,9 @@ async function handleActions(rentSeq, bookSeq) {
         });
 
         if (rentStandbyResponse == "success") {
-            alert("대출대기 완료");
+            alert("해당도서의 예약회원의 상태가 대출대기로 변경되었습니다.");
         } else {
-            alert("예약이 없어 대출대기 X");
+            alert("해당도서는 예약건이 없어 예약상태변경이 진행되지 않습니다.");
         }
         location.reload();
     } catch (error) {

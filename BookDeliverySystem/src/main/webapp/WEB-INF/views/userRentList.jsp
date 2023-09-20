@@ -8,8 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/font.css">
+<link rel="stylesheet" href="css/header.css">
 <title>Insert title here</title>
 </head>
+<%@include file="/WEB-INF/views/header.jsp"%>
 <body>
 
 

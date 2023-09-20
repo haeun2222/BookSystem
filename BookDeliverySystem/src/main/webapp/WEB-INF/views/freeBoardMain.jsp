@@ -1,3 +1,4 @@
+<%@page import="com.dowon.bds.dto.UserDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
@@ -26,8 +27,8 @@
         <c:forEach var="freeBoard" items="${freeBoardList}">
             <tr>
                 <td>${freeBoard.free_bseq}</td>
-                <td><a href="./freeBoardDetail.do">${freeBoard.free_title}</a></td>
-                <td>${freeBoard.user_seq}</td>
+                <td><a href="./freeBoardDetail.do?free_bseq=${freeBoard.free_bseq}">${freeBoard.free_title}</a></td>
+                <td>${freeBoard.user_name}</td>
                 <td>${freeBoard.free_regdate}</td>
             </tr>
         </c:forEach>
