@@ -28,5 +28,6 @@ public class FreeBoardDto {
 	private String free_content;
 	private Date free_regdate;
 	private String free_delflag;
-
+	private String user_name;
+	
 }

@@ -17,17 +17,17 @@
 		<form action="./freeBoardInsert.do" method="post">
 			<div class="form-group">
 				<label for="id">아이디:</label>
-				<div class="form-control" id="id"></div>
+				<div class="form-control" id="id">${loginDto.user_name}</div>
 			</div>
 			<div class="form-group">
 				<label for="title">제목:</label>
-				<input type="text" class="form-control" id="title" name="title">
+				<input type="text" class="form-control" id="free_title" name="free_title">
 			</div>
 			<div class="form-group">
 				<label for="comment">내용:</label>
-				<textarea class="form-control" id="comment" name="content" rows="5" cols="50"></textarea>
+				<textarea class="form-control" id="free_content" name="free_content" rows="5" cols="50"></textarea>
 			</div>
-			<button type="submit" class="btn btn-info">글작성</button>
+			<button type="submit" class="btn btn-info">완료</button>
 			<button class="btn btn-default" onclick="history.back(-1)">취소</button>
 		</form>
 	</div>
