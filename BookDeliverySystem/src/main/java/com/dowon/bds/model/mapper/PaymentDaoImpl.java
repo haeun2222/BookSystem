@@ -34,6 +34,7 @@ public class PaymentDaoImpl implements IPaymentDao {
 	public int saveBookPayment(PayDto payDto) {
 		log.info("saveBookPayment 결제내역저장 마일리지 업데이트");
 		payDto.setPayPoint((int) (payDto.getPayPayment() * 0.01));
+//		payDto.setPaySumpoint(((int)(payDto.getPayPayment() * 0.01))+);
 		return  sqlSession.insert(NS+"saveBookPayment", payDto);
 
 	}
