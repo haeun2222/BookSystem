@@ -190,7 +190,6 @@ UPDATE TB_FREE_BOARD SET FREE_DELFLAG = 'Y'
 
 --답글업데이트 및 입력 STEP,REF,DEPTH 컬럼추가해야함
 
-
 	
 	
 	
