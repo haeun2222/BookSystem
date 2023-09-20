@@ -15,6 +15,7 @@
   <div class="topLogo" style="margin-top: 30px;" id="loginBtn">
   		<button class="btn btn-info" onclick="location.href='./nomalRegistForm.do'">회원가입</button>
   		<button class="btn btn-info" onclick="location.href='./loginPage.do'">로그인</button>
+  		<button class="btn btn-info" onclick="location.href='./loginPage.do'">로그아웃</button>
   </div>  
 </div>
 <nav class="navbar navbar-default" style="border-radius: 20px; background-color: aliceblue; margin: 0 auto;">
