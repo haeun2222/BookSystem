@@ -26,4 +26,9 @@ public class BookDaoImpl implements IBookDao {
 		return sqlSession.selectOne(NS+"getDetailBook",seq);
 	}
 
+	@Override
+	public int registBook(BookDto dto) {
+		return sqlSession.insert(NS+"registBook",dto);
+	}
+
 }

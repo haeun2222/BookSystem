@@ -30,4 +30,10 @@ public class BookServiceImpl implements IBookService {
 		return dao.detailBook(seq);
 	}
 
+	@Override
+	public int registBook(BookDto dto) {
+		log.info("BookServiceImpl registBook 도서 등록하기 ");
+		return dao.registBook(dto);
+	}
+
 }

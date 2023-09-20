@@ -74,7 +74,8 @@ public class UserController {
 	@GetMapping(value="/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "";
+		log.info("로그아웃 실행");
+		return "redirect:/";
 	}
 	
 	

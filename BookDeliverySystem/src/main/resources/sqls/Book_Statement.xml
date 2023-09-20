@@ -20,4 +20,18 @@ SELECT BOOK_SEQ,BOOK_TITLE,BOOK_WRITER,
 	FROM TB_BOOK
 	WHERE BOOK_SEQ = #{book_seq}
 </select>
+
+<!-- 도서 등록하기 -->
+<insert id="registBook" parameterType="BookDto">
+INSERT INTO TB_BOOK
+	(BOOK_SEQ,BOOK_TITLE,BOOK_WRITER,
+	BOOK_IMG,BOOK_ISBN,BOOK_INTRO,
+	BOOK_PUBLISHER,BOOK_PUBLISHED_DATE,BOOK_INDEX,BOOK_SUMMARY)
+	VALUES (SQ_USER.NEXTVAL,#{book_title},#{book_writer},
+			#{book_img},#{book_isbn},#{book_intro},
+			#{book_publisher},#{book_published_date},#{book_index},#{book_summary})
+</insert>
+
+
+
 </mapper>

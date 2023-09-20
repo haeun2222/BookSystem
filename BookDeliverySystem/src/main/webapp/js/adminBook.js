@@ -96,10 +96,13 @@ $(document).ready(function(){
                 book += '<td>' + bookData.authors + '</td>';
                 book += '<td>' + bookData.publisher + '</td>';
                 book += '<td><button onclick="location.href=\'./registBook.do?book_title=' + bookData.title 
-                		+ '&book_writer=' + bookData.authors.join(', ') + '&book_img=' + bookData.thumbnail
-                		+ '&book_isbn=' + bookData.isbn + '&book_publisher=' + bookData.publisher
-                		+ '&book_intro=' + bookData.contents + '\'">도서 등록하기</button>';
-//                <button type="button" onclick="confirmApproval(${holiday.id}, '${holiday.type}', 1)">승인</button>
+                		+ '&book_writer=' + bookData.authors.join(', ')
+                		+ '&book_img=' + bookData.thumbnail
+                		+ '&book_isbn=' + bookData.isbn
+                		+ '&book_publisher=' + bookData.publisher
+                		+ '&book_intro=' + bookData.contents
+                		+ '&book_published_date' + bookData.datetime
+                		+ '\'">도서 등록하기</button>';
                
                 book += '</tr>';
                 tbody.append(book);

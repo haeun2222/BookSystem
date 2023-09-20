@@ -9,4 +9,5 @@ public interface IBookService {
 	
 	public List<BookDto> getAllBook();
 	public BookDto detailBook(int seq);
+	public int registBook(BookDto dto);
 }

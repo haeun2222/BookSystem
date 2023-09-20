@@ -1,5 +1,8 @@
 package com.dowon.bds;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -83,9 +86,39 @@ public class BookController {
 	
 	//도서등록컨트롤러(GET)
 	@GetMapping(value="/registBook.do")
-	public String registForm() {
+	public String registbookForm(
+			@RequestParam("book_title") String bookTitle,
+			@RequestParam("book_writer") String bookWriter,
+			@RequestParam("book_img") String bookImg,
+			@RequestParam("book_isbn") String bookIsbn,
+			@RequestParam("book_publisher") String bookPublisher,
+			@RequestParam("book_intro") String bookIntro,
+//			@RequestParam("book_book_published_date") Date bookPublishedDate,
+			Model model) {
+		
+			String[] isbn = bookIsbn.split(" ");
+			String realIsbn = isbn[isbn.length-1];
+			
+			BookDto dto = new BookDto();
+			dto.setBook_title(bookTitle);
+			dto.setBook_writer(bookWriter);
+			dto.setBook_img(bookImg);
+			dto.setBook_isbn(realIsbn);
+			dto.setBook_publisher(bookPublisher);
+			dto.setBook_intro(bookIntro);
+			log.info("나와라 {}",bookIntro);
+//			dto.setBook_published_date(bookPublishedDate);
 		log.info("registForm 실행");
+		model.addAttribute("registBook",dto);
 		return "registBook";
+	}
+	
+	@PostMapping(value="/registBook.do")
+	public String registBook(BookDto dto) {
+		
+		int n = service.registBook(dto);
+		
+		return (n == 1) ? "success" : "false";
 	}
 	
 	//하은 테스트버튼
