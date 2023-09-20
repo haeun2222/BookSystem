@@ -31,6 +31,8 @@ public class PayDto {
 	private int user_seq; // 회원 고유번호
 	private int payPayment; // 결제금액
 	private Date payDate; // 결제시간
+	private int payPoint; // 결제금액 1% 마일리지 적립
+	private int paySumpoint; // 회원 마일리지 총합
 	
 
 	

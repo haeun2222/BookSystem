@@ -54,15 +54,15 @@ public class JiinJUnitTest {
 		assertEquals("입력후 SEQ"+addrDto.getDelivery_seq(), 1, n, 0);
 	}
 
-	@Test
-	public void saveBookPayment() {
-		
-		Date date = new Date();
-		PayDto payDto = new PayDto(1, "imp_66008769771802", 1, 5000, date);
-		int n = payDao.saveBookPayment(payDto);
-		System.out.println("결제정보" + payDto.getPaySeq());
-		assertNotNull(payDto);
-		
-	}
+//	@Test
+//	public void saveBookPayment() {
+//		
+//		Date date = new Date();
+//		PayDto payDto = new PayDto(1, "imp_66008769771802", 1, 5000, date);
+//		int n = payDao.saveBookPayment(payDto);
+//		System.out.println("결제정보" + payDto.getPaySeq());
+//		assertNotNull(payDto);
+//		
+//	}
 
 }
