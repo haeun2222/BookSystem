@@ -59,7 +59,7 @@ public class UserController {
 			log.info(loginDto.getUser_auth());
 			log.info("유저 로그인성공  이동 {}",map);
 			session.setAttribute("loginDto", loginDto);
-			return "redirect:/index.jsp";
+			return "mainTest";
 			}
 			else {
 			log.info("어드민 로그인성공 {}",map);
