@@ -64,21 +64,21 @@ public class BookController {
 		return "detailBook";
 	}
 	
-	//도서등록컨트롤러
-	@RequestMapping(value = "/registBook.do", method = RequestMethod.POST)
-	@ResponseBody
-	public String registBook(@RequestBody Map<String, Object> bookData, Model model) {
-		log.info("regitstBook 도서 등록하기");
-		
-		List<String> authors = (List<String>)bookData.get("authors");
-		String title = (String)bookData.get("title");
-		
-		BookDto dto = new BookDto();
-		dto.setBook_writer(String.join(",", authors));
-		dto.setBook_title(title);
-		model.addAttribute("test2",dto);
-	    return "response";
-	}
+//	//도서등록컨트롤러
+//	@RequestMapping(value = "/registBook.do", method = RequestMethod.POST)
+//	@ResponseBody
+//	public String registBook(@RequestBody Map<String, Object> bookData, Model model) {
+//		log.info("regitstBook 도서 등록하기");
+//		
+//		List<String> authors = (List<String>)bookData.get("authors");
+//		String title = (String)bookData.get("title");
+//		
+//		BookDto dto = new BookDto();
+//		dto.setBook_writer(String.join(",", authors));
+//		dto.setBook_title(title);
+//		model.addAttribute("test2",dto);
+//	    return "response";
+//	}
 	
 	
 	//도서등록컨트롤러(GET)
