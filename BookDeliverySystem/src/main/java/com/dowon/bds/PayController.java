@@ -91,7 +91,7 @@ public class PayController {
             model.addAttribute("addrDto",addrDto);
             model.addAttribute("bookSeq",bookSeq);
             
-            
+            log.info("payment 결제요청완료");
             return "success";
         } else {
         	 return "failure";
