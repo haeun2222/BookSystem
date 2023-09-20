@@ -51,6 +51,38 @@ public class RentController {
 	
 	@Autowired
 	private IResveService resveService;
+	
+	//테스트리스트
+//	@GetMapping("/bookListHaeun.do")
+//	public String bookListHaeun(Model model) {
+//		log.info("RentController bookListHaeun 테스트를 위한 도서 전체목록 페이지 컨트롤러");
+//		List<BookDto> lists = rentService.bookAll();
+//		
+//		model.addAttribute("books",lists);
+//		return "bookListHaeun";
+//	}
+//	
+//	
+//	@GetMapping("/bookDetailHaeun.do")
+//	public String bookDetail(@RequestParam("seq") int bookSeq, Model model) {
+//	    log.info("Welcome RentController bookDetail 도서 상세화면 테스트를 위한 페이지 컨트롤러");
+//	    System.out.println("bookSeq: " + bookSeq);
+//
+//	    BookDto dto = rentService.bookDetail(bookSeq);
+//	    List<String> filteredBookSeqList = rentService.selectFilteredBookSeqList();
+//
+//	    model.addAttribute("dto", dto);
+//	    model.addAttribute("filteredBookSeqList", filteredBookSeqList);
+//
+//	    return "bookDetailHaeun";
+//	}
+
+	
+	
+	
+	
+	
+	
 
 	@GetMapping("/bookListHaeun.do")
 	public String bookListHaeun(@RequestParam Map<String,Object>map, HttpSession session,Model model) {

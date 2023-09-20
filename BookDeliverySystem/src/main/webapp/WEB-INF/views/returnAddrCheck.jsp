@@ -30,19 +30,19 @@ ${sessionScope.loginDto.user_name}님
         <thead>
             <tr>
                 <td><strong>이름:</strong></td>
-                <td>${sessionScope.savedAddress.delivery_name}</td>
+                <td>${sessionScope.saveAddressReturn.delivery_name}</td>
             </tr>
             <tr>
                 <td><strong>전화번호:</strong></td>
-                <td>${sessionScope.savedAddress.delivery_phone}</td>
+                <td>${sessionScope.saveAddressReturn.delivery_phone}</td>
             </tr>
             <tr>
                 <td><strong>우편번호:</strong></td>
-                <td>${sessionScope.savedAddress.postcode}</td>
+                <td>${sessionScope.saveAddressReturn.postcode}</td>
             </tr>
             <tr>
                 <td><strong>주소:</strong></td>
-                <td>${sessionScope.savedAddress.address} ${sessionScope.savedAddress.detaddr}</td>
+                <td>${sessionScope.saveAddressReturn.address} ${sessionScope.saveAddressReturn.detaddr}</td>
             </tr>
            </thead>
         </table>
@@ -52,7 +52,6 @@ ${sessionScope.loginDto.user_name}님
      
 		</div>
     </div>
-
 
     ${bookSeq}
 <script>

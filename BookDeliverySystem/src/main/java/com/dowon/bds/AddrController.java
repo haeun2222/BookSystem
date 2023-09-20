@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dowon.bds.dto.AddrDto;
 import com.dowon.bds.dto.UserDto;
@@ -80,17 +81,34 @@ public class AddrController {
 	}
 	
 	
+	
 	@RequestMapping(value ="/returnAddrCheck.do", method = RequestMethod.POST)
 	public String returnAddrCheck(AddrDto addrDto , HttpSession session, Model model, @RequestParam("book_seq") int bookSeq) {
 		logger.info("Welcome! AddrController 수거요청 입력 returnAddrCheck {}", addrDto);
 		addrDto.setUser_seq(((UserDto)session.getAttribute("loginDto")).getUser_seq());
-		int n = service.saveAddress(addrDto);
-		session.setAttribute("savedAddress", addrDto);
+		int n = service.saveAddressReturn(addrDto);
+		session.setAttribute("saveAddressReturn", addrDto);
 		
 		model.addAttribute("bookSeq",bookSeq);
 		
 		return "returnAddrCheck";
+	
+//	@RequestMapping(value ="/returnAddrCheck.do", method = RequestMethod.POST)
+//	public String returnAddrCheck(AddrDto addrDto , HttpSession session, Model model, @RequestParam("book_seq") int bookSeq) {
+//		logger.info("Welcome! AddrController 수거요청 입력 returnAddrCheck {}", addrDto);
+//		addrDto.setUser_seq(((UserDto)session.getAttribute("loginDto")).getUser_seq());
+//		int n = service.saveAddress(addrDto);
+//		session.setAttribute("saveAddressReturn", addrDto);
+//		
+//		 // 렌트 상태 변경
+//	    service.deliRentStatus(addrDto.getUser_seq());
+//		
+//		model.addAttribute("bookSeq",bookSeq);
+//		
+//		return "returnAddrCheck";
 	}
 	
+	
+
 	
 }

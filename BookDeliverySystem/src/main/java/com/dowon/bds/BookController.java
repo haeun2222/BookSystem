@@ -2,17 +2,22 @@ package com.dowon.bds;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dowon.bds.dto.BookDto;
+import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IBookService;
 
 /**
@@ -52,6 +57,19 @@ public class BookController {
 	public String regitstBook() {
 		log.info("regitstBook 도서 등록하기");
 		return "";
+	}
+	
+	
+	//하은 테스트버튼
+	@GetMapping("/check.do")
+	public String check(HttpSession session) {
+		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
+		if(loginDto == null) {
+			//얼럿창 jsp추가
+				return "redirect:/loginPage.do";
+		}else {
+				return "redirect:/bookDetailHaeun.do";
+		}
 	}
 }
 
