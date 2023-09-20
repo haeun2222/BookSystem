@@ -12,10 +12,19 @@
 </head>
 <body>
 
+
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
 
 <h1>${loginUser.user_name}님의 대출 도서 목록입니다</h1>
+    <button id="refreshButton">대출내역 갱신</button>
 
+    <!-- JavaScript 코드 -->
+    <script>
+        // 페이지 새로고침 버튼을 클릭할 때 페이지를 새로고침합니다.
+        document.getElementById("refreshButton").addEventListener("click", function() {
+            location.reload();
+        });
+    </script>
 <table border="1">
     <tr>
     	<th>No.</th>
