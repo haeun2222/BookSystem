@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-public class Statistics_Controller {
+public class StatisticsController {
 
 	@Autowired
 	private IStatisticsService service;

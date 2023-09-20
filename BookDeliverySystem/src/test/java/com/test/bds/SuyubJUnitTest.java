@@ -2,7 +2,9 @@ package com.test.bds;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,8 +15,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.dowon.bds.dto.AgeDto;
 import com.dowon.bds.dto.BookDto;
+import com.dowon.bds.dto.FreeBoardDto;
 import com.dowon.bds.dto.GenderDto;
+import com.dowon.bds.model.mapper.IFreeBoardDao;
 import com.dowon.bds.model.mapper.IStatisticsDao;
+import com.dowon.bds.model.service.IFreeBoardService;
 import com.dowon.bds.model.service.IStatisticsService;
 
 
@@ -36,8 +41,11 @@ public class SuyubJUnitTest {
 	private IStatisticsService service;
 	@Autowired
 	private IStatisticsDao dao;
-	
-	
+	@Autowired
+	private IFreeBoardService service2;
+	@Autowired
+	private IFreeBoardDao dao2;
+
 
 	
 	
@@ -66,11 +74,38 @@ public class SuyubJUnitTest {
 		assertNotNull(lists);
 
 	}
-	@Test
+//	@Test
 	public void book_test() {
 		BookDto dto = dao.bookSearch(5);
 		log.info("SuyubJUnitTest book_test {}", dto);
 		assertNotNull(dto);
 	}
+//	@Test
+	public void freeBoardList() {
+		List<FreeBoardDto> lists = dao2.freeBoardList();
+		log.info("SuyubJUnitTest freeBoardList{}",lists);
+		assertNotNull(lists);
+	}
 	
+//	@Test
+	public void freeBoardInsert() {
+		FreeBoardDto dto = new FreeBoardDto(0, 0, "책 업데이트", "책 업데이트가 좀 느린것 같은데 어디에 문의해보신분?", null, null);
+		int n = dao2.freeBoardInsert(dto);
+		log.info("SuyubJUnitTest freeBoardInsert{}",dto);
+		assertEquals(1, n);
+	}
+//	@Test
+	public void freeBoardDetail() {
+		FreeBoardDto dto = dao2.freeBoardDetail(2);
+		log.info("SuyubJUnitTest freeBoardDetail{}",dto);
+		assertNotNull(dto);
+	}
+	@Test
+	public void freeBoardDel() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("free_bseq", 2);
+		int n = dao2.freeBoardDel(map);
+		log.info("SuyubJUnitTest freeBoardDel {}",map);
+		assertEquals(1, n);
+	}
 }
