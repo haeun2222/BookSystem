@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="css/header.css">
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>자유게시판 새글작성</title>
+<%@ include file="header.jsp" %>
 </head>
 <body>
 	<div class="container">
@@ -24,11 +25,12 @@
 			</div>
 			<div class="form-group">
 				<label for="comment">내용:</label>
-				<textarea class="form-control" id="comment" name="content"></textarea>
+				<textarea class="form-control" id="comment" name="content" rows="5" cols="50"></textarea>
 			</div>
 			<button type="submit" class="btn btn-info">글작성</button>
 			<button class="btn btn-default" onclick="history.back(-1)">취소</button>
 		</form>
 	</div>
 </body>
+<%@ include file="footer.jsp" %>
 </html>
