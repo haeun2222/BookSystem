@@ -27,7 +27,11 @@ public class FreeBoardController {
 	@Autowired
 	private IFreeBoardService service;
 
-	
+	@RequestMapping(value = "/home.do",method = RequestMethod.GET)
+	public String home() {
+		log.info("FreeBoardController home 메인화면으로 이동");
+		return "redirect:/index.jsp";
+	}
 	
 	@RequestMapping(value = "/freeBoardList.do",method = RequestMethod.GET)
 	public String freeBoardList(Model model) {
@@ -58,6 +62,8 @@ public class FreeBoardController {
 		}
 		return "index";
 	}
+	
+	
 	@RequestMapping(value = "/freeBoardDetail.do",method = RequestMethod.GET)
 	public String freeBoardDetail(@RequestParam("free_bseq")int free_bseq,Model model,HttpSession session) {
 		log.info("FreeBoardController freeBoardDetail 자유게시판 상세조회");

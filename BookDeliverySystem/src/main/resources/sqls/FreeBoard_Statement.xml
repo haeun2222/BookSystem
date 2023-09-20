@@ -23,7 +23,7 @@ VALUES(SQ_FREE_BOARD.NEXTVAL,#{user_seq}, #{free_title}, #{free_content}, SYSDAT
 SELECT tfb.FREE_BSEQ, tfb.FREE_TITLE, tfb.FREE_CONTENT, tfb.FREE_REGDATE, tu.USER_NAME
 	FROM TB_FREE_BOARD tfb
 	INNER JOIN TB_USER tu ON tfb.USER_SEQ = tu.USER_SEQ
-	WHERE tfb.USER_SEQ = #{user_seq}
+	WHERE tfb.FREE_BSEQ = #{free_bseq}
 </select>
 
 <!-- 게시글삭제 -->
