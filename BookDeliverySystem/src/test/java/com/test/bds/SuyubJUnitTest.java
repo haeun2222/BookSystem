@@ -88,12 +88,12 @@ public class SuyubJUnitTest {
 	}
 	
 //	@Test
-	public void freeBoardInsert() {
-		FreeBoardDto dto = new FreeBoardDto(0, 0, "책 업데이트", "책 업데이트가 좀 느린것 같은데 어디에 문의해보신분?", null, null);
-		int n = dao2.freeBoardInsert(dto);
-		log.info("SuyubJUnitTest freeBoardInsert{}",dto);
-		assertEquals(1, n);
-	}
+//	public void freeBoardInsert() {
+//		FreeBoardDto dto = new FreeBoardDto(0, 0, "책 업데이트", "책 업데이트가 좀 느린것 같은데 어디에 문의해보신분?", null, null);
+//		int n = dao2.freeBoardInsert(dto);
+//		log.info("SuyubJUnitTest freeBoardInsert{}",dto);
+//		assertEquals(1, n);
+//	}
 //	@Test
 	public void freeBoardDetail() {
 		FreeBoardDto dto = dao2.freeBoardDetail(2);

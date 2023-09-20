@@ -13,30 +13,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
+<%@include file="/WEB-INF/views/header.jsp"%>
 <body style="background-color: papayawhip;">
-${rentData.size()}
-@@@@@@@@@@@@@@@@@@@@@@@@@<br>
-빌린책 있는지 : ${rentData}<br>
-예약중인책 있는지 : ${resveData}<br>
-${rentData[0].USER_SEQ}
-@@@@@@@@@@@@@@@@@@@@@@@@@<br>
-@@@@@@@@@@@@@@@@@@@<br>
-현재 빌릴수없는 책들(대출중+예약대기[R]) : ${filteredBookSeqList}<br>
-@@@@@@@@@@@@@@@@@@@@@@@@@<br>
-현재 빌릴수없는 책중 대출중인책 : ${rentYBookSeqList}
-@@@@@@@@@@@@@@@@@@@<br>
-${dto.book_seq}
-
-
-
-${rentData[0].BOOK_TITLE}
-
-
+로그인정보 : 
+<%-- ${loginDto} --%>
+${sessionScope.loginDto}
 
 <div>SEQ: ${dto.book_seq}</div>
 <div>도서명: ${dto.book_title}</div>
 <div>저자: ${dto.book_writer}</div>
 <div>isbn: ${dto.book_isbn}</div>
+<c:if test="${not empty sessionScope.loginDto}">
 <c:if test="${filteredBookSeqList.contains(dto.book_seq.toString())}">
 <input type="button" class="btn btn-danger" value="대출불가" onclick="impossibility()">
 <input type="button" class="btn btn-info" value="예약신청" onclick="newResve1()">
@@ -44,6 +31,11 @@ ${rentData[0].BOOK_TITLE}
 <c:if test="${!filteredBookSeqList.contains(dto.book_seq.toString())}">
 <input type="button" class="btn btn-primary" value="대출신청" onclick="checkAvailability()">
 <input type="button" class="btn btn-danger" value="예약불가" onclick="newResve()">
+</c:if>
+</c:if>
+<c:if test="${empty sessionScope.loginDto}">
+	<br><div>도서 대출과 예약은 로그인 후 이용하실 수 있습니다.</div><br>
+    <input type="button" class="btn btn-success" value="로그인" onclick="location.href='./loginPage.do'">
 </c:if>
 
 <!-- 대출 모달 창 -->
@@ -110,13 +102,14 @@ ${rentData[0].BOOK_TITLE}
 </div>
 
 <script type="text/javascript">
+
 function checkAvailability() {
-	
+
 
     var rentDataSize = ${rentData.size()};
     var resveDataSize = ${resveData.size()};
     
-    
+ 
     console.log("rentDataSize: " + rentDataSize);
     console.log("resveDataSize: " + resveDataSize);
     
@@ -179,10 +172,10 @@ function checkAvailability() {
         }
 
     }
+   
 
     showModal1(modalContent, modalFooter);
 }
-
 function showModal1(content, button, modalFooter) {
     console.log("showModal1 content: " , content);
     console.log("showModal1 content: " , modalFooter);
