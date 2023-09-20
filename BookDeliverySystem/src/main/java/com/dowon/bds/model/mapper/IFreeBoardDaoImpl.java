@@ -35,7 +35,7 @@ public class IFreeBoardDaoImpl implements IFreeBoardDao {
 	@Override
 	public FreeBoardDto freeBoardDetail(int free_bseq) {
 		log.info("IFreeBoardDaoImpl freeBoardDetail 자유게시판 게시글 상세조회");
-		return session.selectOne(NS+"freeBoardDetail",free_bseq);
+		return (FreeBoardDto)session.selectList(NS+"freeBoardDetail",free_bseq).get(0);
 	}
 
 	@Override

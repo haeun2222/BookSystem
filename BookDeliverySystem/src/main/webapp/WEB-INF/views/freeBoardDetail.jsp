@@ -23,10 +23,10 @@
 		<div>
 		<p>${loginDto}</p>
 		<p>${dto}</p>
-			<c:if test="${loginDto.user_name eq dto.user_name}">
+			<c:if test="${loginDto.user_name eq dto.user_name or loginDto.user_auth eq 'A'}">
     		<input class="btn btn-success" type="button" value="삭제" onclick="boardDel()">
-			</c:if>
 			<input class="btn btn-success" type="button" value="수정" >
+			</c:if>
 			<input class="btn btn-success" type="button" value="답글" >
 			<input class="btn btn-success" type="button" value="뒤로가기" onclick="history.back(-1);">
 		</div>
