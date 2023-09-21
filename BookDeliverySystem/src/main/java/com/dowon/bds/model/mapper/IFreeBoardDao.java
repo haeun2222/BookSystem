@@ -18,4 +18,7 @@ public interface IFreeBoardDao {
 	
 	// 자유게시판 게시글 삭제
 	public int freeBoardDel(Map<String, Object>map);
+	
+	// 자유게시판 게시글 수정
+	public int updateBoard(Map<String, Object>map);
 }

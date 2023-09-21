@@ -11,4 +11,5 @@ public interface IFreeBoardService {
 	public int freeBoardInsert(FreeBoardDto dto);
 	public FreeBoardDto freeBoardDetail(int free_bseq);
 	public int freeBoardDel(Map<String, Object>map);
+	public int updateBoard(Map<String, Object>map);
 }

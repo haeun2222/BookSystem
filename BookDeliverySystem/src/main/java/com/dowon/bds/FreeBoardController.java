@@ -91,5 +91,13 @@ public class FreeBoardController {
 			return "freeBoardDetail";
 		}
 	}
+	@RequestMapping(value = "/updateBoard.do", method = RequestMethod.GET)
+	public String updateBoard(@RequestParam("free_bseq")int free_bseq, Model model,HttpSession session) {
+		log.info("FreeBoardController updateBoard 자유게시판 글 수정 페이지로 이동");
+		UserDto loginDto = (UserDto)session.getAttribute("loginDto");
+		model.addAttribute("free_bseq",free_bseq);
+		model.addAttribute("loginDto", loginDto);
+		return "updateBoard";
+	}
 	
 }

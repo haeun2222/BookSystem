@@ -46,4 +46,11 @@ public class IFreeBoardServiceImpl implements IFreeBoardService {
 		return dao.freeBoardDel(map);
 	}
 
+
+	@Override
+	public int updateBoard(Map<String, Object> map) {
+		log.info("IFreeBoardServiceImpl updateBoard 자유게시판 게시글 수정");
+		return dao.updateBoard(map);
+	}
+
 }

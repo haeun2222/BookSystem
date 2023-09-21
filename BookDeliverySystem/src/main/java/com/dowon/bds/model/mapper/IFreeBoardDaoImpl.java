@@ -44,4 +44,10 @@ public class IFreeBoardDaoImpl implements IFreeBoardDao {
 		return session.update(NS+"freeBoardDel",map);
 	}
 
+	@Override
+	public int updateBoard(Map<String, Object> map) {
+		log.info("IFreeBoardDaoImpl updateBoard 자유게시판 게시글 수정");
+		return session.update(NS+"updateBoard",map);
+	}
+
 }

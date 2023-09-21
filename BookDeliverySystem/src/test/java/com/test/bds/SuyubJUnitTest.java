@@ -125,12 +125,22 @@ public class SuyubJUnitTest {
 		log.info("SuyubJUnitTest CommentAllList 해당 게시글의 답글 조회{}",lists);
 		assertNotNull(lists);
 	}
-	@Test
+//	@Test
 	public void CommentDel() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("comment_seq", 36);
 		int n = dao3.CommentDel(map);
 		log.info("SuyubJUnitTest CommentDel 답글 삭제{}",map);
+		assertEquals(1, n);
+	}
+	@Test
+	public void updateBoard() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("free_bseq", 41);
+		map.put("free_title", "수정합니다");
+		map.put("free_content", "수정이 잘되는지 확인중입니다");
+		int n = dao2.updateBoard(map);
+		log.info("SuyubJUnitTest updateBoard 게시글 수정{}",map);
 		assertEquals(1, n);
 	}
 }

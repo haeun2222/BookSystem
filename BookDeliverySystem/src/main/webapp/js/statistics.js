@@ -86,5 +86,4 @@ window.onload = function(){
             chart.draw(ageData, options);
         });
     };
-    
 
