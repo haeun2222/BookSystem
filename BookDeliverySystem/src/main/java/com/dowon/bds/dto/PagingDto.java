@@ -8,7 +8,7 @@ package com.dowon.bds.dto;
 public class PagingDto {
 	
 	private int page;
-	private int  countList;
+	private int countList;
 	
 	private int totalCount;
 	

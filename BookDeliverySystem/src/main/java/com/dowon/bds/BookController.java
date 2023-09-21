@@ -77,9 +77,7 @@ public class BookController {
 		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
 		
 		if (loginDto == null) {
-			session.setAttribute("loginDto", new UserDto(0, null, null, null, null, null, null, null, null, null));
-			model.addAttribute("rentData", rentService.rentCheck(0));
-		    model.addAttribute("resveData", resveService.userResveStatus(0));
+
 		} else {
 			int userSeq = loginDto.getUser_seq();
 			
