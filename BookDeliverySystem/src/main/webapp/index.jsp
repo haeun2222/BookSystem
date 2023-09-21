@@ -15,12 +15,26 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="js/statistics.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<script type="text/javascript" src="./js/javascript41.js" defer="defer"></script>
+<link rel='stylesheet' href='./css/slick.css'/>
 <style type="text/css">
 svg > g > g:last-child { pointer-events: none }
 </style>
 </head>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <body>
+<div id="slider-div">
+    <div><img src="./img/9.png" width="100%"></div>
+    <div><img src="./img/7.png" width="100%"></div>
+    <div><img src="./img/header01.png" width="100%"></div>
+    <div><img src="./img/header02.png" width="100%"></div>
+    <div><img src="./img/header03.png" width="100%"></div>
+    <div><img src="./img/header04.png" width="100%"></div>
+</div>
+
 <!-- 검색창 -->
 <div class="search-container">
   <input type="text" placeholder="도서명 또는 저자를 입력하세요.">
