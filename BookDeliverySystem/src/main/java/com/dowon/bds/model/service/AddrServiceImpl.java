@@ -1,5 +1,8 @@
 package com.dowon.bds.model.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -22,21 +25,15 @@ public class AddrServiceImpl implements IAddrService {
 	@Autowired
 	private IAddrDao dao;
 	
-//	@Autowired
-//	private final SqlSession sqlSession;
-//	
-//	 public AddrServiceImpl(SqlSession sqlSession) {
-//	        this.sqlSession = sqlSession;
-//	    }
-	
+	@Autowired
+	private SqlSessionTemplate session;
+
 
     @Override
-
     public int saveAddress(AddrDto addrDto) {
     	logger.info("배송지 주소입력 saveAddress");
 		return dao.saveAddress(addrDto);
-    	
-    	
+   	
     }
 
 	@Override
@@ -57,6 +54,27 @@ public class AddrServiceImpl implements IAddrService {
 	}
 
 	@Override
+	public int updateDeliveryNum(Map<String, Object> map) {
+		log.info("운송장 번호 입력 updateDeliveryNum 운송장번호 업데이트 : {}" ,map);
+//		log.info("운송장 번호 입력 updateDeliveryNum 운송장번호 업데이트 :{} {}" ,user_seq, delivery_num);
+		
+		//운송장 번호 업데이트할 때 사용할 파라미터
+		try {
+//			Map<String, Object> map = new HashMap<String, Object>();
+//			map.put("user_seq", user_seq);
+//			map.put("delivery_num", delivery_num);
+			//dao에서 운송장번호 업데이트
+			dao.updateDeliveryNum(map);
+			
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+//		return dao.updateDeliveryNum(map);
+	}
+
+	@Override
     @Transactional
 	public int saveAddressReturn(AddrDto addrDto) {
 		log.info("배송지 주소 입력 saveAddressReturn 회원상태 업데이트");
@@ -65,15 +83,14 @@ public class AddrServiceImpl implements IAddrService {
         try {
             // 첫 번째 SQL 실행: 배송지 주소 입력
             result += dao.saveAddress(addrDto);
-
             // 두 번째 SQL 실행: 대출 상태 업데이트
             result += dao.deliRentStatus(addrDto.getUser_seq());
         } catch (Exception e) {
-            // 예외 발생 시 롤백
             e.printStackTrace();
         }
 
         return result;
 	}
+
 
 }

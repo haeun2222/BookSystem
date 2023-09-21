@@ -1,5 +1,7 @@
 package com.dowon.bds.model.service;
 
+import java.util.Map;
+
 /** 
  * @author 김지인
  * @since 2023.09.14
@@ -22,7 +24,10 @@ public interface IAddrService {
 	//유저, 주소 조인
 	public AddrDto getAddrUserSeq(int user_seq);
 	
-	//도서 상태 업데이트
+	//운송장 번호 업데이트
+	public int updateDeliveryNum(Map<String, Object> map);
+	
+	//도서 대출 상태 업데이트
 	public int deliRentStatus(int user_seq);
 
 	

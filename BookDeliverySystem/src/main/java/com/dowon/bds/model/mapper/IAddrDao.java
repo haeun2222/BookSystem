@@ -13,8 +13,11 @@ import com.dowon.bds.dto.AddrDto;
 
 @Mapper
 public interface IAddrDao {
+	
 	public int saveAddress(AddrDto addrDto);
+	
 	public int saveAddressReturn(AddrDto addrDto);
+	
 	public AddrDto checkAddress(String delivery_seq);
 	
 	public AddrDto getAddrUserSeq(int user_seq);
@@ -24,7 +27,10 @@ public interface IAddrDao {
 	 * @param map delivery_seq, delivery_num
 	 * @return 성공한 row의 갯수를 판단하여 성공 true/ 실패 false
 	 */
-	public boolean updateDeliveryNum(Map<String, Object> map);
+	public int updateDeliveryNum(Map<String, Object> map);
+//	public int updateDeliveryNum(AddrDto addrDto);
 	
 	public int deliRentStatus(int user_seq);
+	
+
 }
