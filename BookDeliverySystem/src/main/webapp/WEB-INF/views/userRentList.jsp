@@ -18,6 +18,9 @@
 <body>
 <div class="container">
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
+<c:set var="addrDto" value="${sessionScope.addrDto}" />
+
+${sessionScope.addrDto}
 <h1>${loginUser.user_name}님의 대출 도서 목록 입니다</h1>
     <button id="refreshButton">대출내역 갱신</button>
 
