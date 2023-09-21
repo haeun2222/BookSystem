@@ -18,6 +18,11 @@ public class SocialDaoImpl implements ISocialDao {
 	public int checkNaverKey(UserDto dto) {
 		return sqlSession.selectOne(NS+"checkNaverKey",dto);
 	}
+
+	@Override
+	public int socialRegist(UserDto dto) {
+		return sqlSession.insert(NS+"naverJoin",dto);
+	}
 	
 	
 

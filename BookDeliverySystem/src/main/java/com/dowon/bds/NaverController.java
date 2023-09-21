@@ -109,15 +109,14 @@ public class NaverController {
 		    		 //없으면 회원가입 페이지로 이동
 		    		 
 		    		 if(n == 1) {
-		    			 log.info("Welcome 소셜 로그인 성공");
-		    			 session.setAttribute("info", dto); // dto에 세션값 담아서 info로 보내기
-		    			 model.addAttribute("infotwo",dto);
-		    			 return "redirect:/index.jsp";
+		    			log.info("Welcome 소셜 로그인 성공");
+		    			model.addAttribute("info",dto);
+		    			return "redirect:/index.jsp";
 		    		 }else {
 		    			log.info("Welcome 소셜 로그인 실패");
-		    			session.setAttribute("socialRegist", dto);
-		    			model.addAttribute("infotwo",dto);
-		    			return "redirect:/socialRegistForm.do";
+		    			log.info("Welcome ====> 회원가입으로 이동");
+		    			model.addAttribute("socialInfo",dto);
+		    			return "socialRegistForm";
 		    		 }
 		    	 }
 		      }
