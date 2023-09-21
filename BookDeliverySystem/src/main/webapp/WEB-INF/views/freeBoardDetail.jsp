@@ -24,6 +24,7 @@
 		<div>
 		<p>${loginDto}</p>
 		<p>${dto}</p>
+		<p>${CommentAll}</p>
 			<c:if test="${loginDto.user_name eq dto.user_name or loginDto.user_auth eq 'A'}">
     		<input class="btn btn-danger" type="button" value="삭제" onclick="boardDel()">
 			<input class="btn btn-info" type="button" value="수정" >
@@ -38,7 +39,7 @@
 				<tr>
 					<td>${comment.user_name}: ${comment.comment_content} 작성일:${comment.comment_regdate}</td>
 				<c:if test="${loginDto.user_name == comment.user_name}">
-					<td><button class="btn btn-danger" onclick="location.href='./CommentDel.do'">삭제</button></td>
+					<td><button class="btn btn-danger" onclick="commentDel()">삭제</button></td>
 				</c:if>
 				</tr>
 				</c:forEach>
@@ -68,6 +69,18 @@
          } else {
              alert("게시글 삭제가 취소되었습니다.");
          }
+	}
+</script>
+<script type="text/javascript">
+	function commentDel(){
+		var result = confirm("선택하신 답글을 정말 삭제하시겠습니까?");
+		
+		if(result === true){
+			alert("답글이 삭제되었습니다.");
+			window.location.href="./CommentDel.do?comment_seq="+comment_seq;
+		}else{
+			alert("답글 삭제가 취소되었습니다.");
+		}
 	}
 </script>
 </html>
