@@ -20,6 +20,7 @@
     <button id="rentListButton">대출관리</button>
     <input type="text" id="bookName" placeholder="도서명 입력">
     <button id="search">검색</button>
+    <button class="btn btn-info" onclick="location.href='./logout.do'">로그아웃</button>
     
     <div id="userInfoTable"></div>
     <div id="bookInfoTable"></div>

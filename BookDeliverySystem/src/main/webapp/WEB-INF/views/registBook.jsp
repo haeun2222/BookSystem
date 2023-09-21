@@ -87,12 +87,12 @@
 <body>
     <div class="form-container">
         <form action="./registbutton.do" method="post">
-            <!-- 도서 이미지 -->
-            <div class="book-image">
-                <img src="${registBook.book_img}" alt="도서 이미지">
-            </div>
-            
-            <!-- 도서 정보 입력란 -->
+
+			<div class="book-image">
+				<input type="hidden" name="book_img" value="${registBook.book_img}">
+				<img src="${registBook.book_img}" alt="도서 이미지">
+			</div>
+			<!-- 도서 정보 입력란 -->
             <div class="book-info">도서 제목:</div>
             <input type="text" name="book_title" value="${registBook.book_title}">
             
