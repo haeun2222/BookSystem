@@ -11,15 +11,20 @@ package com.dowon.bds;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -108,6 +113,22 @@ public class AddrController {
 //		return "returnAddrCheck";
 	}
 	
+	@PostMapping("/updateDeliveryNum.do")
+	@ResponseBody
+	public ResponseEntity<String> updateDeliveryNum(@RequestParam("user_seq") int userSeq, @RequestParam("delivery_num") String deliveryNum) {
+	    try {
+	        // 운송장 번호를 사용하여 DB에서 해당 사용자의 delivery_num을 업데이트합니다.
+	        Map<String, Object> map = new HashMap<>();
+	        map.put("user_seq", userSeq);
+	        map.put("delivery_num", deliveryNum);
+	        service.updateDeliveryNum(map);
+	        return ResponseEntity.ok("운송장 번호가 업데이트되었습니다.");
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("운송장 번호 업데이트 중 오류가 발생했습니다.");
+	    }
+	}
+
 	
 
 	

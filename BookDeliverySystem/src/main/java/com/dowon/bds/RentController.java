@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dowon.bds.dto.AddrDto;
 import com.dowon.bds.dto.BookDto;
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IRentService;
@@ -58,6 +59,8 @@ public class RentController {
 	public String userRentList(HttpSession session, Model model, HttpServletResponse response) {
 		log.info("Welcome RentController userRentList 회원의 마이페이지-대출도서목록에 들어갈 페이지 컨트롤러");
 		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
+//		AddrDto addrDto = new AddrDto();
+//		session.setAttribute("addrDto", addrDto);
 	    if (loginDto != null) {
 	        int user_seq = loginDto.getUser_seq();
 	        List<Map<String, Object>> lists = rentService.selectMyBookRent(user_seq);
@@ -67,6 +70,7 @@ public class RentController {
 	    } else {
 	        return "redirect:/loginPage.do";
 	    }
+	    
 	}
 
 	
@@ -116,21 +120,9 @@ public class RentController {
 /*
  * 김지인 
  * 23.09.18 배송지 조회를 위한 컨트롤러 작성
+ * 23.09.21 window.open으로 변경하여 삭제
+ * 
  */
-	
-	@RequestMapping(value = "/delivery.do", method = RequestMethod.GET)
-	public String delivery(Locale locale, Model model) {
-		log.info("Welcome! delivery 도서 배송지 조회를 위한 페이지 컨트롤러");
-		log.info("배송지 조회 이동");
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "delivery";
-		
-	}
 	
 
 }

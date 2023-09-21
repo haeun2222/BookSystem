@@ -58,12 +58,12 @@
                 </td>
                 <td style="display: flex; align-items: center;">
             	    	<input type="text" id="deliveryNum${rent.USER_SEQ}" placeholder="운송장번호 입력">
-  					    <button onclick="updateDelivery('${rent.USER_SEQ}', ${rent.RENT_SEQ})">입력</button>
+  					    <button onclick="updateDelivery('${rent.USER_SEQ}')">입력</button>
                 </td>
             </tr>
         </c:forEach>
     </table>
-</div>
+</div> 
 </body>
 <%@ include file="footer.jsp" %>
 <script>
@@ -104,36 +104,29 @@ async function handleActions(rentSeq, bookSeq) {
 
 </script>
 <script type="text/javascript">
-function updateDelivery(user_seq, rent_seq) {
-    // 입력된 운송장 번호 가져오기
-    const delivery_num = document.getElementById(`delivery_num${user_seq}`).value;
+function updateDelivery(userSeq) {
+    // 운송장 번호 입력 필드에서 값을 가져옵니다.
+    const deliveryNum = document.getElementById(`deliveryNum${userSeq}`).value;
 
-    // AJAX 요청 보내기
-    const deli= new XMLHttpRequest();
-    deli.open("POST", "/updateDeliveryNum.do"); // 업데이트를 처리하는 컨트롤러 경로로 수정
-    deli.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    
-    // 요청 본문 데이터 설정
-    const data = JSON.stringify({
-        user_seq: user_seq,
-        delivery_num: delivery_num
-    });
-
-    deli.onload = function () {
-        if (deli.status === 200) {
-            // 성공적으로 업데이트되었을 때의 처리
-            alert("운송장 번호가 업데이트되었습니다.");
-        } else {
-            // 업데이트에 실패하면 오류 메시지를 표시
-            alert("운송장 번호 업데이트에 실패했습니다.");
+    // AJAX를 사용하여 서버에 업데이트 요청을 보냅니다.
+    $.ajax({
+        url: '/updateDeliveryNum.do', // 서버의 업데이트 URL을 지정하세요.
+        type: 'POST', // 업데이트 요청의 HTTP 메서드를 지정하세요.
+        data: {
+            user_seq: userSeq,
+            delivery_num: deliveryNum
+        },
+        success: function(response) {
+            // 업데이트가 성공한 경우 처리할 내용을 여기에 추가하세요.
+            // 예를 들어, 화면에 메시지를 표시하거나 다른 작업을 수행할 수 있습니다.
+            alert('운송장 번호가 업데이트되었습니다.');
+        },
+        error: function(error) {
+            // 업데이트가 실패한 경우 처리할 내용을 여기에 추가하세요.
+            alert('운송장 번호 업데이트 중 오류가 발생했습니다.');
         }
-    };
-
-    // 요청 보내기
-    deli.send(data);
+    });
 }
-
-
 </script>
 
 </html>
