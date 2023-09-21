@@ -34,5 +34,10 @@ UPDATE TB_FREE_BOARD SET FREE_DELFLAG = 'Y'
 	AND FREE_BSEQ = #{free_bseq}
 </update>
 
+<!-- 게시글 수정 -->
+<update id="updateBoard" parameterType="java.util.Map">
+UPDATE TB_FREE_BOARD SET FREE_CONTENT = #{free_content}
+	WHERE FREE_BSEQ = #{free_bseq}
+</update>
 
 </mapper>

@@ -46,7 +46,7 @@ svg > g > g:last-child { pointer-events: none }
 					</div>
 					<div class="modal-body">
 						<h1 id="bookTitle" style="text-align: center;" onmouseover="showBookInfo()" onmouseout="hideBookInfo()"></h1>
-						<div id="bookInfo" style="position: fixed; left: -200px;">
+						<div id="bookInfo" style="position: fixed; left: -200px; size: 200%;">
 						</div>
 						<!-- 여기에 차트 뿌리기 -->
 						<table>
