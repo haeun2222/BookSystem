@@ -40,7 +40,7 @@ public class FreeCommentController {
 		return null;
 	}
 	@RequestMapping(value = "/CommentDel.do", method = RequestMethod.GET)
-	public String CommetDelte(@RequestParam("comment_seq")int comment_seq) {
+	public String CommetDelte(@RequestParam("comment_seq")String comment_seq) {
 		log.info("FreeCommentController CommetDelte 답글삭제");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("comment_seq", comment_seq);
