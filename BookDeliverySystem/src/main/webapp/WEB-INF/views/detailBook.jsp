@@ -108,11 +108,30 @@
         </div>
     </div>
 </div>
+<%-- ${rentData} --%>
+<%-- ${resveData} --%>
+<!-- -->
+<input type="hidden" id="rentDataSize" value="${rentData.size()}">
+<input type="hidden" id="resveDataSize" value="${resveData.size()}">
+<input type="hidden" id="filteredBookSeqList" value="${filteredBookSeqList}">
+<input type="hidden" id="rentYBookSeqList" value="${rentYBookSeqList}">
 
+<input type="hidden" id="rentDataTitle" value='${rentData[0].BOOK_TITLE}'>
+<input type="hidden" id="rentData" value="${rentData}">
 
+<input type="hidden" id="rentDataTitle" value='${rentData[0].BOOK_TITLE}'>
+<input type="hidden" id="rentData" value="${rentData}">
+
+<input type="hidden" id="loginDto" value="${loginDto}">
+<input type="hidden" id="detailBook" value="${detailBook}">
+
+<input type="hidden" id="userName" value="${loginDto.user_name}">
+<input type="hidden" id="userEmail" value="${loginDto.user_email}">
+
+<input type="hidden" id="bookTitle" value="${detailBook.book_title}">
+<input type="hidden" id="bookWriter" value="${detailBook.book_writer}">
 
 <script type="text/javascript">
-
 //대출
 function checkAvailability() {
     var rentDataSize = ${rentData.size()};
