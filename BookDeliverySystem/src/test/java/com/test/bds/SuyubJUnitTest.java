@@ -112,11 +112,17 @@ public class SuyubJUnitTest {
 		log.info("SuyubJUnitTest freeBoardDel {}",map);
 		assertEquals(1, n);
 	}
+//	@Test
+//	public void CommentInsert() {
+//		FreeCommentDto fDto = new FreeCommentDto(19, 43, 701, "그러게말입니다", null, null);
+//		int n = dao3.CommentInsert(fDto);
+//		log.info("SuyubJUnitTest CommentInsert {}",fDto);
+//		assertEquals(1, n);
+//	}
 	@Test
-	public void CommentInsert() {
-		FreeCommentDto fDto = new FreeCommentDto(19, 43, 701, "그러게말입니다", null, null);
-		int n = dao3.CommentInsert(fDto);
-		log.info("SuyubJUnitTest CommentInsert {}",fDto);
-		assertEquals(1, n);
+	public void CommentAllList() {
+		List<FreeCommentDto> lists = dao3.CommentAllList(43);
+		log.info("SuyubJUnitTest CommentAllList 해당 게시글의 답글 조회{}",lists);
+		assertNotNull(lists);
 	}
 }
