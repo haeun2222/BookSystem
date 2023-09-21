@@ -31,7 +31,7 @@
     <th class="tg-0lax">${detailBook.book_publisher}</th>
   </tr>
   <tr>
-    <th class="tg-0lax">${detailBook.book_published_date}</th>
+    <th class="tg-0lax"><fmt:formatDate value="${detailBook.book_published_date}" pattern="yyyy-MM-dd"/></th>
   </tr>
  
 </thead>
