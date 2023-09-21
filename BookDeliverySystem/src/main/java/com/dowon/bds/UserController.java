@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IUserService;
@@ -72,10 +74,17 @@ public class UserController {
 	}
 	
 	@GetMapping(value="/logout.do")
-	public String logout(HttpSession session) {
-		session.invalidate();
+	public String logout(HttpServletRequest request, HttpSession session, HttpServletResponse response) {
 		log.info("로그아웃 실행");
-		return "redirect:/";
+	    // 세션 무효화
+	    session.invalidate();
+
+	    // 브라우저 캐시 제어
+	    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	    response.setHeader("Pragma", "no-cache");
+	    response.setHeader("Expires", "0");
+
+	    return "redirect:/index.jsp"; // 로그인 페이지 또는 다른 페이지로 리다이렉트
 	}
 	
 	
