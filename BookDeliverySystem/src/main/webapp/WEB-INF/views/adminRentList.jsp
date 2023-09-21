@@ -16,6 +16,7 @@
 </head>
 <%@include file="/WEB-INF/views/header.jsp"%>
 <body>
+${addrDto}
 <div class="container">
     <h1>계발의민족 회원 도서 대출 목록</h1>
     <table border="1">
@@ -57,8 +58,9 @@
                     </c:choose>
                 </td>
                 <td style="display: flex; align-items: center;">
-            	    	<input type="text" id="deliveryNum${rent.USER_SEQ}" placeholder="운송장번호 입력">
-  					    <button onclick="updateDelivery('${rent.USER_SEQ}')">입력</button>
+            	    	<input type="text" id="deliveryNum${rent.USER_SEQ}" placeholder="운송장번호 입력" value="">
+  					   <button onclick="updateDelivery(${rent.USER_SEQ}, '${rent.USER_SEQ.delivery_num}')">입력</button>
+
                 </td>
             </tr>
         </c:forEach>
@@ -104,21 +106,21 @@ async function handleActions(rentSeq, bookSeq) {
 
 </script>
 <script type="text/javascript">
-function updateDelivery(userSeq) {
-    // 운송장 번호 입력 필드에서 값을 가져옵니다.
-    const deliveryNum = document.getElementById(`deliveryNum${userSeq}`).value;
+function updateDelivery(userSeq, deliveryNum) {
+    // 운송장 번호 입력 필드에서 값을 가져온다
+const deliveryNum = document.getElementById('deliveryNum${userSeq}').value;
 
-    // AJAX를 사용하여 서버에 업데이트 요청을 보냅니다.
+
+    // AJAX를 사용하여 서버에 업데이트 요청을 보냄
     $.ajax({
-        url: '/updateDeliveryNum.do', // 서버의 업데이트 URL을 지정하세요.
-        type: 'POST', // 업데이트 요청의 HTTP 메서드를 지정하세요.
+        url: './updateDeliveryNum.do', 
+        type: 'POST', // 업데이트 요청의 HTTP
         data: {
-            user_seq: userSeq,
-            delivery_num: deliveryNum
+        	 user_seq: userSeq,
+             delivery_num: deliveryNum
         },
         success: function(response) {
-            // 업데이트가 성공한 경우 처리할 내용을 여기에 추가하세요.
-            // 예를 들어, 화면에 메시지를 표시하거나 다른 작업을 수행할 수 있습니다.
+            
             alert('운송장 번호가 업데이트되었습니다.');
         },
         error: function(error) {
