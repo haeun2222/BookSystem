@@ -127,12 +127,16 @@ public class BookController {
 	public String registBook(@ModelAttribute BookDto dto) {
 	    log.info("date 값 확인 : {}", dto.getBook_published_date());
 
-	   
+	    // 컨트롤러에서 클라이언트에서 받은 문자열을 Date로 변환하는 코드
+	    try {
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	        Date parsedDate = dateFormat.parse(dto.getBook_published_dateStr()); // 이 때, dto에서 book_published_dateStr 필드를 추가해주세요.
+	        dto.setBook_published_date(parsedDate);
+	    } catch (ParseException e) {
+	        e.printStackTrace();
+	    }
 
-	    log.info("★★ 확인 : {}", dto.getBook_published_date().getClass().getTypeName());
 	    int n = service.registBook(dto);
-
-	    log.info("check : {}", n);
 	    return (n == 1) ? "success" : "false";
 	}
 }

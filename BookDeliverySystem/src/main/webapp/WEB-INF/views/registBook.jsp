@@ -106,7 +106,8 @@
             <input type="text" name="book_publisher" value="${registBook.book_publisher}">
             
             <div class="book-info">출판일:</div>
-            <input type="text" name="book_published_date" value="${registBook.book_published_date}">
+            <input type="text" name="book_published_dateStr" 
+            value='<fmt:formatDate pattern="yyyy-MM-dd" value="${registBook.book_published_date}" />'>
             
             <div class="book-info">도서 내용:</div>
             <textarea name="book_intro" rows="5">${registBook.book_intro}</textarea>
