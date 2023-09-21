@@ -11,4 +11,12 @@ INSERT INTO BOOK.TB_FREE_COMMENT
 	VALUES(SQ_FREE_COMMENT.NEXTVAL, #{free_bseq}, #{user_seq}, #{comment_content}, SYSDATE, 'N')
 </insert>
 
+<!-- 답글조회 -->
+<select id="CommentAllList" resultType="FreeCommentDto">
+SELECT tfc.COMMENT_SEQ ,tu.USER_NAME ,tfc.COMMENT_CONTENT ,tfc.COMMENT_REGDATE  
+	FROM TB_FREE_COMMENT tfc 
+	JOIN TB_USER tu ON tfc.USER_SEQ = tu.USER_SEQ 
+	WHERE FREE_BSEQ = #{free_bseq}
+	ORDER BY COMMENT_SEQ
+</select>
 </mapper>

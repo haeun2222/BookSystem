@@ -26,5 +26,5 @@ public class FreeCommentDto {
 	private String comment_content;
 	private String comment_regdate;
 	private String comment_delflag;
-
+	private String user_name;
 }
