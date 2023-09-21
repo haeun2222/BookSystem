@@ -12,22 +12,25 @@
 </head>
 <%@ include file="header.jsp" %>
 <body>
-${free_bseq}
-	<div class="container">
-		<h1>제목: ${dto.free_title}<input style="float: right;" class="btn btn-success" type="button" value="이전" onclick="history.back(-1);">
-			<c:if test="${loginDto.user_name eq dto.user_name or loginDto.user_auth eq 'A'}">
-    		<input style="float: right;" class="btn btn-danger" type="button" value="삭제" onclick="boardDel()">
-			<input style="float: right;" class="btn btn-info" type="button" value="수정" onclick="location.href='./updateBoard.do?free_bseq=${dto.free_bseq}'">
+<%-- ${loginDto} --%>
+<%-- ${free_title} --%>
+<%-- ${free_content} --%>
+<%-- ${free_bseq} --%>
+<div class="container">
+		<h1>제목: ${free_title}</h1><button style="float: right;" class="btn btn-success" onclick="history.back(-1)">이전</button>
+		<form action="./freeBoardUpdate.do?free_bseq=${free_bseq}" method="post">
+			<div class="form-group">
+				<label for="id">아이디:</label>
+				<div class="form-control" id="id">${loginDto.user_name}</div>
+			</div>
+			<div class="form-group">
+				<label for="comment">내용:</label>
+				<textarea class="form-control" id="free_content" name="free_content" rows="5" cols="50">${free_content}</textarea>
+			</div>
+			<button type="submit" class="btn btn-success">완료</button>
+		</form>
 			
-			</c:if>
-		</h1>
-		<div>
-			작성자<div class="form-control" style="font-size: 20px;">${dto.user_name}</div>
-			내용<div class="form-control" style="height: 100px; font-size: 20px;">${dto.free_content}</div>
-			작성일<div class="form-control" style="font-size: 20px;"><fmt:formatDate value="${dto.free_regdate}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></div>
-		</div><br>
-		<div>
-			
+	</div>
 			
 			
 </body>

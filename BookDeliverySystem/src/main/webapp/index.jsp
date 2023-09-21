@@ -44,7 +44,7 @@ svg > g > g:last-child { pointer-events: none }
 <!-- <a href="./genderList.do">성별통계불러와라</a> -->
 <!-- <a href="./ageList.do">연령별통계불러와라</a> -->
 <div id="content">
-<div class="rectangle" style="background-image: url('./img/star.png'); width:300px; height:300px; background-size: cover; margin-top: 400px; margin-left: 20px;">
+<div class="rectangle" style="background-image: url('./img/star.png'); width:300px; height:300px; background-size: cover; margin-top: 10px; margin-left: 20px;">
 		<h2>실시간 베스트셀러!</h2>
 		<h4>누구에게 인기가 많을까?</h4>
 		<button id="showModal" type="button" class="btn btn-info btn-lg" data-toggle="modal"
@@ -60,7 +60,7 @@ svg > g > g:last-child { pointer-events: none }
 					</div>
 					<div class="modal-body">
 						<h1 id="bookTitle" style="text-align: center;" onmouseover="showBookInfo()" onmouseout="hideBookInfo()"></h1>
-						<div id="bookInfo" style="position: fixed; left: -200px; size: 200%;">
+						<div id="bookInfo" style="position: fixed; left: -200px;">
 						</div>
 						<!-- 여기에 차트 뿌리기 -->
 						<table>
