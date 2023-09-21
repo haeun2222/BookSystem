@@ -1,6 +1,7 @@
 package com.dowon.bds.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,12 @@ public class FreeCommentServiceImpl implements IFreeCommentService {
 	public List<FreeCommentDto> CommentAllList(int free_bseq) {
 		log.info("FreeCommentServiceImpl CommentAllList 해당게시글의 답글 조회");
 		return dao.CommentAllList(free_bseq);
+	}
+
+	@Override
+	public int CommentDel(Map<String, Object> map) {
+		log.info("FreeCommentServiceImpl CommentDel 답글 삭제");
+		return dao.CommentDel(map);
 	}
 
 }

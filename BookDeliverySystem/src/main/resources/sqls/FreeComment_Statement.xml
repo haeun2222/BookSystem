@@ -19,4 +19,11 @@ SELECT tfc.COMMENT_SEQ ,tu.USER_NAME ,tfc.COMMENT_CONTENT ,tfc.COMMENT_REGDATE
 	WHERE FREE_BSEQ = #{free_bseq}
 	ORDER BY COMMENT_SEQ
 </select>
+
+<!-- 답글삭제 -->
+<update id="CommentDel" parameterType="java.util.Map">
+UPDATE TB_FREE_COMMENT SET COMMENT_DELFLAG ='Y'
+	WHERE COMMENT_DELFLAG ='N'
+	AND COMMENT_SEQ = #{comment_seq}
+</update>
 </mapper>

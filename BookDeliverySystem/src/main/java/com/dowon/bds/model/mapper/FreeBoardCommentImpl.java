@@ -1,6 +1,7 @@
 package com.dowon.bds.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,12 @@ public class FreeBoardCommentImpl implements IFreeCommentDao {
 	public List<FreeCommentDto> CommentAllList(int free_bseq) {
 		log.info("FreeBoardCommentImpl CommentAllList 해당게시글의 답글 조회");
 		return session.selectList(NS+"CommentAllList",free_bseq);
+	}
+
+	@Override
+	public int CommentDel(Map<String, Object> map) {
+		log.info("FreeBoardCommentImpl CommentDel 답글삭제");
+		return session.update(NS+"CommentDel",map);
 	}
 
 }

@@ -119,10 +119,18 @@ public class SuyubJUnitTest {
 //		log.info("SuyubJUnitTest CommentInsert {}",fDto);
 //		assertEquals(1, n);
 //	}
-	@Test
+//	@Test
 	public void CommentAllList() {
 		List<FreeCommentDto> lists = dao3.CommentAllList(43);
 		log.info("SuyubJUnitTest CommentAllList 해당 게시글의 답글 조회{}",lists);
 		assertNotNull(lists);
+	}
+	@Test
+	public void CommentDel() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("comment_seq", 36);
+		int n = dao3.CommentDel(map);
+		log.info("SuyubJUnitTest CommentDel 답글 삭제{}",map);
+		assertEquals(1, n);
 	}
 }

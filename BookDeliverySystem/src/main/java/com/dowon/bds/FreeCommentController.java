@@ -1,7 +1,9 @@
 package com.dowon.bds;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -37,12 +39,16 @@ public class FreeCommentController {
 		}
 		return null;
 	}
-//	@RequestMapping(value = "/CommentList.do", method = RequestMethod.GET)
-//	public String CommentList(@RequestParam("free_bseq")int free_bseq, Model model) {
-//		List<FreeCommentDto> CommentList = service.CommentAllList(free_bseq);
-//		log.info("FreeCommentController CommentList 답글리스트 조회{}",CommentList);
-//		model.addAttribute("CommentAll", CommentList);
-//		return "freeBoardDetail";
-//	}
-//	
+	@RequestMapping(value = "/CommentDel.do", method = RequestMethod.GET)
+	public String CommetDelte(@RequestParam("comment_seq")int comment_seq) {
+		log.info("FreeCommentController CommetDelte 답글삭제");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("comment_seq", comment_seq);
+		int m = service.CommentDel(map);
+		if(m == 1) {
+			return "redirect:/freeBoardList.do";
+		}else {
+			return "freeBoardDetail";
+		}
+	}
 }

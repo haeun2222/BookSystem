@@ -38,7 +38,7 @@
 				<tr>
 					<td>${comment.user_name}: ${comment.comment_content} 작성일:${comment.comment_regdate}</td>
 				<c:if test="${loginDto.user_name == comment.user_name}">
-					<td><button class="btn btn-danger">삭제</button></td>
+					<td><button class="btn btn-danger" onclick="location.href='./CommentDel.do'">삭제</button></td>
 				</c:if>
 				</tr>
 				</c:forEach>
