@@ -28,7 +28,7 @@ public interface IAddrDao {
 	 * @return 성공한 row의 갯수를 판단하여 성공 true/ 실패 false
 	 */
 	public int updateDeliveryNum(Map<String, Object> map);
-//	public int updateDeliveryNum(AddrDto addrDto);
+
 	
 	public int deliRentStatus(int user_seq);
 	

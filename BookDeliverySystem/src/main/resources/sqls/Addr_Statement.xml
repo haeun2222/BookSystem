@@ -61,7 +61,7 @@
 	<!-- 운송장 번호 입력 -->
 	<update id="updateDeliveryNum">
 		UPDATE  TB_DELIVERY 
-			SET  DELIVERY_NUM = #{delivery_num}
+			SET DELIVERY_NUM = #{delivery_num}
 			WHERE USER_SEQ = #{user_seq}
 	</update>
 	

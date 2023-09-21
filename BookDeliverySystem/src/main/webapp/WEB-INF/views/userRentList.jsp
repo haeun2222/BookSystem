@@ -73,7 +73,7 @@
 			<td>
 			<!-- @김지인2 @since 23.09.23 - 배송조회시 운송장 번호 입력값으로 조회하도록 변경 -->
 			<button onclick="openTrackerForm()">배송조회</button>
-<%-- 				<button onclick="location.href='./delivery.do?user_seq=${loginDto.user_seq}'">배송조회</button> --%>
+<%-- 				<button onclick="location.href='./delivery.do?user_seq=${loginDto.user_seq}'">배송조회</button> --%> 
 			</td>
         </tr>
     </c:forEach>
@@ -83,9 +83,9 @@
 <%@ include file="footer.jsp" %>
 <script>
 function openTrackerForm() {
-    const delivery_num = "${addrDto.delivery_num}";
-    const t_invoice = encodeURIComponent(delivery_num);
-    window.open(`http://info.sweettracker.co.kr/tracking/5?t_key=vIvDVTiiTlMarYcHz1x5wQ&t_code=04&t_invoice=${t_invoice}`, "_blank", "width=600,height=600");
+//     const delivery_num = "${addrDto.delivery_num}";
+//     const t_invoice = encodeURIComponent(delivery_num);
+   window.open("http://info.sweettracker.co.kr/tracking/5?t_key=vIvDVTiiTlMarYcHz1x5wQ&t_code=04&t_invoice=578914961436", "_blank", "width=600,height=800")
 }
 </script>
 			

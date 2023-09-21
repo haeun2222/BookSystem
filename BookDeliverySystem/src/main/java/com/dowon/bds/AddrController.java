@@ -98,19 +98,6 @@ public class AddrController {
 		
 		return "returnAddrCheck";
 	
-//	@RequestMapping(value ="/returnAddrCheck.do", method = RequestMethod.POST)
-//	public String returnAddrCheck(AddrDto addrDto , HttpSession session, Model model, @RequestParam("book_seq") int bookSeq) {
-//		logger.info("Welcome! AddrController 수거요청 입력 returnAddrCheck {}", addrDto);
-//		addrDto.setUser_seq(((UserDto)session.getAttribute("loginDto")).getUser_seq());
-//		int n = service.saveAddress(addrDto);
-//		session.setAttribute("saveAddressReturn", addrDto);
-//		
-//		 // 렌트 상태 변경
-//	    service.deliRentStatus(addrDto.getUser_seq());
-//		
-//		model.addAttribute("bookSeq",bookSeq);
-//		
-//		return "returnAddrCheck";
 	}
 	
 	@PostMapping("/updateDeliveryNum.do")
