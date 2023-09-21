@@ -18,4 +18,9 @@ public class SocialServiceImpl implements ISocialService {
 		return dao.checkNaverKey(dto);
 	}
 
+	@Override
+	public int socialRegist(UserDto dto) {
+		return dao.socialRegist(dto);
+	}
+
 }

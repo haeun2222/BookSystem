@@ -6,15 +6,12 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/font.css">
 <title>일반회원가입 페이지</title>
-<link rel="stylesheet" href="css/registForm.css">
 <script type="text/javascript"src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<link rel="stylesheet" href="css/registForm.css">
 </head>
 <body>
 
 <!-- header -->
-        <div id="header">
-            <a href="https://nid.naver.com/user2/V2Join.nhn?m=agree#agreeBottom" target="_blank" title="네이버 회원가입 페이지 보러가기"><img src="NAVER_CI_Green.png" id="logo"></a>
-        </div>
 
 
         <!-- wrapper -->
@@ -42,7 +39,6 @@
                     <span class="box int_pass">
                         <input type="text" id="pswd1" name="user_password" class="int" maxlength="20">
                         <span id="alertTxt">사용불가</span>
-                        <img src="m_icon_pass.png" id="pswd1_img1" class="pswdImg">
                     </span>
                     <span class="error_next_box"></span>
                     <span class="successmsg"></span>
@@ -53,7 +49,6 @@
                     <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
                     <span class="box int_pass_check">
                         <input type="text" id="pswd2" class="int" maxlength="20">
-                        <img src="m_icon_check_disable.png" id="pswd2_img1" class="pswdImg">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -136,12 +131,10 @@
 				<input type="hidden" name="user_birth">
 
                 <!-- JOIN BTN-->
-                <div class="btn_area">
-                    <button type="button" id="nomalRegist" disabled>
-                        가입하기
-                    </button>
-                </div>
-            </div> 
+				<div class="btn_area">
+					<button type="button" id="regist">가입하기</button>
+				</div>
+			</div> 
             <!-- content-->
 			</form>
         </div> 
