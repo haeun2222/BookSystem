@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dowon.bds.dto.FreeBoardDto;
+import com.dowon.bds.dto.FreeCommentDto;
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IFreeBoardService;
+import com.dowon.bds.model.service.IFreeCommentService;
 import com.dowon.bds.model.service.IUserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,8 @@ public class FreeBoardController {
 
 	@Autowired
 	private IFreeBoardService service;
+	@Autowired
+	private IFreeCommentService service2;
 
 	@RequestMapping(value = "/home.do",method = RequestMethod.GET)
 	public String home() {
@@ -68,9 +72,11 @@ public class FreeBoardController {
 	public String freeBoardDetail(@RequestParam("free_bseq")int free_bseq,Model model,HttpSession session) {
 		log.info("FreeBoardController freeBoardDetail 자유게시판 상세조회");
 		UserDto loginDto = (UserDto)session.getAttribute("loginDto");
+		List<FreeCommentDto> CommentList = service2.CommentAllList(free_bseq);
 		FreeBoardDto dto = service.freeBoardDetail(free_bseq);
 		model.addAttribute("dto", dto);
 		model.addAttribute("loginDto", loginDto);
+		model.addAttribute("CommentAll", CommentList);
 		return "freeBoardDetail";
 	}
 	@RequestMapping(value = "/freeBoardDel.do", method = RequestMethod.GET)

@@ -7,12 +7,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
+<script type="text/javascript" src="js/userRentResve.js"></script>
+
 <title>Insert title here</title>
 </head>
 <%@ include file="header.jsp" %>
@@ -33,7 +35,7 @@
     <th class="tg-0lax">${detailBook.book_publisher}</th>
   </tr>
   <tr>
-    <th class="tg-0lax">${detailBook.book_published_date}</th>
+    <th class="tg-0lax"><fmt:formatDate value="${detailBook.book_published_date}" pattern="yyyy-MM-dd"/></th>
   </tr>
  
 </thead>
@@ -50,9 +52,8 @@
 </tbody>
 </table>
 
-
 <!-- 밑으로 하은이 추가한부분 / 나중에 주석 지우겠습니다 -->
-<c:if test="${sessionScope.loginDto.user_seq != 0}">
+<c:if test="${not empty sessionScope.loginDto}">
 <c:if test="${filteredBookSeqList.contains(detailBook.book_seq.toString())}">
 <input type="button" class="btn btn-danger" value="대출불가" onclick="impossibility()">
 <input type="button" class="btn btn-info" value="예약신청" onclick="newResve1()">
@@ -62,7 +63,7 @@
 <input type="button" class="btn btn-danger" value="예약불가" onclick="newResve()">
 </c:if>
 </c:if>
-<c:if test="${sessionScope.loginDto.user_seq == 0}">
+<c:if test="${empty sessionScope.loginDto}">
 	<br><div>도서 대출과 예약은 로그인 후 이용하실 수 있습니다.</div><br>
     <input type="button" class="btn btn-success" value="로그인" onclick="location.href='./loginPage.do'">
 </c:if>
@@ -73,140 +74,110 @@
         <div class="modal-content">
             <div class="modal-header">
                 <!-- 모달 제목 -->
-                <h4 class="modal-title" id="modalTitle">대출 신청 확인</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="modalTitle">대출 신청 확인</h4>
             </div>
             <div class="modal-body">
                 <!-- 모달 내용 -->
                 <p id="modalContent"></p>
             </div>
-            <div class="modal-footer d-flex justify-content-center">
-            	<p id="modalFooter"></p>
+            <div class="modal-footer text-center">
+                <!-- 모달 푸터 -->
+                <p id="modalFooter"></p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- 예약 모달 창1 -->
+<!-- 예약 모달 창 -->
 <div class="modal fade" id="myModal1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <!-- 모달 제목 -->
-                <h4 class="modal-title" id="modalTitle">예약 신청 확인</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="modalTitle">예약 신청 확인</h4>
             </div>
             <div class="modal-body">
                 <!-- 모달 내용 -->
                 <p id="modalContent"></p>
             </div>
-            <div class="modal-footer d-flex justify-content-center">
-            	<p id="modalFooter"></p>
+            <div class="modal-footer text-center">
+                <p id="modalFooter"></p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- 예약 모달 창2 -->
-<div class="modal fade" id="myModal2" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <!-- 모달 제목 -->
-                <h4 class="modal-title" id="modalTitle">예약 신청 확인</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <!-- 모달 내용 -->
-                <p id="modalContent"></p>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-            	<p id="modalFooter"></p>
-            </div>
-        </div>
-    </div>
-</div>
+
+
 <script type="text/javascript">
-function checkAvailability() {
 
+//대출
+function checkAvailability() {
     var rentDataSize = ${rentData.size()};
     var resveDataSize = ${resveData.size()};
-
     console.log("rentDataSize: " + rentDataSize);
     console.log("resveDataSize: " + resveDataSize);
-    
+
     var modalContent = "";
     var modalFooter = $('<div></div>');
     var button1 = "";
     var button2 = "";
 
-
     if (rentDataSize == 0 && resveDataSize == 0) {
         modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>도서정보</b><br>도서명 : ${detailBook.book_title}<br>저자 : ${detailBook.book_writer}<br><br><b>대출신청 확인</b><br>대출신청을 하시겠습니까?<br>대출신청 버튼을 누르면 배송지 입력으로 이동합니다.";
         button1 = $('<button type="button" class="btn btn-primary ml-2">대출신청</button>');
-        button2 = $('<button type="button" class="btn btn-primary ml-2">닫기</button>');
-        
+        button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
+
         button1.click(function() {
-           window.location.href = "./addr.do?book_seq=" + ${detailBook.book_seq};
+            window.location.href = "./addr.do?book_seq=" + ${detailBook.book_seq};
         });
 
-        button2.click(function() {
-            $('#rentModal').modal('hide');
-        });
-        
         modalFooter.append(button1);
         modalFooter.append(button2);
-        
     } else {
         if (resveDataSize > 0) {
-           modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>예약정보</b><br>${loginDto.user_name}님은 현재<br>${resveData[0].BOOK_TITLE} 도서를 예약중입니다.<br>예약신청이 불가합니다.";
-           button1 = $('<button type="button" class="btn btn-warning ml-2">예약조회</button>');
-            button2 = $('<button type="button" class="btn btn-danger ml-2">닫기</button>');
+            modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>예약정보</b><br>${loginDto.user_name}님은 현재<br>${resveData[0].BOOK_TITLE} 도서를 예약중입니다.<br>예약신청이 불가합니다.";
+            button1 = $('<button type="button" class="btn btn-warning ml-2">예약조회</button>');
+            button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
             
             var user_seq = ${loginDto.user_seq};
             button1.click(function() {
                 window.location.href = "./userResveList.do?user_seq=" + user_seq;
             });
 
-            button2.click(function() {
-                $('#rentModal').modal('hide');
-            });
-            
             modalFooter.append(button1);
             modalFooter.append(button2);
         }
         if (rentDataSize > 0) {
-           modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>대출정보</b><br>${loginDto.user_name}님은 현재<br>${rentData[0].BOOK_TITLE} 도서를 대출중입니다.<br>대출신청이 불가합니다.";
-            button1 = $('<button type="button" class="btn btn-danger ml-2">대출조회</button>');
-            button2 = $('<button type="button" class="btn btn-danger ml-2">닫기</button>');
-            
+            modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>대출정보</b><br>${loginDto.user_name}님은 현재<br>${rentData[0].BOOK_TITLE} 도서를 대출중입니다.<br>대출신청이 불가합니다.";
+            button1 = $('<button type="button" class="btn btn-warning ml-2">대출조회</button>');
+            button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
+
             var user_seq = ${loginDto.user_seq};
             button1.click(function() {
                 window.location.href = "./userRentList.do?user_seq=" + user_seq;
             });
 
-            button2.click(function() {
-                $('#rentModal').modal('hide');
-            });
-            
             modalFooter.append(button1);
             modalFooter.append(button2);
         }
-
     }
-   
 
     showModal1(modalContent, modalFooter);
 }
-function showModal1(content, button, modalFooter) {
-    console.log("showModal1 content: " , content);
-    console.log("showModal1 content: " , modalFooter);
-    $('#rentModal .modal-body').html(content);
-    $('#rentModal .modal-footer').html($(button));
+
+function showModal1(content, modalFooter) {
+    console.log("showModal1 content: ", content);
+    console.log("showModal1 content: ", modalFooter);
+    $('#modalContent').html(content);
+    $('#modalFooter').html($(modalFooter));
     $('#rentModal').modal('show');
 }
 
-//예약1
+
+//예약
 function newResve1() {
     var rentDataSize = ${rentData.size()};
     var resveDataSize = ${resveData.size()};
@@ -226,95 +197,74 @@ function newResve1() {
     var button1 = "";
     var button2 = "";
 
-  
-        if (user_seq == null || user_seq == "") {
-            //사용자가 비회원인 경우
-//             alert("회원 가입 후 예약신청이 가능합니다.");
-//             window.location.href = "./main.do"; // 메인 페이지 URL로 리다이렉트
-        }else{
-           if(rentDataSize==0&&resveDataSize == 0){
+    if(rentDataSize == 0 && resveDataSize == 0){
+        modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>도서정보</b><br>도서명 : ${detailBook.book_title}<br>저자 : ${detailBook.book_writer}<br><br><b>예약신청 확인</b><br>예약신청을 하시겠습니까?<br>예약신청 버튼을 누르면 신청이 완료됩니다.";
+        button1 = $('<button type="button" class="btn btn-primary ml-2">예약신청</button>');
+        button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
+
+        // 예약 넣는 아작스
+        button1.click(function () {
+            // AJAX 요청을 통해 예약 정보를 서버에 전송
+            $.ajax({
+                type: "POST", // 또는 "GET" 등 HTTP 요청 메소드 설정
+                url: "./resveBook.do", // 서버의 예약 처리 메소드를 가리키는 URL
+                contentType: "application/json", // Content-Type 설정
+                data: JSON.stringify({
+                    book_seq: ${detailBook.book_seq},
+                    user_seq: ${loginDto.user_seq}
+                }),
+                success: function (response) {
+                    // 예약이 성공하면 실행되는 함수
+                    alert("예약신청이 완료되었습니다.");
+                    window.location.href = "./userResveList.do?user_seq=" + ${loginDto.user_seq};
+                },
+                error: function (error) {
+                    // 예약이 실패하면 실행되는 함수
+                    alert("예약신청에 실패했습니다. 다시 시도해주세요.");
+                }
+            });
+        });
+
+        modalFooter.append(button1);
+        modalFooter.append(button2);
+    } 
+    else if(rentDataSize == 0 && resveDataSize > 0){
+        modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>예약정보</b><br>${loginDto.user_name}님은 현재<br>${resveData[0].BOOK_TITLE} 도서를 예약중입니다.<br>예약신청이 불가합니다.";
+        button1 = $('<button type="button" class="btn btn-warning ml-2" data-dismiss="modal">예약조회</button>');
+        button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
+
+        var user_seq = ${loginDto.user_seq};
+        button1.click(function() {
+            window.location.href = "./userResveList.do?user_seq=" + user_seq;
+        });
         
-            modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>도서정보</b><br>도서명 : ${detailBook.book_title}<br>저자 : ${detailBook.book_writer}<br><br><b>예약신청 확인</b><br>예약신청을 하시겠습니까?<br>예약신청 버튼을 누르면 신청이 완료됩니다.";
-            button1 = $('<button type="button" class="btn btn-primary ml-2">예약신청</button>');
-            button2 = $('<button type="button" class="btn btn-primary ml-2">닫기</button>');
+        modalFooter.append(button1);
+        modalFooter.append(button2);
+    } 
+    else if(resveDataSize == 0 && rentDataSize > 0){
+        modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>대출정보</b><br>${loginDto.user_name}님은 현재<br>${rentData[0].BOOK_TITLE} 도서를 대출중입니다.<br>예약신청이 불가합니다.";
+        button1 = $('<button type="button" class="btn btn-warning ml-2" data-dismiss="modal">대출조회</button>');
+        button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
 
-            // 예약 넣는 아작스
-            button1.click(function () {
-                // AJAX 요청을 통해 예약 정보를 서버에 전송
-                $.ajax({
-                    type: "POST", // 또는 "GET" 등 HTTP 요청 메소드 설정
-                    url: "./resveBook.do", // 서버의 예약 처리 메소드를 가리키는 URL
-                    contentType: "application/json", // Content-Type 설정
-                    data: JSON.stringify({
-                        book_seq: ${detailBook.book_seq},
-                        user_seq: ${loginDto.user_seq}
-                    }),
-                    success: function (response) {
-                        // 예약이 성공하면 실행되는 함수
-                        alert("예약신청이 완료되었습니다.");
-                        window.location.href = "./userResveList.do?user_seq=" + ${loginDto.user_seq};
-                    },
-                    error: function (error) {
-                        // 예약이 실패하면 실행되는 함수
-                        alert("예약신청에 실패했습니다. 다시 시도해주세요.");
-                    }
-                    
-                });
-            });
+        var user_seq = ${loginDto.user_seq};
+        button1.click(function() {
+            window.location.href = "./userRentList.do?user_seq=" + user_seq;
+        });
 
-            button2.click(function () {
-                $('#myModal1').modal('hide');
-            });
-
-            modalFooter.append(button1);
-            modalFooter.append(button2);
-        } 
-           else if(rentDataSize == 0 && resveDataSize > 0){
-           modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>예약정보</b><br>${loginDto.user_name}님은 현재<br>${resveData[0].BOOK_TITLE} 도서를 예약중입니다.<br>예약신청이 불가합니다.";
-           button1 = $('<button type="button" class="btn btn-warning ml-2">예약조회</button>');
-            button2 = $('<button type="button" class="btn btn-danger ml-2">닫기</button>');
-                       
-           var user_seq = ${loginDto.user_seq};
-            button1.click(function() {
-               window.location.href = "./userResveList.do?user_seq=" + user_seq;
-            });
-           button2.click(function () {
-                $('#myModal1').modal('hide');
-            });
-            modalFooter.append(button1);
-            modalFooter.append(button2);
-        } 
-           else if(resveDataSize == 0 && rentDataSize > 0){
-           modalContent = "<b>회원정보</b><br>이름 : ${loginDto.user_name}<br>이메일 : ${loginDto.user_email}<br><br><b>대출정보</b><br>${loginDto.user_name}님은 현재<br>${rentData[0].BOOK_TITLE} 도서를 대출중입니다.<br>예약신청이 불가합니다.";
-           button1 = $('<button type="button" class="btn btn-danger ml-2">대출조회</button>');
-           button2 = $('<button type="button" class="btn btn-danger ml-2">닫기</button>');
-           
-           var user_seq = ${loginDto.user_seq};
-            button1.click(function() {
-                window.location.href = "./userRentList.do?user_seq=" + user_seq;
-            });
-           button2.click(function () {
-                $('#myModal1').modal('hide');
-            });
-           modalFooter.append(button1);
-           modalFooter.append(button2);
-        }
-    
+        modalFooter.append(button1);
+        modalFooter.append(button2);
+    }
 
     showModal3(modalContent, modalFooter);
 }
 
-}
-
-function showModal3(content, button, modalFooter) {
+function showModal3(content, modalFooter) {
     console.log("showModal3 content: ", content);
     console.log("showModal3 content: ", modalFooter);
     $('#myModal1 .modal-body').html(content);
-    $('#myModal1 .modal-footer').html($(button));
+    $('#myModal1 .modal-footer').html($(modalFooter));
     $('#myModal1').modal('show');
 }
-
-
 
 function newResve(){
    alert("해당도서는 현재 대출가능하므로 예약신청은 불가합니다.");

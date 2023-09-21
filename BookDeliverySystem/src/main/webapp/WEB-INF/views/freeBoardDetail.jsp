@@ -22,30 +22,38 @@
 			<div class="form-control">작성일:<fmt:formatDate value="${dto.free_regdate}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></div>
 		</div>
 		<div>
-<%-- 		<p>${loginDto}</p> --%>
-<%-- 		<p>${dto}</p> --%>
+		<p>${loginDto}</p>
+		<p>${dto}</p>
 			<c:if test="${loginDto.user_name eq dto.user_name or loginDto.user_auth eq 'A'}">
     		<input class="btn btn-danger" type="button" value="삭제" onclick="boardDel()">
 			<input class="btn btn-info" type="button" value="수정" >
 			</c:if>
 			<input class="btn btn-success" type="button" value="뒤로가기" onclick="history.back(-1);">
 			</div>
-			<table>
-				<caption>답글목록</caption>
-				
+			<hr>
+				<h3 style="margin-top: 10px;">답글목록</h3>
+<%-- 				<button class="btn btn-warning" id="toggleComment" onclick="location.href='./freeBoardDetail.do?free_bseq=${dto.free_bseq}'">답글보기</button> --%>
+			<table class="table" id="commentTable">
+				<c:forEach var="comment" items="${CommentAll}">
 				<tr>
-					<td>작성자:</td>
+					<td>${comment.user_name}: ${comment.comment_content} 작성일:${comment.comment_regdate}</td>
+				<c:if test="${loginDto.user_name == comment.user_name}">
+					<td><button class="btn btn-danger">삭제</button></td>
+				</c:if>
 				</tr>
+				</c:forEach>
 			</table>
 			
-			
-			
-			<form action="">
-			<div class="form-group">
-				<label for="comment">답글:</label>
-				<textarea class="form-control" id="free_reply" name="comment_content"></textarea>
-				<input class="btn btn-success" type="button" value="답글작성" >
-			</div>
+			<form action="./CommentInsert.do" method="post">
+			    <input type="hidden" name="free_bseq" value="${dto.free_bseq}">
+			    <input type="hidden" name="user_seq" value="${loginDto.user_seq}">
+			    <div class="form-group">
+			        <label for="comment_content">답글:</label>
+			        <textarea placeholder="로그인 후 이용가능합니다." class="form-control" id="comment_content" name="comment_content"></textarea>
+			    </div>
+			    <c:if test="${loginDto.user_name != null}">
+			    <input class="btn btn-success" type="submit" value="답글작성">
+			    </c:if>
 			</form>
 		
 		</div>
