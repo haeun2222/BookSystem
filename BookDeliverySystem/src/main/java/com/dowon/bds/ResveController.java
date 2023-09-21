@@ -65,12 +65,12 @@ public class ResveController {
 	
 	
     @PostMapping("/resveBook.do")
-    public ResponseEntity<String> resveBook(@RequestBody Map<String, Object> request) {
-    	log.info("Welcome ResveController resveBook 예약 신청 처리 Controller");
+    @ResponseBody
+    public ResponseEntity<String> resveBook(@RequestParam Map<String, Object> request) {
+    	log.info("Welcome ResveController resveBook 예약 신청 처리 Controller {}",request);
     	try {
-            int bookSeq = (int) request.get("book_seq");
-            int userSeq = (int) request.get("user_seq");
-
+            int bookSeq = Integer.parseInt((String) request.get("book_seq"));
+            int userSeq = Integer.parseInt((String) request.get("user_seq"));
             int result = resveService.resveBook(request);
 
             if (result > 0) {

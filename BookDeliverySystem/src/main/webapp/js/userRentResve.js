@@ -96,17 +96,18 @@ function newResve1() {
         modalContent = "<b>회원정보</b><br>이름 : userName<br>이메일 : userEmail<br><br><b>도서정보</b><br>도서명 : bookTitle<br>저자 : bookWriter<br><br><b>예약신청 확인</b><br>예약신청을 하시겠습니까?<br>예약신청 버튼을 누르면 신청이 완료됩니다.";
         button1 = $('<button type="button" class="btn btn-primary ml-2">예약신청</button>');
         button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
-		console.log("test1");
+		console.log(typeof bookSeq);
+		console.log(typeof userSeq);
         // 예약 넣는 아작스
         button1.click(function () {
             $.ajax({
                 type: "POST",
                 url: "./resveBook.do",
-                contentType: "application/json",
-                data: JSON.stringify({
-                    book_seq: bookSeq,
-          			user_seq: userSeq
-                }),
+//                contentType: "application/json", // 요청 본문의 Content-Type을 JSON으로 설정
+			    data: {
+			        "book_seq": bookSeq,
+			        "user_seq": userSeq
+			    },
                 success: function (response) {
 					alert("예약신청이 완료되었습니다.");
                     window.location.href = "./userResveList.do?user_seq=" + userSeq;
