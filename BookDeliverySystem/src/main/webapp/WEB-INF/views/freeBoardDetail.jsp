@@ -15,10 +15,11 @@
 </head>
 <body>
 	<div class="container">
-		<h1>제목: ${dto.free_title}<input style="float: right;" class="btn btn-success" type="button" value="이전" onclick="history.back(-1);">
+		<h1>제목: ${dto.free_title}<input style="float: right;" class="btn btn-success" type="button" value="이전" onclick="location.href='./freeBoardList.do'">
 			<c:if test="${loginDto.user_name eq dto.user_name or loginDto.user_auth eq 'A'}">
     		<input style="float: right;" class="btn btn-danger" type="button" value="삭제" onclick="boardDel()">
-			<input style="float: right;" class="btn btn-info" type="button" value="수정" onclick="location.href='./updateBoard.do?free_bseq=${dto.free_bseq}'">
+<%-- 			<input style="float: right;" class="btn btn-info" type="button" value="수정" onclick="location.href='./updateBoard.do?free_bseq=${dto.free_bseq}'"> --%>
+			<input style="float: right;" class="btn btn-info" type="button" value="수정" onclick="location.href='./updateBoard.do?free_bseq='+ ${dto.free_bseq} + '&free_title=' + '${dto.free_title}' + '&free_content=' + '${dto.free_content}'">
 			
 			</c:if>
 		</h1>

@@ -92,12 +92,27 @@ public class FreeBoardController {
 		}
 	}
 	@RequestMapping(value = "/updateBoard.do", method = RequestMethod.GET)
-	public String updateBoard(@RequestParam("free_bseq")int free_bseq, Model model,HttpSession session) {
+	public String updateBoardView(@RequestParam("free_bseq")int free_bseq,@RequestParam("free_title")String free_title,@RequestParam("free_content")String free_content, Model model,HttpSession session) {
 		log.info("FreeBoardController updateBoard 자유게시판 글 수정 페이지로 이동");
 		UserDto loginDto = (UserDto)session.getAttribute("loginDto");
 		model.addAttribute("free_bseq",free_bseq);
+		model.addAttribute("free_title",free_title);
+		model.addAttribute("free_content",free_content);
 		model.addAttribute("loginDto", loginDto);
 		return "updateBoard";
+	}
+	@RequestMapping(value = "/freeBoardUpdate.do",method = RequestMethod.POST)
+	public String updateBoard(@RequestParam("free_bseq")int free_bseq,@RequestParam("free_content")String free_content) {
+		log.info("FreeBoardController updateBoard 자유게시판 글 수정");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("free_bseq", free_bseq);
+		map.put("free_content", free_content);
+ 		 int n = service.updateBoard(map);
+ 		 if(n == 1) {
+ 			 return "redirect:/freeBoardList.do";
+ 		 }else {
+ 			 return "freeBoardDetail";
+ 		 }
 	}
 	
 }

@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="container">
-		<h2>새글작성<button style="float: right;" class="btn btn-success" onclick="history.back(-1)">이전</button></h2>
+		<h2>새글작성<button style="float: right;" class="btn btn-success" onclick="location.href='./freeBoardList.do'">이전</button></h2>
 		<form action="./freeBoardInsert.do" method="post">
 			<div class="form-group">
 				<label for="id">아이디:</label>
