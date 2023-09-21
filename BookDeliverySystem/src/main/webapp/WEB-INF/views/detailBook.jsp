@@ -22,7 +22,7 @@
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-0pky" rowspan="5"><img src="./img/bamin_1.png" width="50%"></th>
+    <th class="tg-0pky" rowspan="5"><img src="${detailBook.book_img}" width="40%"></th>
     <th class="tg-0pky">${detailBook.book_title}</th>
   </tr>
   <tr>

@@ -2,12 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.dowon.bds.model.mapper.SocialDaoImpl">
 
+<!-- 네이버 소셜 회원체크 (NEW) -->
+<select id="checkNaverKey" resultType="java.lang.Integer">
+  SELECT COUNT(*)
+   FROM TB_USER
+   WHERE USER_NAME = #{user_name}
+   			AND USER_EMAIL = #{user_email}
+   			AND USER_PHONE = #{user_phone}
+   			AND NAVER_KEY IS NOT NULL
+</select>
 
-<!-- 이메일체크 -->
-<select id="checkEmail" resultType="java.lang.Integer">
+
+
+<!-- 네이버소셜회원체크 -->
+<select id="checkSocialEmail" resultType="java.lang.Integer">
 SELECT COUNT(USER_EMAIL)
 	FROM TB_USER
 	WHERE USER_EMAIL = #{user_email}
+	AND USER_PHONE = #{user_phone}
+	AND USER_NAME = #{user_name}
 </select>
 
 <!-- 소셜로그인 시도 시 사용자가 기존 아이디가 있는지 확인하는 쿼리 -->

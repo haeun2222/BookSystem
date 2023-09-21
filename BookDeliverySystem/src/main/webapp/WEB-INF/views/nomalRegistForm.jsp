@@ -125,15 +125,6 @@
                     <span class="error_next_box">필수 정보입니다.</span>
                 </div>
 
-<!--                 EMAIL -->
-<!--                 <div> -->
-<!--                     <h3 class="join_title"><label for="email">본인확인 이메일<span class="optional">(선택)</span></label></h3> -->
-<!--                     <span class="box int_email"> -->
-<!--                         <input type="text" id="email" class="int" maxlength="100" placeholder="선택입력"> -->
-<!--                     </span> -->
-<!--                     <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>     -->
-<!--                 </div> -->
-
                 <!-- MOBILE -->
                 <div>
                     <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
@@ -146,7 +137,6 @@
 
                 <!-- JOIN BTN-->
                 <div class="btn_area">
-<!--                 <input type="submit" id="nomalRegist" name="nomalRegist" value="가입하기"> -->
                     <button type="button" id="nomalRegist" disabled>
                         가입하기
                     </button>
@@ -155,7 +145,6 @@
             <!-- content-->
 			</form>
         </div> 
-        <!-- wrapper -->
 <script src="js/registForm.js"></script>
 	
 </body>

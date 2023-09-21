@@ -31,4 +31,9 @@ public class BookDaoImpl implements IBookDao {
 		return sqlSession.insert(NS+"registBook",dto);
 	}
 
+	@Override
+	public int checkIsbn(String isbn) {
+		return sqlSession.selectOne(NS+"checkIsbn",isbn);
+	}
+
 }

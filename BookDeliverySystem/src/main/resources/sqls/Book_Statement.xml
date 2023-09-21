@@ -2,7 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.dowon.bds.model.mapper.BookDaoImpl">
 
-
+<!-- ISBN으로 도서 중복 등록 체크 -->
+<select id="checkIsbn" parameterType="String" resultType="Integer">
+SELECT COUNT(BOOK_ISBN)
+	FROM TB_BOOK
+	WHERE BOOK_ISBN = #{book_isbn}
+</select>
 
 <!-- 모든 도서 정보 가져오기 -->
 <select id="getAllBooks" resultType="BookDto">

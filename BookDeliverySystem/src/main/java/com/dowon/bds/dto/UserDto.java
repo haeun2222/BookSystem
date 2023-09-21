@@ -36,14 +36,17 @@ public class UserDto {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date joindate;
 	private String user_gender;
+	private String naver_key;
+	private String kakao_key;
 	
-	public UserDto(String user_email, String user_name, String user_phone,String user_gender, String user_birth) {
+	public UserDto(String user_email, String user_name, String user_phone,String user_gender, String user_birth, String naver_key) {
 		super();
 		this.user_email = user_email;
 		this.user_name = user_name;
 		this.user_phone = user_phone;
 		this.user_gender = user_gender;
 		this.user_birth = user_birth;
+		this.naver_key = naver_key;
 	}
 	
 	

@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,8 +84,9 @@
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <form action="./registbutton.do" method="post">
+
+	<div class="form-container">
+        <form id="registBookForm" action="./registbutton.do" method="post">
 
 			<div class="book-image">
 				<input type="hidden" name="book_img" value="${registBook.book_img}">
@@ -124,6 +124,9 @@
                 <input type="submit" value="도서 등록하기">
             </div>
         </form>
-    </div>
+		<div id="alert" data-result="${result}"></div>
+		<script type="text/javascript" src="js/registBook.js"></script>
+	</div>
 </body>
+
 </html>
