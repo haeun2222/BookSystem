@@ -28,6 +28,7 @@
 		(DELIVERY_SEQ, USER_SEQ, DELIVERY_NAME, DELIVERY_PHONE, POSTCODE, ADDRESS, DETADDR, EXTADDR, DELIVERY_NUM)
 		VALUES(SQ_DELIVERY.NEXTVAL, #{user_seq}, #{delivery_name}, #{delivery_phone}, #{postcode}, #{address}, #{detaddr}, #{extaddr}, NULL)
 	</insert>
+	
 	<!-- 렌트 상태 업데이트 -->
 	<update id="deliRentStatus" parameterType="java.lang.Integer">
 		UPDATE TB_BOOK_RENT
@@ -40,12 +41,13 @@
 			)
 	</update>
 	
-	
+	<!-- 배송지 입력 확인 -->
 	<select id="checkAddress" resultMap="addrResultMap">
 		SELECT DELIVERY_SEQ, USER_SEQ, DELIVERY_NAME, DELIVERY_PHONE, POSTCODE, ADDRESS, DETADDR, EXTADDR, DELIVERY_NUM
 		FROM TB_DELIVERY
 		WHERE DELIVERY_SEQ = #{delivery_seq}
 	</select>
+	
 	
 	<select id="getAddrUserSeq" resultMap="addrResultMap" parameterType="java.lang.Integer">
 	    SELECT D.DELIVERY_SEQ, D.USER_SEQ, D.DELIVERY_NAME, D.DELIVERY_PHONE, D.POSTCODE, D.ADDRESS, D.DETADDR, D.EXTADDR, D.DELIVERY_NUM
@@ -55,6 +57,14 @@
 		    ORDER BY D.DELIVERY_SEQ DESC
 		    FETCH FIRST 1 ROW ONLY
 	</select>
+	
+	<!-- 운송장 번호 입력 -->
+	<update id="updateDeliveryNum">
+		UPDATE  TB_DELIVERY 
+			SET  DELIVERY_NUM = #{delivery_num}
+			WHERE USER_SEQ = #{user_seq}
+	</update>
+	
 
  
 </mapper>

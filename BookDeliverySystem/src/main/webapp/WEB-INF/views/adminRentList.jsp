@@ -103,30 +103,36 @@ async function handleActions(rentSeq, bookSeq) {
 
 </script>
 <script type="text/javascript">
-async function updateDelivery(userSeq, rentSeq) {
-    try {
-        const deliveryNumInputId = `deliveryNumInput${userSeq}`;
-        const deliveryNum = document.getElementById(deliveryNumInputId).value;
+function updateDelivery(user_seq, rent_seq) {
+    // 입력된 운송장 번호 가져오기
+    const delivery_num = document.getElementById(`delivery_num${user_seq}`).value;
 
-        // AJAX 요청을 사용하여 서버에 운송장 번호 업데이트 요청 보내기
-        const updateResponse = await $.ajax({
-            type: "POST",
-            url: "./updateDeliveryNum.do",
-            data: { userSeq: userSeq, rentSeq: rentSeq, deliveryNum: deliveryNum }
-        });
+    // AJAX 요청 보내기
+    const deli= new XMLHttpRequest();
+    deli.open("POST", "/updateDeliveryNum.do"); // 업데이트를 처리하는 컨트롤러 경로로 수정
+    deli.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    
+    // 요청 본문 데이터 설정
+    const data = JSON.stringify({
+        user_seq: user_seq,
+        delivery_num: delivery_num
+    });
 
-        if (updateResponse == "success") {
-            alert("운송장 번호 업데이트 완료");
-            location.reload(); // 페이지 새로고침
+    deli.onload = function () {
+        if (deli.status === 200) {
+            // 성공적으로 업데이트되었을 때의 처리
+            alert("운송장 번호가 업데이트되었습니다.");
         } else {
-            alert("운송장 번호 업데이트 실패");
+            // 업데이트에 실패하면 오류 메시지를 표시
+            alert("운송장 번호 업데이트에 실패했습니다.");
         }
-    } catch (error) {
-        console.error("오류 발생: " + error);
-        alert("요청을 처리하는 동안 오류가 발생했습니다.");
-    }
+    };
+
+    // 요청 보내기
+    deli.send(data);
 }
 
 
 </script>
+
 </html>

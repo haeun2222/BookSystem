@@ -66,7 +66,10 @@
 			    </c:choose>
 			</td>
 			<td>
-				<button onclick="location.href='./delivery.do?user_seq=${loginDto.user_seq}'">배송조회</button>
+			<button onclick="openTrackerForm()">배송조회</button>
+
+			
+<%-- 				<button onclick="location.href='./delivery.do?user_seq=${loginDto.user_seq}'">배송조회</button> --%>
 			</td>
         </tr>
     </c:forEach>
@@ -74,4 +77,31 @@
 </div>
 </body>
 <%@ include file="footer.jsp" %>
+<script>
+function openTrackerForm() {
+    const formHTML = `
+    <div id="trackerForm">
+        <form action="http://info.sweettracker.co.kr/tracking/5" method="post">
+            <div class="form-group">
+                <label for="t_key">API key</label>
+                <input type="text" class="form-control" id="t_key" name="t_key" value="vIvDVTiiTlMarYcHz1x5wQ">
+            </div>
+            <div class="form-group">
+                <label for="t_code">택배사 코드</label>
+                <input type="text" class="form-control" name="t_code" id="t_code" value="04">
+            </div>
+            <div class="form-group">
+                <label for="t_invoice">운송장 번호</label>
+                <input type="text" class="form-control" name="t_invoice" id="t_invoice" placeholder="운송장 번호">
+            </div>
+            <button type="submit" class="btn btn-default">조회하기</button>
+        </form>
+    </div>`;
+
+    const newWindow = window.open("", "_blank", "width=600,height=400");
+    newWindow.document.write(formHTML);
+    newWindow.document.close();
+}
+</script>
+			
 </html>
