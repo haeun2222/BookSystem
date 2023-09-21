@@ -1,5 +1,8 @@
 package com.dowon.bds;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +28,9 @@ import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IBookService;
 import com.dowon.bds.model.service.IRentService;
 import com.dowon.bds.model.service.IResveService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 
@@ -45,8 +52,7 @@ public class BookController {
 	
 	@Autowired
 	private IResveService resveService;
-	
-	
+
 	@RequestMapping(value="/getAllBooks.do", method = RequestMethod.GET)
 	@ResponseBody
 	public List<BookDto> getAllBooks() {
@@ -102,43 +108,33 @@ public class BookController {
 
 	//도서등록컨트롤러(GET)
 	@GetMapping(value="/registBook.do")
-	public String registbookForm(
-			@RequestParam("book_title") String bookTitle,
-			@RequestParam("book_writer") String bookWriter,
-			@RequestParam("book_img") String bookImg,
-			@RequestParam("book_isbn") String bookIsbn,
-			@RequestParam("book_publisher") String bookPublisher,
-			@RequestParam("book_intro") String bookIntro,
-//			@RequestParam("book_book_published_date") Date bookPublishedDate,
-			Model model) {
-		
-			String[] isbn = bookIsbn.split(" ");
+	public String registbookForm(@RequestParam("data")String jsonBookData, Model model) throws JsonMappingException, JsonProcessingException, ParseException {
+			log.info("Welcome registbookForm를 통해 JSON으로 값 전달 받고 등록상세에 데이터 전달");
+			log.info("jsonBookData: {}", jsonBookData); // 추가: JSON 데이터 확인
+			ObjectMapper objectMapper = new ObjectMapper();
+			BookDto	bookInfo = objectMapper.readValue(jsonBookData, BookDto.class);
+			
+			//ISBN 13자리만 가져오기
+			String[] isbn = bookInfo.getBook_isbn().split(" ");
 			String realIsbn = isbn[isbn.length-1];
 			
-			BookDto dto = new BookDto();
-			dto.setBook_title(bookTitle);
-			dto.setBook_writer(bookWriter);
-			dto.setBook_img(bookImg);
-			dto.setBook_isbn(realIsbn);
-			dto.setBook_publisher(bookPublisher);
-			dto.setBook_intro(bookIntro);
-//			dto.setBook_published_date(bookPublishedDate);
-		log.info("registForm 실행");
-		model.addAttribute("registBook",dto);
+			bookInfo.setBook_isbn(realIsbn);
+			model.addAttribute("registBook",bookInfo);
 		return "registBook";
 	}
 	
-	@PostMapping(value="/registBook.do")
-	public String registBook(BookDto dto) {
-		
-		int n = service.registBook(dto);
-		
-		return (n == 1) ? "success" : "false";
-	}
-	
-	
+	@PostMapping(value = "/registbutton.do")
+	public String registBook(@ModelAttribute BookDto dto) {
+	    log.info("date 값 확인 : {}", dto.getBook_published_date());
 
-	
+	   
+
+	    log.info("★★ 확인 : {}", dto.getBook_published_date().getClass().getTypeName());
+	    int n = service.registBook(dto);
+
+	    log.info("check : {}", n);
+	    return (n == 1) ? "success" : "false";
+	}
 }
 
 
