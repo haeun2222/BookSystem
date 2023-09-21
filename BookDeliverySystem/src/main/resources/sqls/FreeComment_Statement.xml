@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dowon.bds.model.mapper.FreeBoardCommentImpl">
+<!-- 답글작성 -->
+<insert id="CommentInsert" parameterType="FreeCommentDto">
+<selectKey keyProperty="comment_seq" resultType="java.lang.Integer" order="BEFORE">
+	SELECT SQ_FREE_COMMENT.NEXTVAL FROM DUAL
+</selectKey>	
+INSERT INTO BOOK.TB_FREE_COMMENT
+	(COMMENT_SEQ, FREE_BSEQ, USER_SEQ, COMMENT_CONTENT, COMMENT_REGDATE, COMMENT_DELFLAG)
+	VALUES(SQ_FREE_COMMENT.NEXTVAL, #{free_bseq}, #{user_seq}, #{comment_content}, SYSDATE, 'N')
+</insert>
+
+</mapper>

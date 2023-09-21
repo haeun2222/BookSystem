@@ -20,6 +20,7 @@
 	<typeAlias type="com.dowon.bds.dto.PayDto" alias="PayDto"/>
 	<typeAlias type="com.dowon.bds.dto.AddrDto" alias="AddrDto"/>
 	<typeAlias type="com.dowon.bds.dto.FreeBoardDto" alias="FreeBoardDto"/>
+	<typeAlias type="com.dowon.bds.dto.FreeCommentDto" alias="FreeCommentDto"/>
 </typeAliases>
 
 
@@ -33,6 +34,7 @@
  <mapper resource="sqls/Addr_Statement.xml"/>
  <mapper resource="sqls/Book_Statement.xml"/>
  <mapper resource="sqls/FreeBoard_Statement.xml"/>
+ <mapper resource="sqls/FreeComment_Statement.xml"/>
 </mappers>
 
 </configuration>

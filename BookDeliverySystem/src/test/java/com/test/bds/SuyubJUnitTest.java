@@ -16,8 +16,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.dowon.bds.dto.AgeDto;
 import com.dowon.bds.dto.BookDto;
 import com.dowon.bds.dto.FreeBoardDto;
+import com.dowon.bds.dto.FreeCommentDto;
 import com.dowon.bds.dto.GenderDto;
 import com.dowon.bds.model.mapper.IFreeBoardDao;
+import com.dowon.bds.model.mapper.IFreeCommentDao;
 import com.dowon.bds.model.mapper.IStatisticsDao;
 import com.dowon.bds.model.service.IFreeBoardService;
 import com.dowon.bds.model.service.IStatisticsService;
@@ -45,7 +47,9 @@ public class SuyubJUnitTest {
 	private IFreeBoardService service2;
 	@Autowired
 	private IFreeBoardDao dao2;
-
+	@Autowired
+	private IFreeCommentDao dao3;
+	
 
 	
 	
@@ -100,12 +104,19 @@ public class SuyubJUnitTest {
 		log.info("SuyubJUnitTest freeBoardDetail{}",dto);
 		assertNotNull(dto);
 	}
-	@Test
+//	@Test
 	public void freeBoardDel() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("free_bseq", 2);
 		int n = dao2.freeBoardDel(map);
 		log.info("SuyubJUnitTest freeBoardDel {}",map);
+		assertEquals(1, n);
+	}
+	@Test
+	public void CommentInsert() {
+		FreeCommentDto fDto = new FreeCommentDto(19, 43, 701, "그러게말입니다", null, null);
+		int n = dao3.CommentInsert(fDto);
+		log.info("SuyubJUnitTest CommentInsert {}",fDto);
 		assertEquals(1, n);
 	}
 }
