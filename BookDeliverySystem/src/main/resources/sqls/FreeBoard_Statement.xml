@@ -31,8 +31,7 @@ SELECT tfb.FREE_BSEQ, tfb.FREE_TITLE, tfb.FREE_CONTENT, tfb.FREE_REGDATE, tu.USE
 UPDATE TB_FREE_BOARD SET FREE_DELFLAG = 'Y'
 	WHERE FREE_DELFLAG ='N'
 	AND FREE_BSEQ = #{free_bseq}
-
-<!-- 답글업데이트 -->
-	
 </update>
+
+
 </mapper>
