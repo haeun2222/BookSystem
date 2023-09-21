@@ -15,8 +15,8 @@ public class SocialDaoImpl implements ISocialDao {
 	private String NS = "com.dowon.bds.model.mapper.SocialDaoImpl.";
 	
 	@Override
-	public int checkEmail(UserDto dto) {
-		return sqlSession.selectOne(NS+"checkEmail",dto);
+	public int checkNaverKey(UserDto dto) {
+		return sqlSession.selectOne(NS+"checkNaverKey",dto);
 	}
 	
 	

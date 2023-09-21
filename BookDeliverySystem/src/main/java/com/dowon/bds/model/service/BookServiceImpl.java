@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dowon.bds.dto.BookDto;
 import com.dowon.bds.model.mapper.IBookDao;
@@ -29,11 +30,26 @@ public class BookServiceImpl implements IBookService {
 		log.info("BookServiceImpl detailBook 도서 상세보기 ");
 		return dao.detailBook(seq);
 	}
-
+	
+	@Transactional
 	@Override
 	public int registBook(BookDto dto) {
 		log.info("BookServiceImpl registBook 도서 등록하기 ");
-		return dao.registBook(dto);
+		log.info("BookServiceImpl Transaction 처리중 ");
+		log.info("isbn 값 테스트 : {} ",dto.getBook_isbn());
+		if(dao.checkIsbn(dto.getBook_isbn())>0) {
+			return -1;
+		}
+		int result = dao.registBook(dto);
+		
+		if(result < 1) {
+			
+		}
+		
+        return result;
+		
+		
 	}
+
 
 }

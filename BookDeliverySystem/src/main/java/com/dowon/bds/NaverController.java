@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dowon.bds.dto.URLDto;
@@ -31,7 +32,7 @@ import com.dowon.bds.model.service.ISocialService;
 @Controller
 public class NaverController {
 	
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 	private UserDto dto;
 	private URLDto uDto = new URLDto();
 
@@ -42,9 +43,9 @@ public class NaverController {
 	private ObjectMapper objmapper = new ObjectMapper();
 	
 	@RequestMapping(value="/naverLogin.do")
-	public String naverCallBack(String code, String state, HttpSession session) {
+	public String naverCallBack(String code, String state, HttpSession session, Model model) {
 	
-		logger.info("naverLogin.do 실행");
+		log.info("naverLogin.do 실행");
 		String tokenUrl = uDto.getNaverTokenUrl(code, state);
 		try {
 			// 위에 설정 한 url에 대한 값을 url로 new 해준다
@@ -57,7 +58,7 @@ public class NaverController {
 
 			// 실행된 responsecode를 가져온다
 			int responseCode = con.getResponseCode();
-			logger.info("응답 받은 코드 : {}",responseCode);
+			log.info("응답 받은 코드 : {}",responseCode);
 			
 			BufferedReader br;
 			if (responseCode == 200) { // 정상 호출
@@ -84,7 +85,7 @@ public class NaverController {
 		    	 //추출한 AccessToken을 이용해 로그인 정보를 가져온다.
 		    	 JsonNode info = getInfo(accToken);
 		    	 if(info!=null) {
-		    		 logger.info("전발 받은 회원 정보 :{} ",info);
+		    		 log.info("전달 받은 회원 정보 :{} ",info);
 		    		 //값을 추출하기
 		    		 String user_email = info.path("response").path("email").asText();
 		    		 String user_name = info.path("response").path("name").asText();
@@ -92,26 +93,30 @@ public class NaverController {
 		    		 String user_gender = info.path("response").path("gender").asText();
 		    		 String user_birth = info.path("response").path("birthyear").asText()+"-"
 		    				 		+info.path("response").path("birthday").asText();
+		    		 String naver_key = info.path("response").path("id").asText();
 		    		 
-		    		 logger.info("추출한 값 : Email : {} / name : {}  / mobile : {} / gender {} / birth {}",user_email,user_name,user_phone,user_gender,user_birth);
+		    		 log.info("추출한 값 : Email : {} / name : {}  / mobile : {} / gender {} / birth {} / nakey_key {}"
+		    				 		,user_email,user_name,user_phone,user_gender,user_birth, naver_key);
 		    		 // dto에 집어넣기 여기서 다 담아 줘야 함
-		    		 dto = new UserDto(user_email, user_name, user_phone, user_gender, user_birth);
+		    		 dto = new UserDto(user_email, user_name, user_phone, user_gender, user_birth, naver_key);
 		    		 // email로 해당 email이 존재하는지 확인하기
+		    		 log.info("naver : {}",naver_key);
+		    		 log.info("dto : {}",dto);
+		    		 int n = service.checkNaverKey(dto); 
 		    		 
-		    		 int n = service.checkEmail(dto); 
 		    		 //여기를 response/id 값을 담아 와서 DB에 해당 값이 있는지 비교.
 		    		 //있으면  로그인 성공 및 세션에 정보 담아주기
-		    		 
 		    		 //없으면 회원가입 페이지로 이동
 		    		 
-		    		 
-		    		 
-		    		 System.out.println("int n의 값은 ?"+n);
-		    		 if(n!=0) {
-		    			 session.setAttribute("info", dto);
-		    			 return "afterLogin";
+		    		 if(n == 1) {
+		    			 log.info("Welcome 소셜 로그인 성공");
+		    			 session.setAttribute("info", dto); // dto에 세션값 담아서 info로 보내기
+		    			 model.addAttribute("infotwo",dto);
+		    			 return "redirect:/index.jsp";
 		    		 }else {
-		    			
+		    			log.info("Welcome 소셜 로그인 실패");
+		    			session.setAttribute("socialRegist", dto);
+		    			model.addAttribute("infotwo",dto);
 		    			return "redirect:/socialRegistForm.do";
 		    		 }
 		    	 }
@@ -125,7 +130,7 @@ public class NaverController {
 	
 	
 	public JsonNode getInfo(String accessToken) {
-		logger.info("WelCome NaverController >> getInfo");
+		log.info("WelCome NaverController >> getInfo");
 		try {
 			URL url = new URL(uDto.getNaverInfo());
 			HttpURLConnection conn = (HttpURLConnection)url.openConnection();

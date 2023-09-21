@@ -14,8 +14,8 @@ public class SocialServiceImpl implements ISocialService {
 	private ISocialDao dao;
 
 	@Override
-	public int checkEmail(UserDto dto) {
-		return dao.checkEmail(dto);
+	public int checkNaverKey(UserDto dto) {
+		return dao.checkNaverKey(dto);
 	}
 
 }

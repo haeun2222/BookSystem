@@ -124,7 +124,7 @@ public class BookController {
 	}
 	
 	@PostMapping(value = "/registbutton.do")
-	public String registBook(@ModelAttribute BookDto dto) {
+	public String registBook(@ModelAttribute BookDto dto, Model model) {
 	    log.info("★★★★date 값 확인 : {}", dto.getBook_published_dateStr());
 
 	    // 컨트롤러에서 클라이언트에서 받은 문자열을 Date로 변환하는 코드
@@ -137,7 +137,14 @@ public class BookController {
 	    }
 	    
 	    int n = service.registBook(dto);
-	    return (n == 1) ? "adminPage" : "registBook";
+	    if(n==1) {
+	    	log.info("Welcome registBook 도서 등록 성공");
+	    	model.addAttribute("result", "도서 등록 성공!");
+	    }else {
+	    	log.info("Welcome registBook 도서 등록 실패");
+	    	model.addAttribute("result", "도서 등록 실패ㅜㅜ");
+	    }
+	    return "adminPage";
 	}
 }
 
