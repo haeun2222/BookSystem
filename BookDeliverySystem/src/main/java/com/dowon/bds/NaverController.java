@@ -110,7 +110,8 @@ public class NaverController {
 		    		 
 		    		 if(n == 1) {
 		    			log.info("Welcome 소셜 로그인 성공");
-		    			model.addAttribute("info",dto);
+		    			model.addAttribute("loginDto",dto);
+		    			log.info("네이버 로그인 정보 :{} ",dto);
 		    			return "redirect:/index.jsp";
 		    		 }else {
 		    			log.info("Welcome 소셜 로그인 실패");

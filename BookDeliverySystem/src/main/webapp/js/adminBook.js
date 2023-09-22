@@ -51,13 +51,13 @@ function getAllBooks() {
         $.each(getAllBooks, function(index, book) {
             bookList.append(
             	$("<tr onclick=\"location.href='./getDetailBook.do?book_seq="+book.book_seq+"'\">").append(
-            	"<td>"+ book.book_seq + "</td>",
-            	"<td>"+ book.book_img + "</td>",
-            	"<td>"+ book.book_title + "</td>",
-            	"<td>"+ book.book_writer + "</td>",
-            	"<td>"+ book.book_isbn + "</td>",
-            	"<td>"+ book.book_publisher + "</td>",
-            	"<td>"+ book.book_published_date + "</td>"
+            	'<td>'+ book.book_seq + '</td>',
+            	'<td> <img src="' + book.book_img + '"> </td>',
+            	'<td>'+ book.book_title + "</td>",
+            	'<td>'+ book.book_writer + '</td>',
+            	'<td>'+ book.book_isbn + '</td>',
+            	'<td>'+ book.book_publisher + '</td>',
+            	'<td>'+ book.book_published_date + '</td>'
             	)
             );
         });
