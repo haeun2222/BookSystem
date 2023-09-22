@@ -27,11 +27,11 @@ public class StatisticsServiceImpl implements IStatisticsService {
 	private IStatisticsDao dao;
 	
 	
-//	@Override
-//	public List<GenderDto> imgSelect() {
-//		log.info("imgSelect 실행");
-//		return dao.imgSelect();
-//	}
+	@Override
+	public List<GenderDto> imgSelect() {
+		log.info("imgSelect 실행");
+		return dao.imgSelect();
+	}
 
 
 	@Override
@@ -52,6 +52,13 @@ public class StatisticsServiceImpl implements IStatisticsService {
 	public BookDto bookSearch(int book_seq) {
 		log.info("StatisticsServiceImpl bookSearch 실행");
 		return dao.bookSearch(book_seq);
+	}
+
+
+	@Override
+	public List<GenderDto> detailGenderStatistics(int book_seq) {
+		log.info("StatisticsServiceImpl detailGenderStatistics 실행");
+		return dao.detailGenderStatistics(book_seq);
 	}
 
 }

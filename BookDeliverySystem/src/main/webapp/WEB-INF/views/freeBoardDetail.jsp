@@ -16,7 +16,7 @@
 <body>
 	<div class="container">
 		<h1>제목: ${dto.free_title}<input style="float: right; background-color: #ccc; color: #000;" class="btn" type="button" value="이전" onclick="location.href='./freeBoardList.do'">
-			<c:if test="${loginDto.user_name eq dto.user_name or loginDto.user_auth eq 'A'}">
+			<c:if test="${loginDto.user_name eq dto.user_name}">
     		<input style="float: right;" class="btn btn-danger" type="button" value="삭제" onclick="boardDel()">
 <%-- 			<input style="float: right;" class="btn btn-info" type="button" value="수정" onclick="location.href='./updateBoard.do?free_bseq=${dto.free_bseq}'"> --%>
 			<input style="float: right;background-color: #00ADB5; color: #000;" class="btn" type="button" value="수정" onclick="location.href='./updateBoard.do?free_bseq='+ ${dto.free_bseq} + '&free_title=' + '${dto.free_title}' + '&free_content=' + '${dto.free_content}'">
@@ -42,7 +42,7 @@
 					<th>${comment.user_name}: ${comment.comment_content}
 					<span style="float: right; color: white; font-size: 12px;">작성일:${comment.comment_regdate}</span>
 					</th>
-				<c:if test="${loginDto.user_name == comment.user_name or loginDto.user_auth eq 'A'}">
+				<c:if test="${loginDto.user_name == comment.user_name}">
 					<td><button class="btn btn-danger" onclick="commentDel(${comment.comment_seq})">삭제</button></td>
 				</c:if>
 				</tr>
@@ -54,7 +54,7 @@
 			    <input type="hidden" name="user_seq" value="${loginDto.user_seq}">
 			    <div class="form-group">
 			        <label for="comment_content">답글:</label>
-			        <textarea placeholder="로그인 후 이용가능합니다." class="form-control" id="comment_content" name="comment_content"></textarea>
+			        <textarea class="form-control" id="comment_content" name="comment_content"></textarea>
 			    </div>
 			    <c:if test="${loginDto.user_name != null}">
 			    <input style="background-color: #00fff5; color: #000;" class="btn" type="submit" value="답글작성">
