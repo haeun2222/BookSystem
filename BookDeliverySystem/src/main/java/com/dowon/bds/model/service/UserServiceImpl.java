@@ -43,5 +43,11 @@ public class UserServiceImpl implements IUserService {
 		log.info("UserServiceImpl getAllUser 모든회원리스트 : {}");
 		return dao.getAllUser();
 	}
+
+	@Override
+	public Map<String, Object> getUserStatus(int user_seq) {
+		log.info("UserServiceImpl userStatus 유저의 대출,예약상태 확인 : {}",user_seq);
+		return dao.getUserStatus(user_seq);
+	}
 	
 }

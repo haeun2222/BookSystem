@@ -12,4 +12,5 @@ public interface IUserDao {
 	public int nomalRegist(UserDto dto);
 	public int checkEmail(String user_email);
 	public List<UserDto> getAllUser();
+	public Map<String, Object> getUserStatus(int user_seq);
 }	

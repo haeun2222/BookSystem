@@ -1,6 +1,7 @@
 <%@page import="com.dowon.bds.dto.SocialDto"%>
 <%@page import="com.dowon.bds.dto.URLDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.security.SecureRandom" %>
 <%@ page import="java.math.BigInteger" %>
@@ -22,7 +23,12 @@
 		SecureRandom random = new SecureRandom();
 		String state = new BigInteger(130, random).toString();
 	%>
-  
+	<c:if test="${not empty errorMessage}">
+        <div class="alert alert-danger" role="alert">
+            <p><c:out value="${errorMessage}" /></p>
+        </div>
+    </c:if>
+    
   <!-- 일반회원 로그인 -->
   <form action="./login.do" method="post">
     <div class="form-group">

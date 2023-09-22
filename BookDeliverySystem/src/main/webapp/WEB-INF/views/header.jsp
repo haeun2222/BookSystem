@@ -16,19 +16,23 @@
 			<h1 style="text-align: center; font-size: 60px; color: white;">계발의민족</h1>
 		</div>
 		<div class="topLogo" style="margin-top: 30px;" id="loginBtn">
-			<button class="btn" style="background-color: #00FFF5"
-				onclick="location.href='./nomalRegistForm.do'">회원가입</button>
+			
 			<!--로그인 상태확인 -->
 			<c:choose>
 				<c:when test="${loginDto == null}">
+			    <button class="btn" style="background-color: #00FFF5"
+				onclick="location.href='./nomalRegistForm.do'">회원가입</button>
 					<button class="btn" id="loginButton"
 						style="background-color: #00FFF5"
 						onclick="location.href='./loginPage.do'">로그인</button>
 				</c:when>
 				<c:otherwise>
+					<span style="font-size: 12px; color: white;"> ${loginDto.user_name} 님 환영합니다. </span>
+					<span style="font-size: 12px; color: white;"> ${rentData.rent_status} </span>
 					<button class="btn" id="logoutButton"
 						style="background-color: #00FFF5"
 						onclick="location.href='./logout.do'">로그아웃</button>
+					
 				</c:otherwise>
 			</c:choose>
 		</div>
