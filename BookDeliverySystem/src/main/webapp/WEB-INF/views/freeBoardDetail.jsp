@@ -42,7 +42,7 @@
 					<th>${comment.user_name}: ${comment.comment_content}
 					<span style="float: right; color: white; font-size: 12px;">작성일:${comment.comment_regdate}</span>
 					</th>
-				<c:if test="${loginDto.user_name == comment.user_name}">
+				<c:if test="${loginDto.user_name == comment.user_name or loginDto.user_auth eq 'A'}">
 					<td><button class="btn btn-danger" onclick="commentDel(${comment.comment_seq})">삭제</button></td>
 				</c:if>
 				</tr>
