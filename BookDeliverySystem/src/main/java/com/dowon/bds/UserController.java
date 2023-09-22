@@ -44,33 +44,26 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login.do", method = RequestMethod.POST)
-	public String login(@RequestParam Map<String,Object>map, HttpSession session, HttpServletResponse response) throws IOException {
-		log.info("로그인 처리 login {}",map);
-		UserDto loginDto = service.login(map);
-		log.info("loginDto정보 {}",loginDto);
-		
-		if(loginDto == null) {
-			log.info("로그인실패 /test.do로 이동 {}",map);
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('로그인 실패'); location.href='./index.jsp';</script>");
-			out.flush();
-			return "";
-		
-		}else{
-			if(loginDto.getUser_auth().equals("U")) {
-			log.info(loginDto.getUser_auth());
-			log.info("유저 로그인성공  이동 {}",map);
-			session.setAttribute("loginDto", loginDto);
-			return "redirect:/index.jsp";
-			}
-			else {
-			log.info("어드민 로그인성공 {}",map);
-			session.setAttribute("loginDto", loginDto);
-			return "adminPage";
-			}
-		}
-		
+	public String login(@RequestParam Map<String,Object> map, HttpSession session, HttpServletResponse response, Model model) throws IOException {
+	    log.info("로그인 처리 login {}", map);
+	    UserDto loginDto = service.login(map);
+	    log.info("loginDto정보 {}", loginDto);
+	    
+	    if (loginDto == null) {
+	        log.info("로그인 실패 {}", map);
+	        return "loginPage"; // 로그인 실패 시 로그인 페이지로 이동
+	    }
+	    
+	    if (loginDto.getUser_auth().equals("U")) {
+	        log.info(loginDto.getUser_auth());
+	        log.info("유저 로그인성공  이동 {}", map);
+	        session.setAttribute("loginDto", loginDto);
+	        return "redirect:/index.jsp";
+	    } else {
+	        log.info("어드민 로그인성공 {}", map);
+	        session.setAttribute("loginDto", loginDto);
+	        return "adminPage";
+	    }
 	}
 	
 	@GetMapping(value="/logout.do")

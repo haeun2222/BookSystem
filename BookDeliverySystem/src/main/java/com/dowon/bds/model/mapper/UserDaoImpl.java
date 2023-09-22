@@ -41,5 +41,11 @@ public class UserDaoImpl implements IUserDao {
 	public List<UserDto> getAllUser(){
 		return sqlSession.selectList(NS+"getAllUser");
 	}
+
+
+	@Override
+	public Map<String, Object> getUserStatus(int user_seq) {
+		return sqlSession.selectOne(NS+"getUserStatus",user_seq);
+	}
 	
 }
