@@ -27,6 +27,17 @@
     <div id="userInfoTable"></div>
     <div id="bookInfoTable"></div>
     <div id="bookSearchTable"></div>    
+    
+    
+    
+    <input type="hidden" id="userName" value="${rent.USER_NAME}">
+    <input type="hidden" id="bookTitle" value="${rent.BOOK_TITLE}">
+    <input type="hidden" id="rentDate" value="${rent.RENT_DATE}">
+    <input type="hidden" id="rentReturnDate" value="${rent.RENT_RETURN_DATE}">
+    <input type="hidden" id="rentSeq" value="${rent.RENT_SEQ}">
+    <input type="hidden" id="userSeq" value="${rent.USER_SEQ}">
+    <input type="hidden" id="bookSeq" value="${rent.BOOK_SEQ}">
+    <input type="hidden" id="rentStatus" value="${rent.RENT_STATUS}">
 
 </body>
 </html>

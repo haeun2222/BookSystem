@@ -17,8 +17,6 @@
 </head>
 
 <body>
-33${rentSeq}<br>
-22${bookSeq}
 <c:set var="loginUser" value="${sessionScope.loginDto}"/>
 <h1 style="font-family: 'Hanna', fantasy;">${loginUser.user_name}님의 수거요청</h1>
 <br>

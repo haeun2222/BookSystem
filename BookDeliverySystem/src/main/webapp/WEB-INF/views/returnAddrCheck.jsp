@@ -20,9 +20,6 @@
 <body>
 
 
-${sessionScope.loginDto.user_seq} <br>
-
-${sessionScope.loginDto.user_name}님
 <c:set var="loginUser" value="${sessionScope.loginDto}"/>
 <h1 style="font-family: 'Hanna', fantasy;">${sessionScope.loginDto.user_name}님의 수거요청이 완료되었습니다.</h1>
     <div id="container" style="width: 800px; height: 360px;">
@@ -53,7 +50,6 @@ ${sessionScope.loginDto.user_name}님
 		</div>
     </div>
 
-    ${bookSeq}
 <script>
     // JavaScript를 사용하여 index.jsp로 이동
     function redirectToIndex(userSeq) {
