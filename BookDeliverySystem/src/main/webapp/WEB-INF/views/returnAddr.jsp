@@ -15,7 +15,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-
+<%@ include file="/WEB-INF/views/header.jsp" %>
 <body>
 <c:set var="loginUser" value="${sessionScope.loginDto}"/>
 <h1 style="font-family: 'Hanna', fantasy;">${loginUser.user_name}님의 수거요청</h1>
@@ -138,4 +138,5 @@
 </script>
 
 </body>
+<%@ include file="/WEB-INF/views/footer.jsp" %>
 </html>

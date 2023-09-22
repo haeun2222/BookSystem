@@ -11,11 +11,11 @@
 <title>주소 정보</title>
 <link rel="stylesheet" href="css/addrCheck.css" />
 <link rel="stylesheet" href="css/font.css">
-<link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+<%@ include file="/WEB-INF/views/header.jsp" %>
 <body>
 
 
@@ -46,7 +46,7 @@
             </tr>
            </thead>
         </table>
-       <div class="container">
+       <div class="container" style="justify-content: center;">
 			<input class="btn btn-info" type="button" value="결제요청" onclick="redirectToPayment()">
 		    <button class="btn"  onclick="history.back(-1)">취소</button>
      
@@ -64,4 +64,5 @@
     }
 </script>
 </body>
+<%@ include file="/WEB-INF/views/footer.jsp" %>
 </html>

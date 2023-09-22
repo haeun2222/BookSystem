@@ -144,6 +144,7 @@ async function requestPay() {
 
 
 </head>
+<%@ include file="/WEB-INF/views/header.jsp" %>
 <body
 
 	style="background-image: url('./img/book.png'); background-repeat: no-repeat; background-size: 100%; background-position: bottom;">
@@ -161,7 +162,8 @@ async function requestPay() {
 			배송비 결제페이지</h1>
 		<button class="button" onclick="requestPay()">결제하기</button>
 		<button class="button2"
-			onclick="location.href='./bookDetailHaeun.do?user_seq=${loginDto.user_seq}'">취소</button>
+			onclick="location.href='./detailBook.do?user_seq=${loginDto.user_seq}'">취소</button>
 	</div>
 </body>
+<%@ include file="/WEB-INF/views/footer.jsp" %>
 </html>
