@@ -31,6 +31,7 @@ public class BookDto {
 	private String book_isbn;
 	private String book_intro;
 	private String book_publisher;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date book_published_date;
 	private String book_published_dateStr;
 	private String book_index;
