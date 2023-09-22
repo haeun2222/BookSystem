@@ -47,8 +47,8 @@ svg > g > g:last-child { pointer-events: none }
 <!-- <a href="./genderList.do">성별통계불러와라</a> -->
 <!-- <a href="./ageList.do">연령별통계불러와라</a> -->
 <div id="content">
-<div class="rectangle" style="background-image: url('./img/star.png'); width:300px; height:300px; background-size: cover; margin-top: 10px; margin-left: 20px;">
-		<h2 style="color: white;">실시간 베스트셀러!</h2>
+<div class="rectangle" style="background-image: url('./img/star.png'); width:350px; height:300px; background-size: cover; margin-top: 10px; margin-left: 20px;">
+		<h2 style="color: white;">실시간 <span style="color: yellow;">베스트셀러!</span></h2>
 		<h4 style="color: white;">누구에게 인기가 많을까?</h4>
 		<button id="showModal" type="button" class="btn btn-lg" style="background-color: #00FFF5; color: #222831"  data-toggle="modal"
 			data-target="#myModal">
@@ -59,10 +59,10 @@ svg > g > g:last-child { pointer-events: none }
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">실시간 베스트셀러</h4>
+						<h4 class="modal-title" style="color: #222832;">실시간 베스트셀러</h4>
 					</div>
 					<div class="modal-body">
-						<h1 id="bookTitle" style="text-align: center;" onmouseover="showBookInfo()" onmouseout="hideBookInfo()"></h1>
+						<h1 id="bookTitle" style="text-align: center; color: #222832;" onmouseover="showBookInfo()" onmouseout="hideBookInfo()"></h1>
 						<div id="bookInfo" style="position: fixed; left: -200px;">
 						</div>
 						<!-- 여기에 차트 뿌리기 -->

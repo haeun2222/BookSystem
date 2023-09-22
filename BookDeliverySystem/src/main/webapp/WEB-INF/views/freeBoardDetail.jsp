@@ -15,18 +15,18 @@
 </head>
 <body>
 	<div class="container">
-		<h1>제목: ${dto.free_title}<input style="float: right;" class="btn btn-success" type="button" value="이전" onclick="location.href='./freeBoardList.do'">
+		<h1>제목: ${dto.free_title}<input style="float: right; background-color: #ccc; color: #000;" class="btn" type="button" value="이전" onclick="location.href='./freeBoardList.do'">
 			<c:if test="${loginDto.user_name eq dto.user_name or loginDto.user_auth eq 'A'}">
     		<input style="float: right;" class="btn btn-danger" type="button" value="삭제" onclick="boardDel()">
 <%-- 			<input style="float: right;" class="btn btn-info" type="button" value="수정" onclick="location.href='./updateBoard.do?free_bseq=${dto.free_bseq}'"> --%>
-			<input style="float: right;" class="btn btn-info" type="button" value="수정" onclick="location.href='./updateBoard.do?free_bseq='+ ${dto.free_bseq} + '&free_title=' + '${dto.free_title}' + '&free_content=' + '${dto.free_content}'">
+			<input style="float: right;background-color: #00ADB5; color: #000;" class="btn" type="button" value="수정" onclick="location.href='./updateBoard.do?free_bseq='+ ${dto.free_bseq} + '&free_title=' + '${dto.free_title}' + '&free_content=' + '${dto.free_content}'">
 			
 			</c:if>
 		</h1>
 		<div>
 			작성자<div class="form-control" style="font-size: 20px;">${dto.user_name}</div>
 			내용<div class="form-control" style="height: 100px; font-size: 20px;">${dto.free_content}</div>
-			작성일<div class="form-control" style="font-size: 20px;"><fmt:formatDate value="${dto.free_regdate}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></div>
+			작성일<div class="form-control" style="font-size: 15px;"><fmt:formatDate value="${dto.free_regdate}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></div>
 		</div><br>
 		<div>
 <%-- 		<p>${loginDto}</p> --%>
@@ -34,14 +34,13 @@
 <%-- 		<p>${CommentAll}</p> --%>
 			
 			</div>
-			<hr>
-				<h1 style="margin-top: 10px;">-답글목록</h1>
+<!-- 				<h1 style="margin-top: 10px;">-답글목록</h1> -->
 <%-- 				<button class="btn btn-warning" id="toggleComment" onclick="location.href='./freeBoardDetail.do?free_bseq=${dto.free_bseq}'">답글보기</button> --%>
 			<table class="table" id="commentTable">
 				<c:forEach var="comment" items="${CommentAll}">
 				<tr>
 					<th>${comment.user_name}: ${comment.comment_content}
-					<span style="float: right; color: red;">작성일:${comment.comment_regdate}</span>
+					<span style="float: right; color: white; font-size: 12px;">작성일:${comment.comment_regdate}</span>
 					</th>
 				<c:if test="${loginDto.user_name == comment.user_name}">
 					<td><button class="btn btn-danger" onclick="commentDel(${comment.comment_seq})">삭제</button></td>
@@ -58,7 +57,7 @@
 			        <textarea placeholder="로그인 후 이용가능합니다." class="form-control" id="comment_content" name="comment_content"></textarea>
 			    </div>
 			    <c:if test="${loginDto.user_name != null}">
-			    <input class="btn btn-success" type="submit" value="답글작성">
+			    <input style="background-color: #00fff5; color: #000;" class="btn" type="submit" value="답글작성">
 			    </c:if>
 			</form>
 		</div>
