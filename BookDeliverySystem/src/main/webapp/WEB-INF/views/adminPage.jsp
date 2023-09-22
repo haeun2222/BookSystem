@@ -9,6 +9,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="js/adminUser.js"></script>
 <script src="js/adminBook.js"></script>
+<script src="js/adminRent.js"></script>
 </head>
 <body>
 
@@ -17,9 +18,9 @@
 <body>
     <button id="userTableButton">회원관리</button>
     <button id="bookTableButton">도서관리</button>
-<!--     <button id="rentListButton">대출관리</button> -->
+    <button id="rentListButton">대출관리(미완성)</button>
     <button type="button" onclick="location.href='./freeBoardList.do'">자유게시판 관리</button>
-    <button type="button" onclick="location.href='./adminRentList.do'">관리자대출관리</button>
+    <button type="button" onclick="location.href='./oldAdminRentList.do'">관리자대출관리</button>
     <input type="text" id="bookName" placeholder="도서명 입력">
     <button id="search">검색</button>
     <button class="btn btn-info" onclick="location.href='./logout.do'">로그아웃</button>
@@ -27,17 +28,10 @@
     <div id="userInfoTable"></div>
     <div id="bookInfoTable"></div>
     <div id="bookSearchTable"></div>    
+    <div id="rentListTable"></div>   
     
-    
-    
-    <input type="hidden" id="userName" value="${rent.USER_NAME}">
-    <input type="hidden" id="bookTitle" value="${rent.BOOK_TITLE}">
-    <input type="hidden" id="rentDate" value="${rent.RENT_DATE}">
-    <input type="hidden" id="rentReturnDate" value="${rent.RENT_RETURN_DATE}">
-    <input type="hidden" id="rentSeq" value="${rent.RENT_SEQ}">
-    <input type="hidden" id="userSeq" value="${rent.USER_SEQ}">
-    <input type="hidden" id="bookSeq" value="${rent.BOOK_SEQ}">
-    <input type="hidden" id="rentStatus" value="${rent.RENT_STATUS}">
+    <!-- 하은 -->
+
 
 </body>
 </html>

@@ -11,6 +11,7 @@ $(document).ready(function() {
 
     $("#rentListButton").click(function() {
         // 대출관리 버튼에 대한 동작 추가
+        toggleRentTable();
     });
 
     // 초기에 테이블은 숨겨져 있도록 설정
