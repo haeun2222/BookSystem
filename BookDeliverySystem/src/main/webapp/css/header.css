@@ -10,23 +10,23 @@ html, body {
 #header {
 
   height: 100px; /* 헤더 높이를 116px로 고정 */
-  background-color:papayawhip; /* 헤더 배경색을 원하는 색상으로 설정 */
+  background-color: #222831; /* 헤더 배경색을 원하는 색상으로 설정 */
   color:black; /* 헤더 텍스트 색상을 원하는 색상으로 설정 */
 }
 
 #footer {
   height: 100px; /* 푸터 높이를 116px로 고정 */
-  background-color:papayawhip; /* 푸터 배경색을 원하는 색상으로 설정 */
+  background-color: #00ADB5; /* 푸터 배경색을 원하는 색상으로 설정 */
   color: #fff; /* 푸터 텍스트 색상을 원하는 색상으로 설정 */
 }
 
 .flex-container {
   display: flex;
   flex-wrap: nowrap;
-  background-color: papayawhip;
+  background-color: #222831;
 }
 .flex-container > div {
-  background-color: papayawhip;
+  background-color: #222831;
   width: 400px;
   margin: 10px;
   text-align: center;
@@ -34,6 +34,42 @@ html, body {
   font-size: 30px;
 }
 
+
+.navbar-default {
+    outline: 1px solid #222831;
+}
+
+nav.navbar-default ul.nav.navbar-nav li a:hover {
+    color: #00BCD4;
+}
+
+li {
+    font-family: 'BMHANNAAir', fantasy;
+}
+
+
+
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    outline-style: double;
+    outline-color: #222831;
+}
+
+
+.navbar-header{
+	outline-color: #222831;
+	
+}
+
+a:hover {
+    color: #00BCD4;
+}
+/* .li a { */
+/*     color: #CFD8DC; */
+/* } */
 /* #content { */
 /*   min-height: 368px; 헤더와 푸터 높이를 고려한 콘텐츠 높이 설정 (600 - 116 - 116) */
 /*   max-width: 1280px; */

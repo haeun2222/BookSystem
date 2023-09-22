@@ -18,7 +18,7 @@
 <title>Insert title here</title>
 </head>
 <%@ include file="header.jsp" %>
-<body>
+<body style="color: #ECEFF1">
 <table class="tg">
 <thead>
   <tr>
@@ -69,7 +69,7 @@
 </c:if>
 
 <!-- 대출 모달 창 -->
-<div class="modal fade" id="rentModal" role="dialog">
+<div class="modal fade" id="rentModal" role="dialog" style="color: #263238">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
