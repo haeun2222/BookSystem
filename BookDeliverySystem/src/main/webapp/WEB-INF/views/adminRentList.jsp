@@ -16,7 +16,7 @@
 </head>
 <%@include file="/WEB-INF/views/header.jsp"%>
 <body>
-${addrDto}
+
 <div class="container">
     <h1>계발의민족 회원 도서 대출 목록</h1>
     <table border="1">
@@ -53,13 +53,13 @@ ${addrDto}
                 <td>
                     <c:choose>
                         <c:when test="${rent.RENT_STATUS eq 'B'}">
-                        <button onclick="handleActions(${rent.RENT_SEQ}, ${rent.BOOK_SEQ})">반납확인</button>
+                        <button onclick="handleActions(${rent.RENT_SEQ}, ${rent.BOOK_SEQ})" style="color: #263238">반납확인</button>
                         </c:when>
                     </c:choose>
                 </td>
                 <td style="display: flex; align-items: center;">
             	    	<input type="text" id="deliveryNum${rent.USER_SEQ}" placeholder="운송장번호 입력" value="">
-  					   <button onclick="updateDelivery(${rent.USER_SEQ}, '${rent.USER_SEQ.delivery_num}')">입력</button>
+  					   <button onclick="updateDelivery(${rent.USER_SEQ}, '${rent.USER_SEQ.delivery_num}')" style="color: #263238">입력</button>
 
                 </td>
             </tr>
