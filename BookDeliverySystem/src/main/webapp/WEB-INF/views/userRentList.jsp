@@ -22,7 +22,7 @@
 
 <%-- ${addrDto.delivery_num} --%>
 <h1>${loginUser.user_name}님의 대출 도서 목록 입니다</h1>
-    <button id="refreshButton">대출내역 갱신</button>
+    <button id="refreshButton"  style="color: #263238">대출내역 갱신</button>
 
     <!-- JavaScript 코드 -->
     <script>
@@ -72,7 +72,7 @@
 			</td>
 			<td>
 			<!-- @김지인2 @since 23.09.23 - 배송조회시 운송장 번호 입력값으로 조회하도록 변경 -->
-			<button onclick="openTrackerForm()">배송조회</button>
+			<button onclick="openTrackerForm()" style="color: #263238">배송조회</button>
 <%-- 				<button onclick="location.href='./delivery.do?user_seq=${loginDto.user_seq}'">배송조회</button> --%> 
 			</td>
         </tr>

@@ -36,18 +36,21 @@ svg > g > g:last-child { pointer-events: none }
 </div>
 
 <!-- 검색창 -->
-<div class="search-container">
-  <input type="text" placeholder="도서명 또는 저자를 입력하세요.">
-  <button type="submit"><i class="fa fa-search"></i></button>
+<!-- 검색창 -->
+<!-- 검색창 -->
+<div class="search-container" style="width: 40%; margin: 0 auto; text-align: center;">
+  <input type="text" placeholder="도서명 또는 저자를 입력하세요." style="width: 70%;"> <!-- Adjust the width as needed -->
+  <button type="submit" style="width: 30%;"><i class="fa fa-search"></i></button> <!-- Adjust the width as needed -->
 </div>
+
 <!-- <a href="./imgSelect.do">책이미지좀불러와라</a> -->
 <!-- <a href="./genderList.do">성별통계불러와라</a> -->
 <!-- <a href="./ageList.do">연령별통계불러와라</a> -->
 <div id="content">
 <div class="rectangle" style="background-image: url('./img/star.png'); width:300px; height:300px; background-size: cover; margin-top: 10px; margin-left: 20px;">
-		<h2>실시간 베스트셀러!</h2>
-		<h4>누구에게 인기가 많을까?</h4>
-		<button id="showModal" type="button" class="btn btn-info btn-lg" data-toggle="modal"
+		<h2 style="color: white;">실시간 베스트셀러!</h2>
+		<h4 style="color: white;">누구에게 인기가 많을까?</h4>
+		<button id="showModal" type="button" class="btn btn-lg" style="background-color: #00FFF5; color: #222831"  data-toggle="modal"
 			data-target="#myModal">
 			지금보러가자!
 		</button>
