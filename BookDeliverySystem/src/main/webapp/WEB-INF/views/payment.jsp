@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/payment.css">
+<link rel="stylesheet" href="css/header.css">
 <title>Payment 결제 페이지</title>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.7.0.js"></script>
@@ -145,9 +146,7 @@ async function requestPay() {
 
 </head>
 <%@ include file="/WEB-INF/views/header.jsp" %>
-<body
-
-	style="background-image: url('./img/book.png'); background-repeat: no-repeat; background-size: 100%; background-position: bottom;">
+<body style="background-image: url('./img/book.png'); background-repeat: no-repeat; background-size: 100%; background-position: bottom; height: 1000px;">
 	<!-- 세션에서 loginDto 속성을 불러옴 -->
 	<c:set var="loginDto" value="${sessionScope.loginDto}" />
 
