@@ -18,6 +18,7 @@
 		<div class="topLogo" style="margin-top: 30px;" id="loginBtn">
 			<button class="btn" style="background-color: #00FFF5"
 				onclick="location.href='./nomalRegistForm.do'">회원가입</button>
+			<!--로그인 상태확인 -->
 			<c:choose>
 				<c:when test="${loginDto == null}">
 					<button class="btn" id="loginButton"
