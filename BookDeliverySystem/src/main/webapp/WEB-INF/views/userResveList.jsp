@@ -57,14 +57,14 @@
             <td>
 			    <c:choose>
 			        <c:when test="${resve.RESVE_STATUS eq 'Y'}">
-			        <button onclick="cancelReservation(${resve.BOOK_SEQ}, ${loginUser.user_seq})">예약취소</button>
+			        <button onclick="cancelReservation(${resve.BOOK_SEQ}, ${loginUser.user_seq})" style="color: #263238">예약취소</button>
 			        </c:when>
 			        <c:otherwise></c:otherwise>
 			    </c:choose>
 			</td>
 			<td>
 			    <c:choose>
-			        <c:when test="${resve.RESVE_STATUS eq 'R'}"><button onclick="location.href = './addr.do?book_seq=' + ${resve.BOOK_SEQ}">대출신청</button></c:when>
+			        <c:when test="${resve.RESVE_STATUS eq 'R'}"><button onclick="location.href = './addr.do?book_seq=' + ${resve.BOOK_SEQ}" style="color: #263238">대출신청</button></c:when>
 			        <c:otherwise></c:otherwise>
 			    </c:choose>
 			</td>

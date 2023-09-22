@@ -90,7 +90,7 @@
 </div>
 
 <!-- 예약 모달 창 -->
-<div class="modal fade" id="myModal1" role="dialog">
+<div class="modal fade" id="myModal1" role="dialog" style="color: #263238">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
