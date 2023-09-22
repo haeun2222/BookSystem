@@ -53,7 +53,7 @@ public class UserController {
 			log.info("로그인실패 /test.do로 이동 {}",map);
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('로그인 실패'); location.href='history.back(-1)';</script>");
+			out.println("<script>alert('로그인 실패'); location.href='./index.jsp';</script>");
 			out.flush();
 			return "";
 		
