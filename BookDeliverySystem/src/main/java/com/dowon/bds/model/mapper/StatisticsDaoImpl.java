@@ -26,11 +26,11 @@ public class StatisticsDaoImpl implements IStatisticsDao {
 	@Autowired
 	private SqlSessionTemplate session;
 	
-//	@Override
-//	public List<GenderDto> imgSelect() {
-//		log.info("ImgDaoImpl imgSelect top2책 이미지");
-//		return session.selectList(NS+"imgSelect");
-//	}
+	@Override
+	public List<GenderDto> imgSelect() {
+		log.info("ImgDaoImpl imgSelect top5책 이미지");
+		return session.selectList(NS+"imgSelect");
+	}
 
 	@Override
 	public List<GenderDto> genderStatistics() {
@@ -48,6 +48,12 @@ public class StatisticsDaoImpl implements IStatisticsDao {
 	public BookDto bookSearch(int book_seq) {
 		log.info("StatisticsDaoImpl bookSearch 책정보가져오기");
 		return session.selectOne(NS+"bookSearch",book_seq);
+	}
+
+	@Override
+	public List<GenderDto> detailGenderStatistics(int book_seq) {
+		log.info("StatisticsDaoImpl detailGenderStatistics 상세페이지 성별통계");
+		return session.selectList(NS+"detailGenderStatistics",book_seq);
 	}
 
 }

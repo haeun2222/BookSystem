@@ -107,6 +107,7 @@ window.onload = function(){
 </head>
 <body>
 
+
 <!-- <a href="./imgSelect.do">책이미지좀불러와라</a> -->
 <!-- <a href="./genderList.do">성별통계불러와라</a> -->
 <!-- <a href="./ageList.do">연령별통계불러와라</a> -->

@@ -34,21 +34,21 @@ svg > g > g:last-child { pointer-events: none }
     <div><img src="./img/header03.png" width="100%"></div>
     <div><img src="./img/header04.png" width="100%"></div>
 </div>
-
 <!-- 검색창 -->
 <!-- 검색창 -->
 <!-- 검색창 -->
 <div class="search-container" style="width: 40%; margin: 0 auto; text-align: center;">
   <input type="text" placeholder="도서명 또는 저자를 입력하세요." style="width: 70%;"> <!-- Adjust the width as needed -->
   <button type="submit" style="width: 30%;"><i class="fa fa-search"></i></button> <!-- Adjust the width as needed -->
+  
 </div>
 
 <!-- <a href="./imgSelect.do">책이미지좀불러와라</a> -->
 <!-- <a href="./genderList.do">성별통계불러와라</a> -->
 <!-- <a href="./ageList.do">연령별통계불러와라</a> -->
 <div id="content">
-<div class="rectangle" style="background-image: url('./img/star.png'); width:350px; height:300px; background-size: cover; margin-top: 10px; margin-left: 20px;">
-		<h2 style="color: white;">실시간 <span style="color: yellow;">베스트셀러!</span></h2>
+<div class="rectangle">
+		<h2 style="color: white;">실시간<span style="color: yellow;">베스트셀러!</span></h2>
 		<h4 style="color: white;">누구에게 인기가 많을까?</h4>
 		<button id="showModal" type="button" class="btn btn-lg" style="background-color: #00FFF5; color: #222831"  data-toggle="modal"
 			data-target="#myModal">
@@ -78,7 +78,6 @@ svg > g > g:last-child { pointer-events: none }
 								</td>
 							</tr>
 						</table>
-		
 					</div>
 					<button id="bookDetail" class="btn btn-primary btn-lg"
 						style="width: 500px; margin: 20px 50px;" onclick="location.href='./getDetailBook.do?book_seq='+book_seq">상세보기</button>

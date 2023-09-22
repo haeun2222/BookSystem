@@ -39,7 +39,10 @@ public class RestStatisticsController {
 			log.info("Welcome RestStatistics_Controller getAge 연령별통계{}",ageData);
 			return ageData;
 		}
+		
+		
 
+		
 		
 	}
 	

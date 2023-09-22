@@ -61,7 +61,7 @@ window.onload = function(){
             ageData.addRow([data[1].age_group,parseInt(data[1].percent),'#00d2d3']);
             ageData.addRow([data[2].age_group,parseInt(data[2].percent),'#74b9ff']);
             ageData.addRow([data[3].age_group,parseInt(data[3].percent),'#55efc4']);
-            ageData.addRow([data[4].age_group,parseInt(data[4].percent),'#81ecec']);
+//            ageData.addRow([data[4].age_group,parseInt(data[4].percent),'#81ecec']);
             
  //            차트 옵션 설정
            var options = {

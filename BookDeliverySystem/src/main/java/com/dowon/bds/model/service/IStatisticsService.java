@@ -13,8 +13,9 @@ import com.dowon.bds.dto.GenderDto;
 
 public interface IStatisticsService {
 
-//	public List<GenderDto> imgSelect();
+	public List<GenderDto> imgSelect();
 	public List<GenderDto> genderStatistics();
 	public List<AgeDto> AgeStatistics();
 	public BookDto bookSearch(int book_seq);
+	public List<GenderDto> detailGenderStatistics(int book_seq);
 }

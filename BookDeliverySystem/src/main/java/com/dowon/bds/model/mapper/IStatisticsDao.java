@@ -14,7 +14,7 @@ import com.dowon.bds.dto.GenderDto;
 public interface IStatisticsDao {
 
 	// 대출현황 TOP2 도서 이미지 (메인페이지에 띄워짐) 
-//		public List<GenderDto> imgSelect();
+		public List<GenderDto> imgSelect();
 		
 		// 대출현황 성별 통계 백분율
 		public List<GenderDto> genderStatistics();
@@ -23,5 +23,8 @@ public interface IStatisticsDao {
 		
 		//BOOK_SEQ값으로 책 정보를 가져오는 DAO
 		public BookDto bookSearch(int book_seq);
+		
+		// 상세도서페이지 해당 책 성별 통계
+		public List<GenderDto> detailGenderStatistics(int book_seq);
 	
 }
