@@ -9,6 +9,7 @@
 </head>
 <body>
 
+
 	<div class="flex-container" id="header">
 		<div class="topLogo" style="margin-top: 30px;"></div>
 		<div>
@@ -37,6 +38,7 @@
 			<div class="navbar-header"></div>
 			<ul class="nav navbar-nav" style="margin: 0 auto;">
 				<li class="active"><a href="./home.do">Home</a></li>
+
 
 				<li><a style="color: #CFD8DC;" href="./freeBoardList.do">자유게시판</a></li>
 				<li><a style="color: #CFD8DC;" href="./userBookList.do">도서목록</a></li>

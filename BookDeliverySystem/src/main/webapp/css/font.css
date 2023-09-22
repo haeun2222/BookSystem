@@ -75,8 +75,8 @@ button{
 
 html { background-color: #222831;} 
 body {
-    min-height: 600px;
-    max-width: 1280px;
+/*     min-height: 600px; */
+/*     max-width: 1280px; */
     background-color:#222831; 
     margin: 0 auto;
 }

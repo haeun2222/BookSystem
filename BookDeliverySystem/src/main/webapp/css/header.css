@@ -24,6 +24,7 @@ html, body {
   display: flex;
   flex-wrap: nowrap;
   background-color: #222831;
+  justify-content: center;
 }
 .flex-container > div {
   background-color: #222831;

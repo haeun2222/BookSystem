@@ -17,7 +17,7 @@
 <body>
 <div class="container">
 	<h1>자유게시판</h1>
-	<input style="float: right;" class="btn btn-success" type="submit" onclick="location.href='./freeBoardInsertView.do'" value="새글작성">
+	<input style="float: right;background-color: #00fff5; color: #000;" class="btn" type="submit" onclick="location.href='./freeBoardInsertView.do'" value="새글작성">
     <table class="table" border="1">
         <tr>
             <th>번호</th>
