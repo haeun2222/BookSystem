@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="css/font.css">
 <title>Insert title here</title>
 </head>
+<%@ include file="header.jsp" %>
 <body>
 
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
@@ -45,5 +46,5 @@
 </table>
  
 </body>
-
+<%@ include file="/WEB-INF/views/footer.jsp" %>
 </html>

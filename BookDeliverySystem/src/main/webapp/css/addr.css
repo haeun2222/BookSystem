@@ -2,11 +2,11 @@
 
 
 body {
-	 background-image: url("../img/11.jpg");
+	 background-image: url("../img/146.png");
 	 background-repeat : no-repeat;
 	 background-size: contain;
-	 background-position : right center;
-	 background-size : 110% ;
+	 background-position :center; 
+	 background-size : 140% ;
 }
 body {
         display: flex;
