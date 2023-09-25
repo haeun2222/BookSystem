@@ -13,7 +13,7 @@
 	<div class="flex-container" id="header">
 		<div class="topLogo" style="margin-top: 30px;"></div>
 		<div>
-			<h1 style="text-align: center; font-size: 60px; color: white;">계발의민족</h1>
+			<h1 style="text-align: center; font-size: 60px; color: white;"> <a href="./index.jsp"> 계발의민족 </a></h1>
 		</div>
 		<div class="topLogo" style="margin-top: 30px;" id="loginBtn">
 			
@@ -27,12 +27,15 @@
 						onclick="location.href='./loginPage.do'">로그인</button>
 				</c:when>
 				<c:otherwise>
-					<span style="font-size: 12px; color: white;"> ${loginDto.user_name} 님 환영합니다. </span>
-					<span style="font-size: 12px; color: white;"> ${rentData.rent_status} </span>
+					<span style="font-size: 12px; color: white;"> 
+									${loginDto.user_name} 님 환영합니다. &nbsp;&nbsp;
+									대출상태 : <a href="./userRentList.do"> ${userStatus.RENT_STATUS} </a>&nbsp;&nbsp;
+									예약상태 : <a href="./userResveList.do"> ${userStatus.RESVE_STATUS} </a> &nbsp;&nbsp;
+					 </span>
 					<button class="btn" id="logoutButton"
 						style="background-color: #00FFF5"
-						onclick="location.href='./logout.do'">로그아웃</button>
-					
+						onclick="location.href='./logout.do'">로그아웃
+					</button>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -48,8 +51,6 @@
 				<li><a style="color: #CFD8DC;" href="./freeBoardList.do">자유게시판</a></li>
 				<li><a style="color: #CFD8DC;" href="./userBookList.do">도서목록</a></li>
 				<li><a style="color: #CFD8DC;" href="./paymentList.do">결제내역</a></li>
-				<li><a style="color: #CFD8DC;" href="./userRentList.do">회원대출목록</a></li>
-				<li><a style="color: #CFD8DC;" href="./userResveList.do">회원예약목록</a></li>
 				<!--     <li><a style="color: #CFD8DC;" href="./adminRentList.do">관리자대출관리</a></li> -->
 
 			</ul>
