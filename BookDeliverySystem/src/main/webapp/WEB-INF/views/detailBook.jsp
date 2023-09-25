@@ -16,8 +16,10 @@
 <link rel="stylesheet" href="css/header.css">
 <script type="text/javascript" src="js/userRentResve.js" defer="defer"></script>
 <script type="text/javascript" src="js/detailGender.js"></script>
-
 <title>Insert title here</title>
+<style type="text/css">
+svg > g > g:last-child { pointer-events: none }
+</style>
 </head>
 <%@ include file="header.jsp" %>
 <body style="color: #ECEFF1">
@@ -26,6 +28,8 @@
   <tr>
     <th class="tg-0pky" rowspan="5"><img src="${detailBook.book_img}" width="40%"></th>
     <th class="tg-0pky">${detailBook.book_title}</th>
+    <th id="detailGenderChart"></th>
+	<th id="detailAgeChart"></th>
   </tr>
   <tr>
     <th class="tg-0pky">${detailBook.book_writer}</th>
@@ -51,6 +55,8 @@
   <tr>
     <td class="tg-0lax" colspan="2">${detailBook.book_summary}</td>
   </tr>
+
+
 </tbody>
 </table>
 
@@ -157,10 +163,11 @@
     var book_seq = ${detailBook.book_seq};
 </script>
 
-<div class="chart-container">
-    <div id="detailGenderChart" class="chart"></div>
-    <div id="detailAgeChart" class="chart"></div>
-</div>
+<!-- <div class="chart-container"> -->
+<!--     <div id="detailGenderChart" class="chart"></div> -->
+<!--     <div id="detailAgeChart" class="chart"></div> -->
+<!-- </div> -->
+
 </body>
 <%@ include file="footer.jsp" %>
 </html>

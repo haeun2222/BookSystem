@@ -17,6 +17,10 @@ window.onload = function(){
 //             차트 옵션 설정
             var options = {
 			    title: '성별 통계',
+			    backgroundColor: '#222831',
+			    titleTextStyle: {
+        		color: 'white' 
+    			},
 			    chartArea: {
 			        width: '40%', 
 			        height: '40%'
@@ -28,7 +32,7 @@ window.onload = function(){
 			    is3D:true,
 			    colors: ['#74b9ff', '#81ecec', '#a29bfe', '#dfe6e9', '#00cec9'],
 	          	fontSize: 15,
-	          	pieSliceText: 'label'
+	          	pieSliceText: 'label',
 	          	
 			};
 //             차트 그리기
@@ -62,6 +66,10 @@ window.onload = function(){
  //            차트 옵션 설정
            var options = {
 			    title:'연령별 통계',
+			    backgroundColor: '#222831',
+			    titleTextStyle: {
+        		color: 'white' 
+    			},
 			    chartArea: {
 			        width: '40%', 
 			        height: '40%'

@@ -1,9 +1,16 @@
 package com.dowon.bds;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +19,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.WebUtils;
 
 import com.dowon.bds.dto.FreeBoardDto;
 import com.dowon.bds.dto.FreeCommentDto;
@@ -55,8 +64,66 @@ public class FreeBoardController {
 		}
 		return "freeBoardInsert";
 	}
-	@RequestMapping(value = "/freeBoardInsert.do", method = RequestMethod.POST)
-	public String freeBoardInsert(HttpSession session, FreeBoardDto dto) {
+
+@RequestMapping(value = "/freeBoardInsert.do", method = RequestMethod.POST)
+	public String freeBoardInsert(HttpSession session, FreeBoardDto dto,HttpServletRequest request,Model model,List<MultipartFile>file,String desc) {
+		for (MultipartFile f : file) {
+			System.out.println(f.getOriginalFilename());
+			String originalFileName = f.getOriginalFilename();
+			String saveFileName = UUID.randomUUID().toString() 
+									+ originalFileName.substring(originalFileName.lastIndexOf("."));
+			System.out.println("파일명" + originalFileName);
+			System.out.println("저장파일명"+"./storage/"+saveFileName);
+			
+			InputStream inputStream = null;
+			OutputStream outputStream = null;
+			String path = "";
+			
+			try {
+				// 1) 파일을 읽는다
+				inputStream = f.getInputStream();
+				
+				// 2) 저장위치를 만든다
+				path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage"); // 상대경로(배포할때 이렇게 사용)
+				System.out.println(request.getSession().getServletContext().getRealPath("storage")); // 상대경로
+				System.out.println("실제 파일이 업로드될 테스트 경로:" +path);
+				
+				// 3) 저장위치가 없으면 만든다
+				File storage = new File(path);
+				if(!storage.exists()) {
+					storage.mkdir();
+				}
+				// 4) 저장할 파일이 없다면 만들어주고 아니면 오버라이드 함
+				File newFile = new File(path+"/"+saveFileName);
+				if(!newFile.exists()) {
+					newFile.createNewFile();
+				}
+				// 5) 파일의 쓸 위치를 지정해줌
+				outputStream = new FileOutputStream(newFile);
+				
+				// 6) 파일을 대상에 읽고 써줌
+				int read = 0;
+				byte[] b = new byte[(int)f.getSize()];
+				while ((read=inputStream.read(b))!= -1) {
+					outputStream.write(b,0,read);
+				}
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					inputStream.close();
+					outputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			model.addAttribute("originalFileName",originalFileName);
+			if(originalFileName != null) {
+				session.setAttribute("originalFileName",originalFileName);
+			}
+		}
+		
 		log.info("FreeBoardController freeBoardInsert 자유게시판 새글등록{}",dto);
 		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
 	    dto.setUser_seq(loginDto.getUser_seq());

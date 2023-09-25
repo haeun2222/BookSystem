@@ -27,6 +27,7 @@
 			작성자<div class="form-control" style="font-size: 20px;">${dto.user_name}</div>
 			내용<div class="form-control" style="height: 100px; font-size: 20px;">${dto.free_content}</div>
 			작성일<div class="form-control" style="font-size: 15px;"><fmt:formatDate value="${dto.free_regdate}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></div>
+		</div>
 		</div><br>
 		<div>
 <%-- 		<p>${loginDto}</p> --%>
