@@ -24,6 +24,7 @@
             <th>제목</th>
             <th>작성자</th>
             <th>작성일</th>
+            <th>파일</th>
         </tr>
         <c:forEach var="freeBoard" items="${freeBoardList}">
             <tr>

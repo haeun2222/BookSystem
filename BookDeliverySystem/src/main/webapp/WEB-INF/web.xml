@@ -12,7 +12,10 @@
 	<!-- needed for ContextLoaderListener -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/appServlet/application-context.xml</param-value>
+		<param-value>
+		/WEB-INF/spring/appServlet/application-context.xml
+		/WEB-INF/spring/appServlet/file-context.xml	
+		</param-value>
 	</context-param>
 
 	<!-- Bootstraps the root web application context before servlet initialization -->
