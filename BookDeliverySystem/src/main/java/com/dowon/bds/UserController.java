@@ -48,6 +48,8 @@ public class UserController {
 	    log.info("로그인 처리 login {}", map);
 	    UserDto loginDto = service.login(map);
 	    log.info("loginDto정보 {}", loginDto);
+	    Map<String, Object> userStatus = service.getUserStatus(loginDto.getUser_seq());
+	    log.info("userStatus정보 {}", userStatus);
 	    
 	    if (loginDto == null) {
 	        log.info("로그인 실패 {}", map);
@@ -58,6 +60,8 @@ public class UserController {
 	        log.info(loginDto.getUser_auth());
 	        log.info("유저 로그인성공  이동 {}", map);
 	        session.setAttribute("loginDto", loginDto);
+	        session.setAttribute("userStatus",userStatus);
+	        log.info("userStatus의 값 체크 : {}",userStatus); //삭제할것
 	        return "redirect:/index.jsp";
 	    } else {
 	        log.info("어드민 로그인성공 {}", map);
