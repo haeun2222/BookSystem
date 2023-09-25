@@ -47,6 +47,6 @@ public interface IRentService {
 	
 	public int allUserCountRent();
 	
-	public List<Map<String, Object>> RentPageList(Map<String, Object>map);
+	public List<Map<String, Object>> allRentPageList(Map<String, Object>map);
 	
 }

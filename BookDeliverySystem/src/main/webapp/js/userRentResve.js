@@ -58,7 +58,7 @@ function chkAvailability() {
             button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
             
             button1.click(function() {
-                window.location.href = "./userResveList.do?user_seq=" + userSeq;
+                window.location.href = "./userResvePageList.do?user_seq=" + userSeq;
             });
 
             modalFooter.append(button1);
@@ -70,7 +70,7 @@ function chkAvailability() {
             button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
 
             button1.click(function() {
-                window.location.href = "./userRentList.do?user_seq=" + userSeq;
+                window.location.href = "./userRentPageList.do?user_seq=" + userSeq;
             });
 
             modalFooter.append(button1);
@@ -110,7 +110,7 @@ function newResve1() {
 			    },
                 success: function (response) {
 					alert("예약신청이 완료되었습니다.");
-                    window.location.href = "./userResveList.do?user_seq=" + userSeq;
+                    window.location.href = "./userResvePageList.do?user_seq=" + userSeq;
                 },
                 error: function (error) {
                     alert("예약신청에 실패했습니다. 다시 시도해주세요.");
@@ -131,7 +131,7 @@ function newResve1() {
         button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
 
         button1.click(function() {
-            window.location.href = "./userResveList.do?user_seq=" + userSeq;
+            window.location.href = "./userResvePageList.do?user_seq=" + userSeq;
         });
         
         modalFooter.append(button1);
@@ -147,7 +147,7 @@ function newResve1() {
         button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
 
         button1.click(function() {
-            window.location.href = "./userRentList.do?user_seq=" + userSeq;
+            window.location.href = "./userRentPageList.do?user_seq=" + userSeq;
         });
 
         modalFooter.append(button1);

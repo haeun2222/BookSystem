@@ -143,8 +143,8 @@ public class RentServiceImpl implements IRentService {
 	}
 
 	@Override
-	public List<Map<String, Object>> RentPageList(Map<String, Object>map) {
-		return dao.RentPageList(map);
+	public List<Map<String, Object>> allRentPageList(Map<String, Object>map) {
+		return dao.allRentPageList(map);
 	}
 	
 	

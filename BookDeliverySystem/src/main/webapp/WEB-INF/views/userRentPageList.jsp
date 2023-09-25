@@ -21,11 +21,9 @@
 <div class="container">
     <c:set var="loginUser" value="${sessionScope.loginDto}" />
     <%-- <c:set var="addrDto" value="${sessionScope.addrDto}" /> --%>
-
     <%-- ${addrDto.delivery_num} --%>
     <h1>${loginUser.user_name}님의 대출 도서 목록 입니다</h1>
     <button id="refreshButton"  style="color: #263238">대출내역 갱신</button>
-    ${userRentList}
     <!-- JavaScript 코드 -->
     <script>
         // 페이지 새로고침 버튼을 클릭할 때 페이지를 새로고침합니다.

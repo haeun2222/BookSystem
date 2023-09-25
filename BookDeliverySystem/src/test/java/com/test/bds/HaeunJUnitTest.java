@@ -35,11 +35,11 @@ public class HaeunJUnitTest {
 	@Autowired
 	private ApplicationContext context;
 
-//	@Autowired
-//	private IRentService service;
-	
 	@Autowired
-	private IResveService service;
+	private IRentService service;
+	
+//	@Autowired
+//	private IResveService service;
 
 	@Autowired
 	private IRentDao dao;
@@ -55,17 +55,28 @@ public class HaeunJUnitTest {
 	public void bookTest() {
 		
 		
-		
-		int n = service.userCountResve(701);
+		int n = service.allUserCountRent();
 		System.out.println(n);
 		
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("first", 1);
 		map.put("last", 10);
-		map.put("user_seq", 701);
-		List<Map<String, Object>> lists = service.userResvePageList(map);
+		List<Map<String, Object>> lists = service.allRentPageList(map);
+		assertNotNull(lists);
 		System.out.println(lists);
+		
+		
+//		int n = service.userCountResve(701);
+//		System.out.println(n);
+//		
+//		
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("first", 1);
+//		map.put("last", 10);
+//		map.put("user_seq", 701);
+//		List<Map<String, Object>> lists = service.userResvePageList(map);
+//		System.out.println(lists);
 		
 		
 //		int n = service.userCountRent(1);
