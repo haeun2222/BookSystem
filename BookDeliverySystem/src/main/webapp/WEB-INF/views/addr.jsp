@@ -136,12 +136,7 @@
             return false;
         }
         
-        //우편번호 필드의 길이 검사(6자 이하)
-        if (!numericPattern.test(address) || postcode.length >6) {
-			alert("우편번호는 6자 이하의 숫자로 입력해야 합니다.");
-			return false;
-		}
-        
+
         // 주소 필드의 길이 검사 (30자 이하)
         if (!validPattern.test(address)|| address.length > 30) {
             alert("주소는 30자 이하로 입력해야 합니다.");
@@ -149,8 +144,8 @@
         }
 
         // 상세주소 필드의 길이 검사 (15자 이하)
-        if (detailAddress.length > 15 ||!validPattern.test(detailAddress) ) {
-            alert("상세주소는 15자 이하로 입력해야 합니다.");
+        if (detailAddress.length > 35 ||!validPattern.test(detailAddress) ) {
+            alert("상세주소는 35자 이하로 입력해야 합니다.");
             return false;
         }
 

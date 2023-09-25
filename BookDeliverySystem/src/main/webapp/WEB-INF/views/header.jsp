@@ -50,6 +50,7 @@
 				<li><a style="color: #CFD8DC;" href="./paymentList.do">결제내역</a></li>
 				<li><a style="color: #CFD8DC;" href="./userRentList.do">회원대출목록</a></li>
 				<li><a style="color: #CFD8DC;" href="./userResveList.do">회원예약목록</a></li>
+				<li><a style="color: #CFD8DC;" href="./faqList.do">FAQ</a></li>
 				<!--     <li><a style="color: #CFD8DC;" href="./adminRentList.do">관리자대출관리</a></li> -->
 
 			</ul>
