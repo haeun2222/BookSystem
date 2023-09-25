@@ -11,9 +11,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
 <script type="text/javascript" src="js/userRentResve.js" defer="defer"></script>
+<script type="text/javascript" src="js/detailGender.js"></script>
 
 <title>Insert title here</title>
 </head>
@@ -144,6 +146,15 @@ function impossibility(){
    alert("해당도서는 현재 대출중입니다. 예약신청만 가능합니다.");
 }
 </script>
+
+<script type="text/javascript">
+    var book_seq = ${detailBook.book_seq};
+</script>
+
+<div class="chart-container">
+    <div id="detailGenderChart" class="chart"></div>
+    <div id="detailAgeChart" class="chart"></div>
+</div>
 </body>
 <%@ include file="footer.jsp" %>
 </html>

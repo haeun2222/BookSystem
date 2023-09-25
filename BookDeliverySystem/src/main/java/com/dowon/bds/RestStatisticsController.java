@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dowon.bds.dto.AgeDto;
@@ -39,7 +40,21 @@ public class RestStatisticsController {
 			log.info("Welcome RestStatistics_Controller getAge 연령별통계{}",ageData);
 			return ageData;
 		}
+		
+		@GetMapping("/detailGenderChart.do")
+		public List<GenderDto> getDetailGender(@RequestParam("book_seq")int book_seq){
+			List<GenderDto> detailGender = service.detailGenderStatistics(book_seq);
+			log.info("Welcome RestStatistics_Controller getDetailGender 상세도서 성별통계{}",detailGender);
+			return detailGender;
+		}
 
+		@GetMapping("/detailAgeChart.do")
+		public List<AgeDto> getDetailAge(@RequestParam("book_seq")int book_seq){
+			List<AgeDto> detailAge = service.detailAgeStatistics(book_seq);
+			log.info("Welcome RestStatistics_Controller getDetailAge 상세도서 연령별통계{}",detailAge);
+			return detailAge;
+		}
+		
 		
 	}
 	

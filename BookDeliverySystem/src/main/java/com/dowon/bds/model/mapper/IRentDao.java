@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.dowon.bds.dto.BookDto;
+import com.dowon.bds.dto.PagingDto;
 
 
 /** 
@@ -32,5 +33,15 @@ public interface IRentDao {
 	public List<BookDto> bookAll();
 	
 	public List<Map<String, Object>> rentY();
+
 	
+	
+	public int userCountRent(int n);
+	
+	public List<Map<String, Object>> userRentPageList(Map<String, Object> map);
+	
+	
+	public int allUserCountRent();
+	
+	public List<Map<String, Object>> RentPageList(Map<String, Object>map);
 }

@@ -27,4 +27,9 @@ public interface IResveService {
 	
 	
 	public int resveAsRent(int n);
+	
+	
+	public int userCountResve(int n);
+	
+	public List<Map<String, Object>> userResvePageList(Map<String, Object> map);
 }

@@ -55,8 +55,45 @@ public class HaeunJUnitTest {
 	public void bookTest() {
 		
 		
-		int n = service.resveAsRent(3);
+		
+		int n = service.userCountResve(701);
 		System.out.println(n);
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("first", 1);
+		map.put("last", 10);
+		map.put("user_seq", 701);
+		List<Map<String, Object>> lists = service.userResvePageList(map);
+		System.out.println(lists);
+		
+		
+//		int n = service.userCountRent(1);
+//		System.out.println(n);
+		
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("first", 1);
+//		map.put("last", 5);
+//		map.put("user_seq", 1);
+//		List<Map<String, Object>> lists = service.userRentPageList(map);
+//		assertNotNull(lists);
+//		System.out.println(lists);
+		
+		
+		
+		
+//		int n = service.allUserCountRent();
+//		System.out.println(n);
+		
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("first", 1);
+//		map.put("last", 5);
+//		List<Map<String, Object>> lists = service.RentPageList(map);
+//		assertNotNull(lists);
+//		System.out.println(lists);
+		
+//		int n = service.resveAsRent(3);
+//		System.out.println(n);
 		
 		
 		

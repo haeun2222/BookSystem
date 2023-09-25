@@ -11,12 +11,14 @@ $(document).ready(function() {
 
     $("#rentListButton").click(function() {
         // 대출관리 버튼에 대한 동작 추가
+        toggleRentTable();
     });
 
     // 초기에 테이블은 숨겨져 있도록 설정
     hideUserTable();
     hideBookTable();
     hideBookSearchTable();
+    hideRentTable();//하은추가
 });
 
 var isBookTableVisible = false;
@@ -27,6 +29,7 @@ function toggleBookTable() {
         getAllBooks();
         hideUserTable();
         hideBookSearchTable();
+        hideRentTable();//하은추가
         $("#bookInfoTable").show();
     } else {
         hideBookTable();
@@ -35,6 +38,7 @@ function toggleBookTable() {
 
 function getAllBooks() {
 	$("#userInfoTable").hide();
+	$("#rentListTable").hide();//하은추가
 	$("#bookInfoTable").show();
 	var bookList = $("<table id='bookList'>").append(
 			$("<tr>").append(

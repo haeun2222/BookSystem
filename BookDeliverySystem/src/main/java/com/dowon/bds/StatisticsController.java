@@ -51,13 +51,13 @@ public class StatisticsController {
 //		return "detailTest";
 //	}
 	
-//	@RequestMapping(value = "/top1Img.do", method = RequestMethod.GET)
+//	@RequestMapping(value = "/top5Img.do", method = RequestMethod.GET)
 //	public String chart(Model model) {
 //		log.info("책이미지 뿌리기");
 //		List<GenderDto> imgTest = service.imgSelect();
 //		model.addAttribute("imgTest",imgTest);
 //		log.info("----------------imgTest{}",imgTest);
-//		return "bdsHome";
+//		return "error";
 //	}
 //	
 //	@RequestMapping(value = "/genderList.do", method = RequestMethod.GET)

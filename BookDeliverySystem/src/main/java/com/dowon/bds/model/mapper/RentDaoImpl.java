@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dowon.bds.dto.BookDto;
+import com.dowon.bds.dto.PagingDto;
 
 
 /** 
@@ -74,5 +75,30 @@ public class RentDaoImpl implements IRentDao {
 	public List<Map<String, Object>> rentY() {
 		return session.selectList(NS+"rentY");
 	}
+	
+	
+	
+	
+	
+	@Override
+	public int userCountRent(int n) {
+		return session.selectOne(NS+"userCountRent",n);
+	}
+	
+	@Override
+	public List<Map<String, Object>> userRentPageList(Map<String, Object> map) {
+		return session.selectList(NS+"userRentPageList",map);
+	}
+
+	@Override
+	public int allUserCountRent() {
+		return session.selectOne(NS+"countRent");
+	}
+
+	@Override
+	public List<Map<String, Object>> RentPageList(Map<String, Object>map) {
+		return session.selectList(NS+"RentPageList",map);
+	}
+
 	
 }
