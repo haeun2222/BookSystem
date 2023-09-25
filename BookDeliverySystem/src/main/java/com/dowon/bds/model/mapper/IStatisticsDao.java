@@ -26,5 +26,8 @@ public interface IStatisticsDao {
 		
 		// 상세도서페이지 해당 책 성별 통계
 		public List<GenderDto> detailGenderStatistics(int book_seq);
+		
+		// 상세도서페이지 해당 책 연령별 통계
+		public List<AgeDto> detailAgeStatistics(int book_seq);
 	
 }

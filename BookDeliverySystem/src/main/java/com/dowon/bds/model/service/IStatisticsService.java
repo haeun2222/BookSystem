@@ -18,4 +18,5 @@ public interface IStatisticsService {
 	public List<AgeDto> AgeStatistics();
 	public BookDto bookSearch(int book_seq);
 	public List<GenderDto> detailGenderStatistics(int book_seq);
+	public List<AgeDto> detailAgeStatistics(int book_seq);
 }

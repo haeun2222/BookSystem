@@ -57,12 +57,14 @@ window.onload = function(){
             ageData.addColumn('number', 'Percent(%)');
             ageData.addColumn({type: 'string', role: 'style'});
 
-            ageData.addRow([data[0].age_group,parseInt(data[0].percent),'#00b894']);
-            ageData.addRow([data[1].age_group,parseInt(data[1].percent),'#00d2d3']);
-            ageData.addRow([data[2].age_group,parseInt(data[2].percent),'#74b9ff']);
-            ageData.addRow([data[3].age_group,parseInt(data[3].percent),'#55efc4']);
-//            ageData.addRow([data[4].age_group,parseInt(data[4].percent),'#81ecec']);
-            
+			var colorPalette = ['#00b894', '#00d2d3', '#74b9ff', '#55efc4', '#81ecec'];
+
+			for (var i = 0; i < data.length; i++) {
+				var colorIndex = i % colorPalette.length;
+            	var color = colorPalette[colorIndex];
+   			 ageData.addRow([data[i].age_group, parseInt(data[i].percent), color]);
+}
+
  //            차트 옵션 설정
            var options = {
 			    title:'연령별 통계',

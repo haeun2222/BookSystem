@@ -238,7 +238,7 @@ WITH GenderStats AS (
     JOIN TB_USER U ON R.USER_SEQ = U.USER_SEQ
     JOIN TB_BOOK B ON R.BOOK_SEQ = B.BOOK_SEQ
   WHERE
-    B.BOOK_SEQ = 540  -- 대상 책의 BOOK_SEQ를 지정
+    B.BOOK_SEQ = 540  
   GROUP BY
     B.BOOK_SEQ,
     B.BOOK_TITLE,
@@ -274,7 +274,7 @@ WITH AgeStats AS (
     JOIN TB_USER U ON R.USER_SEQ = U.USER_SEQ
     JOIN TB_BOOK B ON R.BOOK_SEQ = B.BOOK_SEQ
   WHERE
-    B.BOOK_SEQ =800  -- 대상 책의 BOOK_SEQ를 지정
+    B.BOOK_SEQ =540  
   GROUP BY
     B.BOOK_SEQ,
     B.BOOK_TITLE,
@@ -295,3 +295,13 @@ FROM AgeStats Ages
 ORDER BY
   Ages.age_group;
 
+ 
+
+
+
+
+
+
+ 
+
+ 
