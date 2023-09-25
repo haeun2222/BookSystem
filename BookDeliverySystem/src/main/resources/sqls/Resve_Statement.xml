@@ -3,7 +3,7 @@
 <mapper namespace="com.dowon.bds.model.mapper.ResveDaoImpl">
 
 
-<!-- 예약순번조회 -->
+<!-- 예약내역조회 -->
 <select id="selectStep" parameterType="java.lang.Integer" resultType="java.util.Map">
 SELECT
     U.USER_NAME AS user_name,
@@ -17,6 +17,50 @@ INNER JOIN BOOK.TB_USER U ON R.USER_SEQ = U.USER_SEQ
 INNER JOIN BOOK.TB_BOOK B ON R.BOOK_SEQ = B.BOOK_SEQ
 WHERE U.USER_SEQ = #{user_seq}
 ORDER BY RESVE_SEQ DESC
+</select>
+
+
+
+<!-- 페이징처리를 위한 쿼리 -->
+<select id="userCountResve" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    SELECT COUNT(*) 
+    FROM TB_RESVE 
+    WHERE USER_SEQ = #{user_seq}
+</select>
+
+<select id="userResvePageList" parameterType="java.util.Map" resultType="java.util.Map">
+SELECT RESVE_SEQ, user_name, book_title, RESVE_STATUS, RESVE_STEP
+FROM (
+    SELECT
+        user_name,
+        book_seq,
+        book_title,
+        RESVE_SEQ,
+        RESVE_STATUS,
+        RESVE_STEP,
+        ROWNUM AS RN
+    FROM (
+        SELECT
+            U.USER_NAME AS user_name,
+            B.BOOK_SEQ AS book_seq,
+            B.BOOK_TITLE AS book_title,
+            R.RESVE_SEQ,
+            R.RESVE_STATUS,
+            (
+                SELECT COUNT(DISTINCT RESVE_STEP)
+                FROM BOOK.TB_RESVE R2
+                WHERE R2.BOOK_SEQ = B.BOOK_SEQ
+                AND R2.RESVE_STEP IS NOT NULL
+                AND R2.RESVE_STEP <![CDATA[<=]]> R.RESVE_STEP
+            ) AS RESVE_STEP
+        FROM BOOK.TB_RESVE R
+        INNER JOIN BOOK.TB_USER U ON R.USER_SEQ = U.USER_SEQ
+        INNER JOIN BOOK.TB_BOOK B ON R.BOOK_SEQ = B.BOOK_SEQ
+        WHERE U.USER_SEQ = #{user_seq}
+        ORDER BY R.RESVE_SEQ DESC
+    )
+)
+WHERE RN BETWEEN #{first} AND #{last}
 </select>
 
 <!-- 특정 회원의 예약중or대출대기 여부 판단 -->

@@ -36,6 +36,30 @@
     ORDER BY RENT_DATE DESC
 </select>
 
+<!-- 유저개인의 대출 페이징을 위한 쿼리 -->
+<select id="userCountRent" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    SELECT COUNT(*) 
+    FROM TB_BOOK_RENT 
+    WHERE USER_SEQ = #{user_seq}
+</select>
+
+<select id="userRentPageList" parameterType="java.util.Map" resultType="java.util.Map">
+SELECT SEQ, USER_SEQ, BOOK_SEQ, RENT_DATE, RENT_RETURN_DATE, RENT_STATUS,
+       USER_NAME AS user_name, BOOK_TITLE AS book_title
+FROM (
+    SELECT R.RENT_SEQ AS SEQ, R.USER_SEQ, R.BOOK_SEQ, R.RENT_DATE, R.RENT_RETURN_DATE, R.RENT_STATUS,
+           U.USER_NAME, B.BOOK_TITLE,
+           ROW_NUMBER() OVER (ORDER BY R.RENT_DATE DESC) AS RN
+    FROM TB_BOOK_RENT R
+    INNER JOIN BOOK.TB_USER U ON R.USER_SEQ = U.USER_SEQ
+    INNER JOIN BOOK.TB_BOOK B ON R.BOOK_SEQ = B.BOOK_SEQ
+    WHERE R.USER_SEQ = #{user_seq}
+) TempTable
+WHERE RN BETWEEN #{first} AND #{last}
+</select>
+
+
+
 
 <!-- 관리자가 회원들의 대출목록 조회 -->
 <select id="selectAdminRent" resultType="java.util.Map">
@@ -46,6 +70,23 @@
     ORDER BY RENT_DATE DESC
 </select>
 	
+<select id="allUserCountRent" resultType="java.lang.Integer">
+SELECT COUNT(*) 
+	FROM TB_BOOK_RENT 
+</select>
+	
+<select id="RentPageList" resultType="java.util.Map" parameterType="java.util.Map">
+SELECT SEQ, NAME, BOOK_TITLE, RENT_DATE, RENT_RETURN_DATE, RENT_STATUS
+FROM (
+    SELECT R.RENT_SEQ AS SEQ, U.USER_NAME AS NAME, B.BOOK_TITLE, R.RENT_DATE, R.RENT_RETURN_DATE, R.RENT_STATUS,
+           ROW_NUMBER() OVER (ORDER BY R.RENT_DATE DESC) AS RN
+    FROM BOOK.TB_BOOK_RENT R
+    INNER JOIN BOOK.TB_USER U ON R.USER_SEQ = U.USER_SEQ
+    INNER JOIN BOOK.TB_BOOK B ON R.BOOK_SEQ = B.BOOK_SEQ
+) TempTable
+WHERE RN BETWEEN #{first} AND #{last}
+</select>
+
 	
 <!-- 대출불가한 책 찾기(대출Y,예약R) -->
 <select id="selectRentImpossibility" resultType="java.util.Map">
