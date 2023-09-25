@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dowon.bds.dto.PagingDto;
 import com.dowon.bds.dto.ResveDto;
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IResveService;
@@ -62,6 +63,15 @@ public class ResveController {
 		  return "redirect:/loginPage.do";
 	  }
 	}
+	
+	//예약목록 페이징테스트
+//	public String userResvePageList(@RequestParam("page") int selectPage, Model model, HttpSession session) {
+//		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
+//		PagingDto resveDto = new PagingDto();
+//		if(loginDto != null) {
+//			
+//		}
+//	}
 	
 	
     @PostMapping("/resveBook.do")

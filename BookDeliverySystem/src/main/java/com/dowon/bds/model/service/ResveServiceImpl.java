@@ -65,4 +65,16 @@ public class ResveServiceImpl implements IResveService {
 		return dao.resveAsRent(n);
 	}
 
+
+	@Override
+	public int userCountResve(int n) {
+		return dao.userCountResve(n);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> userResvePageList(Map<String, Object> map) {
+		return dao.userResvePageList(map);
+	}
+
 }

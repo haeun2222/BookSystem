@@ -62,6 +62,18 @@ public class ResveDaoImpl implements IResveDao {
 	}
 
 
+	@Override
+	public int userCountResve(int n) {
+		return session.selectOne(NS+"userCountResve",n);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> userResvePageList(Map<String, Object> map) {
+		return session.selectList(NS+"userResvePageList",map);
+	}
+
+
 
 
 

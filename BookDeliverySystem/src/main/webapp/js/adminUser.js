@@ -41,7 +41,7 @@ function toggleUserTable() {
 }
 
 function getAllUsers() {
-	$("#userInfoTable").hide();//하은추가
+	$("#rentListTable").hide();//하은추가
     $("#bookInfoTable").hide();
     $("#userInfoTable").show();
     var userList = $("<table id='userList'>").append(
