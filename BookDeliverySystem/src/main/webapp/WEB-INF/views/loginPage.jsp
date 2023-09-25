@@ -43,8 +43,11 @@
   </form>
   
   <div>
-  <button type="button" onclick="location.href='./nomalRegistForm.do'">일반 회원 가입 하기</button>
+  <button style="color : black;" type="button" onclick="location.href='./nomalRegistForm.do'">일반 회원 가입 하기</button>
   </div>
+  
+  <a href="./searchForm.do"">이메일 찾기</a>
+  <a href="./searchForm.do">비밀번호 찾기</a>
   
   <div>
   <!-- 네이버 아이디로 로그인  -->

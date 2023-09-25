@@ -49,5 +49,11 @@ public class UserServiceImpl implements IUserService {
 		log.info("UserServiceImpl userStatus 유저의 대출,예약상태 확인 : {}",user_seq);
 		return dao.getUserStatus(user_seq);
 	}
+
+	@Override
+	public String findEmail(Map<String, Object> map) {
+		log.info("UserServiceImpl findEmail 이메일찾기 : {}",map);
+		return dao.findEmail(map);
+	}
 	
 }
