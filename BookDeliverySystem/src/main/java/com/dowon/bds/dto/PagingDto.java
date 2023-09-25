@@ -15,7 +15,7 @@ public class PagingDto {
 	private int countPage;
 	private int totalPage;
 	
-	private int stagePage;
+	private int startPage;
 	private int endPage;
 	
 	
@@ -66,12 +66,12 @@ public class PagingDto {
 	}
 	
 	
-	public int getStagePage() {
-		return stagePage;
+	public int getStartPage() {
+		return startPage;
 	}
-	public void setStagePage(int stagePage) {
-		int stagePageResult = ((page-1)/countPage)*countPage+1;
-		this.stagePage = stagePageResult;
+	public void setStartPage(int startPage) {
+		int startPageResult = ((page-1)/countPage)*countPage+1;
+		this.startPage = startPageResult;
 	}
 	
 	
@@ -79,7 +79,7 @@ public class PagingDto {
 		return endPage;
 	}
 	public void setEndPage(int endPage) {
-		int endPageResult = stagePage+countPage-1;
+		int endPageResult = startPage+countPage-1;
 		if(endPageResult > totalPage) {
 			endPageResult = totalPage;
 		}
@@ -90,7 +90,7 @@ public class PagingDto {
 	@Override
 	public String toString() {
 		return "PagingDto [page=" + page + ", countList=" + countList + ", totalCount=" + totalCount + ", countPage="
-				+ countPage + ", totalPage=" + totalPage + ", stagePage=" + stagePage + ", endPage=" + endPage + "]";
+				+ countPage + ", totalPage=" + totalPage + ", startPage=" + startPage + ", endPage=" + endPage + "]";
 	}
 	
 	

@@ -52,7 +52,8 @@
 				<li><a style="color: #CFD8DC;" href="./userResveList.do">회원예약목록</a></li>
 				<li><a style="color: #CFD8DC;" href="./faqList.do">FAQ</a></li>
 				<!--     <li><a style="color: #CFD8DC;" href="./adminRentList.do">관리자대출관리</a></li> -->
-
+				<li><a style="color: #CFD8DC;" href="./userRentPageList.do?page=1">회원대출목록(테스트)</a></li>
+				<li><a style="color: #CFD8DC;" href="./userResvePageList.do?page=1">회원예약목록(테스트)</a></li>
 			</ul>
 		</div>
 	</nav>

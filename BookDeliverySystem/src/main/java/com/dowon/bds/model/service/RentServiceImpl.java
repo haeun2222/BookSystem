@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dowon.bds.dto.BookDto;
+import com.dowon.bds.dto.PagingDto;
 import com.dowon.bds.model.mapper.IRentDao;
 
 import lombok.extern.slf4j.Slf4j;
@@ -118,5 +119,35 @@ public class RentServiceImpl implements IRentService {
         log.info("RentServiceImpl rentStatusYBookSeq 대출중인 책 SEQ 값 : {}",rentYBookSeqList);
         return rentYBookSeqList;
 	}
+
+	
+	
+	
+	
+	@Override
+	public int userCountRent(int n) {
+		return dao.userCountRent(n);
+	}
+	
+	@Override
+	public List<Map<String, Object>> userRentPageList(Map<String, Object> map) {
+		return dao.userRentPageList(map);
+	}
+	
+	
+	
+	
+	@Override
+	public int allUserCountRent() {
+		return dao.allUserCountRent();
+	}
+
+	@Override
+	public List<Map<String, Object>> RentPageList(Map<String, Object>map) {
+		return dao.RentPageList(map);
+	}
+	
+	
+
 
 }

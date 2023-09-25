@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dowon.bds.dto.AddrDto;
 import com.dowon.bds.dto.BookDto;
+import com.dowon.bds.dto.PagingDto;
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IRentService;
 import com.dowon.bds.model.service.IResveService;
@@ -72,6 +74,52 @@ public class RentController {
 	    }
 	    
 	}
+	
+	//페이징 테스트중
+	@GetMapping("/userRentPageList.do")
+	public String userRentPageList(@RequestParam("page") int selectPage, Model model, HttpSession session) {
+		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
+		PagingDto r = new PagingDto();
+		 if (loginDto != null) {
+		        int user_seq = loginDto.getUser_seq();
+		        
+		r.setTotalCount(rentService.userCountRent(user_seq));
+		r.setCountList(3);
+		r.setCountPage(3);
+		r.setTotalPage(r.getTotalCount());
+		r.setPage(selectPage);
+		r.setStartPage(selectPage);
+		r.setEndPage(r.getCountPage());
+		System.out.println("엥?"+r.getTotalCount());
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("first", r.getPage()*r.getCountList() - (r.getCountList()-1));
+		map.put("last", r.getPage()*r.getCountList());
+		map.put("user_seq", user_seq);
+		
+		List<Map<String, Object>> lists = rentService.userRentPageList(map);
+		model.addAttribute("userRentList",lists);
+		model.addAttribute("page",r);
+		
+		System.out.println("user_seq확인 : "+ user_seq);
+		System.out.println("userRentList확인 : "+ lists);
+		
+		for(Map<String, Object> map2 : lists) {
+			System.out.println("@@@map2" + map2);
+		}
+		
+		System.out.println("@@@22 페이지확인" + r);
+		   return "userRentPageList";
+		    } else {
+		        return "redirect:/loginPage.do";
+		    }
+	
+	
+	
+	}
+	
+	
+	
+	
 
 	//원래 컨트롤러(나중에 삭제할것)
 	@GetMapping("/oldAdminRentList.do")
