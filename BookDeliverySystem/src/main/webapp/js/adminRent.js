@@ -127,7 +127,7 @@ async function handleActions(rentSeq, bookSeq) {
 
 // JavaScript 파일에서 운송장 번호 업데이트 함수 정의
 function updateDelivery(userSeq, deliveryNum) {
-    // 운송장 번호 입력 필드에서 값을 가져온다
+ 
     const deliveryNumValue = document.getElementById(`deliveryNum${userSeq}`).value;
 
     // AJAX를 사용하여 서버에 업데이트 요청을 보냄

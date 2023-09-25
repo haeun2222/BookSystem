@@ -37,41 +37,44 @@ public class ResveController {
 
 	@Autowired
 	private IResveService resveService;
-
 	
-//	@GetMapping("/userResveList.do")
-//	public String userResveList(@RequestParam("user_seq")int user_seq, Model model, HttpSession session){
-//		log.info("Welcome ResveController userResveList 회원의 마이페이지-예약조회 부분에 들어갈 페이지 컨트롤러");
-//		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
-//		List<Map<String, Object>>  lists = resveService.selectStep(user_seq);
-//		model.addAttribute("lists",lists);
-//		model.addAttribute("loginDto",loginDto);
-//		return "userResveList";
-//	}
 	
-	@GetMapping("/userResveList.do")
-	public String userResveList(Model model, HttpSession session){
-		log.info("Welcome ResveController userResveList 회원의 마이페이지-예약조회 부분에 들어갈 페이지 컨트롤러");
+	//예약목록 (페이징처리)
+	@GetMapping("/userResvePageList.do")
+	public String userResvePageList(@RequestParam(name = "page", defaultValue = "1") int selectPage, Model model, HttpSession session) {
+		log.info("Welcome ResveController userResvePageList 회원의 마이페이지-예약조회 부분에 들어갈 페이지 컨트롤러");
 		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
-		 if (loginDto != null) {
-		     int user_seq = loginDto.getUser_seq();
-		List<Map<String, Object>>  lists = resveService.selectStep(user_seq);
-		model.addAttribute("lists",lists);
-		model.addAttribute("seq",user_seq);
-		return "userResveList";
-	  } else {
-		  return "redirect:/loginPage.do";
-	  }
+		PagingDto resveDto = new PagingDto();
+		if(loginDto != null) {
+			int user_seq = loginDto.getUser_seq();
+			
+			resveDto.setTotalCount(resveService.userCountResve(user_seq));
+			resveDto.setCountList(2);
+			resveDto.setCountPage(2);
+			resveDto.setTotalPage(resveDto.getTotalCount());
+			resveDto.setPage(selectPage);
+			resveDto.setStartPage(selectPage);
+			resveDto.setEndPage(resveDto.getCountPage());
+			
+			log.info("Welcome ResveController userResvePageList 페이징 처리를 위한 총 갯수 확인 : {}",resveDto.getTotalCount());
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("first", resveDto.getPage()*resveDto.getCountList() - (resveDto.getCountList()-1));
+			map.put("last", resveDto.getPage()*resveDto.getCountList());
+			map.put("user_seq", user_seq);
+			
+			List<Map<String, Object>> lists = resveService.userResvePageList(map);
+			model.addAttribute("userResvePageList",lists);
+			model.addAttribute("page",resveDto);
+			
+			log.info("Welcome ResveController userResvePageList user_seq확인 : {}",user_seq);
+			log.info("Welcome ResveController userResvePageList userResveList확인 : {}",lists);
+			
+			return "userResvePageList";
+			} else {
+				return "redirect:/loginPage.do";
+			}
 	}
-	
-	//예약목록 페이징테스트
-//	public String userResvePageList(@RequestParam("page") int selectPage, Model model, HttpSession session) {
-//		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
-//		PagingDto resveDto = new PagingDto();
-//		if(loginDto != null) {
-//			
-//		}
-//	}
 	
 	
     @PostMapping("/resveBook.do")

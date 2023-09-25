@@ -79,7 +79,7 @@ async function requestPay() {
                     if (data == "success") {
                         // payment.do 요청이 성공하면 rentBook 함수 실행
                         rentBook(userSeq, bookSeq);
-                        window.location.href = "./userRentList.do";
+                        window.location.href = "./userRentPageList.do";
                     } else {
                         console.log('payment.do 요청 실패');
                     }
@@ -115,7 +115,7 @@ async function requestPay() {
         if (rentBook == "success") {
         	alert("대출신청이 완료되었습니다.");
             console.log('대출 요청 성공');
-            window.location.href = "./userRentList.do";
+            window.location.href = "./userRentPageList.do";
         } else {
         	 console.log('대출 요청 실패');
              console.error('대출 요청 실패', rentBook); 
@@ -134,7 +134,7 @@ async function requestPay() {
         if (reserveBook == "success") {
             alert("대출신청이 완료되었습니다\n예약 대출대기 상태가 변경되었습니다.");
             console.log('예약 요청 성공');
-            window.location.href = "./userRentList.do";
+            window.location.href = "./userRentPageList.do";
         } else {
             console.log('예약 요청 실패');
             

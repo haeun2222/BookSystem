@@ -14,14 +14,15 @@
 <link rel="stylesheet" href="css/header.css">
 <script type="text/javascript" src="js/resveCancle.js"></script>
 <title>Insert title here</title>
-</head>
 <%@ include file="header.jsp" %>
+</head>
+<c:set var="lists" value="${requestScope.lists}" />
+<c:set var="resveDto" value="${requestScope.page}" />
 <body>
-
 <div class="container">
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
-<c:choose>
-    <c:when test="${not empty lists}">
+<%-- <c:choose> --%>
+<%--     <c:when test="${not empty resveDto.lists}"> --%>
 		<h1>${loginUser.user_name}님의 예약 도서 목록 입니다</h1>
             <table border="1">
     <tr>
@@ -32,9 +33,10 @@
         <th>예약취소</th>
         <th>대출신청</th>
     </tr>
-    <c:forEach var="resve" items="${lists}"  varStatus="status">
+    <c:forEach var="resve" items="${userResvePageList}"  varStatus="status">
         <tr>
-        	<td>${status.index + 1}</td>
+        	<td>${resveDto.getTotalCount() - (resveDto.getPage() - 1) * resveDto.getCountList() - status.index}</td>
+<%--         	<td>${status.index + 1}</td> --%>
             <td>${resve.BOOK_TITLE}</td>
             <td>
 			    <c:choose>
@@ -62,6 +64,7 @@
 			        <c:otherwise></c:otherwise>
 			    </c:choose>
 			</td>
+			
 			<td>
 			    <c:choose>
 			        <c:when test="${resve.RESVE_STATUS eq 'R'}"><button onclick="location.href = './addr.do?book_seq=' + ${resve.BOOK_SEQ}" style="color: #263238">대출신청</button></c:when>
@@ -71,14 +74,55 @@
         </tr>
     </c:forEach>
 </table>
-    </c:when>
-    <c:otherwise>
-        <h1>${loginUser.user_name}님은 예약 도서가 없습니다</h1>
-    </c:otherwise>
-</c:choose>
+    <!-- 페이지 번호 및 화살표 옮기기 -->
+    <div class="text-center">
+        <ul class="pagination pagination-lg">
+            <c:if test="${resveDto.getStartPage() > 1}">
+                <li><a href="./userResvePageList.do?page=1">◁◁</a></li>
+            </c:if>
+    
+            <c:if test="${resveDto.getStartPage() > 1}">
+                <c:choose>
+                    <c:when test="${resveDto.getStartPage() - resveDto.getCountPage() <= 0}">
+                        <li><a href="./userResvePageList.do?page=1">◀</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="./userResvePageList.do?page=${resveDto.getStartPage() - resveDto.getCountPage()}">◀</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </c:if>
+    
+            <c:forEach begin="${resveDto.getStartPage()}" end="${resveDto.getEndPage()}" var="i">
+                <li <c:if test="${i == resveDto.getPage()}">class="active"</c:if>>
+                    <a href="./userResvePageList.do?page=${i}">${i}</a>
+                </li>
+            </c:forEach>
+    
+            <c:if test="${resveDto.getPage() < resveDto.getTotalPage()}">
+                <c:choose>
+                    <c:when test="${resveDto.getStartPage() + resveDto.getCountPage() > resveDto.getTotalPage()}">
+                        <li><a href="./userResvePageList.do?page=${resveDto.getTotalPage()}">▶</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="./userResvePageList.do?page=${resveDto.getStartPage() + resveDto.getCountPage()}">▶</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </c:if>
+    
+            <c:if test="${resveDto.getEndPage() < resveDto.getTotalPage()}">
+                <li><a href="./userResvePageList.do?page=${resveDto.getTotalPage() - resveDto.getTotalPage() % resveDto.getCountList() + 1}">▷▷</a></li>
+            </c:if>
+        </ul>
+    </div>
+<%--     </c:when> --%>
+<%--     <c:otherwise> --%>
+<%--         <h1>${loginUser.user_name}님은 예약 도서가 없습니다</h1> --%>
+<%--     </c:otherwise> --%>
+<%-- </c:choose> --%>
 
 
 </div>
+
 </body>
 <%@ include file="footer.jsp" %>
 </html>

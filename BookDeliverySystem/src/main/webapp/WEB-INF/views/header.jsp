@@ -29,8 +29,8 @@
 				<c:otherwise>
 					<span style="font-size: 12px; color: white;"> 
 									${loginDto.user_name} 님 환영합니다. &nbsp;&nbsp;
-									대출상태 : <a href="./userRentList.do"> ${userStatus.RENT_STATUS} </a>&nbsp;&nbsp;
-									예약상태 : <a href="./userResveList.do"> ${userStatus.RESVE_STATUS} </a> &nbsp;&nbsp;
+									대출상태 : <a href="./userRentPageList.do"> ${userStatus.RENT_STATUS} </a>&nbsp;&nbsp;
+									예약상태 : <a href="./userResvePageList.do"> ${userStatus.RESVE_STATUS} </a> &nbsp;&nbsp;
 					 </span>
 					<button class="btn" id="logoutButton"
 						style="background-color: #00FFF5"
@@ -55,8 +55,8 @@
 				<li><a style="color: #CFD8DC;" href="./faqList.do">FAQ</a></li>
 
 				<!--     <li><a style="color: #CFD8DC;" href="./adminRentList.do">관리자대출관리</a></li> -->
-				<li><a style="color: #CFD8DC;" href="./userRentPageList.do?page=1">회원대출목록(테스트)</a></li>
-				<li><a style="color: #CFD8DC;" href="./userResvePageList.do?page=1">회원예약목록(테스트)</a></li>
+<!-- 				<li><a style="color: #CFD8DC;" href="./userRentPageList.do?page=1">회원대출목록(테스트)</a></li> -->
+<!-- 				<li><a style="color: #CFD8DC;" href="./userResvePageList.do?page=1">회원예약목록(테스트)</a></li> -->
 			</ul>
 		</div>
 	</nav>

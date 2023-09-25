@@ -1,6 +1,6 @@
 function cancelReservation(bookSeq, userSeq) {
     // 예약 취소 요청을 서버에 보냅니다.
-    console.log(bookSeq, userSeq);
+    console.log("값 확인 : ",bookSeq, userSeq);
     $.ajax({
         type: "POST",
         url: "./cancel.do",
@@ -12,7 +12,7 @@ function cancelReservation(bookSeq, userSeq) {
         success: function(response) {
             if (response == "success") {
                 alert("예약이 취소되었습니다.");
-                window.location.replace("./userResveList.do?user_seq=${loginDto.user_seq}");
+                window.location.replace("./userResvePageList.do?user_seq=" + userSeq);
                 window.location.reload(true);
             } else {
                 alert("예약 취소에 실패했습니다. 다시 시도해주세요.");

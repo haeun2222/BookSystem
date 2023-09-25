@@ -57,27 +57,28 @@ public class RentController {
 	
 
 	
-	@GetMapping("/userRentList.do")
-	public String userRentList(HttpSession session, Model model, HttpServletResponse response) {
-		log.info("Welcome RentController userRentList 회원의 마이페이지-대출도서목록에 들어갈 페이지 컨트롤러");
-		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
+//	@GetMapping("/userRentList.do")
+//	public String userRentList(HttpSession session, Model model, HttpServletResponse response) {
+//		log.info("Welcome RentController userRentList 회원의 마이페이지-대출도서목록에 들어갈 페이지 컨트롤러");
+//		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
 //		AddrDto addrDto = new AddrDto();
 //		session.setAttribute("addrDto", addrDto);
-	    if (loginDto != null) {
-	        int user_seq = loginDto.getUser_seq();
-	        List<Map<String, Object>> lists = rentService.selectMyBookRent(user_seq);
-	        model.addAttribute("userRentList", lists);
-	        model.addAttribute("seq", user_seq);
-	        return "userRentList";
-	    } else {
-	        return "redirect:/loginPage.do";
-	    }
-	    
-	}
+//	    if (loginDto != null) {
+//	        int user_seq = loginDto.getUser_seq();
+//	        List<Map<String, Object>> lists = rentService.selectMyBookRent(user_seq);
+//	        model.addAttribute("userRentList", lists);
+//	        model.addAttribute("seq", user_seq);
+//	        return "userRentList";
+//	    } else {
+//	        return "redirect:/loginPage.do";
+//	    }
+//	    
+//	}
 	
-	//페이징 테스트중
+	//회원 개인의 대출목록(페이징처리)
 	@GetMapping("/userRentPageList.do")
-	public String userRentPageList(@RequestParam("page") int selectPage, Model model, HttpSession session) {
+	public String userRentPageList(@RequestParam(name = "page", defaultValue = "1") int selectPage, Model model, HttpSession session) {
+		log.info("Welcome ResveController userRentPageList 회원의 마이페이지-대출조회 부분에 들어갈 페이지 컨트롤러");
 		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
 		PagingDto r = new PagingDto();
 		 if (loginDto != null) {
@@ -90,7 +91,9 @@ public class RentController {
 		r.setPage(selectPage);
 		r.setStartPage(selectPage);
 		r.setEndPage(r.getCountPage());
-		System.out.println("엥?"+r.getTotalCount());
+		
+		log.info("Welcome ResveController userRentPageList 페이징 처리를 위한 총 갯수 확인 : {}",r.getTotalCount());
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("first", r.getPage()*r.getCountList() - (r.getCountList()-1));
 		map.put("last", r.getPage()*r.getCountList());
@@ -100,36 +103,15 @@ public class RentController {
 		model.addAttribute("userRentList",lists);
 		model.addAttribute("page",r);
 		
-		System.out.println("user_seq확인 : "+ user_seq);
-		System.out.println("userRentList확인 : "+ lists);
+		log.info("Welcome ResveController userRentPageList user_seq확인 : {}",user_seq);
+		log.info("Welcome ResveController userRentPageList userRentList확인 : {}",lists);
 		
-		for(Map<String, Object> map2 : lists) {
-			System.out.println("@@@map2" + map2);
-		}
-		
-		System.out.println("@@@22 페이지확인" + r);
 		   return "userRentPageList";
 		    } else {
 		        return "redirect:/loginPage.do";
 		    }
-	
-	
-	
 	}
-	
-	
-	
-	
 
-	//원래 컨트롤러(나중에 삭제할것)
-	@GetMapping("/oldAdminRentList.do")
-	public String oldAdminRentList(Model model) {
-		log.info("Welcome RentController adminRentList 관리자페이지-회원도서대출목록 에 들어갈 페이지 컨트롤러");
-		List<Map<String, Object>> lists = rentService.selectAdminRent();
-		model.addAttribute("lists",lists);
-		return "adminRentList";
-	}
-	
 	
 	//관리자 ajax 대출관리
     @GetMapping("/adminRentList.do")
@@ -141,11 +123,55 @@ public class RentController {
         return response;
     }
 	
-	
-	
-	
-	
-	
+    
+    
+//    @GetMapping("/adminRentList.do")
+//    @ResponseBody
+//    public Map<String, Object> adminRentList(@RequestParam(name = "page", defaultValue = "1") int selectPage, Model model) {
+//    	log.info("Welcome ResveController adminRentList 관리자 회원대출목록 페이지 컨트롤러");
+//    	PagingDto adminPaging = new PagingDto();
+//    	
+//    	
+//    	adminPaging.setTotalCount(rentService.allUserCountRent());
+//    	adminPaging.setCountList(10);
+//    	adminPaging.setCountPage(5);
+//    	adminPaging.setTotalPage(adminPaging.getTotalCount());
+//    	adminPaging.setPage(selectPage);
+//    	adminPaging.setStartPage(selectPage);
+//    	adminPaging.setEndPage(adminPaging.getCountPage());
+//    	
+//    	log.info("Welcome ResveController adminRentList 페이징 처리를 위한 총 갯수 확인 : {}",adminPaging.getTotalCount());
+//    	
+//    	Map<String, Object> map = new HashMap<String, Object>();
+//    	map.put("first", adminPaging.getPage()*adminPaging.getCountList() - (adminPaging.getCountList()-1));
+//    	map.put("last", adminPaging.getPage()*adminPaging.getCountList());
+//    	
+//    	List<Map<String, Object>> lists = rentService.allRentPageList(map);
+//		model.addAttribute("lists",lists);
+//		model.addAttribute("page",adminPaging);
+//    	
+//
+//	    List<Map<String, Object>> lists = rentService.allRentPageList(map);
+//	    model.addAttribute("lists", lists);
+//
+//	    // 컨트롤러에서 반환하는 뷰 페이지 이름 (JSP 페이지 이름)
+//	    return "adminRentList";
+//    	
+//		
+//        Map<String, Object> response = new HashMap<>();
+//        List<Map<String, Object>> lists = rentService.selectAdminRent();
+//        response.put("lists", lists);
+//        return response;
+//    }   
+//    
+//    log.info("Welcome ResveController userRentPageList adminRentList확인 : {}",lists);
+    
+    
+    
+    
+    
+    
+    
 	
 	 @PostMapping("/confirmReturn.do")
 	 @ResponseBody

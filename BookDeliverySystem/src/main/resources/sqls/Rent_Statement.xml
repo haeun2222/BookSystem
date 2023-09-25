@@ -75,7 +75,7 @@ SELECT COUNT(*)
 	FROM TB_BOOK_RENT 
 </select>
 	
-<select id="RentPageList" resultType="java.util.Map" parameterType="java.util.Map">
+<select id="allRentPageList" resultType="java.util.Map" parameterType="java.util.Map">
 SELECT SEQ, NAME, BOOK_TITLE, RENT_DATE, RENT_RETURN_DATE, RENT_STATUS
 FROM (
     SELECT R.RENT_SEQ AS SEQ, U.USER_NAME AS NAME, B.BOOK_TITLE, R.RENT_DATE, R.RENT_RETURN_DATE, R.RENT_STATUS,

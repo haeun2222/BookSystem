@@ -92,12 +92,12 @@ public class RentDaoImpl implements IRentDao {
 
 	@Override
 	public int allUserCountRent() {
-		return session.selectOne(NS+"countRent");
+		return session.selectOne(NS+"allUserCountRent");
 	}
 
 	@Override
-	public List<Map<String, Object>> RentPageList(Map<String, Object>map) {
-		return session.selectList(NS+"RentPageList",map);
+	public List<Map<String, Object>> allRentPageList(Map<String, Object>map) {
+		return session.selectList(NS+"allRentPageList",map);
 	}
 
 	

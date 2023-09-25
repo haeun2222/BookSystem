@@ -29,7 +29,7 @@ ORDER BY RESVE_SEQ DESC
 </select>
 
 <select id="userResvePageList" parameterType="java.util.Map" resultType="java.util.Map">
-SELECT RESVE_SEQ, user_name, book_title, RESVE_STATUS, RESVE_STEP
+SELECT RESVE_SEQ, user_name, book_title,book_seq, RESVE_STATUS, RESVE_STEP
 FROM (
     SELECT
         user_name,

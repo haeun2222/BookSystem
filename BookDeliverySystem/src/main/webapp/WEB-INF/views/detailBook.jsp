@@ -55,20 +55,36 @@
 </table>
 
 
-<c:if test="${not empty sessionScope.loginDto}">
-<c:if test="${filteredBookSeqList.contains(detailBook.book_seq.toString())}">
-<input type="button" class="btn btn-danger" value="대출불가" onclick="impossibility()">
-<input type="button" class="btn btn-info" value="예약신청" onclick="newResve1()">
+<c:if test="${not empty sessionScope.loginDto && sessionScope.loginDto.user_auth ne 'A'}">
+    <c:if test="${filteredBookSeqList.contains(detailBook.book_seq.toString())}">
+        <p style="color: rgb(91,192,222);">해당 도서는 현재 대출중이므로, 예약신청만 가능합니다.</p>
+        <input type="button" class="btn btn-info" value="예약신청" onclick="newResve1()">
+    </c:if>
+    <c:if test="${!filteredBookSeqList.contains(detailBook.book_seq.toString())}">
+        <p style="color: rgb(51,122,183);">해당 도서는 현재 대출가능하며, 예약신청은 불가합니다.</p>
+        <input type="button" class="btn btn-primary" value="대출신청" onclick="chkAvailability()">
+    </c:if>
 </c:if>
-<c:if test="${!filteredBookSeqList.contains(detailBook.book_seq.toString())}">
-<input type="button" class="btn btn-primary" value="대출신청" onclick="chkAvailability()">
-<input type="button" class="btn btn-danger" value="예약불가" onclick="newResve()">
-</c:if>
-</c:if>
+
 <c:if test="${empty sessionScope.loginDto}">
-	<br><div>도서 대출과 예약은 로그인 후 이용하실 수 있습니다.</div><br>
-    <input type="button" class="btn btn-success" value="로그인" onclick="location.href='./loginPage.do'">
-</c:if>
+	<c:if test="${filteredBookSeqList.contains(detailBook.book_seq.toString())}">
+        <p style="color: rgb(91,192,222);">해당 도서는 현재 대출중이므로, 예약신청만 가능합니다.</p>
+        <input type="button" class="btn btn-info" value="예약신청" onclick="location.href='./loginPage.do'">
+    </c:if>
+    <c:if test="${!filteredBookSeqList.contains(detailBook.book_seq.toString())}">
+        <p style="color: rgb(51,122,183);">해당 도서는 현재 대출가능하며, 예약신청은 불가합니다.</p>
+        <input type="button" class="btn btn-primary" value="대출신청" onclick="location.href='./loginPage.do'">
+	</c:if>
+</c:if>   
+<!-- 	<br><div>도서 대출과 예약은 로그인 후 이용하실 수 있습니다.</div><br> -->
+<!--     <input type="button" class="btn btn-success" value="로그인" onclick="location.href='./loginPage.do'"> -->
+<%-- </c:if> --%>
+
+
+
+
+
+
 
 <!-- 대출 모달 창 -->
 <div class="modal fade" id="rentModal" role="dialog" style="color: #263238">
@@ -135,17 +151,7 @@
 
 <input type="hidden" id="isReservable" value="${rentYBookSeqList.contains(detailBook.book_seq)}">
 
-<script type="text/javascript">
 
-
-function newResve(){
-   alert("해당도서는 현재 대출가능하므로 예약신청은 불가합니다.");
-}
-
-function impossibility(){
-   alert("해당도서는 현재 대출중입니다. 예약신청만 가능합니다.");
-}
-</script>
 
 <script type="text/javascript">
     var book_seq = ${detailBook.book_seq};
