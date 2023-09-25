@@ -59,7 +59,7 @@
 	</select>
 	
 	<!-- 운송장 번호 입력 -->
-	<update id="updateDeliveryNum">
+	<update id="updateDeliveryNum" parameterType="java.util.Map">
 		UPDATE  TB_DELIVERY 
 			SET DELIVERY_NUM = #{delivery_num}
 			WHERE USER_SEQ = #{user_seq}

@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
@@ -19,12 +19,11 @@
 		<h3>${dto.faq_title}<input style="float: right; background-color: #ccc; color: #000;" class="btn" type="button" value="이전" onclick="location.href='./faqList.do'">
 			<c:if test="${loginDto.user_seq eq dto.user_seq}">
     		<input style="float: right;" class="btn btn-danger" type="button" value="삭제" onclick="faqDel()">
-			<input style="float: right;background-color: #00ADB5; color: #000;" class="btn" type="button" value="수정" onclick="location.href='./updateFaq.do?faq_seq=${dto.faq_seq}&faq_title=${dto.faq_title}&faq_content=${dto.faq_content}'">
-			
+			<input style="float: right; background-color: #00ADB5; color: #000;" class="btn" type="button" value="수정" onclick="location.href='./updateFaq.do?faq_seq=${dto.faq_seq}&faq_title=${dto.faq_title}&faq_content=${dto.faq_content}'">
 			</c:if>
 		</h3>
 		<div>
-			내용<div class="form-control" style="height: 100px; font-size: 20px;">${dto.faq_content}</div>
+			내용<div class="form-control" style="height: 200px; font-size: 20px;">${dto.faq_content}</div>
 		</div><br>
 		</div>
 

@@ -25,12 +25,7 @@
 	<form action="./addrCheck.do" method="post"  onsubmit="return validateForm();">
 		<table class="table table-bordered form-group">
 				<thead>
-<!-- 					<tr> -->
-<!-- 						<th class="center-text" style="padding-bottom: auto;">회원번호</th> -->
-<!-- 			            <td> -->
-<%-- 		                <input class="form-control" type="text" value="${loginUser.user_seq}" readonly="readonly" id="user_seq" name="user_seq"> --%>
-<!-- 						</td> -->
-<!-- 					</tr> -->
+
 				</thead>
 		
 				<tbody>   
@@ -125,7 +120,6 @@
         var detailAddress = document.getElementById("sample6_detailAddress").value;
  
         // 허용되는 문자: 영어, 한글, 숫자, ,, -, #
-//         var validPattern = /^[a-zA-Z가-힣0-9,\\-#]+$/;
         var validPattern = /^[a-zA-Z가-힣0-9,#\s-]+$/;
         var numericPattern = /^[0-9]+$/;
      

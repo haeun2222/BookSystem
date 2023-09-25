@@ -7,28 +7,28 @@ VALUES (710, 'admin1@admin.com', 'asd123', '관리자', '010-7555-7864', '2005-0
 --FAQ 자주묻는 질문 생성
 INSERT INTO BOOK.TB_FAQ_BOARD
 (FAQ_SEQ, USER_SEQ, FAQ_CATEGORY, FAQ_TITLE, FAQ_CONTENT, FAQ_DELFLAG)
-VALUES(SQ_FAQ_BOARD.NEXTVAL, 55,'1', 'Q.도서 예약은 어떻게 하나요?', 'A. 예약버튼: 홈페이지 온라인 예약(00:00~24:00), 
+VALUES(SQ_FAQ_BOARD.NEXTVAL, 710,'1', 'Q.도서 예약은 어떻게 하나요?', 'A. 예약버튼: 홈페이지 온라인 예약(00:00~24:00), 
 예약 잔여분 및 취소분에 한해 당일 예약 가능 (00:00 ~ 24:00)
 예약취소: 배송요청 당일까지 취소 가능', 'N');
 
 INSERT INTO BOOK.TB_FAQ_BOARD
 (FAQ_SEQ, USER_SEQ, FAQ_CATEGORY, FAQ_TITLE, FAQ_CONTENT, FAQ_DELFLAG)
-VALUES(SQ_FAQ_BOARD.NEXTVAL, 55,'1', 'Q.도서관 이용을 처음하려고 합니다. 어떤 절차로 이용해야 하나요?', 'A. 회원 등록(이용자 등록은 인터넷으로 하실 수 있습니다.) 및 회원번호를 발급받으신 후, 로그인하시고 이용하시면 됩니다.
+VALUES(SQ_FAQ_BOARD.NEXTVAL, 710,'1', 'Q.도서관 이용을 처음하려고 합니다. 어떤 절차로 이용해야 하나요?', 'A. 회원 등록(이용자 등록은 인터넷으로 하실 수 있습니다.) 및 회원번호를 발급받으신 후, 로그인하시고 이용하시면 됩니다.
 또한 도서관 소장 자료는 도서관 내에서만 이용하실 수인 책을 가지고 공부할 수 있는 일반열람실은 운영하지 않습니다.', 'N');
 
 INSERT INTO BOOK.TB_FAQ_BOARD
 (FAQ_SEQ, USER_SEQ, FAQ_CATEGORY, FAQ_TITLE, FAQ_CONTENT, FAQ_DELFLAG)
-VALUES(SQ_FAQ_BOARD.NEXTVAL, 55,'1', 'Q.대출을 하려면 꼭 회원가입을 해야하나요?', 'A. 2005년 12월 1일부터 이용증을 발급 받아야 도서관 출입이 가능하며,
+VALUES(SQ_FAQ_BOARD.NEXTVAL, 710,'1', 'Q.대출을 하려면 꼭 회원가입을 해야하나요?', 'A. 2005년 12월 1일부터 이용증을 발급 받아야 도서관 출입이 가능하며,
 도서관 서비스(자료예약 및 신청, 디지털도서관 좌석 예약, 우편복사신청 등)를 제공받을 수 있습니다.
 이용증을 발급 받기 위해서는 우선 회원가입을 해야 합니다', 'N');
 
 INSERT INTO BOOK.TB_FAQ_BOARD
 (FAQ_SEQ, USER_SEQ, FAQ_CATEGORY, FAQ_TITLE, FAQ_CONTENT, FAQ_DELFLAG)
-VALUES(SQ_FAQ_BOARD.NEXTVAL, 55,'2', 'Q.희망도서 신청은 어떻게 하나요?', 'A. 자료검색에서 찾고자 하는 자료가 검색결과에 없을 경우 “자유게시판” 클릭을 통해 신청하실 수 있습니다. 로그인 후 신청하시고자 하는 자료명, 저자명, 출판사 등을 입력하시면 됩니다.', 'N');
+VALUES(SQ_FAQ_BOARD.NEXTVAL, 710,'2', 'Q.희망도서 신청은 어떻게 하나요?', 'A. 자료검색에서 찾고자 하는 자료가 검색결과에 없을 경우 “자유게시판” 클릭을 통해 신청하실 수 있습니다. 로그인 후 신청하시고자 하는 자료명, 저자명, 출판사 등을 입력하시면 됩니다.', 'N');
 
 INSERT INTO BOOK.TB_FAQ_BOARD
 (FAQ_SEQ, USER_SEQ, FAQ_CATEGORY, FAQ_TITLE, FAQ_CONTENT, FAQ_DELFLAG)
-VALUES(SQ_FAQ_BOARD.NEXTVAL, 55,'3', 'Q.본인확인이 되지 않는데 어떻게 해야 하나요?', 'A.개정 정보통신망법 제23조에 따라 회원 가입시에는 주민등록번호를 수집하지 않습니다.
+VALUES(SQ_FAQ_BOARD.NEXTVAL, 710,'3', 'Q.본인확인이 되지 않는데 어떻게 해야 하나요?', 'A.개정 정보통신망법 제23조에 따라 회원 가입시에는 주민등록번호를 수집하지 않습니다.
 I-PIN인증 또는 휴대폰 인증 중 하나를 선택하여 회원가입을 진행해야 합니다.
 인증이 되지 않을 경우 각 고객센터로 문의하시기 바랍니다.
 - KCB아이핀 고객센터
@@ -39,7 +39,7 @@ I-PIN인증 또는 휴대폰 인증 중 하나를 선택하여 회원가입을 �
 
 INSERT INTO BOOK.TB_FAQ_BOARD
 (FAQ_SEQ, USER_SEQ, FAQ_CATEGORY, FAQ_TITLE, FAQ_CONTENT, FAQ_DELFLAG)
-VALUES(SQ_FAQ_BOARD.NEXTVAL, 55,'3', 'Q.본인확인이 되지 않는데 어떻게 해야 하나요?', 'A. □ 온라인에서 무분별하게 수집·보유 중인 개인정보에 유효기간을 두어 오남용을 최소화한다는 취지로 만들어진 것으로 일정기간 이용하지 않는 회원의 개인정보를 파기 또는 별도 분리 보관하는 등 조치를 하여야 합니다.
+VALUES(SQ_FAQ_BOARD.NEXTVAL, 710,'3', 'Q.본인확인이 되지 않는데 어떻게 해야 하나요?', 'A. □ 온라인에서 무분별하게 수집·보유 중인 개인정보에 유효기간을 두어 오남용을 최소화한다는 취지로 만들어진 것으로 일정기간 이용하지 않는 회원의 개인정보를 파기 또는 별도 분리 보관하는 등 조치를 하여야 합니다.
 □「개인정보 보호법」제21조 제1항, 제3항 및 「 계발의 민족 홈페이지 개인정보처리방침」에 의거하여 2년 이상  계발의 민족을 이용하지 않은 회원의 계정을 휴면 전환하고, 해당 회원의 개인정보를 파기 또는 분리 보관 조치합니다.
 □ 휴면 전환 대상
 2년 이상 계발의 민족 홈페이지 또는 모바일 서비스에 로그인하지 않았거나 도서관 방문 이용 실적이 없는 회원
@@ -53,18 +53,18 @@ VALUES(SQ_FAQ_BOARD.NEXTVAL, 55,'3', 'Q.본인확인이 되지 않는데 어떻�
 
 INSERT INTO BOOK.TB_FAQ_BOARD
 (FAQ_SEQ, USER_SEQ, FAQ_CATEGORY, FAQ_TITLE, FAQ_CONTENT, FAQ_DELFLAG)
-VALUES(SQ_FAQ_BOARD.NEXTVAL, 55,'3', 'Q.회원탈퇴는 어떻게 하나요?', 'A.국립중앙도서관 홈페이지 로그인 => ‘회원정보수정’ => ‘회원탈퇴’ 메뉴 클릭', 'N');
+VALUES(SQ_FAQ_BOARD.NEXTVAL, 710,'3', 'Q.회원탈퇴는 어떻게 하나요?', 'A.국립중앙도서관 홈페이지 로그인 => ‘회원정보수정’ => ‘회원탈퇴’ 메뉴 클릭', 'N');
 
 INSERT INTO BOOK.TB_FAQ_BOARD
 (FAQ_SEQ, USER_SEQ, FAQ_CATEGORY, FAQ_TITLE, FAQ_CONTENT, FAQ_DELFLAG)
-VALUES(SQ_FAQ_BOARD.NEXTVAL, 55,'4', 'Q.도서 검색은 어떻게 하나요?', 'A.홈페이지 검색창에 자료 제목, 저자명, 발행자 등을 입력해 소장자료를 검색합니다.', 'N');
+VALUES(SQ_FAQ_BOARD.NEXTVAL, 710,'4', 'Q.도서 검색은 어떻게 하나요?', 'A.홈페이지 검색창에 자료 제목, 저자명, 발행자 등을 입력해 소장자료를 검색합니다.', 'N');
 
 INSERT INTO BOOK.TB_FAQ_BOARD
 (FAQ_SEQ, USER_SEQ, FAQ_CATEGORY, FAQ_TITLE, FAQ_CONTENT, FAQ_DELFLAG)
-VALUES(SQ_FAQ_BOARD.NEXTVAL, 55,'4', 'Q.도서 배송신청은 어떻게 하나요?', 'A. 홈페이지 대출신청 이후 주소지를 입력하고 배송비를 지불하면 대출이 실행됩니다.', 'N');
+VALUES(SQ_FAQ_BOARD.NEXTVAL, 710,'4', 'Q.도서 배송신청은 어떻게 하나요?', 'A. 홈페이지 대출신청 이후 주소지를 입력하고 배송비를 지불하면 대출이 실행됩니다.', 'N');
 INSERT INTO BOOK.TB_FAQ_BOARD
 (FAQ_SEQ, USER_SEQ, FAQ_CATEGORY, FAQ_TITLE, FAQ_CONTENT, FAQ_DELFLAG)
-VALUES(SQ_FAQ_BOARD.NEXTVAL, 55,'4', 'Q.도서 배송신청은 어떻게 하나요?', 'A. 홈페이지 대출신청 이후 주소지를 입력하고 배송비를 지불하면 대출이 실행됩니다.', 'N');
+VALUES(SQ_FAQ_BOARD.NEXTVAL, 710,'4', 'Q.도서 배송신청은 어떻게 하나요?', 'A. 홈페이지 대출신청 이후 주소지를 입력하고 배송비를 지불하면 대출이 실행됩니다.', 'N');
 
 
 --새글등록

@@ -23,26 +23,15 @@
 	<form action="./returnAddrCheck.do" method="post"  onsubmit="return validateForm();">
 		<table class="table table-bordered form-group">
 				<thead>
-					<tr>
-						<th class="center-text" style="padding-bottom: auto;">회원번호</th>
-			            <td>
-		                <input class="form-control" type="text" value="${loginUser.user_seq}" readonly="readonly" id="user_seq" name="user_seq">
-						</td>
-					</tr>
-<!-- 						<tr> -->
-<!-- 						<th class="center-text" style="padding-bottom: auto;">도서번호</th> -->
-<!-- 			            <td> -->
-<!-- 		                <input class="form-control" type="text" value="1" readonly="readonly" id="rent_seq" name="rent_seq"> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
+
 				</thead>
 		
 				<tbody>   
-					<tr>
+	<tr>
 						<th class="center-text" style="padding-top: 75px;">배송정보</th>
 						<td>
-							<input type="text" id="delivery_name" name="delivery_name" placeholder="수령자"><br>
-							<input type="text" id="delivery_phone" name="delivery_phone" placeholder="연락받을 전화번호"><br>
+						    <input type="text" id="delivery_name" name="delivery_name" placeholder="수령자" value="${loginUser.user_name}" readonly="readonly"><br>
+  							<input type="text" id="delivery_phone" name="delivery_phone" placeholder="연락받을 전화번호" value="${loginUser.user_phone}" readonly="readonly"><br>
 							<input type="text" id="sample6_postcode" placeholder="우편번호" name="postcode">
 							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 							<input type="text" id="sample6_address" placeholder="주소" name="address"><br>
@@ -126,12 +115,32 @@
         var deliveryPhone = document.getElementById("delivery_phone").value;
         var postcode = document.getElementById("sample6_postcode").value;
         var address = document.getElementById("sample6_address").value;
-        
+        var detailAddress = document.getElementById("sample6_detailAddress").value;
+ 
+        // 허용되는 문자: 영어, 한글, 숫자, ,, -, #
+        var validPattern = /^[a-zA-Z가-힣0-9,#\s-]+$/;
+        var numericPattern = /^[0-9]+$/;
+     
+     
 
         if (deliveryName === "" || deliveryPhone === "" || postcode === "" || address === "") {
             alert("정보를 입력하세요.");
             return false;
         }
+        
+
+        // 주소 필드의 길이 검사 (30자 이하)
+        if (!validPattern.test(address)|| address.length > 30) {
+            alert("주소는 30자 이하로 입력해야 합니다.");
+            return false;
+        }
+
+        // 상세주소 필드의 길이 검사 (15자 이하)
+        if (detailAddress.length > 35 ||!validPattern.test(detailAddress) ) {
+            alert("상세주소는 35자 이하로 입력해야 합니다.");
+            return false;
+        }
+
 
         return true;
     }
