@@ -48,8 +48,6 @@ public class UserController {
 	    log.info("로그인 처리 login {}", map);
 	    UserDto loginDto = service.login(map);
 	    log.info("loginDto정보 {}", loginDto);
-	    Map<String, Object> userStatus = service.getUserStatus(loginDto.getUser_seq());
-	    log.info("userStatus정보 {}", userStatus);
 	    
 	    if (loginDto == null) {
 	        log.info("로그인 실패 {}", map);
@@ -58,7 +56,7 @@ public class UserController {
 	    
 	    if (loginDto.getUser_auth().equals("U")) {
 	        log.info(loginDto.getUser_auth());
-	        log.info("유저 로그인성공  이동 {}", map);
+	        Map<String, Object> userStatus = service.getUserStatus(loginDto.getUser_seq());
 	        session.setAttribute("loginDto", loginDto);
 	        session.setAttribute("userStatus",userStatus);
 	        log.info("userStatus의 값 체크 : {}",userStatus); //삭제할것
@@ -91,6 +89,12 @@ public class UserController {
 		log.info("getAlluser 모든회원정보 가져오기");
 		List<UserDto> getAllusers = service.getAllUser();
 		return getAllusers;
+	}
+	
+	@RequestMapping(value="/searchForm.do", method = RequestMethod.GET)
+	public String searchForm() {
+		log.info("searchForm 사용자 : 회원정보 찾기");
+		return "searchInfo";
 	}
 
 }

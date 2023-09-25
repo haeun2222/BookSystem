@@ -47,5 +47,14 @@ public class UserDaoImpl implements IUserDao {
 	public Map<String, Object> getUserStatus(int user_seq) {
 		return sqlSession.selectOne(NS+"getUserStatus",user_seq);
 	}
+
+
+	@Override
+	public String findEmail(Map<String, Object> map) {
+		return sqlSession.selectOne(NS+"findEmail",map);
+	}
+
+
+
 	
 }

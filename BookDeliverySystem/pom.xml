@@ -204,7 +204,14 @@
 	    <groupId>org.codehaus.jackson</groupId>
 	    <artifactId>jackson-mapper-asl</artifactId>
 	    <version>1.9.13</version>
-	</dependency>	
+	</dependency>
+	
+	<!-- 휴대폰 인증 -->	
+	  <dependency>
+           <groupId>net.nurigo</groupId>
+           <artifactId>sdk</artifactId>
+           <version>4.2.7</version>
+      </dependency>
 	
   </dependencies>
   <build>

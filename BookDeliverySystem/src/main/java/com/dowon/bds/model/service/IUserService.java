@@ -14,4 +14,5 @@ public interface IUserService {
 	public int checkEmail(String email);
 	public List<UserDto> getAllUser();
 	public Map<String, Object> getUserStatus(int user_seq);
+	public String findEmail(Map<String, Object> map);
 }
