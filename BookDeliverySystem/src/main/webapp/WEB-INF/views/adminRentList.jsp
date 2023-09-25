@@ -119,21 +119,25 @@ async function handleActions(rentSeq, bookSeq) {
 <script type="text/javascript">
 
 function updateDelivery(index) {
-    const deliveryNumInput = document.getElementById(`deliveryNum${index}`);
-    const form = document.getElementById(`deliveryForm${index}`);
-
+    const deliveryNumInput = document.getElementById('deliveryNum'+index).value;
+//     const form = document.getElementById(`deliveryForm${index}`);
+	console.log(deliveryNumInput);
     // 운송장 번호 입력 필드에서 값을 가져온다
-    const deliveryNum = deliveryNumInput.value;
+//     const deliveryNum = deliveryNumInput.value;
 
     // AJAX를 사용하여 서버에 업데이트 요청을 보냄
     $.ajax({
         url: './updateDeliveryNum.do', // 폼의 action 속성을 사용하여 업데이트 URL 지정
         type: 'POST', // 폼의 method 속성을 사용하여 HTTP 메소드 지정
         data: {
-            delivery_num: deliveryNum
+            "delivery_num": deliveryNumInput
         },
         success: function(response) {
-            alert('운송장 번호가 업데이트되었습니다.');
+        	if(response == "0"){
+	            alert('운송장 번호가 실패.', response);
+        	}else{
+	            alert('운송장 번호가 업데이트되었습니다.', response);
+        	}
         },
         error: function(error) {
             alert('운송장 번호 업데이트 중 오류가 발생했습니다.');

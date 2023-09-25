@@ -101,31 +101,40 @@ public class AddrController {
 	}
 	
 	
-	@RequestMapping(value = "/updateDeliveryNum.do", method = RequestMethod.GET)
-	public String updateDeliveryNum(@RequestParam("user_seq") int user_seq, @RequestParam("delivery_num") int delivery_num, Model model, HttpSession session) {
-		logger.info("Welcome! AddrController 수거요청 입력 returnAddrCheck");
-		UserDto loginDto = (UserDto)session.getAttribute("loginDto");
-		model.addAttribute("loginDto", loginDto);
-		model.addAttribute("user_seq", user_seq);
-		model.addAttribute("delivery_num",delivery_num);
-		return "updateDeliveryNum";
-	}
-	
-	@PostMapping("/updateDeliveryNum.do")
+	@RequestMapping(value = "/updateDeliveryNum.do", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<String> updateDeliveryNum(@RequestParam("user_seq") int userSeq, @RequestParam("delivery_num") String deliveryNum) {
-	    try {
-	        // 운송장 번호를 사용하여 DB에서 해당 사용자의 delivery_num을 업데이트합니다.
-	        Map<String, Object> map = new HashMap<>();
-	        map.put("user_seq", userSeq);
-	        map.put("delivery_num", deliveryNum);
-	        service.updateDeliveryNum(map);
-	        return ResponseEntity.ok("운송장 번호가 업데이트되었습니다.");
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("운송장 번호 업데이트 중 오류가 발생했습니다.");
-	    }
+	public String updateDeliveryNum(
+//			@RequestParam("user_seq") int user_seq, 
+			@RequestParam("delivery_num") int delivery_num, Model model, HttpSession session) {
+		logger.info("Welcome! AddrController 수거요청 입력 returnAddrCheck : {}", delivery_num);
+		UserDto loginDto = (UserDto)session.getAttribute("loginDto");
+		 Map<String, Object> map = new HashMap<>();
+		 
+	        map.put("user_seq", loginDto.getUser_seq());
+	        map.put("delivery_num", delivery_num);
+	        int n = service.updateDeliveryNum(map);
+	        if(n >0 ) {
+	        	return "1";
+	        }else {
+	        	return "0";
+	        }
 	}
+//	
+//	@PostMapping("/updateDeliveryNum.do")
+//	@ResponseBody
+//	public ResponseEntity<String> updateDeliveryNum(@RequestParam("user_seq") int userSeq, @RequestParam("delivery_num") String deliveryNum) {
+//	    try {
+//	        // 운송장 번호를 사용하여 DB에서 해당 사용자의 delivery_num을 업데이트합니다.
+//	        Map<String, Object> map = new HashMap<>();
+//	        map.put("user_seq", userSeq);
+//	        map.put("delivery_num", deliveryNum);
+//	        service.updateDeliveryNum(map);
+//	        return ResponseEntity.ok("운송장 번호가 업데이트되었습니다.");
+//	    } catch (Exception e) {
+//	        e.printStackTrace();
+//	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("운송장 번호 업데이트 중 오류가 발생했습니다.");
+//	    }
+//	}
 
 	
 
