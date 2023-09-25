@@ -20,6 +20,7 @@
     <button id="bookTableButton">도서관리</button>
     <button id="rentListButton">대출관리(미완성)</button>
     <button type="button" onclick="location.href='./freeBoardList.do'">자유게시판 관리</button>
+    <button type="button" onclick="location.href='./faqList.do'">FAQ게시판 관리</button>
     <button type="button" onclick="location.href='./oldAdminRentList.do'">관리자대출관리</button>
     <input type="text" id="bookName" placeholder="도서명 입력">
     <button id="search">검색</button>

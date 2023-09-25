@@ -3,6 +3,7 @@ package com.test.bds;
 import static org.junit.Assert.*;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,8 +14,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.dowon.bds.dto.AddrDto;
+import com.dowon.bds.dto.FaqBoardDto;
+import com.dowon.bds.dto.FreeBoardDto;
 import com.dowon.bds.dto.PayDto;
 import com.dowon.bds.model.mapper.IAddrDao;
+import com.dowon.bds.model.mapper.IFaqBoardDao;
 import com.dowon.bds.model.mapper.IPaymentDao;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +40,9 @@ public class JiinJUnitTest {
 	
 	@Autowired
 	private IPaymentDao payDao;
+	
+	@Autowired
+	private IFaqBoardDao faqDao;
 	
 //	@Test
 	public void test() {
@@ -64,5 +71,14 @@ public class JiinJUnitTest {
 //		assertNotNull(payDto);
 //		
 //	}
+	
+	
+//	@Test
+	public void faqList() {
+		List<FaqBoardDto> lists = faqDao.faqList();
+		log.info("JiinJUnitTest faqList{}",lists);
+		assertNotNull(lists);
+	}
+	
 
 }

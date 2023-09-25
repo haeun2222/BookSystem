@@ -8,8 +8,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * @author 박하은
- * @since 2023.09.06 FAQ 게시판 Dto
+ * @author 김지인
+ * @since 2023.09.24 FAQ 게시판 Dto 수정
  */
 
 @Data
@@ -21,6 +21,7 @@ import lombok.ToString;
 public class FaqBoardDto {
 
 	private int faq_seq;
+	private int user_seq;
 	private String faq_category;
 	private String faq_title;
 	private String faq_content;
