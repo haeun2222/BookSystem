@@ -56,4 +56,10 @@ public class StatisticsDaoImpl implements IStatisticsDao {
 		return session.selectList(NS+"detailGenderStatistics",book_seq);
 	}
 
+	@Override
+	public List<AgeDto> detailAgeStatistics(int book_seq) {
+		log.info("StatisticsDaoImpl detailAgeStatistics 상세페이지 연령별통계");
+		return session.selectList(NS+"detailAgeStatistics",book_seq);
+	}
+
 }

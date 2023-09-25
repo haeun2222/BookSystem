@@ -61,4 +61,11 @@ public class StatisticsServiceImpl implements IStatisticsService {
 		return dao.detailGenderStatistics(book_seq);
 	}
 
+
+	@Override
+	public List<AgeDto> detailAgeStatistics(int book_seq) {
+		log.info("StatisticsServiceImpl detailAgeStatistics 실행");
+		return dao.detailAgeStatistics(book_seq);
+	}
+
 }

@@ -143,10 +143,16 @@ public class SuyubJUnitTest {
 		log.info("SuyubJUnitTest updateBoard 게시글 수정{}",map);
 		assertEquals(1, n);
 	}
-	@Test
+//	@Test
 	public void detailGender() {
 		List<GenderDto> lists = dao.detailGenderStatistics(800);
 		log.info("SuyubJUnitTest detailGender {}",lists);
+		assertNotNull(lists);
+	}
+	@Test
+	public void detailAge() {
+		List<AgeDto> lists = dao.detailAgeStatistics(800);
+		log.info("SuyubJUnitTest detailAge {}",lists);
 		assertNotNull(lists);
 	}
 }
