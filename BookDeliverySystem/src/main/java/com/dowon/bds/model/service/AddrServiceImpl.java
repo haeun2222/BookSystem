@@ -55,23 +55,8 @@ public class AddrServiceImpl implements IAddrService {
 
 	@Override
 	public int updateDeliveryNum(Map<String, Object> map) {
-		log.info("운송장 번호 입력 updateDeliveryNum 운송장번호 업데이트 : {}" ,map);
-//		log.info("운송장 번호 입력 updateDeliveryNum 운송장번호 업데이트 :{} {}" ,user_seq, delivery_num);
-		
-		//운송장 번호 업데이트할 때 사용할 파라미터
-		try {
-//			Map<String, Object> map = new HashMap<String, Object>();
-//			map.put("user_seq", user_seq);
-//			map.put("delivery_num", delivery_num);
-			//dao에서 운송장번호 업데이트
-			dao.updateDeliveryNum(map);
-			
-			return 1;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
-//		return dao.updateDeliveryNum(map);
+		log.info("운송장 번호 입력 updateDeliveryNum 운송장번호 업데이트");
+		return dao.updateDeliveryNum(map);
 	}
 
 	@Override

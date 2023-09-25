@@ -57,11 +57,22 @@
                         </c:when>
                     </c:choose>
                 </td>
-                <td style="display: flex; align-items: center;">
-            	    	<input type="text" id="deliveryNum${rent.USER_SEQ}" placeholder="운송장번호 입력" value="">
-  					   <button onclick="updateDelivery(${rent.USER_SEQ}, '${rent.USER_SEQ.delivery_num}')" style="color: #263238">입력</button>
+<!--                 <td style="display: flex; align-items: center;"> -->
+<%--             	    	<input type="text" id="deliveryNum${rent.USER_SEQ}" placeholder="운송장번호 입력" value=""> --%>
+<%--   					   <button onclick="updateDelivery(${rent.USER_SEQ}, '${rent.USER_SEQ.delivery_num}')" style="color: #263238">입력</button> --%>
 
-                </td>
+<!--                 </td> -->
+				<td style="display: flex; align-items: center;">
+				    <form id="deliveryForm${status.index}" action="./updateDeliveryNum.do?user_seq=${rent.USER_SEQ}" method="post">
+				        <div class="form-group">
+				            <input type="text" id="deliveryNum${status.index}" name="delivery_num" placeholder="운송장번호 입력" value="">
+				        </div>
+				        <button type="button" class="btn btn-success" style="color: #263238" onclick="updateDelivery(${status.index})">입력</button>
+				    </form>
+				</td>
+
+
+                
             </tr>
         </c:forEach>
     </table>
@@ -106,29 +117,32 @@ async function handleActions(rentSeq, bookSeq) {
 
 </script>
 <script type="text/javascript">
-function updateDelivery(userSeq, deliveryNum) {
-    // 운송장 번호 입력 필드에서 값을 가져온다
-const deliveryNum = document.getElementById('deliveryNum${userSeq}').value;
 
+function updateDelivery(index) {
+    const deliveryNumInput = document.getElementById(`deliveryNum${index}`);
+    const form = document.getElementById(`deliveryForm${index}`);
+
+    // 운송장 번호 입력 필드에서 값을 가져온다
+    const deliveryNum = deliveryNumInput.value;
 
     // AJAX를 사용하여 서버에 업데이트 요청을 보냄
     $.ajax({
-        url: './updateDeliveryNum.do', 
-        type: 'POST', // 업데이트 요청의 HTTP
+        url: './updateDeliveryNum.do', // 폼의 action 속성을 사용하여 업데이트 URL 지정
+        type: 'POST', // 폼의 method 속성을 사용하여 HTTP 메소드 지정
         data: {
-        	 user_seq: userSeq,
-             delivery_num: deliveryNum
+            delivery_num: deliveryNum
         },
         success: function(response) {
-            
             alert('운송장 번호가 업데이트되었습니다.');
         },
         error: function(error) {
-            // 업데이트가 실패한 경우 처리할 내용을 여기에 추가하세요.
             alert('운송장 번호 업데이트 중 오류가 발생했습니다.');
         }
     });
 }
+
+
+
 </script>
 
 </html>

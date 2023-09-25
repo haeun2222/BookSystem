@@ -48,10 +48,9 @@ public class AddrDaoImpl implements IAddrDao {
 
 	@Override
 	public int updateDeliveryNum(Map<String, Object> map) {
-		log.info("updateDeliveryNum 운송장번호 등록"+map);
+		log.info("updateDeliveryNum 운송장번호 등록");
 		return session.update(NS+"updateDeliveryNum",map);
-//		int row = session.update(NS+"updateDeliveryNum", map);
-//		return row >0;
+
 	}
 
 	@Override

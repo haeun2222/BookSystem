@@ -100,6 +100,17 @@ public class AddrController {
 	
 	}
 	
+	
+	@RequestMapping(value = "/updateDeliveryNum.do", method = RequestMethod.GET)
+	public String updateDeliveryNum(@RequestParam("user_seq") int user_seq, @RequestParam("delivery_num") int delivery_num, Model model, HttpSession session) {
+		logger.info("Welcome! AddrController 수거요청 입력 returnAddrCheck");
+		UserDto loginDto = (UserDto)session.getAttribute("loginDto");
+		model.addAttribute("loginDto", loginDto);
+		model.addAttribute("user_seq", user_seq);
+		model.addAttribute("delivery_num",delivery_num);
+		return "updateDeliveryNum";
+	}
+	
 	@PostMapping("/updateDeliveryNum.do")
 	@ResponseBody
 	public ResponseEntity<String> updateDeliveryNum(@RequestParam("user_seq") int userSeq, @RequestParam("delivery_num") String deliveryNum) {

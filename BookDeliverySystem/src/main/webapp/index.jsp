@@ -28,6 +28,9 @@ svg > g > g:last-child { pointer-events: none }
 <body>
 <div id="slider-div">
     <div><img src="./img/9.png" width="100%"></div>
+    <div><img src="./img/guide.jpg" width="100%"></div>
+    <div><img src="./img/2222.png" width="100%"></div>
+    <div><img src="./img/22222.png" width="100%"></div>
     <div><img src="./img/7.png" width="100%"></div>
     <div><img src="./img/header01.png" width="100%"></div>
     <div><img src="./img/header02.png" width="100%"></div>

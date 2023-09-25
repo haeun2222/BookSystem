@@ -20,54 +20,57 @@
 <body>
 <div class="container">
 	<h1>자주묻는질문</h1>
-	<input style="float: right; background-color: #00fff5; color: #000;" class="btn" type="submit" onclick="location.href='./faqInsertView.do'" value="새글작성">
+	
+	<c:choose>
+    <c:when test="${loginDto != null && loginDto.user_auth == 'A'}">
+        <input style="float: right; background-color: #00fff5; color: #000;" class="btn" type="submit" onclick="location.href='./faqInsertView.do'" value="새글작성">
+    </c:when>
+	</c:choose>
+	
+	
     <table class="table" border="1">
-        <tr>
-<!--             <th>번호</th> -->
-<!--             <th>자주묻는 질문</th> -->
-        </tr>
     
-<c:forEach var="faqBoard" items="${faqList}">
-   <tr data-category="${faqBoard.faq_category}">
-<%--         <td>${faqBoard.faq_seq}</td> --%>
-        <td>
-            <button class="faq-title-button" style="color: black;"> 
-                ${faqBoard.faq_title}
-            </button>
-            <div class="faq-content" style="display: none;">
-                ${faqBoard.faq_content}
-            </div>
-           <c:if test="${loginDto != null && loginDto.user_seq == faqBoard.user_seq}">
-            <button class="btn btn-info" onclick="location.href='./faqBoardDetail.do?faq_seq=${faqBoard.faq_seq}'">관리</button>
-           </c:if>
-        </td>
-    </tr>
-</c:forEach>
-</table>
-</div>
-
-
-   
- <div class="faq_search_wrap text-center">
-    <div class="inner">
-        <form action="#">
-            <div class="result_info">
-                   </div>
-                     <div class="category_search_wrap">
-		                 <div class="input_select_wrap2">
-		                     <select title="컨텐츠 카테고리" name="faq_category" id="faq_category" style="color: black;">
-		                         <option value="" style="color: black;">카테고리 전체</option>
-									<option value="1" style="color: black;">도서관이용일반</option>
-									<option value="2" style="color: black;">비치희망자료신청</option>
-									<option value="3" style="color: black;">자료검색및대출</option>
-									<option value="4" style="color: black;">회원가입관련</option>
-							</select>
-		            <button class="btn_view" style="color: black;">검색</button>
-		                 </div>
-		          </div>
-</form>
-</div>
-</div>
+		<c:forEach var="faqBoard" items="${faqList}">
+		   <tr data-category="${faqBoard.faq_category}">
+		<%--         <td>${faqBoard.faq_seq}</td> --%>
+		        <td>
+		            <button class="faq-title-button" style="color: black;"> 
+		                ${faqBoard.faq_title}
+		            </button>
+		            <div class="faq-content" style="display: none;">
+		                ${faqBoard.faq_content}
+		            </div>
+		           <c:if test="${loginDto != null && loginDto.user_seq == faqBoard.user_seq}">
+		            <button class="btn btn-info" onclick="location.href='./faqBoardDetail.do?faq_seq=${faqBoard.faq_seq}'">관리</button>
+		           </c:if>
+		        </td>
+		    </tr>
+		</c:forEach>
+		</table>
+		</div>
+		
+		
+		   
+		 <div class="faq_search_wrap text-center">
+		    <div class="inner">
+		        <form action="#">
+		            <div class="result_info">
+		                   </div>
+		                     <div class="category_search_wrap">
+				                 <div class="input_select_wrap2">
+				                     <select title="컨텐츠 카테고리" name="faq_category" id="faq_category" style="color: black;">
+				                         <option value="" style="color: black;">카테고리 전체</option>
+											<option value="1" style="color: black;">도서관이용일반</option>
+											<option value="2" style="color: black;">비치희망자료신청</option>
+											<option value="3" style="color: black;">회원가입관련</option>
+											<option value="4" style="color: black;">자료검색및대출</option>
+									</select>
+				            <button class="btn_view" style="color: black;">검색</button>
+				                 </div>
+				          </div>
+		</form>
+		</div>
+	</div>
    
 
 
