@@ -41,10 +41,14 @@ svg > g > g:last-child { pointer-events: none }
 <!-- 검색창 -->
 <!-- 검색창 -->
 <div class="search-container" style="width: 40%; margin: 0 auto; text-align: center;">
+
 <form action="./searchBooks.do" method="get">
   <input type="text" name="keyword" placeholder="도서명 또는 저자를 입력하세요." style="width: 70%;"> 
   <button type="submit" style="width: 30%;"><i class="fa fa-search"></i></button>
 </form>  
+
+  
+
 </div>
 
 <!-- <a href="./imgSelect.do">책이미지좀불러와라</a> -->
@@ -56,7 +60,7 @@ svg > g > g:last-child { pointer-events: none }
 		<h4 style="color: white;">누구에게 인기가 많을까?</h4>
 		<button id="showModal" type="button" class="btn btn-lg" style="background-color: #00FFF5; color: #222831"  data-toggle="modal"
 			data-target="#myModal">
-			지금보러가자!
+			보러가기
 		</button>
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog modal-md">

@@ -3,13 +3,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import com.dowon.bds.dto.PayDto;
 
 /** 
  * @author 김지인
  * @since 2023.09.13
  * 결제관련 메소드를 정의한 DAO Interface
  */
-import com.dowon.bds.dto.PayDto;
+
 
 @Mapper
 public interface IPaymentDao {
@@ -22,4 +23,9 @@ public interface IPaymentDao {
 	
 	//특정 회원의 결제 내역 확인
 	public List<Map<String, Object>> selectMypayList(int n);
+	
+	//페이징
+	public int userCountPay(int n);
+	public List<Map<String, Object>> userPayPageList(Map<String, Object> map);
+	
 }

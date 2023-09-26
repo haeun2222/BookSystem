@@ -56,4 +56,16 @@ public class PaymentServiceImpl implements IPaymentService {
 		return dao.selectMypayList(n);
 	}
 
+
+	@Override
+	public int userCountPay(int n) {
+		return dao.userCountPay(n);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> userPayPageList(Map<String, Object> map) {
+		return dao.userPayPageList(map);
+	}
+
 }

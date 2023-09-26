@@ -51,6 +51,22 @@ public class SuyubJUnitTest {
 	private IFreeCommentDao dao3;
 	
 
+	@Autowired
+	private IFreeBoardService service3;
+	
+
+	
+	@Test
+	public void pageTest() {
+//		int n = service3.FreeBoardCount();
+//		System.out.println(n);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("first", 1);
+		map.put("last", 50);
+		List<FreeBoardDto> lists = service3.FreeBoardCountList(map);
+		System.out.println(lists);
+	}
 	
 	
 //	@Test

@@ -13,10 +13,11 @@
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
 <title>Insert title here</title>
-</head>
 <%@include file="/WEB-INF/views/header.jsp"%>
+</head>
+<c:set var="lists" value="${requestScope.lists}" />
+<c:set var="r" value="${requestScope.aPage}" />
 <body>
-
 <div class="container">
     <h1>계발의민족 회원 도서 대출 목록</h1>
     <table border="1">
@@ -33,8 +34,9 @@
         <c:forEach var="rent" items="${lists}" varStatus="status">
             <tr>
 <%--         	    <td>${rent.BOOK_SEQ}</td> --%>
-				<td>${status.index + 1}</td>
-                <td>${rent.USER_NAME}</td>
+<%-- 				<td>${status.index + 1}</td> --%>
+				<td>${r.getTotalCount() - (r.getPage() - 1) * r.getCountList() - status.index}</td>
+                <td>${rent.NAME}</td>
                 <td>${rent.BOOK_TITLE}</td>
                 <td>
                 	<fmt:formatDate value="${rent.RENT_DATE}" pattern="yyyy.MM.dd"/>
@@ -53,7 +55,7 @@
                 <td>
                     <c:choose>
                         <c:when test="${rent.RENT_STATUS eq 'B'}">
-                        <button onclick="handleActions(${rent.RENT_SEQ}, ${rent.BOOK_SEQ})" style="color: #263238">반납확인</button>
+                        <button onclick="handleActions(${rent.SEQ}, ${rent.BOOK_SEQ})" style="color: #263238">반납확인</button>
                         </c:when>
                     </c:choose>
                 </td>
@@ -76,6 +78,46 @@
             </tr>
         </c:forEach>
     </table>
+    <!-- 페이지 번호 및 화살표 옮기기 -->
+    <div class="text-center">
+        <ul class="pagination pagination-lg">
+            <c:if test="${r.getStartPage() > 1}">
+                <li><a href="./oldAdminRentList.do?page=1">◁◁</a></li>
+            </c:if>
+    
+            <c:if test="${r.getStartPage() > 1}">
+                <c:choose>
+                    <c:when test="${r.getStartPage() - r.getCountPage() <= 0}">
+                        <li><a href="./oldAdminRentList.do?page=1">◀</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="./oldAdminRentList.do?page=${r.getStartPage() - r.getCountPage()}">◀</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </c:if>
+    
+            <c:forEach begin="${r.getStartPage()}" end="${r.getEndPage()}" var="i">
+                <li <c:if test="${i == r.getPage()}">class="active"</c:if>>
+                    <a href="./oldAdminRentList.do?page=${i}">${i}</a>
+                </li>
+            </c:forEach>
+    
+            <c:if test="${r.getPage() < r.getTotalPage()}">
+                <c:choose>
+                    <c:when test="${r.getStartPage() + r.getCountPage() > r.getTotalPage()}">
+                        <li><a href="./oldAdminRentList.do?page=${r.getTotalPage()}">▶</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="./oldAdminRentList.do?page=${r.getStartPage() + r.getCountPage()}">▶</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </c:if>
+    
+            <c:if test="${r.getEndPage() < r.getTotalPage()}">
+                <li><a href="./oldAdminRentList.do?page=${r.getTotalPage() - r.getTotalPage() % r.getCountList() + 1}">▷▷</a></li>
+            </c:if>
+        </ul>
+    </div>
 </div> 
 </body>
 <%@ include file="footer.jsp" %>

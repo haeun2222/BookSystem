@@ -29,5 +29,4 @@ public class FreeBoardDto {
 	private Date free_regdate;
 	private String free_delflag;
 	private String user_name;
-	
 }
