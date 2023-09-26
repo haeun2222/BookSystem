@@ -2,6 +2,8 @@ body {
   background-color: white;
   margin: 0;
   box-sizing: border-box;
+    width: 1280px;
+    margin: 0 auto; 
 }
 
 .container {
@@ -64,11 +66,8 @@ i:hover {
   cursor: pointer;
 }
 
-footer {
-  margin-top: 10px;
-  font-weight: bold;
-}
 
 a {
   text-decoration: none;
 }
+

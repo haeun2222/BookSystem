@@ -6,59 +6,62 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel='stylesheet' href='./css/header.css'/>
 </head>
 <body>
 
+<!-- 헤더 전체 div -->
+<div style="height: 20vh;">
 
+<!-- 헤더 첫번째 div -->
 	<div class="flex-container" id="header">
-		<div class="topLogo" style="margin-top: 30px;"></div>
+		<div class="topLogo" ></div>
 		<div>
-			<h1 style="text-align: center; font-size: 60px; color: white;"> <a href="./index.jsp"> 계발의민족 </a></h1>
+			<h1 class="mainTitle"> <a class="a" href="./index.jsp"> 계발의민족 </a></h1>
 		</div>
-		<div class="topLogo" style="margin-top: 30px;" id="loginBtn">
+		<div class="topLogo" id="loginBtn" style="margin-top: 30px;">
 			
 			<!--로그인 상태확인 -->
 			<c:choose>
 				<c:when test="${loginDto == null}">
-			    <button class="btn" style="background-color: #00FFF5"
+			    <button class="btn"
 				onclick="location.href='./nomalRegistForm.do'">회원가입</button>
 					<button class="btn" id="loginButton"
-						style="background-color: #00FFF5"
 						onclick="location.href='./loginPage.do'">로그인</button>
 				</c:when>
 				<c:otherwise>
-					<span style="font-size: 12px; color: white;"> 
-									${loginDto.user_name} 님 환영합니다. &nbsp;&nbsp;
-									대출상태 : <a href="./userRentPageList.do"> ${userStatus.RENT_STATUS} </a>&nbsp;&nbsp;
-									예약상태 : <a href="./userResvePageList.do"> ${userStatus.RESVE_STATUS} </a> &nbsp;&nbsp;
+					<span> 
+						${loginDto.user_name} 님 환영합니다. &nbsp;&nbsp;
+						대출상태 : <a href="./userRentPageList.do"> ${userStatus.RENT_STATUS} </a>&nbsp;&nbsp;
+						예약상태 : <a href="./userResvePageList.do"> ${userStatus.RESVE_STATUS} </a> &nbsp;&nbsp;
 					 </span>
 					<button class="btn" id="logoutButton"
-						style="background-color: #00FFF5"
 						onclick="location.href='./logout.do'">로그아웃
 					</button>
 				</c:otherwise>
 			</c:choose>
 		</div>
 	</div>
-	<nav class="navbar navbar-default"
-		style="border-radius: 15px; background-color: #222831; margin: 0 auto;">
+	
+	<!-- 헤더 두번째 div -->
+
+	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header"></div>
-			<ul class="nav navbar-nav" style="margin: 0 auto;">
+			<ul class="nav navbar-nav">
 				<li class="active"><a href="./home.do">Home</a></li>
 
 
-				<li><a style="color: #CFD8DC;" href="./freeBoardList.do">자유게시판</a></li>
-				<li><a style="color: #CFD8DC;" href="./userBookList.do">도서목록</a></li>
-				<li><a style="color: #CFD8DC;" href="./userPayPageList.do">결제내역</a></li>
-				<li><a style="color: #CFD8DC;" href="./faqList.do">FAQ</a></li>
-
-				<!--     <li><a style="color: #CFD8DC;" href="./adminRentList.do">관리자대출관리</a></li> -->
-<!-- 				<li><a style="color: #CFD8DC;" href="./userRentPageList.do?page=1">회원대출목록(테스트)</a></li> -->
-<!-- 				<li><a style="color: #CFD8DC;" href="./userResvePageList.do?page=1">회원예약목록(테스트)</a></li> -->
+				<li><a href="./freeBoardList.do">자유게시판</a></li>
+				<li><a href="./userBookList.do">도서목록</a></li>
+				<li><a href="./userPayPageList.do">결제내역</a></li>
+				<li><a href="./faqList.do">FAQ</a></li>
+				
 			</ul>
 		</div>
 	</nav>
-	<script type="text/javascript" src="js/header.js"></script>
+	
+	</div>
 </body>
+	<script type="text/javascript" src="js/header.js"></script>
 </html>
