@@ -14,7 +14,7 @@
 <body>
 	<div class="container">
 		<h2>새글작성<button style="float: right; background-color: #ccc; color: #000;" class="btn" onclick="location.href='./freeBoardList.do'">이전</button></h2>
-		<form action="./freeBoardInsert.do" method="post" enctype="multipart/form-data">
+		<form action="./freeBoardInsert.do" method="post">
 			<div class="form-group">
 				<label for="id">아이디:</label>
 				<div class="form-control" id="id">${loginDto.user_name}</div>
@@ -25,7 +25,6 @@
 			</div>
 			<div class="form-group">
 				<label for="comment">내용:</label>
- 				<input style="color: #000;" class="btn" type="file" name="file">
 				<textarea class="form-control" id="free_content" name="free_content" rows="5" cols="50"></textarea>
 			</div>
 			<button style="margin-bottom: 10px; background-color: #00fff5; color: #000;" type="submit" class="btn">완료</button>

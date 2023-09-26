@@ -21,4 +21,9 @@ public interface IFreeBoardDao {
 	
 	// 자유게시판 게시글 수정
 	public int updateBoard(Map<String, Object>map);
+	
+	// 자유게시판 페이징
+	public int FreeBoardCount();
+	
+	public List<FreeBoardDto> FreeBoardCountList(Map<String, Object>map);
 }

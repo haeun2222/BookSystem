@@ -50,4 +50,16 @@ public class IFreeBoardDaoImpl implements IFreeBoardDao {
 		return session.update(NS+"updateBoard",map);
 	}
 
+	@Override
+	public int FreeBoardCount() {
+		log.info("IFreeBoardDaoImpl FreeBoardCount 자유게시판 전체게시글 수");
+		return session.selectOne(NS+"FreeBoardCount");
+	}
+
+	@Override
+	public List<FreeBoardDto> FreeBoardCountList(Map<String, Object> map) {
+		log.info("IFreeBoardDaoImpl FreeBoardCountList 자유게시판 페이징 리스트");
+		return session.selectList(NS+"FreeBoardCountList",map);
+	}
+
 }

@@ -18,7 +18,6 @@
 		<h1>제목: ${dto.free_title}<input style="float: right; background-color: #ccc; color: #000;" class="btn" type="button" value="이전" onclick="location.href='./freeBoardList.do'">
 			<c:if test="${loginDto.user_name eq dto.user_name}">
     		<input style="float: right;" class="btn btn-danger" type="button" value="삭제" onclick="boardDel()">
-<%-- 			<input style="float: right;" class="btn btn-info" type="button" value="수정" onclick="location.href='./updateBoard.do?free_bseq=${dto.free_bseq}'"> --%>
 			<input style="float: right;background-color: #00ADB5; color: #000;" class="btn" type="button" value="수정" onclick="location.href='./updateBoard.do?free_bseq='+ ${dto.free_bseq} + '&free_title=' + '${dto.free_title}' + '&free_content=' + '${dto.free_content}'">
 			
 			</c:if>
@@ -30,13 +29,7 @@
 		</div>
 		</div><br>
 		<div>
-<%-- 		<p>${loginDto}</p> --%>
-<%-- 		<p>${dto}</p> --%>
-<%-- 		<p>${CommentAll}</p> --%>
-			
 			</div>
-<!-- 				<h1 style="margin-top: 10px;">-답글목록</h1> -->
-<%-- 				<button class="btn btn-warning" id="toggleComment" onclick="location.href='./freeBoardDetail.do?free_bseq=${dto.free_bseq}'">답글보기</button> --%>
 			<table class="table" id="commentTable">
 				<c:forEach var="comment" items="${CommentAll}">
 				<tr>
@@ -50,18 +43,15 @@
 				</c:forEach>
 			</table>
 			
-			<form action="./CommentInsert.do" method="post">
+			<form action="./CommentInsert.do" method="post" onsubmit="return validateComment();">
 			    <input type="hidden" name="free_bseq" value="${dto.free_bseq}">
 			    <input type="hidden" name="user_seq" value="${loginDto.user_seq}">
 			    <div class="form-group">
 			        <label for="comment_content">답글:</label>
 			        <textarea class="form-control" id="comment_content" name="comment_content"></textarea>
 			    </div>
-			    <c:if test="${loginDto.user_name != null}">
 			    <input style="background-color: #00fff5; color: #000;" class="btn" type="submit" value="답글작성">
-			    </c:if>
 			</form>
-		</div>
 </body>
 
 
@@ -91,4 +81,24 @@
 		}
 	}
 </script>
+<script>
+function validateComment() {
+    var loginDto = "${loginDto.user_name}";
+    var commentContent = document.getElementById("comment_content").value;
+    
+    if (loginDto === "null" || loginDto === "") {
+        alert("로그인이 필요합니다.");
+        window.location.href="./loginPage.do";
+        return false; 
+    }
+    
+    if (commentContent.trim() === "") {
+        alert("답글을 입력하세요.");
+        return false;
+    }
+    return true;
+}
+</script>
+
+
 </html>
