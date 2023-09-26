@@ -12,6 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/adminRentList.css">
 <title>Insert title here</title>
 <%@include file="/WEB-INF/views/header.jsp"%>
 </head>
@@ -20,7 +21,7 @@
 <body>
 <div class="container">
     <h1>계발의민족 회원 도서 대출 목록</h1>
-    <table border="1">
+    <table class="table" border="1">
         <tr>
         	<th>No.</th>
             <th>사용자 이름</th>
