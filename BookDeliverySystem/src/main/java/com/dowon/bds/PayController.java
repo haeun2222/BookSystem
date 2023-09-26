@@ -110,7 +110,7 @@ public class PayController {
  		        int user_seq = loginDto.getUser_seq();
  			
  		    r.setTotalCount(paymentService.userCountPay(user_seq));
- 			r.setCountList(5);
+ 			r.setCountList(10);
  			r.setCountPage(5);
  			r.setTotalPage(r.getTotalCount());
  			r.setPage(selectPage);
