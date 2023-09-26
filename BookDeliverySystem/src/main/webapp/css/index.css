@@ -1,8 +1,10 @@
 body {
-	width: 1280px;
+
+  width:1280px;
   background-color: white;
+  margin: 0 auto;
   box-sizing: border-box;
-  margin: 0 auto; 
+
 }
 
 .container {

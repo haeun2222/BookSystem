@@ -17,7 +17,7 @@
 	<div class="flex-container" id="header">
 		<div class="topLogo" ></div>
 		<div>
-			<h1 class="mainTitle"> <a class="a" href="./index.jsp"> 계발의민족 </a></h1>
+			<h1 class="mainTitle"> <a class="a" href="./index.jsp">계발의민족</a></h1>
 		</div>
 		<div class="topLogo" id="loginBtn" style="margin-top: 30px;">
 			
@@ -49,14 +49,10 @@
 		<div class="container-fluid">
 			<div class="navbar-header"></div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="./home.do">Home</a></li>
-
-
 				<li><a href="./freeBoardList.do">자유게시판</a></li>
 				<li><a href="./userBookList.do">도서목록</a></li>
 				<li><a href="./userPayPageList.do">결제내역</a></li>
 				<li><a href="./faqList.do">FAQ</a></li>
-				
 			</ul>
 		</div>
 	</nav>
