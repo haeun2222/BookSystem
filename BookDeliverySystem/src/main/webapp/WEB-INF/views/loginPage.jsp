@@ -11,24 +11,24 @@
 <meta charset="UTF-8">
 <title>로그인페이지</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/loginPage.css">
 <link rel="stylesheet" href="css/font.css">
 </head>
 <body>
-<div class="container">
-<h2>로그인하기 2023.09.12</h2>
-	
 	<%
 		URLDto uDto = new URLDto();
 		SocialDto dto = new SocialDto();
 		SecureRandom random = new SecureRandom();
 		String state = new BigInteger(130, random).toString();
 	%>
-	<c:if test="${not empty errorMessage}">
-        <div class="alert alert-danger" role="alert">
-            <p><c:out value="${errorMessage}" /></p>
-        </div>
-    </c:if>
-    
+<!-- <div class="container"> -->
+	<div>
+		<h1 class="mainTitle"><a class="a" href="./index.jsp">계발의민족</a></h1>
+	</div>	
+	
+	
+  <div class="flex-container" id="header">
+  <div>
   <!-- 일반회원 로그인 -->
   <form action="./login.do" method="post">
     <div class="form-group">
@@ -42,19 +42,22 @@
     <input type="submit" class="btn btn-primary" value="로그인"><br>
   </form>
   
+  
   <div>
-  <button style="color : black;" type="button" onclick="location.href='./nomalRegistForm.do'">일반 회원 가입 하기</button>
+	  <a class="textlink" href="./searchForm.do"">이메일 찾기</a>
+	  <a class="textlink" href="./searchForm.do">비밀번호 찾기</a>
+	  <a class="textlink" href="./nomalRegistForm.do">회원 가입</a>
   </div>
   
-  <a href="./searchForm.do"">이메일 찾기</a>
-  <a href="./searchForm.do">비밀번호 찾기</a>
-  
-  <div>
   <!-- 네이버 아이디로 로그인  -->
-  <a href="<%=uDto.getNaverUrl()+"&client_id="+dto.getNaverClientID()+"&redirect_uri="+uDto.getNaverRedirect()+"&state="+state%>">
-  <img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/>
-  </a>
+  <div>
+	  <a href="<%=uDto.getNaverUrl()+"&client_id="+dto.getNaverClientID()+"&redirect_uri="+uDto.getNaverRedirect()+"&state="+state%>">
+	  <img height="50" src="img/btnG_icon_circle.png"/>
+	  <span>네이버 로그인</span>
+ 	 </a>
   </div>
-</div>
+  </div>
+ </div>
+<!-- </div> -->
 </body>
 </html>
