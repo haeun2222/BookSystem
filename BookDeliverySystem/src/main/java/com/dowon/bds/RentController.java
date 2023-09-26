@@ -114,57 +114,84 @@ public class RentController {
 
 	
 	//관리자 ajax 대출관리
-    @GetMapping("/adminRentList.do")
-    @ResponseBody
-    public Map<String, Object> adminRentList(Model model) {
-        Map<String, Object> response = new HashMap<>();
-        List<Map<String, Object>> lists = rentService.selectAdminRent();
-        response.put("lists", lists);
-        return response;
-    }
-	
-    
-    
 //    @GetMapping("/adminRentList.do")
 //    @ResponseBody
-//    public Map<String, Object> adminRentList(@RequestParam(name = "page", defaultValue = "1") int selectPage, Model model) {
-//    	log.info("Welcome ResveController adminRentList 관리자 회원대출목록 페이지 컨트롤러");
-//    	PagingDto adminPaging = new PagingDto();
-//    	
-//    	
-//    	adminPaging.setTotalCount(rentService.allUserCountRent());
-//    	adminPaging.setCountList(10);
-//    	adminPaging.setCountPage(5);
-//    	adminPaging.setTotalPage(adminPaging.getTotalCount());
-//    	adminPaging.setPage(selectPage);
-//    	adminPaging.setStartPage(selectPage);
-//    	adminPaging.setEndPage(adminPaging.getCountPage());
-//    	
-//    	log.info("Welcome ResveController adminRentList 페이징 처리를 위한 총 갯수 확인 : {}",adminPaging.getTotalCount());
-//    	
-//    	Map<String, Object> map = new HashMap<String, Object>();
-//    	map.put("first", adminPaging.getPage()*adminPaging.getCountList() - (adminPaging.getCountList()-1));
-//    	map.put("last", adminPaging.getPage()*adminPaging.getCountList());
-//    	
-//    	List<Map<String, Object>> lists = rentService.allRentPageList(map);
-//		model.addAttribute("lists",lists);
-//		model.addAttribute("page",adminPaging);
-//    	
-//
-//	    List<Map<String, Object>> lists = rentService.allRentPageList(map);
-//	    model.addAttribute("lists", lists);
-//
-//	    // 컨트롤러에서 반환하는 뷰 페이지 이름 (JSP 페이지 이름)
-//	    return "adminRentList";
-//    	
-//		
+//    public Map<String, Object> adminRentList(Model model) {
 //        Map<String, Object> response = new HashMap<>();
 //        List<Map<String, Object>> lists = rentService.selectAdminRent();
 //        response.put("lists", lists);
 //        return response;
-//    }   
-//    
-//    log.info("Welcome ResveController userRentPageList adminRentList확인 : {}",lists);
+//    }
+	
+    
+    //관리자 ajax 대출관리 페이징
+    @GetMapping("/adminRentList.do")
+    @ResponseBody
+    public Map<String, Object> adminRentList(@RequestParam(name = "page", defaultValue = "1") int selectPage, Model model) {
+    	log.info("Welcome ResveController adminRentList 관리자 회원대출목록 페이지 컨트롤러");
+    	PagingDto adminPaging = new PagingDto();
+    	
+    	
+    	adminPaging.setTotalCount(rentService.allUserCountRent());
+    	adminPaging.setCountList(10);
+    	adminPaging.setCountPage(5);
+    	adminPaging.setTotalPage(adminPaging.getTotalCount());
+    	adminPaging.setPage(selectPage);
+    	adminPaging.setStartPage(selectPage);
+    	adminPaging.setEndPage(adminPaging.getCountPage());
+    	
+    	log.info("Welcome ResveController adminRentList 페이징 처리를 위한 총 갯수 확인 : {}",adminPaging.getTotalCount());
+    	
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	map.put("first", adminPaging.getPage()*adminPaging.getCountList() - (adminPaging.getCountList()-1));
+    	map.put("last", adminPaging.getPage()*adminPaging.getCountList());
+    	
+    	List<Map<String, Object>> lists = rentService.allRentPageList(map);
+		model.addAttribute("lists",lists);
+		model.addAttribute("aPage",adminPaging);
+    	
+	    log.info("Welcome ResveController userRentPageList adminRentList확인 : {}",lists);
+		
+        Map<String, Object> response = new HashMap<>();
+        response.put("lists", lists);
+        response.put("aPage", adminPaging);
+        return response;
+    }   
+	
+	
+	
+
+	//원래 컨트롤러(페이징 추가)
+	@GetMapping("/oldAdminRentList.do")
+	public String oldAdminRentList(@RequestParam(name = "page", defaultValue = "1") int selectPage,Model model) {
+		log.info("Welcome RentController adminRentList 관리자페이지-회원도서대출목록 에 들어갈 페이지 컨트롤러");
+		
+		PagingDto adminPaging = new PagingDto();
+    	
+    	
+    	adminPaging.setTotalCount(rentService.allUserCountRent());
+    	adminPaging.setCountList(10);
+    	adminPaging.setCountPage(5);
+    	adminPaging.setTotalPage(adminPaging.getTotalCount());
+    	adminPaging.setPage(selectPage);
+    	adminPaging.setStartPage(selectPage);
+    	adminPaging.setEndPage(adminPaging.getCountPage());
+    	
+    	log.info("Welcome RentController adminRentList 페이징 처리를 위한 총 갯수 확인 : {}",adminPaging.getTotalCount());
+    	
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	map.put("first", adminPaging.getPage()*adminPaging.getCountList() - (adminPaging.getCountList()-1));
+    	map.put("last", adminPaging.getPage()*adminPaging.getCountList());
+    	
+    	List<Map<String, Object>> lists = rentService.allRentPageList(map);
+		model.addAttribute("lists",lists);
+		model.addAttribute("aPage",adminPaging);
+    	
+	    log.info("Welcome RentController userRentPageList adminRentList확인 : {}",lists);
+		
+		return "adminRentList";
+	}
+    
     
     
     
