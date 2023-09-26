@@ -1,15 +1,9 @@
 package com.dowon.bds;
 
-/** 
- * 
- * @author 김지인
- * @since 2023.09.18
- * 결제 관련 Controller
- * 
- */
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -30,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dowon.bds.dto.AddrDto;
+import com.dowon.bds.dto.PagingDto;
 import com.dowon.bds.dto.PayDto;
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IAddrService;
@@ -38,6 +33,12 @@ import com.dowon.bds.model.service.IRentService;
 import com.dowon.bds.model.service.IResveService;
 
 import lombok.extern.slf4j.Slf4j;
+
+/** 
+ * @author 김지인
+ * @since 2023.09.18
+ * 결제 관련 Controller
+ */
 
 @Controller
 @Slf4j
@@ -99,20 +100,62 @@ public class PayController {
            
     }
     
-    @GetMapping("/paymentList.do")
-    public String paymentList(HttpSession session, Model model, HttpServletResponse response) {
-    	log.info("Welcome PayController paymentList 회원의 결제내역 컨트롤러");
-    	UserDto loginDto = (UserDto)session.getAttribute("loginDto");
-    		if (loginDto != null) {
-				int user_seq =loginDto.getUser_seq();
-				List<Map<String, Object>> lists = paymentService.selectMypayList(user_seq);
-				model.addAttribute("paymentList",lists);
-				model.addAttribute("seq",user_seq);
-				return "paymentList";
-			}else {
-				 return "redirect:/loginPage.do";
-			}
-	}
+//    @GetMapping("/paymentList.do")
+//    public String paymentList(HttpSession session, Model model, HttpServletResponse response) {
+//    	log.info("Welcome PayController paymentList 회원의 결제내역 컨트롤러");
+//    	UserDto loginDto = (UserDto)session.getAttribute("loginDto");
+//    		if (loginDto != null) {
+//				int user_seq =loginDto.getUser_seq();
+//				List<Map<String, Object>> lists = paymentService.selectMypayList(user_seq);
+//				model.addAttribute("paymentList",lists);
+//				model.addAttribute("seq",user_seq);
+//				return "paymentList";
+//			}else {
+//				 return "redirect:/loginPage.do";
+//			}
+//	}
+    
+    
+ // 회원의 결제목록(페이징처리)
+ 	@GetMapping("/userPayPageList.do")
+ 	public String userPayPageList(@RequestParam(name = "page", defaultValue = "1") int selectPage, Model model, HttpSession session) {
+ 		log.info("Welcome PayController userPayPageList 회원의 결제내역 페이징 컨트롤러");
+ 		UserDto loginDto =(UserDto)session.getAttribute("loginDto");
+ 		PagingDto r = new PagingDto();
+ 		 if (loginDto != null) {
+ 		        int user_seq = loginDto.getUser_seq();
+ 			
+ 		    r.setTotalCount(paymentService.userCountPay(user_seq));
+ 			r.setCountList(5);
+ 			r.setCountPage(5);
+ 			r.setTotalPage(r.getTotalCount());
+ 			r.setPage(selectPage);
+ 			r.setStartPage(selectPage);
+ 			r.setEndPage(r.getCountPage());
+ 			
+ 			log.info("Welcome PayController userPayPageList 페이징 처리를 위한 총 갯수 확인 : {}", r.getTotalCount());
+ 			
+ 			Map<String, Object> map = new HashMap<String, Object>();
+ 			map.put("first", r.getPage()*r.getCountList() - (r.getCountList()-1));
+ 			map.put("last", r.getPage()*r.getCountList());
+ 			map.put("user_seq", user_seq);
+ 			
+ 			
+ 			
+ 			List<Map<String, Object>> lists = paymentService.userPayPageList(map);
+ 			model.addAttribute("userPayList", lists);
+ 			model.addAttribute("page",r);
+ 			
+ 			log.info("Welcome PayController userPayPageList user_seq 확인 : {}", user_seq);
+ 			log.info("Welcome PayController userPayPageList userPayList 확인 : {}", lists);
+ 			
+ 			return "userPayPageList";
+ 		}else {
+ 			return "redirect:/loginPage.do";
+ 		}
+ 		
+ 	}
+ 	
     
 	/**
 	 * 

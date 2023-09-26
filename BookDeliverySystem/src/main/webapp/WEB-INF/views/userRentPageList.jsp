@@ -123,7 +123,8 @@
     function openTrackerForm() {
         // const delivery_num = "${addrDto.delivery_num}";
         // const t_invoice = encodeURIComponent(delivery_num);
-        window.open("http://info.sweettracker.co.kr/tracking/5?t_key=vIvDVTiiTlMarYcHz1x5wQ&t_code=04&t_invoice=578914961436", "_blank", "width=600,height=800")
+        // t_code 만료로 변경 XY805DoMvmIV6tcSteEDvA
+        window.open("http://info.sweettracker.co.kr/tracking/5?t_key=XY805DoMvmIV6tcSteEDvA&t_code=04&t_invoice=578914961436", "_blank", "width=600,height=800")
     }
 </script>
 </html>

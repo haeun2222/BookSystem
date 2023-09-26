@@ -1,3 +1,4 @@
+
 package com.dowon.bds;
 
 import java.text.DateFormat;
@@ -111,6 +112,16 @@ public class RentController {
 		        return "redirect:/loginPage.do";
 		    }
 	}
+	
+	
+	   //원래 컨트롤러(나중에 삭제할것)
+  @GetMapping("/oldAdminRentList.do")
+  public String oldAdminRentList(Model model) {
+     log.info("Welcome RentController adminRentList 관리자페이지-회원도서대출목록 에 들어갈 페이지 컨트롤러");
+     List<Map<String, Object>> lists = rentService.selectAdminRent();
+     model.addAttribute("lists",lists);
+     return "adminRentList";
+  }
 
 	
 	//관리자 ajax 대출관리

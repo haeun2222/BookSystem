@@ -81,8 +81,24 @@ function getAllRent() {
             } else {
                 tableHtml += "<td></td>"; 
             }
-            tableHtml += "<td><input type='text' id='deliveryNum" + rent.USER_SEQ + "' placeholder='운송장번호 입력' value=''>" +
-                "<button onclick='updateDelivery(" + rent.USER_SEQ + ", \"" + rent.USER_SEQ + ".delivery_num\")'>입력</button></td>";
+
+//            tableHtml += "<td><input type='text' id='deliveryNum" + rent.USER_SEQ + "' placeholder='운송장번호 입력' value=''>" +
+//                         "<button onclick='updateDelivery(" + rent.USER_SEQ + ", \"" + rent.USER_SEQ + ".delivery_num\")'>입력</button></td>";
+			
+			tableHtml += "<td style='display: flex; align-items: center;'>";
+				tableHtml += "<form id='deliveryForm" + i + "' action='./updateDeliveryNum.do?user_seq=" + rent.USER_SEQ + "' method='post'>";
+				tableHtml += "<div class='form-group'>";
+				tableHtml += "<input type='text' id='deliveryNum" + i + "' name='delivery_num' placeholder='운송장번호 입력' value=''>";
+				tableHtml += "</div>";
+				tableHtml += "<button type='button' class='btn btn-success' style='color: #263238' onclick='updateDelivery(" + i + ")'>입력</button>";
+				tableHtml += "</form>";
+				tableHtml += "</td>";
+
+			
+			
+
+           
+
             tableHtml += "</tr>";
         }
 
@@ -164,7 +180,7 @@ async function handleActions(rentSeq, bookSeq) {
 }
 
 
-// JavaScript 파일에서 운송장 번호 업데이트 함수 정의
+// 지인 JavaScript 파일에서 운송장 번호 업데이트
 function updateDelivery(userSeq, deliveryNum) {
  
     const deliveryNumValue = document.getElementById(`deliveryNum${userSeq}`).value;

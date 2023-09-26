@@ -3,13 +3,16 @@ package com.test.bds;
 import static org.junit.Assert.*;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -20,6 +23,7 @@ import com.dowon.bds.dto.PayDto;
 import com.dowon.bds.model.mapper.IAddrDao;
 import com.dowon.bds.model.mapper.IFaqBoardDao;
 import com.dowon.bds.model.mapper.IPaymentDao;
+import com.dowon.bds.model.service.IPaymentService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,11 +48,21 @@ public class JiinJUnitTest {
 	@Autowired
 	private IFaqBoardDao faqDao;
 	
-//	@Test
+	@Autowired
+	private IPaymentService payService;
+	
+	@Test
 	public void test() {
 
-
-		assertNotNull(sqlSession);
+//		int n = payService.userCountPay(706);
+//		System.out.println(n);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("user_seq", 706);
+		map.put("first", 1);
+		map.put("last", 5);
+		List<Map<String, Object>> lists = payService.userPayPageList(map);
+		System.out.println("@@@@@@@@@@@"+lists);
 
 	}
 	

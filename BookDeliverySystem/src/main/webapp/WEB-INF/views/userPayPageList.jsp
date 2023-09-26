@@ -16,9 +16,11 @@
 </head>
 <%@ include file="header.jsp" %>
 <body>
-
+<c:set var="lists" value="${requestScope.lists}" />
+<c:set var="r" value="${requestScope.page}" />
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
 <c:set var="payment" value="${sessionScope.payDto}" />
+
 <h1>${loginUser.user_name}님의 결제내역</h1>
 
 <h3> 총 마일리지 : ${paymentList[0].PAY_SUMPOINT}입니다.</h3>
@@ -34,7 +36,7 @@
         <th>적립마일리지</th>
         <th>총마일리지</th>
     </tr>
-    <c:forEach var="payment" items="${paymentList}" varStatus="status">
+    <c:forEach var="payment" items="${userPayList}" varStatus="status">
         <tr>
            <td>${r.getTotalCount() - (r.getPage() - 1) * r.getCountList() - status.index}</td>
         	<td>${payment.PAY_SEQ}</td>
