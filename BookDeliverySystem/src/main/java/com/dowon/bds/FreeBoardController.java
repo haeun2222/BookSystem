@@ -57,7 +57,7 @@ public class FreeBoardController {
 	    pd.setTotalCount(service.FreeBoardCount());
 
 	    // 출력될 총 게시글의 갯수
-	    pd.setCountList(5);
+	    pd.setCountList(10);
 
 	    // 화면에 몇개의 페이지그룹
 	    pd.setCountPage(5);
