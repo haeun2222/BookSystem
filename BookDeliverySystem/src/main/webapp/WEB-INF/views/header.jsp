@@ -17,7 +17,7 @@
 	<div class="flex-container" id="header">
 		<div class="topLogo" ></div>
 		<div>
-			<h1 class="mainTitle"> <a class="a" href="./index.jsp"> 계발의민족 </a></h1>
+			<h1 class="mainTitle"> <a class="a" href="./index.jsp">계발의민족</a></h1>
 		</div>
 		<div class="topLogo" id="loginBtn" style="margin-top: 30px;">
 			
