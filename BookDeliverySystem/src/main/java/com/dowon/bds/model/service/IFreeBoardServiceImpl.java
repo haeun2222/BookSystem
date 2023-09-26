@@ -53,4 +53,18 @@ public class IFreeBoardServiceImpl implements IFreeBoardService {
 		return dao.updateBoard(map);
 	}
 
+
+	@Override
+	public int FreeBoardCount() {
+		log.info("IFreeBoardServiceImpl FreeBoardCount 자유게시판 전체 게시글 수");
+		return dao.FreeBoardCount();
+	}
+
+
+	@Override
+	public List<FreeBoardDto> FreeBoardCountList(Map<String, Object> map) {
+		log.info("IFreeBoardServiceImpl FreeBoardCount 자유게시판 게시글 페이징리스트{}",map);
+		return dao.FreeBoardCountList(map);
+	}
+
 }

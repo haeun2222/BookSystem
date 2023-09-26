@@ -6,7 +6,9 @@
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
 <link rel="stylesheet" href="css/adminPage.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="js/adminUser.js"></script>
 <script src="js/adminBook.js"></script>
 <script src="js/adminRent.js"></script>
@@ -21,6 +23,7 @@
     <button id="rentListButton">대출관리(페이징중)</button>
     <button type="button" onclick="location.href='./freeBoardList.do'">자유게시판 관리</button>
     <button type="button" onclick="location.href='./faqList.do'">FAQ게시판 관리</button>
+    <button type="button" onclick="location.href='./oldAdminRentList.do'">회원 대출관리</button>
     <input type="text" id="bookName" placeholder="도서명 입력">
     <button id="search">검색</button>
     <button class="btn btn-info" onclick="location.href='./logout.do'">로그아웃</button>

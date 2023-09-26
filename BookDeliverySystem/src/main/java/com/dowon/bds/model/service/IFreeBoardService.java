@@ -12,4 +12,6 @@ public interface IFreeBoardService {
 	public FreeBoardDto freeBoardDetail(int free_bseq);
 	public int freeBoardDel(Map<String, Object>map);
 	public int updateBoard(Map<String, Object>map);
+	public int FreeBoardCount();
+	public List<FreeBoardDto> FreeBoardCountList(Map<String, Object>map);
 }
