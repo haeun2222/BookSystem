@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 <script type="text/javascript" src="./js/javascript41.js" defer="defer"></script>
 <link rel='stylesheet' href='./css/slick.css'/>
+<link rel='stylesheet' href='./css/index.css'/>
 <style type="text/css">
 svg > g > g:last-child { pointer-events: none }
 </style>
@@ -48,6 +49,10 @@ svg > g > g:last-child { pointer-events: none }
 </div>
 </form> 
 
+<div class="flex-container">
+	<div>가</div>
+	<div>나</div>
+</div>
 
 </div>
 </body>
