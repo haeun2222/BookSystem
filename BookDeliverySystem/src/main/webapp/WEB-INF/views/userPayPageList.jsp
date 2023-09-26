@@ -7,25 +7,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/userPayPageList.css">
+<link rel="stylesheet" href="css/font.css">
 <title>결제 내역</title>
 </head>
 <%@ include file="header.jsp" %>
 <body>
+
+<div class="container">
 <c:set var="lists" value="${requestScope.lists}" />
 <c:set var="r" value="${requestScope.page}" />
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
 <c:set var="payment" value="${sessionScope.payDto}" />
 
-<h1>${loginUser.user_name}님의 결제내역</h1>
+<h1>${loginUser.user_name}님의 결제내역 입니다.</h1>
 
-<h3> 총 마일리지 : ${paymentList[0].PAY_SUMPOINT}입니다.</h3>
-<%-- ${paymentList} --%>
-<table border="1">
+<h5> 총 마일리지 : ${userPayList[0].PAY_SUMPOINT} 마일리지</h5>
+
+<table class="table" border="1">
     <tr>
      <th>No.</th>
     	<th>결제번호</th>
@@ -94,7 +98,7 @@
    </div>
    
    
-   
+  </div> 
 </body>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 </html>
