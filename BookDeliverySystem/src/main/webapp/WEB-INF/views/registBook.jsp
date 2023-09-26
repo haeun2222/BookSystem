@@ -119,7 +119,7 @@
             <div class="book-info">도서 요약:</div>
             <input type="text" name="book_summary" placeholder="book_summary 내용을 넣어주세요.">
             
-            <!-- 폼 버튼 -->
+            <!--등록 폼 버튼 -->
             <div class="btn-container">
                 <input type="submit" value="도서 등록하기">
             </div>

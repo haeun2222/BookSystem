@@ -7,14 +7,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.dowon.bds.dto.BookDto;
 import com.dowon.bds.model.mapper.IBookDao;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class BookServiceImpl implements IBookService {
 	
-	private static final Logger log = LoggerFactory.getLogger(BookServiceImpl.class);
 	
 	@Autowired
 	public IBookDao dao;
@@ -47,9 +47,14 @@ public class BookServiceImpl implements IBookService {
 		}
 		
         return result;
-		
-		
 	}
+
+	@Override
+	public List<BookDto> searchBooks(String keyword) {
+		log.info("BookServiceImpl searchBooks 도서 검색하기");
+		return dao.searchBooks(keyword);
+	}
+	
 
 
 }

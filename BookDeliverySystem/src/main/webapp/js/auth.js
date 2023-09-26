@@ -25,82 +25,15 @@ function sendSMS(){
 
 function confirmSMS(user_phone){
    $.ajax({
-         url: "./sendSMS.do",
+         url: "./sendPhoneSMS.do",
          data: {user_phone:user_phone},
          type: "POST",
          dataType: "json",
          success: function(result) {
-            if(result.isc == "true"){
-               Swal.fire({
-                  html: '<div class="mt-3">' +
-                     '<div class="avatar-lg mx-auto">' +
-                     '<div class="avatar-title bg-light text-success display-5 rounded-circle">' +
-                     '<i class="ri-mail-send-fill"></i>' +
-                     '</div>' +
-                     '</div>' +
-                     '<div class="mt-4 pt-2 fs-15">' +
-                     '<h4 class="fs-20 fw-semibold">인증번호를 입력해주세요</h4>' +
-                     '</div>' +
-                     '</div>',
-                  input: 'text',
-                  timer: 30000,
-                  timerProgressBar: true,
-                  customClass: {
-                     confirmButton: 'btn btn-primary w-xs mb-2',
-                  },
-                  confirmButtonText: '인증 <i class="ri-arrow-right-line ms-1 align-bottom"></i>',
-                  buttonsStyling: false,
-                  showCloseButton: true,
-                  preConfirm: function(inputcode) {
-                  var checkbox= document.getElementById("confirmPhoneCheck");
-                  var checkboxLabel= document.getElementById("confirmPhone");
-                     if (inputcode == result.code) {
-                        checkbox.checked=true;
-                        document.getElementById("user_phone").readOnly=true;
-                        checkbox.removeAttribute('hidden');
-                        checkboxLabel.innerText='인증이 완료되었습니다.';
-                        Swal.fire({
-                           icon: 'info',
-                           title: '인증에 성공하였습니다!',
-                           showConfirmButton: true,
-                           timer: 1500,
-                           showCloseButton: false
-                        })
-                     } else {
-                        Swal.fire({
-                           icon: 'warning',
-                           title: '인증에 실패하였습니다.',
-                           showConfirmButton: false,
-                           timer: 1500,
-                           showCloseButton: true
-                        })
-                        document.getElementById("user_phone").value="";
-                     }
-                  }
-               })
-            }else if(result.isc=="false"){
-               Swal.fire({
-               icon: 'error',
-               title: '인증번호 요청을 실패하였습니다..',
-               customClass: {
-                  confirmButton: 'btn btn-danger w-xs',
-               },
-               buttonsStyling: false,
-               html:'관리자에게 문의해주세요'
-               })
-               document.getElementById("user_phone").value="";
-            }
+            console.log("success 작동함")
          },
          error:function(){
-            Swal.fire({
-               icon: 'error',
-               title: '잘못된 요청입니다.',
-               customClass: {
-                  confirmButton: 'btn btn-danger w-xs',
-               },
-               buttonsStyling: false,
-               html:'잘못된 요청입니다.'
-            })
+         	console.log("error 작동함")
          }
       })
    }
