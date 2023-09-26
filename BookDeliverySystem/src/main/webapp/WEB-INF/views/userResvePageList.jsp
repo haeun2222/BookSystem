@@ -12,6 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/userResvePageList.css">
 <script type="text/javascript" src="js/resveCancle.js"></script>
 <title>Insert title here</title>
 <%@ include file="header.jsp" %>
@@ -24,7 +25,14 @@
 <%-- <c:choose> --%>
 <%--     <c:when test="${not empty resveDto.lists}"> --%>
 		<h1>${loginUser.user_name}님의 예약 도서 목록 입니다</h1>
-            <table border="1">
+		<button class="btn" id="refreshButton" style="float: right; background-color: #00fff5; color: #393E46">예약내역 갱신</button>
+		    <script>
+        // 페이지 새로고침 버튼을 클릭할 때 페이지를 새로고침합니다.
+        document.getElementById("refreshButton").addEventListener("click", function() {
+            location.reload();
+        });
+    </script>
+    <table class="table" border="1">
     <tr>
         <th>No.</th>
         <th>도서명</th>
@@ -59,7 +67,7 @@
             <td>
 			    <c:choose>
 			        <c:when test="${resve.RESVE_STATUS eq 'Y'}">
-			        <button onclick="cancelReservation(${resve.BOOK_SEQ}, ${loginUser.user_seq})" style="color: #263238">예약취소</button>
+			        <button class="btn" style="background-color: #00fff5; color: #393E46" onclick="cancelReservation(${resve.BOOK_SEQ}, ${loginUser.user_seq})">예약취소</button>
 			        </c:when>
 			        <c:otherwise></c:otherwise>
 			    </c:choose>
@@ -67,7 +75,9 @@
 			
 			<td>
 			    <c:choose>
-			        <c:when test="${resve.RESVE_STATUS eq 'R'}"><button onclick="location.href = './addr.do?book_seq=' + ${resve.BOOK_SEQ}" style="color: #263238">대출신청</button></c:when>
+			        <c:when test="${resve.RESVE_STATUS eq 'R'}">
+			        <button class="btn" style="background-color: #00fff5; color: #393E46" onclick="location.href = './addr.do?book_seq=' + ${resve.BOOK_SEQ}" style="color: #263238">대출신청</button>
+			        </c:when>
 			        <c:otherwise></c:otherwise>
 			    </c:choose>
 			</td>

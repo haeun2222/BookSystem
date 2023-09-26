@@ -12,6 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/userRentPageList.css">
 <title>Insert title here</title>
 <%@ include file="header.jsp" %>
 </head>
@@ -23,7 +24,7 @@
     <%-- <c:set var="addrDto" value="${sessionScope.addrDto}" /> --%>
     <%-- ${addrDto.delivery_num} --%>
     <h1>${loginUser.user_name}님의 대출 도서 목록 입니다</h1>
-    <button id="refreshButton"  style="color: #263238">대출내역 갱신</button>
+    <button class="btn" id="refreshButton" style="float: right; background-color: #00fff5; color: #393E46">대출내역 갱신</button>
     <!-- JavaScript 코드 -->
     <script>
         // 페이지 새로고침 버튼을 클릭할 때 페이지를 새로고침합니다.
@@ -32,7 +33,7 @@
         });
     </script>
 
-    <table border="1">
+    <table class="table" border="1">
         <tr>
             <th>No.</th>
             <th>대출일</th>
@@ -63,14 +64,14 @@
                 <td>
                     <c:choose>
                         <c:when test="${rent.RENT_STATUS eq 'Y'}">
-                            <button onclick="location.href='./returnAddr.do?user_seq=${loginDto.user_seq}&book_seq=${rent.BOOK_SEQ}'" style="color: #263238">수거요청</button>
+                            <button class="btn" style="float: center; background-color: #00fff5; color: #393E46" onclick="location.href='./returnAddr.do?user_seq=${loginDto.user_seq}&book_seq=${rent.BOOK_SEQ}'" style="color: #393E46">수거요청</button>
                         </c:when>
                         <c:otherwise></c:otherwise>
                     </c:choose>
                 </td>
                 <td>
                     <!-- @김지인2 @since 23.09.23 - 배송조회시 운송장 번호 입력값으로 조회하도록 변경 -->
-                    <button onclick="openTrackerForm()" style="color: #263238">배송조회</button>
+                    <button class="btn" style="float: center; background-color: #00fff5; color: #393E46" onclick="openTrackerForm()" style="color: #393E46">배송조회</button>
                 </td>
             </tr>
         </c:forEach>
