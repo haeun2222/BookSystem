@@ -54,6 +54,7 @@ public class AddrServiceImpl implements IAddrService {
 	}
 
 	@Override
+	@Transactional
 	public int updateDeliveryNum(Map<String, Object> map) {
 		log.info("운송장 번호 입력 updateDeliveryNum 운송장번호 업데이트");
 		return dao.updateDeliveryNum(map);

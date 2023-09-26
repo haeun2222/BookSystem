@@ -3,11 +3,6 @@ package com.dowon.bds.model.mapper;
 import java.util.List;
 import java.util.Map;
 
-/** 
- * @author 김지인
- * @since 2023.09.13
- * 결제관련 메소드를 구현한 DAO Interface implements 클래스
- */
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -19,6 +14,11 @@ import com.dowon.bds.dto.PayDto;
 
 import lombok.extern.slf4j.Slf4j;
 
+/** 
+ * @author 김지인
+ * @since 2023.09.13
+ * 결제관련 메소드를 구현한 DAO Interface implements 클래스
+ */
 @Repository
 @Slf4j
 public class PaymentDaoImpl implements IPaymentDao {
@@ -52,6 +52,18 @@ public class PaymentDaoImpl implements IPaymentDao {
 	public List<Map<String, Object>> selectMypayList(int n) {
 		log.info("saveBookPayment 결제내역저장");
 		return sqlSession.selectList(NS+"selectMypayList",n);
+	}
+
+
+	@Override
+	public int userCountPay(int n) {
+		return sqlSession.selectOne(NS+"userCountPay",n);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> userPayPageList(Map<String, Object> map) {
+		return sqlSession.selectList(NS+"userPayPageList",map);
 	}
 
 

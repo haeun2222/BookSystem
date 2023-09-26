@@ -100,22 +100,21 @@ public class AddrController {
 	
 	}
 	
-	
+	//운송장 번호 업데이트
 	@RequestMapping(value = "/updateDeliveryNum.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateDeliveryNum(
-//			@RequestParam("user_seq") int user_seq, 
-			@RequestParam("delivery_num") int delivery_num, Model model, HttpSession session) {
+	public String updateDeliveryNum(@RequestParam("delivery_num") long delivery_num, Model model, HttpSession session) {
 		logger.info("Welcome! AddrController 수거요청 입력 returnAddrCheck : {}", delivery_num);
 		UserDto loginDto = (UserDto)session.getAttribute("loginDto");
 		 Map<String, Object> map = new HashMap<>();
-		 
-	        map.put("user_seq", loginDto.getUser_seq());
+		    map.put("user_seq", loginDto.getUser_seq());
 	        map.put("delivery_num", delivery_num);
 	        int n = service.updateDeliveryNum(map);
 	        if(n >0 ) {
+	        	logger.info("운송장 번호 입력 완료");
 	        	return "1";
 	        }else {
+	        	logger.info("운송장 번호 입력 실패");
 	        	return "0";
 	        }
 	}

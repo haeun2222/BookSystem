@@ -50,8 +50,8 @@
 
 				<li><a style="color: #CFD8DC;" href="./freeBoardList.do">자유게시판</a></li>
 				<li><a style="color: #CFD8DC;" href="./userBookList.do">도서목록</a></li>
-				<li><a style="color: #CFD8DC;" href="./paymentList.do">결제내역</a></li>
-
+<!-- 				<li><a style="color: #CFD8DC;" href="./paymentList.do">결제내역</a></li> -->
+				<li><a style="color: #CFD8DC;" href="./userPayPageList.do">결제내역</a></li>
 				<li><a style="color: #CFD8DC;" href="./faqList.do">FAQ</a></li>
 
 				<!--     <li><a style="color: #CFD8DC;" href="./adminRentList.do">관리자대출관리</a></li> -->
