@@ -100,23 +100,7 @@ public class PayController {
            
     }
     
-//    @GetMapping("/paymentList.do")
-//    public String paymentList(HttpSession session, Model model, HttpServletResponse response) {
-//    	log.info("Welcome PayController paymentList 회원의 결제내역 컨트롤러");
-//    	UserDto loginDto = (UserDto)session.getAttribute("loginDto");
-//    		if (loginDto != null) {
-//				int user_seq =loginDto.getUser_seq();
-//				List<Map<String, Object>> lists = paymentService.selectMypayList(user_seq);
-//				model.addAttribute("paymentList",lists);
-//				model.addAttribute("seq",user_seq);
-//				return "paymentList";
-//			}else {
-//				 return "redirect:/loginPage.do";
-//			}
-//	}
-    
-    
- // 회원의 결제목록(페이징처리)
+    // 회원의 결제목록(페이징처리)
  	@GetMapping("/userPayPageList.do")
  	public String userPayPageList(@RequestParam(name = "page", defaultValue = "1") int selectPage, Model model, HttpSession session) {
  		log.info("Welcome PayController userPayPageList 회원의 결제내역 페이징 컨트롤러");
@@ -139,7 +123,6 @@ public class PayController {
  			map.put("first", r.getPage()*r.getCountList() - (r.getCountList()-1));
  			map.put("last", r.getPage()*r.getCountList());
  			map.put("user_seq", user_seq);
- 			
  			
  			
  			List<Map<String, Object>> lists = paymentService.userPayPageList(map);

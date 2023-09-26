@@ -48,11 +48,11 @@ public class PaymentDaoImpl implements IPaymentDao {
 	}
 
 
-	@Override
-	public List<Map<String, Object>> selectMypayList(int n) {
-		log.info("saveBookPayment 결제내역저장");
-		return sqlSession.selectList(NS+"selectMypayList",n);
-	}
+//	@Override
+//	public List<Map<String, Object>> selectMypayList(int n) {
+//		log.info("saveBookPayment 결제내역저장");
+//		return sqlSession.selectList(NS+"selectMypayList",n);
+//	}
 
 
 	@Override

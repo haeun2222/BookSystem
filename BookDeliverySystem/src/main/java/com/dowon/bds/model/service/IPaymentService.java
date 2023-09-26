@@ -15,7 +15,7 @@ public interface IPaymentService {
 	public void saveBookPayment (PayDto payDto);
 	
 	//회원의 결제 목록
-	public List<Map<String, Object>> selectMypayList(int n);
+//	public List<Map<String, Object>> selectMypayList(int n);
 	
 	//페이징
 	public int userCountPay(int n);
