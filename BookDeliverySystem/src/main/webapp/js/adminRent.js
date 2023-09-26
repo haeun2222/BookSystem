@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
     $("#userTableButton").click(function() {
         toggleUserTable();
     });
@@ -41,49 +42,86 @@ function toggleRentTable(){
     }
 }
 
-function getAllRent() {
-	$("#userInfoTable").hide();
-	$("#bookInfoTable").hide();
-	$("#rentListTable").show();
-    $.get("./adminRentList.do", function(data) {
-        var rentList = data.lists; // 서버에서 전달한 JSON 데이터
-        var tableHtml = "<table border='1'><tr><th>No.</th><th>사용자 이름</th><th>도서 제목</th><th>대출일</th><th>반납예정일</th><th>대출 상태</th><th>처리</th><th>운송장</th></tr>";
 
+
+
+function getAllRent() {
+    $("#userInfoTable").hide();
+    $("#bookInfoTable").hide();
+    $("#rentListTable").show();
+    $.get("./adminRentList.do", function (data) {
+	var aPage = data.aPage;
+	console.log("apage:", aPage);
+      var rentList = data.lists;
+      console.log("rentList:", rentList);
+			
+        var tableHtml = "<table border='1'><tr><th>No.</th><th>사용자 이름</th><th>도서 제목</th><th>대출일</th><th>반납예정일</th><th>대출 상태</th><th>처리</th><th>운송장</th></tr>";
         for (var i = 0; i < rentList.length; i++) {
             var rent = rentList[i];
+            tableHtml += "포문테스트!!!";
             tableHtml += "<tr>";
-            tableHtml += "<td>" + (i + 1) + "</td>";
-            tableHtml += "<td>" + rent.USER_NAME + "</td>";
+            tableHtml += "<td>" + (aPage.totalCount - (aPage.page - 1) * aPage.countList - i) + "</td>"; // 페이지 번호 계산
+            tableHtml += "<td>" + rent.NAME + "</td>";
             tableHtml += "<td>" + rent.BOOK_TITLE + "</td>";
-            tableHtml += "<td>" + formatDate(rent.RENT_DATE) + "</td>"; // 대출일 형식 변환
-     		tableHtml += "<td>" + formatDate(rent.RENT_RETURN_DATE) + "</td>"; // 반납예정일 형식 변환
+            tableHtml += "<td>" + formatDate(rent.RENT_DATE) + "</td>";
+            tableHtml += "<td>" + formatDate(rent.RENT_RETURN_DATE) + "</td>";
             tableHtml += "<td>";
-	        // rent status에 따라 상태를 표시
-	        if (rent.RENT_STATUS == 'Y') {
-	            tableHtml += "대출중";
-	        } else if (rent.RENT_STATUS == 'N') {
-	            tableHtml += "반납완료";
-	        } else if (rent.RENT_STATUS == 'A') {
-	            tableHtml += "대출 배송완료";
-	        } else if (rent.RENT_STATUS == 'B') {
-	            tableHtml += "반납 배송완료";
-	        }
-	        tableHtml += "</td>";
-            // rent status가 "B"인 경우에만 반납확인 버튼을 표시
+            if (rent.RENT_STATUS == 'Y') {
+                tableHtml += "대출중";
+            } else if (rent.RENT_STATUS == 'N') {
+                tableHtml += "반납완료";
+            } else if (rent.RENT_STATUS == 'A') {
+                tableHtml += "대출 배송완료";
+            } else if (rent.RENT_STATUS == 'B') {
+                tableHtml += "반납 배송완료";
+            }
+            tableHtml += "</td>";
             if (rent.RENT_STATUS == "B") {
-                tableHtml += "<td><button onclick='handleActions(" + rent.RENT_SEQ + ", " + rent.BOOK_SEQ + ")'>반납확인</button></td>";
+                tableHtml += "<td><button onclick='handleActions(" + rent.SEQ + ", " + rent.BOOK_SEQ + ")'>반납확인</button></td>";
             } else {
-                tableHtml += "<td></td>"; // 아닌 경우 빈 칸으로 처리
+                tableHtml += "<td></td>"; 
             }
             tableHtml += "<td><input type='text' id='deliveryNum" + rent.USER_SEQ + "' placeholder='운송장번호 입력' value=''>" +
-                         "<button onclick='updateDelivery(" + rent.USER_SEQ + ", \"" + rent.USER_SEQ + ".delivery_num\")'>입력</button></td>";
+                "<button onclick='updateDelivery(" + rent.USER_SEQ + ", \"" + rent.USER_SEQ + ".delivery_num\")'>입력</button></td>";
             tableHtml += "</tr>";
         }
 
         tableHtml += "</table>";
-        $("#rentListTable").html(tableHtml);
+
+        var paginationHtml = "<div class='text-center'><ul class='pagination pagination-lg'>";
+        if (aPage.startPage > 1) {
+            paginationHtml += "<li><a href='./adminRentList.do?page=1'>◁◁</a></li>";
+        }
+        if (aPage.startPage > 1) {
+            if (aPage.startPage - aPage.countPage <= 0) {
+                paginationHtml += "<li><a href='./adminRentList.do?page=1'>◀</a></li>";
+            } else {
+                paginationHtml += "<li><a href='./adminRentList.do?page=" + (aPage.startPage - aPage.countPage) + "'>◀</a></li>";
+            }
+        }
+
+        for (var i = aPage.startPage; i <= aPage.endPage; i++) {
+            paginationHtml += "<li " + (i == aPage.page ? "class='active'" : "") + "><a href='./adminRentList.do?page=" + i + "'>" + i + "</a></li>";
+        }
+
+        if (aPage.page < aPage.totalPage) {
+            if (aPage.startPage + aPage.countPage > aPage.totalPage) {
+                paginationHtml += "<li><a href='./adminRentList.do?page=" + aPage.totalPage + "'>▶</a></li>";
+            } else {
+                paginationHtml += "<li><a href='./adminRentList.do?page=" + (aPage.startPage + aPage.countPage) + "'>▶</a></li>";
+            }
+        }
+
+        if (aPage.endPage < aPage.totalPage) {
+            paginationHtml += "<li><a href='./adminRentList.do?page=" + (aPage.totalPage - aPage.totalPage % aPage.countList + 1) + "'>▷▷</a></li>";
+        }
+
+        paginationHtml += "</ul></div>";
+
+        $("#rentListTable").html(tableHtml + paginationHtml);
     });
 }
+
 
 function formatDate(dateString) {
     var date = new Date(dateString);
@@ -120,6 +158,7 @@ async function handleActions(rentSeq, bookSeq) {
         location.reload();
     } catch (error) {
         console.error("오류 발생: " + error);
+        
         alert("요청을 처리하는 동안 오류가 발생했습니다.");
     }
 }
