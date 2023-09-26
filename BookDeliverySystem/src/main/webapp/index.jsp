@@ -48,6 +48,10 @@ svg > g > g:last-child { pointer-events: none }
 </div>
 </form> 
 
+<div class="flex-container">
+	<div>가</div>
+	<div>나</div>
+</div>
 
 </div>
 </body>
