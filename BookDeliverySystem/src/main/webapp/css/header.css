@@ -1,24 +1,28 @@
 @charset "UTF-8";
 
 .mainTitle{
+
 	text-align: center; 
 	font-size: 60px; 
 	color: white;
+  font-family: 'BMHANNAPro', fantasy;
+
 }
 
 a.a{
 	text-decoration: none;
+	color: #222831;
 }
 
 
 span{
-	font-size: 12px; color: white;
+	font-size: 12px; color:#222831;
 }
 
 
 
 #header {
-  color:black; /* 헤더 텍스트 색상을 원하는 색상으로 설정 */
+  color:#222831; /* 헤더 텍스트 색상을 원하는 색상으로 설정 */
 }
 
 
@@ -35,6 +39,9 @@ span{
   font-size: 30px;
 }
 
-
+li,.btn{
+	font-family: 'BMHANNAAir', fantasy;
+   font-size: 20px;
+}
 
 

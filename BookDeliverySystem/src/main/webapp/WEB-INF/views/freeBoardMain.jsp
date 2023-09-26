@@ -10,7 +10,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
+
+<link rel='stylesheet' href='css/FreeBoard.css'/>
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
 <title>자유게시판</title>
 </head>
 <c:set var="lists" value="${requestScope.lists}" />
@@ -31,7 +35,7 @@
             <tr>
 <%--                 <td>${freeBoard.free_bseq}</td> --%>
 				<td>${pd.getTotalCount() - (pd.getPage() - 1) * pd.getCountList() - status.index}</td>
-                <td><a href="./freeBoardDetail.do?free_bseq=${freeBoard.free_bseq}">${freeBoard.free_title}</a></td>
+                <td><a class="a" href="./freeBoardDetail.do?free_bseq=${freeBoard.free_bseq}">${freeBoard.free_title}</a></td>
                 <td>${freeBoard.user_name}</td>
                 <td><fmt:formatDate value="${freeBoard.free_regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
             </tr>

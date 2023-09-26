@@ -17,9 +17,9 @@ window.onload = function(){
 //             차트 옵션 설정
             var options = {
 			    title: '성별 통계',
-			    backgroundColor: '#222831',
+			    backgroundColor: 'white',
 			    titleTextStyle: {
-        		color: 'white' 
+        		color: '#222831' 
     			},
 			    chartArea: {
 			        width: '40%', 
@@ -66,9 +66,9 @@ window.onload = function(){
  //            차트 옵션 설정
            var options = {
 			    title:'연령별 통계',
-			    backgroundColor: '#222831',
+			    backgroundColor: 'white',
 			    titleTextStyle: {
-        		color: 'white' 
+        		color: '#222831' 
     			},
 			    chartArea: {
 			        width: '40%', 
