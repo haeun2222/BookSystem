@@ -10,5 +10,8 @@ public interface IBookDao {
 	public BookDto detailBook(int seq);
 	public int registBook(BookDto dto);
 	public int checkIsbn(String isbn);
+	public List<BookDto> searchBooks(String keyword);
+	public int updateBook(String isbn, BookDto bookDto);
+
 }
 

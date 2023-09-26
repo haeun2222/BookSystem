@@ -82,6 +82,12 @@ svg > g > g:last-child { pointer-events: none }
         <input type="button" class="btn btn-primary" value="대출신청" onclick="location.href='./loginPage.do'">
 	</c:if>
 </c:if>   
+
+<!-- 도서 수정페이지로 이동하기 -->
+<c:if test="${not empty sessionScope.loginDto && sessionScope.loginDto.user_auth eq 'A'}">
+	<input type="button" class="btn btn-info" value="도서수정" onclick="location.href='./updateBookForm.do?book_seq=${detailBook.book_seq}'">
+</c:if>
+
 <!-- 	<br><div>도서 대출과 예약은 로그인 후 이용하실 수 있습니다.</div><br> -->
 <!--     <input type="button" class="btn btn-success" value="로그인" onclick="location.href='./loginPage.do'"> -->
 <%-- </c:if> --%>

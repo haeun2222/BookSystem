@@ -125,11 +125,11 @@
                     <h3 class="join_title">
                     <label for="phoneNo">휴대전화</label></h3>
                         <input type="tel" id="user_phone" name="user_phone" class="int" maxlength="16" placeholder="전화번호 입력">
-                </div>
                  <button type="button" onclick="sendSMS()">인증 SMS 보내기</button>
+                </div>
 
 				    <!-- 사용자로부터 인증번호 입력 -->
-				    <input type="text" id="userCodeInput" placeholder="인증번호 입력">
+				    <input type="text" id="userInputCode" placeholder="인증번호 입력">
 				    <button type="button" onclick="verifyCode()">인증 확인</button>
                 
 				<input type="hidden" name="user_birth">
@@ -143,7 +143,6 @@
 			</form>
         </div> 
 <script src="js/registForm.js"></script>
-<script src="auth.js"></script> 
 	
 </body>
 </html>

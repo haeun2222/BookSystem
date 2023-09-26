@@ -32,6 +32,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 
  * @author 김영진
@@ -39,9 +41,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 
 @Controller
+@Slf4j
 public class BookController {
-	
-	private static final Logger log = LoggerFactory.getLogger(BookController.class);
 	
 	@Autowired
 	public IBookService service;
@@ -145,6 +146,21 @@ public class BookController {
 	    	model.addAttribute("result", "도서 등록 실패ㅜㅜ");
 	    }
 	    return "adminPage";
+	}
+	
+	@GetMapping(value="/searchBooks.do")
+	public String searchBooks(@RequestParam String keyword, Model model){
+		List<BookDto> lists = service.searchBooks(keyword);
+		model.addAttribute("searchResults",lists);
+		return "searchBooks";
+	}
+	
+	@GetMapping(value="/updateBookForm.do")
+	public String updateBookForm(@RequestParam("book_seq") int book_seq, Model model) {
+		log.info("book_seq의 값 : {}",book_seq);
+		BookDto bookInfo = service.detailBook(book_seq);
+		model.addAttribute("updateBook",bookInfo);
+		return "updateBook";
 	}
 }
 

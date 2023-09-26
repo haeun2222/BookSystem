@@ -36,4 +36,14 @@ public class BookDaoImpl implements IBookDao {
 		return sqlSession.selectOne(NS+"checkIsbn",isbn);
 	}
 
+	@Override
+	public List<BookDto> searchBooks(String keyword) {
+		return sqlSession.selectList(NS+"searchBooks",keyword);
+	}
+
+	@Override
+	public int updateBook(String isbn, BookDto bookDto) {
+		return sqlSession.update(NS+"updateBook",isbn);
+	}
+
 }
