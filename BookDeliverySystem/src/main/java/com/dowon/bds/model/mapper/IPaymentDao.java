@@ -22,9 +22,9 @@ public interface IPaymentDao {
 	Integer selectSumPoint(Integer user_seq);
 	
 	//특정 회원의 결제 내역 확인
-	public List<Map<String, Object>> selectMypayList(int n);
+//	public List<Map<String, Object>> selectMypayList(int n);
 	
-	//페이징
+	//특정 회원의 결제 내역 확인 페이징
 	public int userCountPay(int n);
 	public List<Map<String, Object>> userPayPageList(Map<String, Object> map);
 	

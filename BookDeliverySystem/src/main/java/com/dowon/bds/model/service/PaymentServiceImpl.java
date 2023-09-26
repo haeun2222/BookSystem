@@ -50,11 +50,11 @@ public class PaymentServiceImpl implements IPaymentService {
 	}
 	
 
-	@Override
-	public List<Map<String, Object>> selectMypayList(int n) {
-		log.info("PaymentServiceImpl selectMypayList 회원결제리스트 : {}", n);
-		return dao.selectMypayList(n);
-	}
+//	@Override
+//	public List<Map<String, Object>> selectMypayList(int n) {
+//		log.info("PaymentServiceImpl selectMypayList 회원결제리스트 : {}", n);
+//		return dao.selectMypayList(n);
+//	}
 
 
 	@Override
