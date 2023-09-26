@@ -44,37 +44,3 @@
     font-weight: normal;
     font-style: normal;
 }
-
-
-
-body {
-	font-family: 'Hanna', fantasy;
-	font-size: 20px;
-	color: #ECEFF1
-}
-
-div {
-	font-family: 'Hanna', fantasy;
-	font-size: 20px;
-}
-h1 {
-		font-family: 'BMHANNAPro', fantasy;
-}
-
-h2 {
-		font-family: 'BMHANNAPro', fantasy;
-}
-
-table{
-	font-family: 'BMHANNAAir', fantasy;
-	font-size: 20px;
-}
-button{
-	font-family: 'BMHANNAAir', fantasy;
-}
-
-
-
-li {
-    font-family: 'BMHANNAAir', fantasy;
-}

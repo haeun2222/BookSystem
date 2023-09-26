@@ -18,15 +18,15 @@ SELECT COUNT(*)
 </select>
 
 <select id="FreeBoardCountList" parameterType="java.util.Map" resultType="FreeBoardDto">
-SELECT * 
-FROM (
-    SELECT ROWNUM AS rn, tfb.FREE_BSEQ, tfb.USER_SEQ, tfb.FREE_TITLE, tfb.FREE_REGDATE, tu.USER_NAME
-    FROM TB_FREE_BOARD tfb
-    JOIN TB_USER tu ON tfb.USER_SEQ = tu.USER_SEQ
-    WHERE FREE_DELFLAG = 'N'
-    ORDER BY FREE_REGDATE DESC
-)
-    WHERE RN BETWEEN #{first} AND #{last}
+SELECT FREE_BSEQ, USER_SEQ, FREE_TITLE, FREE_REGDATE, USER_NAME
+   FROM (SELECT tfb.FREE_BSEQ, tfb.USER_SEQ, tfb.FREE_TITLE, 
+            tfb.FREE_REGDATE, tu.USER_NAME,
+         ROW_NUMBER() OVER (ORDER BY tfb.FREE_REGDATE DESC) AS RN
+      FROM TB_FREE_BOARD tfb
+      JOIN TB_USER tu ON tfb.USER_SEQ = tu.USER_SEQ
+       WHERE FREE_DELFLAG = 'N'
+   )tt
+WHERE RN BETWEEN #{first} AND #{last}
 </select>    
 <!-- 새글등록 -->
 <insert id="freeBoardInsert" parameterType="FreeBoardDto">
