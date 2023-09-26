@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+
+body {
+	 background-image: url("../img/146.png");
+	 background-repeat : no-repeat;
+	 background-size: contain;
+	 background-position :center; 
+	 background-size : 140% ;
+}
+body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1000px; /* 조절 가능한 최대 너비 */
+        padding: 20px;
+        height: 1000px;
+    }
+
+    .table {
+        width: 100%;
+    }
+
+    .center-text {
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    #sample6_postcode {
+        width: 70%;
+    }
+
+    #sample6_address {
+        width: 70%;
+    }
+
+    #sample6_detailAddress {
+        width: 40%;
+    }
+
+    #sample6_extraAddress {
+        width: 40%;
+    }
+
+    .btn {
+        margin-right: 10px;
+    }
