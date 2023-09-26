@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ import org.springframework.web.util.WebUtils;
 
 import com.dowon.bds.dto.FreeBoardDto;
 import com.dowon.bds.dto.FreeCommentDto;
+import com.dowon.bds.dto.PagingDto;
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IFreeBoardService;
 import com.dowon.bds.model.service.IFreeCommentService;
@@ -46,13 +48,55 @@ public class FreeBoardController {
 		return "redirect:/index.jsp";
 	}
 	
-	@RequestMapping(value = "/freeBoardList.do",method = RequestMethod.GET)
-	public String freeBoardList(Model model) {
-		log.info("FreeBoardController freeBoardList 자유게시판 전체게시글 조회");
-		List<FreeBoardDto> lists = service.freeBoardList();
-		model.addAttribute("freeBoardList", lists);
-		return "freeBoardMain";
+	// 자유게시판 페이징처리
+	@GetMapping(value = "/freeBoardList.do")
+	public String FreeBoardPage(@RequestParam(name = "page", defaultValue = "1") int selectPage, Model model) {
+	    PagingDto pd = new PagingDto();
+
+	    // 총 게시물의 갯수
+	    pd.setTotalCount(service.FreeBoardCount());
+
+	    // 출력될 총 게시글의 갯수
+	    pd.setCountList(5);
+
+	    // 화면에 몇개의 페이지그룹
+	    pd.setCountPage(5);
+
+	    // 총페이지의 갯수
+	    pd.setTotalPage(pd.getTotalCount());
+
+	    // 요청되는페이지
+	    pd.setPage(selectPage);
+
+	    // 시작페이지 번호
+	    pd.setStartPage(selectPage);
+
+	    // 끝번호
+	    pd.setEndPage(pd.getCountPage());
+
+	    // 게시글 조회
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("first", pd.getPage() * pd.getCountList() - (pd.getCountList() - 1));
+	    map.put("last", pd.getPage() * pd.getCountList());
+
+	    List<FreeBoardDto> lists = service.FreeBoardCountList(map);
+	    model.addAttribute("lists", lists);
+	    model.addAttribute("pd", pd);
+	    System.out.println("확인@@@@@@@@@@@@:"+pd);
+	    log.info("Welcome FreeBoardController PageList {}", lists);
+
+	    return "freeBoardMain";
+	
+//	    List<Map<String, Object>> lists = service.FreeBoardCountList(map);
+//	    model.addAttribute("freeBoardList", lists);
 	}
+//	@RequestMapping(value = "/freeBoardList.do",method = RequestMethod.GET)
+//	public String freeBoardList(Model model) {
+//		log.info("FreeBoardController freeBoardList 자유게시판 전체게시글 조회");
+//		List<FreeBoardDto> lists = service.freeBoardList();
+//		model.addAttribute("freeBoardList", lists);
+//		return "freeBoardMain";
+//	}
 
 	
 	@RequestMapping(value = "/freeBoardInsertView.do",method = RequestMethod.GET)
@@ -65,65 +109,8 @@ public class FreeBoardController {
 		return "freeBoardInsert";
 	}
 
-@RequestMapping(value = "/freeBoardInsert.do", method = RequestMethod.POST)
-	public String freeBoardInsert(HttpSession session, FreeBoardDto dto,HttpServletRequest request,Model model,List<MultipartFile>file,String desc) {
-		for (MultipartFile f : file) {
-			System.out.println(f.getOriginalFilename());
-			String originalFileName = f.getOriginalFilename();
-			String saveFileName = UUID.randomUUID().toString() 
-									+ originalFileName.substring(originalFileName.lastIndexOf("."));
-			System.out.println("파일명" + originalFileName);
-			System.out.println("저장파일명"+"./storage/"+saveFileName);
-			
-			InputStream inputStream = null;
-			OutputStream outputStream = null;
-			String path = "";
-			
-			try {
-				// 1) 파일을 읽는다
-				inputStream = f.getInputStream();
-				
-				// 2) 저장위치를 만든다
-				path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage"); // 상대경로(배포할때 이렇게 사용)
-				System.out.println(request.getSession().getServletContext().getRealPath("storage")); // 상대경로
-				System.out.println("실제 파일이 업로드될 테스트 경로:" +path);
-				
-				// 3) 저장위치가 없으면 만든다
-				File storage = new File(path);
-				if(!storage.exists()) {
-					storage.mkdir();
-				}
-				// 4) 저장할 파일이 없다면 만들어주고 아니면 오버라이드 함
-				File newFile = new File(path+"/"+saveFileName);
-				if(!newFile.exists()) {
-					newFile.createNewFile();
-				}
-				// 5) 파일의 쓸 위치를 지정해줌
-				outputStream = new FileOutputStream(newFile);
-				
-				// 6) 파일을 대상에 읽고 써줌
-				int read = 0;
-				byte[] b = new byte[(int)f.getSize()];
-				while ((read=inputStream.read(b))!= -1) {
-					outputStream.write(b,0,read);
-				}
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}finally {
-				try {
-					inputStream.close();
-					outputStream.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-			model.addAttribute("originalFileName",originalFileName);
-			if(originalFileName != null) {
-				session.setAttribute("originalFileName",originalFileName);
-			}
-		}
-		
+	@RequestMapping(value = "/freeBoardInsert.do", method = RequestMethod.POST)
+	public String freeBoardInsert(HttpSession session, FreeBoardDto dto) {
 		log.info("FreeBoardController freeBoardInsert 자유게시판 새글등록{}",dto);
 		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
 	    dto.setUser_seq(loginDto.getUser_seq());
