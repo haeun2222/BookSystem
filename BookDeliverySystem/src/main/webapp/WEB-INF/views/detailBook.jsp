@@ -28,8 +28,8 @@ svg > g > g:last-child { pointer-events: none }
   <tr>
     <th class="tg-0pky" rowspan="5"><img src="${detailBook.book_img}" width="40%"></th>
     <th class="tg-0pky">${detailBook.book_title}</th>
-    <th id="detailGenderChart"></th>
-	<th id="detailAgeChart"></th>
+<!--     <th id="detailGenderChart"></th> -->
+<!-- 	<th id="detailAgeChart"></th> -->
   </tr>
   <tr>
     <th class="tg-0pky">${detailBook.book_writer}</th>
@@ -91,11 +91,6 @@ svg > g > g:last-child { pointer-events: none }
 <!-- 	<br><div>도서 대출과 예약은 로그인 후 이용하실 수 있습니다.</div><br> -->
 <!--     <input type="button" class="btn btn-success" value="로그인" onclick="location.href='./loginPage.do'"> -->
 <%-- </c:if> --%>
-
-
-
-
-
 
 
 <!-- 대출 모달 창 -->
@@ -164,16 +159,53 @@ svg > g > g:last-child { pointer-events: none }
 <input type="hidden" id="isReservable" value="${rentYBookSeqList.contains(detailBook.book_seq)}">
 
 
-
+<!-- 도서상세페이지 해당도서 관한 통계차트 -->
 <script type="text/javascript">
     var book_seq = ${detailBook.book_seq};
 </script>
 
-<!-- <div class="chart-container"> -->
-<!--     <div id="detailGenderChart" class="chart"></div> -->
-<!--     <div id="detailAgeChart" class="chart"></div> -->
-<!-- </div> -->
-
+<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog modal-md">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title" style="color: #222832;">${detailBook.book_title}</h4>
+					</div>
+					<div class="modal-body" style="position: relative;padding: 0px; margin-left:20px;">
+						<h1 id="bookTitle" style="text-align: center; color: #222832;"></h1>
+				
+						<!-- 여기에 차트 뿌리기 -->
+						<table>
+							<tr>
+		
+								<th id="detailGenderChart"></th>
+								<th id="detailAgeChart"></th>
+							</tr>
+						</table>
+					</div>
+					
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+<script>
+$(document).ready(function () {
+    // 첫 번째 비동기 요청
+    $.get('/BookDeliverySystem/detailGenderChart.do?book_seq=' + book_seq, function (detailGender) {
+        if (detailGender.length > 0) {
+            // 첫 번째 비동기 요청 성공 시 두 번째 비동기 요청 시작
+            $.get('/BookDeliverySystem/detailAgeChart.do?book_seq=' + book_seq, function (detailAge) {
+                if (detailAge.length > 0) {
+                    // 두 번째 비동기 요청 성공 시 모달 열기
+                    $('#myModal').modal('show');
+                }
+            });
+        }
+    });
+});
+</script>
 </body>
 <%@ include file="footer.jsp" %>
 </html>

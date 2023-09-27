@@ -10,7 +10,13 @@ import com.dowon.bds.dto.FreeCommentDto;
 import com.dowon.bds.model.mapper.IFreeCommentDao;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * @author 김수엽
+ * @since 2023.09.24
+ * 자유게시판 답글관련 ServiceImpl 
+ *
+ */
 @Service
 @Slf4j
 public class FreeCommentServiceImpl implements IFreeCommentService {

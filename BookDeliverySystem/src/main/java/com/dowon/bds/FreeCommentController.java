@@ -20,7 +20,13 @@ import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IFreeCommentService;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * @author 김수엽
+ * @since 2023.09.24
+ * 자유게시판 답글관련 컨트롤러
+ *
+ */
 @Controller
 @Slf4j
 public class FreeCommentController {

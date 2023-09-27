@@ -32,7 +32,13 @@ import com.dowon.bds.model.service.IFreeCommentService;
 import com.dowon.bds.model.service.IUserService;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * @author 김수엽
+ * @since 2023.09.24
+ * 자유게시판 관련 컨트롤러
+ *
+ */
 @Controller
 @Slf4j
 public class FreeBoardController {
@@ -86,19 +92,8 @@ public class FreeBoardController {
 	    log.info("Welcome FreeBoardController PageList {}", lists);
 
 	    return "freeBoardMain";
-	
-//	    List<Map<String, Object>> lists = service.FreeBoardCountList(map);
-//	    model.addAttribute("freeBoardList", lists);
 	}
-//	@RequestMapping(value = "/freeBoardList.do",method = RequestMethod.GET)
-//	public String freeBoardList(Model model) {
-//		log.info("FreeBoardController freeBoardList 자유게시판 전체게시글 조회");
-//		List<FreeBoardDto> lists = service.freeBoardList();
-//		model.addAttribute("freeBoardList", lists);
-//		return "freeBoardMain";
-//	}
 
-	
 	@RequestMapping(value = "/freeBoardInsertView.do",method = RequestMethod.GET)
 	public String freeBoardInsertView(HttpSession session) {
 		log.info("FreeBoardController freeBoardInsertView 자유게시판 새글등록 화면 이동");

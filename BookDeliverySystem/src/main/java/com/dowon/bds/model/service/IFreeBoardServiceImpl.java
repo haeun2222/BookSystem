@@ -10,7 +10,13 @@ import com.dowon.bds.dto.FreeBoardDto;
 import com.dowon.bds.model.mapper.IFreeBoardDao;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * @author 김수엽
+ * @since 2023.09.24
+ * 자유게시판 관련 ServiceImpl
+ *
+ */
 @Service
 @Slf4j
 public class IFreeBoardServiceImpl implements IFreeBoardService {
