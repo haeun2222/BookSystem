@@ -21,7 +21,7 @@
 <body>
 
 <c:set var="loginUser" value="${sessionScope.loginDto}"/>
-<h1 class="deli-heading">${sessionScope.loginDto.user_name}님의 배송지 확인</h1>
+<h1 class="deli-heading" style="font-family: 'Hanna', fantasy;  text-align:  center;  padding-top: 50px;">${sessionScope.loginDto.user_name}님의 배송지 확인</h1>
     <div id="container">
         <table>
         <thead>

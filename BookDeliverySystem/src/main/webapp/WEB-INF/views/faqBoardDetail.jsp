@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/freeBoardDetail.css">
 <title>FAQ 삭제를 위한 상세 페이지</title>
 <%@ include file="header.jsp" %>
 </head>
@@ -23,7 +24,8 @@
 			</c:if>
 		</h3>
 		<div>
-			내용<div class="form-control" style="height: 200px; font-size: 20px;">${dto.faq_content}</div>
+		    <br>
+			<div class="form-control" style="height: 200px; font-size: 15px;">${dto.faq_content}</div>
 		</div><br>
 		</div>
 
