@@ -4,7 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.dowon.bds.dto.FreeCommentDto;
-
+/**
+ * 
+ * @author 김수엽
+ * @since 2023.09.24
+ * 자유게시판 답글관련 Dao
+ *
+ */
 public interface IFreeCommentDao {
 	// 답글작성
 	public int CommentInsert(FreeCommentDto fDto);

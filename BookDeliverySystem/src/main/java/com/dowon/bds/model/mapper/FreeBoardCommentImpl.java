@@ -10,7 +10,13 @@ import org.springframework.stereotype.Repository;
 import com.dowon.bds.dto.FreeCommentDto;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * @author 김수엽
+ * @since 2023.09.24
+ * 자유게시판 답글관련 DaoImpl 
+ *
+ */
 @Repository
 @Slf4j
 public class FreeBoardCommentImpl implements IFreeCommentDao {

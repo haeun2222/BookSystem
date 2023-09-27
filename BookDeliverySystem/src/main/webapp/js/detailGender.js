@@ -25,8 +25,8 @@ window.onload = function(){
 			        width: '40%', 
 			        height: '40%'
 			    },
-			    width: 400, 
-			    height: 300,
+			    width: 280, 
+			    height: 280,
 			    legend: 'none',
 			    titlePosition: 'out',
 			    is3D:true,
@@ -74,8 +74,8 @@ window.onload = function(){
 			        width: '40%', 
 			        height: '40%'
 			    },
-			    width: 400, 
-			    height: 300,
+			    width: 280, 
+			    height: 280,
 			    titlePosition: 'out',
 			    legend: { position: "none" },
 			    colors: ['#00b894', '#00d2d3', '#74b9ff', '#55efc4', '#81ecec'],

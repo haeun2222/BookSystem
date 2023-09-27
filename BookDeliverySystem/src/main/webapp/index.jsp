@@ -58,24 +58,4 @@ svg > g > g:last-child { pointer-events: none }
 </div>
 </body>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
-<script type="text/javascript">
-$('#showModal').on('click', function () {
-    drawAgeChart();
-    drawGenderChart();
-});
-</script>
-<script type="text/javascript"> 
-	function showBookInfo(){
-		$('#bookInfo').html('<img src="'+book_img+'" alt="bookImgLoading....">');
-		$('#bookInfo').fadeIn();
-		console.log(book_img);
-		console.log(book_seq);
- 		console.log("커서가 올라왔다");
-	}
-	function hideBookInfo(){
-		$('#bookInfo').html('<img src="'+book_img+'" alt="bookImgLoading....">');
-		$('#bookInfo').fadeOut();
- 		console.log("커서가 내려갔다");
-	}
-</script>
 </html>
