@@ -30,7 +30,7 @@
 		
 				<tbody>   
 	<tr>
-						<th class="center-text" style="padding-top: 75px;">배송정보</th>
+						<th class="center-text" style="padding-top: 65px;">배송정보</th>
 						<td>
 						    <input type="text" id="delivery_name" name="delivery_name" placeholder="수령자" value="${loginUser.user_name}" readonly="readonly"><br>
   							<input type="text" id="delivery_phone" name="delivery_phone" placeholder="연락받을 전화번호" value="${loginUser.user_phone}" readonly="readonly"><br>
@@ -48,7 +48,7 @@
 				 	<tr>
 						<th colspan="2" style="text-align: center;">
 							<button type="submit" class="btn btn-default">수거요청</button>
-							<button class="btn btn-default" onclick="history.back(-1)">취소</button>
+							<button class="btn" onclick="history.back(-1)">취소</button>
 						</th>
 				</tr>
 			</tfoot>

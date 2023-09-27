@@ -8,13 +8,16 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/updateFaq.css">
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>FAQ 수정 페이지</title>
 </head>
 <%@ include file="header.jsp" %>
 <body>
 <div class="container">
-		<h1>제목: ${faq_title}</h1><button style="float: right;" class="btn btn-success" onclick="history.back(-1)">이전</button>
+		<h3> ${faq_title}</h3>
+		<button style="float: right;" class="btn btn-success" onclick="history.back(-1)">이전</button>
+		<br>
 		<form action="./updateFaqBoard.do?faq_seq=${faq_seq}" method="post">
 			<div class="form-group">
 				<label for="id">아이디:</label>

@@ -7,26 +7,24 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/faqInsert.css">
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>관리자 FAQ 작성 페이지</title>
 <%@ include file="header.jsp" %>
 </head>
 <body>
 <div class="container">
-		<h2>자주 묻는 질문 작성<button style="float: right; background-color: #ccc; color: #000;" class="btn" onclick="location.href='./faqList.do'">이전</button></h2>
+		<h3>자주 묻는 질문 작성<button style="float: right; background-color: #ccc; color: #000;" class="btn" onclick="location.href='./faqList.do'">이전</button></h3>
 		<form action="./faqInsert.do" method="post">
 			<div class="form-group">
 				<label for="user_seq">작성자:</label>
-				<div class="form-control" id="user_seq">${loginDto.user_seq}</div>
+				<div class="form-control" id="user_seq">${loginDto.user_name}</div>
 			</div>
 			<div class="form-group">
 				<label for="title">제목:</label>
 				<input type="text" class="form-control" id="faq_title" name="faq_title">
 			</div>
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="title">제목:</label> -->
-<!-- 				<input type="text" class="form-control" id="faq_title" name="faq_title"> -->
-<!-- 			</div> -->
 			
 			  <div class="category_search_wrap">
 		                <div class="input_select_wrap2">
@@ -39,14 +37,13 @@
 				            </select>
 		                 </div>
 		       </div>
-			
 			<div class="form-group">
-				<label for="comment">내용:</label>
-				<textarea class="faq_content" id="faq_content" name="faq_content" rows="5" cols="50"></textarea>
+				<textarea class="faq_content" id="faq_content" name="faq_content" rows="10" cols="140"></textarea>
 			</div>
 			<button style="margin-bottom: 10px; background-color: #00fff5; color: #000;" type="submit" class="btn">완료</button>
 		</form>
 	</div>
 
 </body>
+<%@ include file="footer.jsp" %>
 </html>

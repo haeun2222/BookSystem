@@ -43,10 +43,9 @@ svg > g > g:last-child { pointer-events: none }
 </div>
 <!-- 검색창 두번째div -->
 <form action="./searchBooks.do" method="get">
-<div class="search-container" style="width: 40%g margin: 0 auto; text-align: center;">
- <input type="text" name="keyword" placeholder="도서명 또는 저자를 입력하세요." style="width: 70%; display: inline-block;">
-<button type="submit" style="width: 28%; display: inline-block;"><i class="fa fa-search"></i></button>
-
+<div class="search-container" style="width: 40%; margin: 0 auto; text-align: center;">
+  <input type="text" name="keyword" style=" margin-right: 0px; width: 100%;" class="searching" placeholder="도서명 또는 저자를 입력하세요." > 
+  <button type="submit"  style=" margin-left: 0px;"><i class="fa fa-search"></i></button>
 </div>
 </form> 
 

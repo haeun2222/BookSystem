@@ -25,6 +25,9 @@
 	<c:choose>
     <c:when test="${loginDto != null && loginDto.user_auth == 'A'}">
         <input class="btn" type="submit" onclick="location.href='./faqInsertView.do'" value="새글작성">
+        <br>
+        <br>
+        <br>
     </c:when>
 	</c:choose>
 	
