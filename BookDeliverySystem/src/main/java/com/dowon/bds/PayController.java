@@ -60,23 +60,23 @@ public class PayController {
 	private IResveService resveService;
 
 	
-	  @GetMapping("/payment.do")
-	    public String payment(@RequestParam Map<String,Object>map, HttpSession session,Model model, @RequestParam("book_seq") int bookSeq) {
-	    	log.info("Welcome! PayController payment 결제 실행을 위한 컨트롤러"); 
-	    	UserDto loginDto = (UserDto) session.getAttribute("loginDto");
+  @GetMapping("/payment.do")
+    public String payment(@RequestParam Map<String,Object>map, HttpSession session,Model model, @RequestParam("book_seq") int bookSeq) {
+    	log.info("Welcome! PayController payment 결제 실행을 위한 컨트롤러"); 
+    	UserDto loginDto = (UserDto) session.getAttribute("loginDto");
 	    	
 	    	
-	    	 // 여기서 유저의 배송지 정보를 가져옵니다.
-	        if (loginDto != null) {
-	            AddrDto addrDto = addrService.getAddrUserSeq(loginDto.getUser_seq());
-	            model.addAttribute("loginDto", loginDto);
-	            model.addAttribute("addrDto", addrDto); // 주소 정보를 Model에 추가
-	            model.addAttribute("bookSeq",bookSeq);
-	            return "payment";
-	        } else {
-	             return "redirect:/loginPage.do";
-	        }
-	    }
+	 // 여기서 유저의 배송지 정보를 가져옵니다.
+        if (loginDto != null) {
+            AddrDto addrDto = addrService.getAddrUserSeq(loginDto.getUser_seq());
+            model.addAttribute("loginDto", loginDto);
+            model.addAttribute("addrDto", addrDto); // 주소 정보를 Model에 추가
+            model.addAttribute("bookSeq",bookSeq);
+            return "payment";
+        } else {
+             return "redirect:/loginPage.do";
+        }
+    }
 	    	
 
     // 아임포트 결제 요청을 처리

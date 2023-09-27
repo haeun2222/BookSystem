@@ -21,4 +21,7 @@ public interface IFaqService {
 	
 	//FAQ 게시글 수정
 	public int updateFaq(Map<String, Object>map);
+	
+	//FAQ 메인 출력
+	public List<FaqBoardDto> mainFaqList();
 }
