@@ -21,11 +21,8 @@
 <body>
 <div class="container">
     <c:set var="loginUser" value="${sessionScope.loginDto}" />
-    <%-- <c:set var="addrDto" value="${sessionScope.addrDto}" /> --%>
-    <%-- ${addrDto.delivery_num} --%>
     <h1>${loginUser.user_name}님의 대출 도서 목록 입니다</h1>
     <button class="btn" id="refreshButton" style="float: right; background-color: #00fff5; color: #393E46">대출내역 갱신</button>
-    <!-- JavaScript 코드 -->
     <script>
         // 페이지 새로고침 버튼을 클릭할 때 페이지를 새로고침합니다.
         document.getElementById("refreshButton").addEventListener("click", function() {
@@ -81,16 +78,16 @@
     <div class="text-center">
         <ul class="pagination pagination-lg">
             <c:if test="${r.getStartPage() > 1}">
-                <li><a href="./userRentPageList.do?page=1">◁◁</a></li>
+                <li><a href="./userRentPageList.do?page=1">처음</a></li>
             </c:if>
     
             <c:if test="${r.getStartPage() > 1}">
                 <c:choose>
                     <c:when test="${r.getStartPage() - r.getCountPage() <= 0}">
-                        <li><a href="./userRentPageList.do?page=1">◀</a></li>
+                        <li><a href="./userRentPageList.do?page=1">이전</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li><a href="./userRentPageList.do?page=${r.getStartPage() - r.getCountPage()}">◀</a></li>
+                        <li><a href="./userRentPageList.do?page=${r.getStartPage() - r.getCountPage()}">이전</a></li>
                     </c:otherwise>
                 </c:choose>
             </c:if>
@@ -104,16 +101,16 @@
             <c:if test="${r.getPage() < r.getTotalPage()}">
                 <c:choose>
                     <c:when test="${r.getStartPage() + r.getCountPage() > r.getTotalPage()}">
-                        <li><a href="./userRentPageList.do?page=${r.getTotalPage()}">▶</a></li>
+                        <li><a href="./userRentPageList.do?page=${r.getTotalPage()}">다음</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li><a href="./userRentPageList.do?page=${r.getStartPage() + r.getCountPage()}">▶</a></li>
+                        <li><a href="./userRentPageList.do?page=${r.getStartPage() + r.getCountPage()}">다음</a></li>
                     </c:otherwise>
                 </c:choose>
             </c:if>
     
             <c:if test="${r.getEndPage() < r.getTotalPage()}">
-                <li><a href="./userRentPageList.do?page=${r.getTotalPage() - r.getTotalPage() % r.getCountList() + 1}">▷▷</a></li>
+                <li><a href="./userRentPageList.do?page=${r.getTotalPage() - r.getTotalPage() % r.getCountList() + 1}">끝</a></li>
             </c:if>
         </ul>
     </div>

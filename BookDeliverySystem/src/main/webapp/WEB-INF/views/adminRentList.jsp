@@ -83,16 +83,16 @@
     <div class="text-center">
         <ul class="pagination pagination-lg">
             <c:if test="${r.getStartPage() > 1}">
-                <li><a href="./oldAdminRentList.do?page=1">◁◁</a></li>
+                <li><a href="./oldAdminRentList.do?page=1">처음</a></li>
             </c:if>
     
             <c:if test="${r.getStartPage() > 1}">
                 <c:choose>
                     <c:when test="${r.getStartPage() - r.getCountPage() <= 0}">
-                        <li><a href="./oldAdminRentList.do?page=1">◀</a></li>
+                        <li><a href="./oldAdminRentList.do?page=1">이전</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li><a href="./oldAdminRentList.do?page=${r.getStartPage() - r.getCountPage()}">◀</a></li>
+                        <li><a href="./oldAdminRentList.do?page=${r.getStartPage() - r.getCountPage()}">이전</a></li>
                     </c:otherwise>
                 </c:choose>
             </c:if>
@@ -106,16 +106,16 @@
             <c:if test="${r.getPage() < r.getTotalPage()}">
                 <c:choose>
                     <c:when test="${r.getStartPage() + r.getCountPage() > r.getTotalPage()}">
-                        <li><a href="./oldAdminRentList.do?page=${r.getTotalPage()}">▶</a></li>
+                        <li><a href="./oldAdminRentList.do?page=${r.getTotalPage()}">다음</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li><a href="./oldAdminRentList.do?page=${r.getStartPage() + r.getCountPage()}">▶</a></li>
+                        <li><a href="./oldAdminRentList.do?page=${r.getStartPage() + r.getCountPage()}">다음</a></li>
                     </c:otherwise>
                 </c:choose>
             </c:if>
     
             <c:if test="${r.getEndPage() < r.getTotalPage()}">
-                <li><a href="./oldAdminRentList.do?page=${r.getTotalPage() - r.getTotalPage() % r.getCountList() + 1}">▷▷</a></li>
+                <li><a href="./oldAdminRentList.do?page=${r.getTotalPage() - r.getTotalPage() % r.getCountList() + 1}">끝</a></li>
             </c:if>
         </ul>
     </div>

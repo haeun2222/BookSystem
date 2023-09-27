@@ -51,6 +51,8 @@ public class PayController {
 	@Autowired
 	private IAddrService addrService;
 	
+	
+	//2023.09.18 박하은- 결제시 같이 진행되는 대출,예약을 위한 Service 메소드 선언
 	@Autowired
 	private IRentService rentService;
 	

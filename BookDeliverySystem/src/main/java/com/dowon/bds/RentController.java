@@ -56,25 +56,6 @@ public class RentController {
 	@Autowired
 	private IResveService resveService;
 	
-
-	
-//	@GetMapping("/userRentList.do")
-//	public String userRentList(HttpSession session, Model model, HttpServletResponse response) {
-//		log.info("Welcome RentController userRentList 회원의 마이페이지-대출도서목록에 들어갈 페이지 컨트롤러");
-//		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
-//		AddrDto addrDto = new AddrDto();
-//		session.setAttribute("addrDto", addrDto);
-//	    if (loginDto != null) {
-//	        int user_seq = loginDto.getUser_seq();
-//	        List<Map<String, Object>> lists = rentService.selectMyBookRent(user_seq);
-//	        model.addAttribute("userRentList", lists);
-//	        model.addAttribute("seq", user_seq);
-//	        return "userRentList";
-//	    } else {
-//	        return "redirect:/loginPage.do";
-//	    }
-//	    
-//	}
 	
 	//회원 개인의 대출목록(페이징처리)
 	@GetMapping("/userRentPageList.do")
@@ -86,8 +67,8 @@ public class RentController {
 		        int user_seq = loginDto.getUser_seq();
 		        
 		r.setTotalCount(rentService.userCountRent(user_seq));
-		r.setCountList(3);
-		r.setCountPage(3);
+		r.setCountList(5);
+		r.setCountPage(5);
 		r.setTotalPage(r.getTotalCount());
 		r.setPage(selectPage);
 		r.setStartPage(selectPage);
@@ -114,26 +95,7 @@ public class RentController {
 	}
 	
 	
-//	   //원래 컨트롤러(나중에 삭제할것)
-//  @GetMapping("/oldAdminRentList.do")
-//  public String oldAdminRentList(Model model) {
-//     log.info("Welcome RentController adminRentList 관리자페이지-회원도서대출목록 에 들어갈 페이지 컨트롤러");
-//     List<Map<String, Object>> lists = rentService.selectAdminRent();
-//     model.addAttribute("lists",lists);
-//     return "adminRentList";
-//  }
 
-	
-	//관리자 ajax 대출관리
-//    @GetMapping("/adminRentList.do")
-//    @ResponseBody
-//    public Map<String, Object> adminRentList(Model model) {
-//        Map<String, Object> response = new HashMap<>();
-//        List<Map<String, Object>> lists = rentService.selectAdminRent();
-//        response.put("lists", lists);
-//        return response;
-//    }
-	
     
     //관리자 ajax 대출관리 페이징
     @GetMapping("/adminRentList.do")
@@ -145,7 +107,7 @@ public class RentController {
     	
     	adminPaging.setTotalCount(rentService.allUserCountRent());
     	adminPaging.setCountList(10);
-    	adminPaging.setCountPage(5);
+    	adminPaging.setCountPage(10);
     	adminPaging.setTotalPage(adminPaging.getTotalCount());
     	adminPaging.setPage(selectPage);
     	adminPaging.setStartPage(selectPage);
@@ -172,7 +134,7 @@ public class RentController {
 	
 	
 
-	//원래 컨트롤러(페이징 추가)
+	//관리자-회원대출관리 jsp (페이징처리)
 	@GetMapping("/oldAdminRentList.do")
 	public String oldAdminRentList(@RequestParam(name = "page", defaultValue = "1") int selectPage,Model model) {
 		log.info("Welcome RentController adminRentList 관리자페이지-회원도서대출목록 에 들어갈 페이지 컨트롤러");
@@ -203,13 +165,7 @@ public class RentController {
 		return "adminRentList";
 	}
     
-    
-    
-    
-    
-    
-    
-    
+
 	
 	 @PostMapping("/confirmReturn.do")
 	 @ResponseBody

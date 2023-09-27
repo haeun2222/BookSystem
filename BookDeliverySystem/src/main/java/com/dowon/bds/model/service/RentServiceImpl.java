@@ -126,11 +126,13 @@ public class RentServiceImpl implements IRentService {
 	
 	@Override
 	public int userCountRent(int n) {
+		log.info("RentServiceImpl userCountRent 회원 대출목록 페이징처리를 위한 총 카운트");
 		return dao.userCountRent(n);
 	}
 	
 	@Override
 	public List<Map<String, Object>> userRentPageList(Map<String, Object> map) {
+		log.info("RentServiceImpl userRentPageList 회원의 대출목록 페이징처리를 위한 조회 리스트 : {}",map);
 		return dao.userRentPageList(map);
 	}
 	
@@ -139,11 +141,13 @@ public class RentServiceImpl implements IRentService {
 	
 	@Override
 	public int allUserCountRent() {
+		log.info("RentServiceImpl allUserCountRent 전체회원 대출목록 페이징처리를 위한 총 카운트");
 		return dao.allUserCountRent();
 	}
 
 	@Override
 	public List<Map<String, Object>> allRentPageList(Map<String, Object>map) {
+		log.info("RentServiceImpl allRentPageList 전체회원 대출목록 페이징처리를 위한 조회 리스트 : {}",map);
 		return dao.allRentPageList(map);
 	}
 	

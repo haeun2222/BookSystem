@@ -22,8 +22,6 @@
 <body>
 <div class="container">
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
-<%-- <c:choose> --%>
-<%--     <c:when test="${not empty resveDto.lists}"> --%>
 		<h1>${loginUser.user_name}님의 예약 도서 목록 입니다</h1>
 		<button class="btn" id="refreshButton" style="float: right; background-color: #00fff5; color: #393E46">예약내역 갱신</button>
 		    <script>
@@ -44,7 +42,6 @@
     <c:forEach var="resve" items="${userResvePageList}"  varStatus="status">
         <tr>
         	<td>${resveDto.getTotalCount() - (resveDto.getPage() - 1) * resveDto.getCountList() - status.index}</td>
-<%--         	<td>${status.index + 1}</td> --%>
             <td>${resve.BOOK_TITLE}</td>
             <td>
 			    <c:choose>
@@ -88,16 +85,16 @@
     <div class="text-center">
         <ul class="pagination pagination-lg">
             <c:if test="${resveDto.getStartPage() > 1}">
-                <li><a href="./userResvePageList.do?page=1">◁◁</a></li>
+                <li><a href="./userResvePageList.do?page=1">처음</a></li>
             </c:if>
     
             <c:if test="${resveDto.getStartPage() > 1}">
                 <c:choose>
                     <c:when test="${resveDto.getStartPage() - resveDto.getCountPage() <= 0}">
-                        <li><a href="./userResvePageList.do?page=1">◀</a></li>
+                        <li><a href="./userResvePageList.do?page=1">이전</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li><a href="./userResvePageList.do?page=${resveDto.getStartPage() - resveDto.getCountPage()}">◀</a></li>
+                        <li><a href="./userResvePageList.do?page=${resveDto.getStartPage() - resveDto.getCountPage()}">이전</a></li>
                     </c:otherwise>
                 </c:choose>
             </c:if>
@@ -111,24 +108,19 @@
             <c:if test="${resveDto.getPage() < resveDto.getTotalPage()}">
                 <c:choose>
                     <c:when test="${resveDto.getStartPage() + resveDto.getCountPage() > resveDto.getTotalPage()}">
-                        <li><a href="./userResvePageList.do?page=${resveDto.getTotalPage()}">▶</a></li>
+                        <li><a href="./userResvePageList.do?page=${resveDto.getTotalPage()}">다음</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li><a href="./userResvePageList.do?page=${resveDto.getStartPage() + resveDto.getCountPage()}">▶</a></li>
+                        <li><a href="./userResvePageList.do?page=${resveDto.getStartPage() + resveDto.getCountPage()}">다음</a></li>
                     </c:otherwise>
                 </c:choose>
             </c:if>
     
             <c:if test="${resveDto.getEndPage() < resveDto.getTotalPage()}">
-                <li><a href="./userResvePageList.do?page=${resveDto.getTotalPage() - resveDto.getTotalPage() % resveDto.getCountList() + 1}">▷▷</a></li>
+                <li><a href="./userResvePageList.do?page=${resveDto.getTotalPage() - resveDto.getTotalPage() % resveDto.getCountList() + 1}">끝</a></li>
             </c:if>
         </ul>
     </div>
-<%--     </c:when> --%>
-<%--     <c:otherwise> --%>
-<%--         <h1>${loginUser.user_name}님은 예약 도서가 없습니다</h1> --%>
-<%--     </c:otherwise> --%>
-<%-- </c:choose> --%>
 
 
 </div>
