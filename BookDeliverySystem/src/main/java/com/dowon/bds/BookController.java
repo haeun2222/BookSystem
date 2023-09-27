@@ -78,8 +78,8 @@ public class BookController {
 	 */
 	@RequestMapping(value="/getDetailBook.do", method = RequestMethod.GET)
 	public String detailBook(@RequestParam("book_seq")int seq, Model model, HttpSession session) {
-		log.info("detailBook 도서 상세 보기");
-		log.info("★★★★★★★seq? : {}",seq);
+		log.info("Welcome BookController detailBook 도서 상세페이지 컨트롤러");
+		log.info("Welcome BookController detailBook book_seq확인 : {}",seq);
 		BookDto dto = service.detailBook(seq);
 		UserDto loginDto = (UserDto) session.getAttribute("loginDto");
 		

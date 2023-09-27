@@ -22,17 +22,18 @@ document.addEventListener("DOMContentLoaded", function() {
     
 	console.log("isReservable : ",isReservable );
     console.log("userSeq : " , userSeq);
-    console.log(rentDataSize, resveDataSize, filteredBookSeqList, rentYBookSeqList);
-	console.log(typeof rentDataSize);
+    console.log("filteredBookSeqList : ", filteredBookSeqList);
+    console.log("rentYBookSeqList : ", rentYBookSeqList);
+	console.log("rentDataSize Type : ",typeof rentDataSize);
 	console.log("rentDataTitle : " ,rentDataTitle);
 	console.log("resveDataTitle : " ,resveDataTitle);
-	console.log("@@@@@@@@rentData : " ,rentData);
-	console.log("########resveData : " ,resveData);
-	console.log(loginDto);
-	console.log(userName, userEmail);
-	console.log(detailBook);
-	console.log(bookTitle,bookWriter,bookSeq);
-	console.log(typeof bookSeq);
+	console.log("rentData : " ,rentData);
+	console.log("resveData : " ,resveData);
+	console.log("loginDto : ",loginDto);
+	console.log("userName, userEmail : ",userName, userEmail);
+	console.log("detailBook :" ,detailBook);
+	console.log("bookTitle,bookWriter,bookSeq : " ,bookTitle,bookWriter,bookSeq);
+	console.log("bookSeq Type : " ,typeof bookSeq);
 
 function chkAvailability() {
 	var modalContent = "";

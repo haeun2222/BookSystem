@@ -68,12 +68,14 @@ public class ResveServiceImpl implements IResveService {
 
 	@Override
 	public int userCountResve(int n) {
+		log.info("ResveServiceImpl userCountResve 회원 예약목록 페이징처리를 위한 총 카운트");
 		return dao.userCountResve(n);
 	}
 
 
 	@Override
 	public List<Map<String, Object>> userResvePageList(Map<String, Object> map) {
+		log.info("ResveServiceImpl userResvePageList 회원 예약목록 페이징처리를 위한 조회 리스트 : {}",map);
 		return dao.userResvePageList(map);
 	}
 

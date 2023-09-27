@@ -49,8 +49,8 @@ public class ResveController {
 			int user_seq = loginDto.getUser_seq();
 			
 			resveDto.setTotalCount(resveService.userCountResve(user_seq));
-			resveDto.setCountList(2);
-			resveDto.setCountPage(2);
+			resveDto.setCountList(5);
+			resveDto.setCountPage(5);
 			resveDto.setTotalPage(resveDto.getTotalCount());
 			resveDto.setPage(selectPage);
 			resveDto.setStartPage(selectPage);
