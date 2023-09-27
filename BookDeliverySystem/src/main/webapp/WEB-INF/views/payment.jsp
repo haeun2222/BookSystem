@@ -6,16 +6,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/payment.css">
 <link rel="stylesheet" href="css/header.css">
-<title>Payment 결제 페이지</title>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<title>Payment 결제 페이지</title>
 <script>
 var merchant_uid = merchant_uid + 1; // DB 에서 마지막 시퀀스를 가지고 왔다가 처리 해야함.
 var payPayment = 5000; // 배송비 5000원 결제되도록 설정
@@ -149,7 +150,8 @@ async function requestPay() {
 
 </head>
 <%@ include file="/WEB-INF/views/header.jsp" %>
-<body style="background-image: url('./img/book.png'); background-repeat: no-repeat; background-size: 100%; background-position: bottom; height: 1000px;">
+<body>
+	<div class="container">
 	<!-- 세션에서 loginDto 속성을 불러옴 -->
 	<c:set var="loginDto" value="${sessionScope.loginDto}" />
 
@@ -160,11 +162,12 @@ async function requestPay() {
 	<!-- <div class="flex-container"> -->
 
 	<div style="text-align: center;">
-		<h1 style="padding-top: 100px;">${sessionScope.loginDto.user_name}님
+		<h1 class="pay">${sessionScope.loginDto.user_name}님
 			배송비 결제페이지</h1>
 		<button class="button" onclick="requestPay()">결제하기</button>
 		<button class="button2"
 			onclick="location.href='./detailBook.do?user_seq=${loginDto.user_seq}'">취소</button>
+	</div>
 	</div>
 </body>
 <%@ include file="/WEB-INF/views/footer.jsp" %>

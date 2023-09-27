@@ -11,21 +11,18 @@
 <title>주소 정보</title>
 <link rel="stylesheet" href="css/addrCheck.css" />
 <link rel="stylesheet" href="css/font.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <body>
 
-
-
-
-
 <c:set var="loginUser" value="${sessionScope.loginDto}"/>
-<h1 style="font-family: 'Hanna', fantasy;">${sessionScope.loginDto.user_name}님의 배송지 확인</h1>
-    <div id="container" style="width: 800px; height: 360px;">
-        <h2>입력한 주소 확인</h2>
+<h1 class="deli-heading">${sessionScope.loginDto.user_name}님의 배송지 확인</h1>
+    <div id="container">
         <table>
         <thead>
             <tr>
@@ -46,7 +43,7 @@
             </tr>
            </thead>
         </table>
-       <div class="container" style="justify-content: center;">
+       <div class="containerBtn">
 			<input class="btn btn-info" type="button" value="결제요청" onclick="redirectToPayment()">
 		    <button class="btn"  onclick="history.back(-1)">취소</button>
      
@@ -55,6 +52,7 @@
 
 
 
+</body>
 <script>
     // JavaScript를 사용하여 bookSeq 값을 전달하고 페이지 이동
     function redirectToPayment() {
@@ -63,6 +61,5 @@
         location.href = url;
     }
 </script>
-</body>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 </html>

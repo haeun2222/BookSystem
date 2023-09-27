@@ -18,17 +18,14 @@
 </head>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <body>
-
+<div class="container">
 <c:set var="loginUser" value="${sessionScope.loginDto}"/>
-<h1 style="font-family: 'Hanna', fantasy;">${loginUser.user_name}님의 배송지 입력</h1>
+<h1 style="font-family: 'Hanna', fantasy;  text-align:  center;  padding-top: 50px;">${loginUser.user_name}님의 배송지 입력</h1>
 <br>
 	<form action="./addrCheck.do" method="post"  onsubmit="return validateForm();">
 		<table class="table table-bordered form-group">
-				<thead>
-
-				</thead>
 		
-				<tbody>   
+		 
 					<tr>
 						<th class="center-text" style="padding-top: 75px;">배송정보</th>
 						<td>
@@ -42,20 +39,23 @@
 							<input type="hidden" name="book_seq" value="${bookSeq}"/> 
 						</td>
 					</tr>
-		    </tbody>
+		   
 	 
-	 		<tfoot>
 				 	<tr>
 						<th colspan="2" style="text-align: center;">
 							<button type="submit" class="btn btn-default">배송지입력</button>
 							<button class="btn btn-default" onclick="history.back(-1)">취소</button>
 						</th>
 				</tr>
-			</tfoot>
+		
 		</table>
 	</form>
+</div>
 
 
+
+</body>
+<%@ include file="/WEB-INF/views/footer.jsp" %>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
@@ -137,17 +137,10 @@
             return false;
         }
 
-        // 상세주소 필드의 길이 검사 (15자 이하)
-        if (detailAddress.length > 35 ||!validPattern.test(detailAddress) ) {
-            alert("상세주소는 35자 이하로 입력해야 합니다.");
-            return false;
-        }
+    
 
 
         return true;
     }
 </script>
-
-</body>
-<%@ include file="/WEB-INF/views/footer.jsp" %>
 </html>

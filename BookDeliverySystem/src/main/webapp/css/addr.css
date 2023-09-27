@@ -1,32 +1,25 @@
 @charset "UTF-8";
-
-
 body {
-	 background-image: url("../img/146.png");
-	 background-repeat : no-repeat;
-	 background-size: contain;
-	 background-position :center; 
-	 background-size : 140% ;
+  width: 1280px;
+  background-color: white;
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-size: 15px;
+  color: #222831;
+  background-image: url("../img/deil.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right bottom; /* 오른쪽 아래 모서리로 배경 이미지 이동 */
+  background-size: 80%;
 }
-body {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
+
+   form {
+  		margin-top: 95px;
+    	margin-left: auto;
+    	margin-right: auto;
+    	width: 50%; /* 원하는 너비 설정 */
     }
 
-    .container {
-        width: 100%;
-        max-width: 1000px; /* 조절 가능한 최대 너비 */
-        padding: 20px;
-        height: 1000px;
-    }
-
-    .table {
-        width: 100%;
-    }
 
     .center-text {
         text-align: center;
@@ -45,13 +38,17 @@ body {
     }
 
     #sample6_detailAddress {
-        width: 40%;
+        width: 35%;
     }
 
     #sample6_extraAddress {
-        width: 40%;
+        width: 34%;
     }
 
     .btn {
         margin-right: 10px;
     }
+    
+    .container {
+	height: 70vh;
+}
