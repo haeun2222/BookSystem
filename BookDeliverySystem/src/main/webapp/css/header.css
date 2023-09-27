@@ -37,11 +37,13 @@ span{
   text-align: center;
   line-height: 75px;
   font-size: 30px;
+  text-align: right;
 }
 
 li,.btn{
 	font-family: 'BMHANNAAir', fantasy;
    font-size: 20px;
 }
+
 
 

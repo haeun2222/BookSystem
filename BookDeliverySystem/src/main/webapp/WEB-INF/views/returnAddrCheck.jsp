@@ -9,20 +9,21 @@
 <head>
 <meta charset="UTF-8">
 <title>주소 정보</title>
-<link rel="stylesheet" href="css/returnAddrCheck.css" />
+<link rel="stylesheet" href="css/addrCheck.css" />
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<%@ include file="header.jsp" %>
+<%@ include file="/WEB-INF/views/header.jsp" %>
 <body>
 
 
 <c:set var="loginUser" value="${sessionScope.loginDto}"/>
-<h1 style="font-family: 'Hanna', fantasy;">${sessionScope.loginDto.user_name}님의 수거요청이 완료되었습니다.</h1>
-    <div id="container" style="width: 800px; height: 360px;">
+<h1 style="font-family: 'Hanna', fantasy; padding-top: 20px;">${sessionScope.loginDto.user_name}님의 수거요청이 완료되었습니다.</h1>
+    <div id="container">
         <table>
         <thead>
             <tr>
@@ -43,7 +44,7 @@
             </tr>
            </thead>
         </table>
-       <div class="container">
+        <div class="containerBtn">
 			<button class="btn btn-info" onclick="redirectToIndex(${loginDto.user_seq})">확인</button>
 		    <button class="btn"  onclick="history.back(-1)">취소</button>
      

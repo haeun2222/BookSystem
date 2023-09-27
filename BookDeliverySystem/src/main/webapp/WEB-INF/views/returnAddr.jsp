@@ -11,14 +11,16 @@
 <title>수거요청지 입력</title>
 <link rel="stylesheet" href="css/addr.css" />
 <link rel="stylesheet" href="css/font.css">
+<link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <body>
+<div class="container">
 <c:set var="loginUser" value="${sessionScope.loginDto}"/>
-<h1 style="font-family: 'Hanna', fantasy;">${loginUser.user_name}님의 수거요청</h1>
+<h1 style="font-family: 'Hanna', fantasy; text-align:  center; 	  padding-top: 50px;">${loginUser.user_name}님의 수거요청지 입력</h1>
 <br>
 	<form action="./returnAddrCheck.do" method="post"  onsubmit="return validateForm();">
 		<table class="table table-bordered form-group">
@@ -53,7 +55,8 @@
 		</table>
 	</form>
 
-
+</div>
+</body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
@@ -135,17 +138,11 @@
             return false;
         }
 
-        // 상세주소 필드의 길이 검사 (15자 이하)
-        if (detailAddress.length > 35 ||!validPattern.test(detailAddress) ) {
-            alert("상세주소는 35자 이하로 입력해야 합니다.");
-            return false;
-        }
-
 
         return true;
     }
 </script>
 
-</body>
+
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 </html>
