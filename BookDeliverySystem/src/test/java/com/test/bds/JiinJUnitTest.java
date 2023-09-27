@@ -94,5 +94,12 @@ public class JiinJUnitTest {
 		assertNotNull(lists);
 	}
 	
+    @Test
+    public void faqMainList() {
+    	List<FaqBoardDto> faqList = faqDao.mainFaqList();
+    	log.info("JiinJUnitTest mainFaqList{}",faqList);
+    	assertNotNull(faqList);
+    }
+	
 
 }

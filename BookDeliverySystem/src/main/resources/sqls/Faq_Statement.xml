@@ -46,4 +46,21 @@ UPDATE TB_FAQ_BOARD SET FAQ_DELFLAG='Y'
 UPDATE TB_FAQ_BOARD SET FAQ_CONTENT= #{faq_content}
 		WHERE FAQ_SEQ=#{faq_seq}
 </update>
+
+<!-- 메인 페이지에서 FAQ 6개 출력 -->
+<select id="mainFaqList" parameterType="java.util.Map" resultType="FaqBoardDto">
+    SELECT FAQ_SEQ, USER_SEQ, FAQ_CATEGORY, FAQ_TITLE, FAQ_CONTENT, FAQ_DELFLAG
+    FROM (
+        SELECT FAQ_SEQ, USER_SEQ, FAQ_CATEGORY, FAQ_TITLE, FAQ_CONTENT, FAQ_DELFLAG, ROWNUM AS RN
+        FROM (
+            SELECT FAQ_SEQ, USER_SEQ, FAQ_CATEGORY, FAQ_TITLE, FAQ_CONTENT, FAQ_DELFLAG
+            FROM BOOK.TB_FAQ_BOARD
+            WHERE FAQ_DELFLAG = 'N'
+            ORDER BY FAQ_SEQ DESC
+        )
+    )
+    WHERE RN &lt;= 6
+</select>
+
+
 </mapper>

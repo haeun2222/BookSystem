@@ -50,4 +50,10 @@ public class FaqBoardDaoImpl implements IFaqBoardDao {
 		return session.update(NS+"updateFaq", map);
 	}
 
+	@Override
+	public List<FaqBoardDto> mainFaqList() {
+		log.info("FaqBoardDaoImpl mainFaqList FAQ게시판 메인 출력");
+		return session.selectList(NS+"mainFaqList");
+	}
+
 }
