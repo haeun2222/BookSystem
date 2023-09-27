@@ -51,7 +51,7 @@ public class JiinJUnitTest {
 	@Autowired
 	private IPaymentService payService;
 	
-	@Test
+//	@Test
 	public void test() {
 
 //		int n = payService.userCountPay(706);

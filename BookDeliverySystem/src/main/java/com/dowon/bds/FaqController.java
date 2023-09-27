@@ -27,11 +27,11 @@ public class FaqController {
 	@Autowired
 	private IFaqService service;
 	
-	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
-	public String home() {
-		log.info("FaqController home 메인화면으로 이동");
-		return "redirect:/index.jsp";
-	}
+//	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
+//	public String home() {
+//		log.info("FaqController home 메인화면으로 이동");
+//		return "redirect:/index.jsp";
+//	}
 	
 	@RequestMapping(value = "/faqList.do" , method = RequestMethod.GET)
 	public String faqList(Model model) {
@@ -111,20 +111,16 @@ public class FaqController {
 		return "faqBoardDetail";
 	}
 	
-	@RequestMapping (value = "/mainFaqList.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mainFaqList.do", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public String mainFaqList(Model model) {
-//		FaqBoardDto faqDto = (FaqBoardDto)session.getAttribute("faqDto");
-		List<FaqBoardDto> faqList = service.mainFaqList();
-		model.addAttribute("faqList",faqList);
-		
-		log.info("Welcome ResveController userRentPageList mainFaqList확인 : {}",faqList);
-		return "index";
+	public List<FaqBoardDto> mainFaqList(Model model) {
+	    List<FaqBoardDto> faqList = service.mainFaqList();// 최근 8개의 FAQ만 가져오기
+	    model.addAttribute("faqList", faqList);
+	    
+	    log.info("Welcome ResveController userRentPageList mainFaqList 출력 : {}", faqList);
+	    return faqList;
 	}
-	
-	
-	
-	
+
 	
 	
 	

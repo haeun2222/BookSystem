@@ -44,6 +44,12 @@ li,.btn{
 	font-family: 'BMHANNAAir', fantasy;
    font-size: 20px;
 }
-
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+/*     background-color: #2ac1bc; */
+}
 
 
