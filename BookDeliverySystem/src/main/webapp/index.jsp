@@ -26,20 +26,17 @@ svg > g > g:last-child { pointer-events: none }
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <c:set var="faqList" value="${faqList}"/>
 <body>
-${faqList}
 <div id="body_div" style="height: auto;">
 
 <!-- 슬라이더 첫번째div -->
 <div id="slider-div">
-    <div><img src="./img/9.png" width="100%"></div>
-    <div><img src="./img/guide.jpg" width="100%"></div>
-    <div><img src="./img/2222.png" width="100%"></div>
-    <div><img src="./img/22222.png" width="100%"></div>
-    <div><img src="./img/7.png" width="100%"></div>
-    <div><img src="./img/header01.png" width="100%"></div>
-    <div><img src="./img/header02.png" width="100%"></div>
-    <div><img src="./img/header03.png" width="100%"></div>
-    <div><img src="./img/header04.png" width="100%"></div>
+    <div><img  src="./img/9.png" ></div>
+    <div><img  src="./img/2222.png"></div>
+    <div><img  src="./img/7.png"></div>
+    <div><img  src="./img/header01.png"></div>
+    <div><img  src="./img/header02.png"></div>
+    <div><img  src="./img/header03.png"></div>
+    <div><img  src="./img/header04.png"></div>
 </div>
 <!-- 검색창 두번째div -->
 <form action="./searchBooks.do" method="get" >
@@ -50,48 +47,58 @@ ${faqList}
 </form> 
 
 <div class="flex-container">
-	<div style="text-align: center;"><img src="./img/bookh.gif"></div>
-
+<!-- 도서관 이벤트 출력화면 -->
+	<div>
+	<h3>신간소개</h3>
+	<img id="event" src="./img/yr.gif">
+	<img id="event" src="./img/ban.gif">
+	</div>
+<!-- FAQ 리스트 메인 출력 -->
 	<div style="text-align: center;">
-       <table class="table" border="1" id="faq-table">
-<%--             <c:forEach var="faqBoard" items="${faqList}"> --%>
-<!--                 <tr> -->
-<!--                     <td> -->
-<!--                         <h5 class="faq-title"> -->
-<%--                             ${faqBoard.faq_title} --%>
-<!--                         </h5> -->
-<!--                     </td> -->
-<!--                 </tr> -->
-<%--             </c:forEach> --%>
-        </table>
+		<h3>FAQ</h3>
+        <table class="table" border="1" id="faq-table">
+        <c:forEach var="faq" items="${faqList}">
+            <tr>
+                <td>
+                    <h5 class="faq-title">${faq.faq_title}</h5>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+
     </div>
 	
-	<div style="text-align: center;">나</div>
+	<div style="text-align: center;">공지사항</div>
+</div>
 </div>
 
-</div>
 </body>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 <script>
 $(document).ready(function() {
-    // 페이지 로드 시 FAQ 목록을 가져옵니다.
-    loadFaqList();
+    loadFaqList();// 페이지 로드 시 FAQ 목록을 가져옴
 });
 
 function loadFaqList() {
     $.ajax({
         type: "GET",
         url: "./mainFaqList.do", 
-        dataType: "json", // JSON 형식의 응답을 기대합니다.
+        dataType: "json", // JSON 형식의 응답
         success: function(data) {
             // FAQ 목록을 성공적으로 가져왔을 때 처리
             var faqTable = $("#faq-table");
-            faqTable.empty(); // 테이블 비우기
+            faqTable.empty(); // 새글이 올라오면 테이블 비우기
 
-            // 데이터를 반복하여 테이블에 추가합니다.
+            // 데이터를 반복하여 테이블에 추가
             $.each(data, function(index, faq) {
                 var row = $("<tr>");
                 var cell = $("<td>").append($("<h5>").addClass("faq-title").text(faq.faq_title));
+                
+                // FAQ 클릭 이벤트 추가
+                cell.click(function() {
+                // FAQ 상세 정보 페이지로 이동
+                window.location.href = "./faqBoardDetail.do?faq_seq=" + faq.faq_seq;
+                });
                 row.append(cell);
                 faqTable.append(row);
             });

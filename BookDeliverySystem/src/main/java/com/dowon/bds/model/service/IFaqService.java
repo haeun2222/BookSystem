@@ -24,4 +24,6 @@ public interface IFaqService {
 	
 	//FAQ 메인 출력
 	public List<FaqBoardDto> mainFaqList();
+
+
 }

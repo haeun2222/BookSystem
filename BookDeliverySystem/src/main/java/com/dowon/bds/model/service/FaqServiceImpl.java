@@ -50,7 +50,8 @@ public class FaqServiceImpl implements IFaqService {
 	@Override
 	public List<FaqBoardDto> mainFaqList() {
 		log.info("FaqServiceImpl mainFaqList FAQ게시글 메인에 출력");
-		return dao.faqList();
+		return dao.mainFaqList();
 	}
+
 
 }

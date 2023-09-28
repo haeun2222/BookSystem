@@ -10,9 +10,20 @@ body {
 }
 
 img {
-  width: 100%;
+  width: 100%; /* 이미지는 항상 부모 요소의 너비에 맞게 표시됩니다. */
+  height: auto; /* 이미지 높이는 자동으로 조절됩니다. */
+  max-width: 100%; /* 화면을 벗어나지 않도록 최대 크기를 설정합니다. */
+  max-height: 100%; /* 화면을 벗어나지 않도록 최대 크기를 설정합니다. */
 }
 
+
+#event{
+	width:100%;
+}
+
+#slider-div{
+	width: 100%;
+}
 .inner {
   position: relative;
   width: 600px;
@@ -74,3 +85,42 @@ a {
   text-decoration: none;
 }
 
+#faq-title{
+	    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#faq-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#faq-table th, #faq-table td {
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+#faq-table th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 14px;
+}
+
+#faq-table td {
+    font-size: 14px;
+}
+
+#faq-table tr:hover {
+    background-color: #f5f5f5;
+}
+h3{
+	text-align: left;
+	margin: 10px;
+	font-weight: bold;
+}
+h5{
+	font-size: 14px;
+}
