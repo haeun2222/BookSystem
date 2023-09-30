@@ -43,6 +43,7 @@ public class UserController {
 		return "loginPage";
 	}
 	
+	
 	@RequestMapping(value="/login.do", method = RequestMethod.POST)
 	public String login(@RequestParam Map<String,Object> map, HttpSession session, HttpServletResponse response, Model model) throws IOException {
 	    log.info("로그인 처리 login {}", map);
@@ -68,6 +69,7 @@ public class UserController {
 	    }
 	}
 	
+		
 	@GetMapping(value="/logout.do")
 	public String logout(HttpServletRequest request, HttpSession session, HttpServletResponse response) {
 		log.info("로그아웃 실행");
@@ -95,6 +97,11 @@ public class UserController {
 	public String searchForm() {
 		log.info("searchForm 사용자 : 회원정보 찾기");
 		return "searchInfo";
+	}
+	
+	@GetMapping(value="/moveAdminPage.do")
+	public String moveAdmin(){
+		return "adminPage";
 	}
 
 }

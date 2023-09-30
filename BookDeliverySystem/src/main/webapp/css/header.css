@@ -47,8 +47,13 @@ span{
 
 li,.btn{
 	font-family: 'BMHANNAAir', fantasy;
-   font-size: 20px;
+   font-size: 18px;
 }
+
+/* .btn { */
+/* 	text-align: center; */
+/* } */
+
 .container-fluid {
     padding-right: 15px;
     padding-left: 15px;

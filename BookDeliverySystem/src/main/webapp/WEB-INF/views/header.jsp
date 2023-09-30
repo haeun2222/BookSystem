@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel='stylesheet' href='./css/header.css'/>
+<link rel='stylesheet' href='css/header.css'/>
 </head>
 <body>
 
@@ -32,11 +32,19 @@
 				<c:otherwise>
 					<span> 
 						${loginDto.user_name} 님 환영합니다. &nbsp;&nbsp;
+						<c:if test="${loginDto.user_auth eq 'U'}">
 						대출상태 : <a href="./userRentPageList.do"> ${userStatus.RENT_STATUS} </a>&nbsp;&nbsp;
 						예약상태 : <a href="./userResvePageList.do"> ${userStatus.RESVE_STATUS} </a> &nbsp;&nbsp;
+					 	</c:if>
 					 </span>
+					<c:if test="${loginDto.user_auth eq 'A'}">
+					<button class="btn" id="adminbutton" onclick="location.href='./moveAdminPage.do'">
+					관리자페이지
+					</button>
+					</c:if>
 					<button class="btn" id="logoutButton"
-						onclick="location.href='./logout.do'">로그아웃
+						onclick="location.href='./logout.do'">
+						로그아웃
 					</button>
 				</c:otherwise>
 			</c:choose>

@@ -1,6 +1,7 @@
 package com.dowon.bds.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,8 @@ public class BookDaoImpl implements IBookDao {
 	}
 
 	@Override
-	public int updateBook(String isbn, BookDto bookDto) {
-		return sqlSession.update(NS+"updateBook",isbn);
+	public int updateBook(Map<String, Object>map) {
+		return sqlSession.update(NS+"updateBook",map);
 	}
 
 }
