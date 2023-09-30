@@ -42,7 +42,7 @@
 		   
 	 
 				 	<tr>
-						<th colspan="2" style="text-align: center;">
+						<th colspan="2"class="enter">
 							<button type="submit" class="btn btn-default">배송지입력</button>
 							<button class="btn" onclick="history.back(-1)">취소</button>
 						</th>
