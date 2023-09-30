@@ -1,79 +1,79 @@
-
-
-$(document).ready(function() {
-    $("#userTableButton").click(function() {
-        toggleUserTable();
-    });
-
-    $("#bookTableButton").click(function() {
-        toggleBookTable();
-    });
-
-    $("#rentListButton").click(function() {
-        // 대출관리 버튼에 대한 동작 추가
-        toggleRentTable();
-    });
-
-    // 초기에 테이블은 숨겨져 있도록 설정
-    hideUserTable();
-    hideBookTable();
-    hideBookSearchTable();
-    hideRentTable();//하은추가
-});
-
-var isBookTableVisible = false;
-
-function toggleBookTable() {
-    isBookTableVisible = !isBookTableVisible;
-    if (isBookTableVisible) {
-        getAllBooks();
-        hideUserTable();
-        hideBookSearchTable();
-        hideRentTable();//하은추가
-        $("#bookInfoTable").show();
-    } else {
-        hideBookTable();
-    }
-}
-
-function getAllBooks() {
-	$("#userInfoTable").hide();
-	$("#rentListTable").hide();//하은추가
-	$("#bookInfoTable").show();
-	var bookList = $("<table id='bookList'>").append(
-			$("<tr>").append(
-				"<th>도서번호</th>",
-		        "<th>도서이미지</th>",
-		        "<th>도서제목</th>",
-		        "<th>저자명</th>",
-		        "<th>도서 ISBN</th>",
-		        "<th>출판사</th>",
-		        "<th>출판일</th>"
-			)
-	);		
-    $.get("./getAllBooks.do", function(getAllBooks) { 
-        $.each(getAllBooks, function(index, book) {
-            bookList.append(
-            	$("<tr onclick=\"location.href='./getDetailBook.do?book_seq="+book.book_seq+"'\">").append(
-            	'<td>'+ book.book_seq + '</td>',
-            	'<td> <img src="' + book.book_img + '"> </td>',
-            	'<td>'+ book.book_title + "</td>",
-            	'<td>'+ book.book_writer + '</td>',
-            	'<td>'+ book.book_isbn + '</td>',
-            	'<td>'+ book.book_publisher + '</td>',
-            	'<td>'+ book.book_published_date + '</td>'
-            	)
-            );
-        });
-    });
-    
-    $("#bookInfoTable").html(bookList);
-}
-
-function hideBookTable() {
-    // 도서 정보 테이블을 숨기는 로직
-    $("#bookinfoTable").empty();
-}
+//
+//
+//$(document).ready(function() {
+//    $("#userTableButton").click(function() {
+//        toggleUserTable();
+//    });
+//
+//    $("#bookTableButton").click(function() {
+//        toggleBookTable();
+//    });
+//
+//    $("#rentListButton").click(function() {
+//        // 대출관리 버튼에 대한 동작 추가
+//        toggleRentTable();
+//    });
+//
+//    // 초기에 테이블은 숨겨져 있도록 설정
+//    hideUserTable();
+//    hideBookTable();
+//    hideBookSearchTable();
+//    hideRentTable();//하은추가
+//});
+//
+//var isBookTableVisible = false;
+//
+//function toggleBookTable() {
+//    isBookTableVisible = !isBookTableVisible;
+//    if (isBookTableVisible) {
+//        getAllBooks();
+//        hideUserTable();
+//        hideBookSearchTable();
+//        hideRentTable();//하은추가
+//        $("#bookInfoTable").show();
+//    } else {
+//        hideBookTable();
+//    }
+//}
+//
+//function getAllBooks() {
+//	$("#userInfoTable").hide();
+//	$("#rentListTable").hide();//하은추가
+//	$("#bookInfoTable").show();
+//	var bookList = $("<table id='bookList'>").append(
+//			$("<tr>").append(
+//				"<th>도서번호</th>",
+//		        "<th>도서이미지</th>",
+//		        "<th>도서제목</th>",
+//		        "<th>저자명</th>",
+//		        "<th>도서 ISBN</th>",
+//		        "<th>출판사</th>",
+//		        "<th>출판일</th>"
+//			)
+//	);		
+//    $.get("./getAllBooks.do", function(getAllBooks) { 
+//        $.each(getAllBooks, function(index, book) {
+//            bookList.append(
+//            	$("<tr onclick=\"location.href='./getDetailBook.do?book_seq="+book.book_seq+"'\">").append(
+//            	'<td>'+ book.book_seq + '</td>',
+//            	'<td> <img src="' + book.book_img + '"> </td>',
+//            	'<td>'+ book.book_title + "</td>",
+//            	'<td>'+ book.book_writer + '</td>',
+//            	'<td>'+ book.book_isbn + '</td>',
+//            	'<td>'+ book.book_publisher + '</td>',
+//            	'<td>'+ book.book_published_date + '</td>'
+//            	)
+//            );
+//        });
+//    });
+//    
+//    $("#bookInfoTable").html(bookList);
+//}
+//
+//function hideBookTable() {
+//    // 도서 정보 테이블을 숨기는 로직
+//    $("#bookinfoTable").empty();
+//}
 
 
 //도서 검색 js

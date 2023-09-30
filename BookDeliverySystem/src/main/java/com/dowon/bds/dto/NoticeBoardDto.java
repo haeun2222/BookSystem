@@ -28,5 +28,6 @@ public class NoticeBoardDto {
 	private String notice_content;
 	private Date notice_regdate;
 	private String notice_delflag;
+	private String user_name;
 
 }
