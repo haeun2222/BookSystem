@@ -57,7 +57,6 @@
         <li><a href="./freeBoardList.do">자유게시판</a></li>
         <li><a href="./faqList.do">FAQ</a></li>
         <li><a href="./oldAdminRentList.do">회원 대출 관리</a></li>
-        <button id="rentListButton">대출관리(페이징중)</button>
       </ul>
     </div>
   </nav>
