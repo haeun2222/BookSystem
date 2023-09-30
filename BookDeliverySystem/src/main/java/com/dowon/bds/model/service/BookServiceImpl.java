@@ -1,6 +1,7 @@
 package com.dowon.bds.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,6 +54,12 @@ public class BookServiceImpl implements IBookService {
 	public List<BookDto> searchBooks(String keyword) {
 		log.info("BookServiceImpl searchBooks 도서 검색하기");
 		return dao.searchBooks(keyword);
+	}
+
+	@Override
+	public int updateBook(Map<String, Object>map) {
+		log.info("BookServiceImpl searchBooks 도서 수정하기");
+		return dao.updateBook(map);
 	}
 	
 

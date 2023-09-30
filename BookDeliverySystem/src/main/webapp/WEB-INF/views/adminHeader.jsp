@@ -20,7 +20,8 @@
 		</div>
 		
 		<div class="topLogo" id="loginBtn" style="margin-top: 30px;">
-			<button class="btn btn-info" onclick="location.href='./logout.do'">로그아웃</button>  
+			<span class="inline-elements">${loginDto.user_name} 님 환영합니다.</span>
+			<button class="btn btn-info inline-elements" onclick="location.href='./logout.do'">로그아웃</button>  
 		</div>
 	</div>
 

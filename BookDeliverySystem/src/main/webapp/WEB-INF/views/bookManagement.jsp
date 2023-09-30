@@ -6,11 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>도서 리스트</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="css/adminPage.css"/>
+<link rel="stylesheet" href="css/bookList.css"/>
+<!-- <link rel="stylesheet" href="css/adminPage.css"/> -->
 </head>
 <%@ include file="/WEB-INF/views/adminHeader.jsp" %>
 <body>
@@ -25,10 +26,10 @@
             <th>출판일</th>
         </tr>
         <c:forEach var="book" items="${getAllBooks}">
-            <tr onclick="location.href='./getDetailBook.do?book_seq=${book.book_seq}'">
-                <td>${book.book_seq}</td>
-                <td><img src="${book.book_img}"></td>
-                <td>${book.book_title}</td>
+            <tr>
+                <td >${book.book_seq}</td>
+                <td><a href='./getAdminDetailBook.do?book_seq=${book.book_seq}'><img src="${book.book_img}"></a></td>
+     		    <td><a href='./getAdminDetailBook.do?book_seq=${book.book_seq}'>${book.book_title}</a></td>
                 <td>${book.book_writer}</td>
                 <td>${book.book_isbn}</td>
                 <td>${book.book_publisher}</td>

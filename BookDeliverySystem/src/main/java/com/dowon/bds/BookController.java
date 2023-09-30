@@ -1,8 +1,13 @@
 package com.dowon.bds;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,14 +60,6 @@ public class BookController {
 	@Autowired
 	private IResveService resveService;
 
-	@RequestMapping(value="/getAllBooks.do", method = RequestMethod.GET)
-	@ResponseBody
-	public List<BookDto> getAllBooks() {
-		log.info("관리자 getAllBooks 모든책정보 가져오기");
-		List<BookDto> getAllBooks = service.getAllBook();
-		return getAllBooks;
-	}
-	
 	@GetMapping(value="/userBookList.do")
 	public String userBookList(Model model){
 		log.info("사용자 userBookList 모든책정보 가져오기");
@@ -105,6 +103,14 @@ public class BookController {
 		
 	}
 	
+	@GetMapping(value="/getAdminDetailBook.do")
+	public String adminDetailBook(@RequestParam("book_seq")int seq, Model model) {
+		log.info("Welcome BookController adminDetailBook 어드민 도서 상세페이지");
+		BookDto dto = service.detailBook(seq);
+		model.addAttribute("detailBook",dto);
+		return "adminDetailBook";
+	}
+	
 
 
 	//도서등록컨트롤러(GET)
@@ -126,21 +132,20 @@ public class BookController {
 	
 	@PostMapping(value = "/registbutton.do")
 	public String registBook(@ModelAttribute BookDto dto, Model model) {
-	    log.info("★★★★date 값 확인 : {}", dto.getBook_published_dateStr());
-
-	    // 컨트롤러에서 클라이언트에서 받은 문자열을 Date로 변환하는 코드
-	    try {
+		
+		try {
 	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	        Date parsedDate = dateFormat.parse(dto.getBook_published_dateStr()); // 이 때, dto에서 book_published_dateStr 필드를 추가해주세요.
 	        dto.setBook_published_date(parsedDate);
 	    } catch (ParseException e) {
 	        e.printStackTrace();
 	    }
-	    
+
 	    int n = service.registBook(dto);
 	    if(n==1) {
 	    	log.info("Welcome registBook 도서 등록 성공");
 	    	model.addAttribute("result", "도서 등록 성공!");
+	    	return "redirect:/bookMagagement.do";
 	    }else {
 	    	log.info("Welcome registBook 도서 등록 실패");
 	    	model.addAttribute("result", "도서 등록 실패ㅜㅜ");
@@ -148,6 +153,7 @@ public class BookController {
 	    return "redirect:addBook.do";
 	}
 	
+	//도서 검색 컨트롤러
 	@GetMapping(value="/searchBooks.do")
 	public String searchBooks(@RequestParam String keyword, Model model){
 		List<BookDto> lists = service.searchBooks(keyword);
@@ -155,12 +161,43 @@ public class BookController {
 		return "searchBooks";
 	}
 	
+	//도서 수정 컨트롤러
 	@GetMapping(value="/updateBookForm.do")
 	public String updateBookForm(@RequestParam("book_seq") int book_seq, Model model) {
-		log.info("book_seq의 값 : {}",book_seq);
+		log.info(" updateBookForm 도서 수정페이지 이동 ");
+		log.info(" book_seq의 값 : {}",book_seq);
 		BookDto bookInfo = service.detailBook(book_seq);
 		model.addAttribute("updateBook",bookInfo);
 		return "updateBook";
+	}
+	
+	@PostMapping(value="/updateBook.do")
+	public String updateBook(@RequestParam("book_title") String title,
+            @RequestParam("book_writer") String writer,
+            @RequestParam("book_isbn") String isbn,
+            @RequestParam("book_publisher") String publisher,
+            @RequestParam("book_intro") String intro,
+            @RequestParam("book_index") String index,
+            @RequestParam("book_summary") String summary) {
+		
+		log.info("FreeBoardController updateBoard 도서 수정");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("book_title", title);
+		map.put("book_writer", writer);
+		map.put("book_isbn", isbn);
+		map.put("book_publisher", publisher);
+		map.put("book_intro", intro);
+		map.put("book_index", index);
+		map.put("book_summary", summary);
+		
+		log.info("map값 확인 : {} ",map);
+		
+		int n = service.updateBook(map);
+	
+	    if (n == 1) {
+	        return "redirect:/bookMagagement.do";
+	    }
+	    return "redirect:/updateBookForm.do";
 	}
 }
 

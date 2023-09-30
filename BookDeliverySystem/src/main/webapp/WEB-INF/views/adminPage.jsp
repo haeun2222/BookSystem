@@ -14,4 +14,5 @@
 <%@ include file="/WEB-INF/views/adminHeader.jsp" %>
 <body>
 </body>
+<%@ include file="footer.jsp" %>
 </html>

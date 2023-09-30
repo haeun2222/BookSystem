@@ -8,12 +8,13 @@
 <head>
 <meta charset="UTF-8">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/bookDetail.css">
 <script type="text/javascript" src="js/userRentResve.js" defer="defer"></script>
 <script type="text/javascript" src="js/detailGender.js"></script>
 <title>Insert title here</title>
@@ -22,43 +23,36 @@ svg > g > g:last-child { pointer-events: none }
 </style>
 </head>
 <%@ include file="header.jsp" %>
-<body style="color: #ECEFF1">
-<table class="tg">
-<thead>
-  <tr>
-    <th class="tg-0pky" rowspan="5"><img src="${detailBook.book_img}" width="40%"></th>
-    <th class="tg-0pky">${detailBook.book_title}</th>
-<!--     <th id="detailGenderChart"></th> -->
-<!-- 	<th id="detailAgeChart"></th> -->
-  </tr>
-  <tr>
-    <th class="tg-0pky">${detailBook.book_writer}</th>
-  </tr>
-  <tr>
-    <th class="tg-0pky">${detailBook.book_isbn}</th>
-  </tr>
-  <tr>
-    <th class="tg-0lax">${detailBook.book_publisher}</th>
-  </tr>
-  <tr>
-    <th class="tg-0lax"><fmt:formatDate value="${detailBook.book_published_date}" pattern="yyyy-MM-dd"/></th>
-  </tr>
- 
-</thead>
-<tbody style="text-align: center;">
-  <tr>
-    <td class="tg-0lax" colspan="2">${detailBook.book_intro}</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax" colspan="2">${detailBook.book_index}</td>
-  </tr>
-  <tr>
-    <td class="tg-0lax" colspan="2">${detailBook.book_summary}</td>
-  </tr>
-
-
-</tbody>
-</table>
+<body>
+ <div class="container">
+        <header>
+            <h1>도서 상세 정보</h1>
+        </header>
+        
+        <div class="book-details">
+            <img src="${detailBook.book_img}" alt="${detailBook.book_title}" class="book-cover">
+            <div class="book-info">
+                <h2>${detailBook.book_title}</h2>
+                <p><strong>저자:</strong> ${detailBook.book_writer}</p>
+                <p><strong>ISBN:</strong> ${detailBook.book_isbn}</p>
+                <p><strong>출판사:</strong> ${detailBook.book_publisher}</p>
+                <p><strong>출판일:</strong> <fmt:formatDate value="${detailBook.book_published_date}" pattern="yyyy-MM-dd"/></p>
+            </div>
+        </div>
+        
+        <div class="book-description">
+            <h2>도서 소개</h2>
+            <p>${detailBook.book_intro}</p>
+        </div>
+        
+        <div class="book-extra-info">
+            <h2>추가 정보</h2>
+            <p><strong>도서 인덱스:</strong> ${detailBook.book_index}</p>
+            <p><strong>도서 요약:</strong> ${detailBook.book_summary}</p>
+        </div>
+        
+        <button class="btn-edit" onclick="location.href='./updateBookForm.do?book_seq=${detailBook.book_seq}'">도서 수정</button>
+    </div>
 
 
 <c:if test="${not empty sessionScope.loginDto && sessionScope.loginDto.user_auth ne 'A'}">
@@ -82,11 +76,6 @@ svg > g > g:last-child { pointer-events: none }
         <input type="button" class="btn btn-primary" value="대출신청" onclick="location.href='./loginPage.do'">
 	</c:if>
 </c:if>   
-
-<!-- 도서 수정페이지로 이동하기 -->
-<c:if test="${not empty sessionScope.loginDto && sessionScope.loginDto.user_auth eq 'A'}">
-	<input type="button" class="btn btn-info" value="도서수정" onclick="location.href='./updateBookForm.do?book_seq=${detailBook.book_seq}'">
-</c:if>
 
 <!-- 	<br><div>도서 대출과 예약은 로그인 후 이용하실 수 있습니다.</div><br> -->
 <!--     <input type="button" class="btn btn-success" value="로그인" onclick="location.href='./loginPage.do'"> -->
