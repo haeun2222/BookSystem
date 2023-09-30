@@ -6,30 +6,12 @@ body{
 }
 
 .mainTitle{
-
 	text-align: center; 
 	font-size: 60px; 
-	color: white;
+	color: black;
   font-family: 'BMHANNAPro', fantasy;
 
 }
-
-a.a{
-	text-decoration: none;
-	color: #222831;
-}
-
-
-span{
-	font-size: 12px; color:#222831;
-}
-
-
-
-#header {
-  color:#222831; /* 헤더 텍스트 색상을 원하는 색상으로 설정 */
-}
-
 
 .flex-container {
   display: flex;
@@ -58,3 +40,38 @@ li,.btn{
 }
 
 
+
+.submenu {
+  display: none;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.menu-item {
+  position: relative;
+}
+
+.menu-item:hover .submenu {
+  display: block;
+}
+
+.submenu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.submenu li {
+  margin-bottom: 8px;
+}
+
+.submenu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.submenu a:hover {
+  color: #e44d26;
+}

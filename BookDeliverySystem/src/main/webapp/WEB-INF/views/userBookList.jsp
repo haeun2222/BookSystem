@@ -26,7 +26,7 @@
 			<c:forEach var="book" items="${userBookList}" varStatus="status">
 				<tr onclick="location.href='./getDetailBook.do?book_seq=${book.book_seq}'">
 					<td>${book.book_seq}</td>
-					<td><img src="${book.book_img} alt="도서 이미지"></td>
+					<td><img src="${book.book_img}" alt="도서 이미지"></td>
 					<td>${book.book_title}</td>
 					<td>${book.book_writer}</td>
 					<td>${book.book_isbn}</td>

@@ -8,7 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import com.dowon.bds.dto.BookDto;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Repository
+@Slf4j
 public class BookDaoImpl implements IBookDao {
 	
 	private final String NS = "com.dowon.bds.model.mapper.BookDaoImpl.";

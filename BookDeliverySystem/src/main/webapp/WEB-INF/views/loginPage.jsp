@@ -44,7 +44,7 @@
   
   
   <div>
-	  <a class="textlink" href="./searchForm.do"">이메일 찾기</a>
+	  <a class="textlink" href="./searchForm.do">이메일 찾기</a>
 	  <a class="textlink" href="./searchForm.do">비밀번호 찾기</a>
 	  <a class="textlink" href="./nomalRegistForm.do">회원 가입</a>
   </div>

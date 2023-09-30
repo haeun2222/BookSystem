@@ -145,7 +145,7 @@ public class BookController {
 	    	log.info("Welcome registBook 도서 등록 실패");
 	    	model.addAttribute("result", "도서 등록 실패ㅜㅜ");
 	    }
-	    return "adminPage";
+	    return "redirect:addBook.do";
 	}
 	
 	@GetMapping(value="/searchBooks.do")

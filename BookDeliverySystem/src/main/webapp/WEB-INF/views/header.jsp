@@ -49,6 +49,7 @@
 		<div class="container-fluid">
 			<div class="navbar-header"></div>
 			<ul class="nav navbar-nav">
+				<li><a href="./noticeBoardList.do">공지사항</a></li>
 				<li><a href="./freeBoardList.do">자유게시판</a></li>
 				<li><a href="./userBookList.do">도서목록</a></li>
 				<li><a href="./userPayPageList.do">결제내역</a></li>
@@ -61,5 +62,4 @@
 	
 	</div>
 </body>
-	<script type="text/javascript" src="js/header.js"></script>
 </html>
