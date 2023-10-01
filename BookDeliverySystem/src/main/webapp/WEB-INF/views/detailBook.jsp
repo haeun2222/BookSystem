@@ -52,9 +52,6 @@ svg > g > g:last-child { pointer-events: none }
         </div>
         
         <button class="btn-edit" onclick="location.href='./updateBookForm.do?book_seq=${detailBook.book_seq}'">도서 수정</button>
-    </div>
-
-
 <c:if test="${not empty sessionScope.loginDto && sessionScope.loginDto.user_auth ne 'A'}">
     <c:if test="${filteredBookSeqList.contains(detailBook.book_seq.toString())}">
         <p style="color: rgb(91,192,222);">해당 도서는 현재 대출중이므로, 예약신청만 가능합니다.</p>
@@ -76,6 +73,9 @@ svg > g > g:last-child { pointer-events: none }
         <input type="button" class="btn btn-primary" value="대출신청" onclick="location.href='./loginPage.do'">
 	</c:if>
 </c:if>   
+    </div>
+
+
 
 <!-- 	<br><div>도서 대출과 예약은 로그인 후 이용하실 수 있습니다.</div><br> -->
 <!--     <input type="button" class="btn btn-success" value="로그인" onclick="location.href='./loginPage.do'"> -->
