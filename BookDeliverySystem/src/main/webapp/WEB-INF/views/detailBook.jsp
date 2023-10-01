@@ -66,16 +66,6 @@ svg > g > g:last-child { pointer-events: none }
             <p><strong>도서 요약:</strong> ${detailBook.book_summary}</p>
         </div>
 
-        
-        
-
-
-	
-
-    </div>
-	
-
-
 <c:if test="${not empty sessionScope.loginDto && sessionScope.loginDto.user_auth ne 'A'}">
     <c:if test="${filteredBookSeqList.contains(detailBook.book_seq.toString())}">
         <p style="color: rgb(91,192,222);">해당 도서는 현재 대출중이므로, 예약신청만 가능합니다.</p>
