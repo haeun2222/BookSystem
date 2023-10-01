@@ -20,6 +20,15 @@
 <title>Insert title here</title>
 <style type="text/css">
 svg > g > g:last-child { pointer-events: none }
+#chartContainer {
+    display: flex;
+}
+#detailGenderChart {
+    flex: 1;
+}
+#detailAgeChart {
+    flex: 1;
+}
 </style>
 </head>
 <%@ include file="header.jsp" %>
@@ -38,8 +47,14 @@ svg > g > g:last-child { pointer-events: none }
                 <p><strong>출판사:</strong> ${detailBook.book_publisher}</p>
                 <p><strong>출판일:</strong> <fmt:formatDate value="${detailBook.book_published_date}" pattern="yyyy-MM-dd"/></p>
             </div>
+               
         </div>
         
+       <div id="chartContainer">
+    		<div id="detailGenderChart"></div>
+    		<div id="detailAgeChart"></div>
+		</div>
+		
         <div class="book-description">
             <h2>도서 소개</h2>
             <p>${detailBook.book_intro}</p>
@@ -50,7 +65,15 @@ svg > g > g:last-child { pointer-events: none }
             <p><strong>도서 인덱스:</strong> ${detailBook.book_index}</p>
             <p><strong>도서 요약:</strong> ${detailBook.book_summary}</p>
         </div>
+
+        
+        
+
+
+	
+
     </div>
+	
 
 
 <c:if test="${not empty sessionScope.loginDto && sessionScope.loginDto.user_auth ne 'A'}">
@@ -74,6 +97,9 @@ svg > g > g:last-child { pointer-events: none }
         <input type="button" class="btn btn-primary" value="대출신청" onclick="location.href='./loginPage.do'">
 	</c:if>
 </c:if>   
+    </div>
+
+
 
 <!-- 	<br><div>도서 대출과 예약은 로그인 후 이용하실 수 있습니다.</div><br> -->
 <!--     <input type="button" class="btn btn-success" value="로그인" onclick="location.href='./loginPage.do'"> -->
@@ -146,52 +172,9 @@ svg > g > g:last-child { pointer-events: none }
 <input type="hidden" id="isReservable" value="${rentYBookSeqList.contains(detailBook.book_seq)}">
 
 
-<!-- 도서상세페이지 해당도서 관한 통계차트 -->
+<!-- <!-- 도서상세페이지 해당도서 관한 통계차트 -->
 <script type="text/javascript">
     var book_seq = ${detailBook.book_seq};
-</script>
-
-<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog modal-md">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title" style="color: #222832;">${detailBook.book_title}</h4>
-					</div>
-					<div class="modal-body" style="position: relative;padding: 0px; margin-left:20px;">
-						<h1 id="bookTitle" style="text-align: center; color: #222832;"></h1>
-				
-						<!-- 여기에 차트 뿌리기 -->
-						<table>
-							<tr>
-		
-								<th id="detailGenderChart"></th>
-								<th id="detailAgeChart"></th>
-							</tr>
-						</table>
-					</div>
-					
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
-				</div>
-			</div>
-		</div>
-<script>
-$(document).ready(function () {
-    // 첫 번째 비동기 요청
-    $.get('/BookDeliverySystem/detailGenderChart.do?book_seq=' + book_seq, function (detailGender) {
-        if (detailGender.length > 0) {
-            // 첫 번째 비동기 요청 성공 시 두 번째 비동기 요청 시작
-            $.get('/BookDeliverySystem/detailAgeChart.do?book_seq=' + book_seq, function (detailAge) {
-                if (detailAge.length > 0) {
-                    // 두 번째 비동기 요청 성공 시 모달 열기
-                    $('#myModal').modal('show');
-                }
-            });
-        }
-    });
-});
 </script>
 </body>
 <%@ include file="footer.jsp" %>
