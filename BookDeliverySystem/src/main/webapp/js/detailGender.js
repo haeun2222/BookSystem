@@ -22,8 +22,8 @@ window.onload = function(){
         		color: '#222831' 
     			},
 			    chartArea: {
-			        width: '40%', 
-			        height: '40%'
+			        width: '70%', 
+			        height: '70%'
 			    },
 			    width: 280, 
 			    height: 280,
@@ -71,8 +71,8 @@ window.onload = function(){
         		color: '#222831' 
     			},
 			    chartArea: {
-			        width: '40%', 
-			        height: '40%'
+			        width: '70%', 
+			        height: '70%'
 			    },
 			    width: 280, 
 			    height: 280,
