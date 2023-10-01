@@ -65,11 +65,13 @@ svg > g > g:last-child { pointer-events: none }
             <p><strong>도서 인덱스:</strong> ${detailBook.book_index}</p>
             <p><strong>도서 요약:</strong> ${detailBook.book_summary}</p>
         </div>
+
         
-        <button class="btn-edit" onclick="location.href='./updateBookForm.do?book_seq=${detailBook.book_seq}'">도서 수정</button>
+        
 
 
 	
+
     </div>
 	
 

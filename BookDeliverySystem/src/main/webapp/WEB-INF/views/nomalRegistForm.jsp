@@ -1,26 +1,51 @@
+<%@page import="java.math.BigInteger"%>
+<%@page import="java.security.SecureRandom"%>
+<%@page import="com.dowon.bds.dto.SocialDto"%>
+<%@page import="com.dowon.bds.dto.URLDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/font.css">
-<title>일반회원가입 페이지</title>
+<title>회원가입 페이지</title>
 <script type="text/javascript"src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <link rel="stylesheet" href="css/registForm.css">
 </head>
 <body>
 
-<!-- header -->
+<%
+		URLDto uDto = new URLDto();
+		SocialDto dto = new SocialDto();
+		SecureRandom random = new SecureRandom();
+		String state = new BigInteger(130, random).toString();
+%>
 
 
-        <!-- wrapper -->
+		<div>
+			<h1 class="mainTitle"> <a class="a" href="./index.jsp">계발의민족</a></h1>
+		</div>
+		
+		<div id="header">
+		<h4>소셜아이디로 회원가입하기</h4>
+        <div class="socialJoin">
+	 		 <a class="a" href="<%=uDto.getNaverUrl()+"&client_id="+dto.getNaverClientID()+"&redirect_uri="+uDto.getNaverJoinRedirect()+"&state="+state%>">
+	  		<img height="50" src="img/btnG_icon_circle.png"/><br>
+	 		 <span>네이버 회원가입</span>
+ 			 </a>
+		 </div>
+		 </div>
+	<!-- wrapper -->
         <div id="wrapper">
 		<form action="./nomalRegist.do" id="frm" name="frm" method="post">
 
             <!-- content-->
             <div id="content">
                 <!-- ID -->
+                <h2>일반 회원가입하기</h2>
+                
                 <div>
                     <h3 class="join_title">
                         <label for="id">아이디(이메일)</label>
@@ -143,6 +168,5 @@
 			</form>
         </div> 
 <script src="js/registForm.js"></script>
-	
 </body>
 </html>

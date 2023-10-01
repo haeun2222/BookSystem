@@ -37,6 +37,7 @@
  <mapper resource="sqls/FreeBoard_Statement.xml"/>
  <mapper resource="sqls/FreeComment_Statement.xml"/>
  <mapper resource="sqls/Faq_Statement.xml"/>
+ <mapper resource="sqls/NoticeBoard_Statement.xml"/>
 </mappers>
 
 </configuration>

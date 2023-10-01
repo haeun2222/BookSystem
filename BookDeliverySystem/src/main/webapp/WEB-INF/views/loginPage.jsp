@@ -21,7 +21,6 @@
 		SecureRandom random = new SecureRandom();
 		String state = new BigInteger(130, random).toString();
 	%>
-<!-- <div class="container"> -->
 	<div>
 		<h1 class="mainTitle"><a class="a" href="./index.jsp">계발의민족</a></h1>
 	</div>	
@@ -50,14 +49,21 @@
   </div>
   
   <!-- 네이버 아이디로 로그인  -->
-  <div>
+  	<div>
 	  <a href="<%=uDto.getNaverUrl()+"&client_id="+dto.getNaverClientID()+"&redirect_uri="+uDto.getNaverRedirect()+"&state="+state%>">
 	  <img height="50" src="img/btnG_icon_circle.png"/>
 	  <span>네이버 로그인</span>
  	 </a>
-  </div>
-  </div>
+  	</div>
+  	</div>
  </div>
-<!-- </div> -->
+ 
+ 
+ <script type="text/javascript">
+    <c:if test="${not empty alertMessage}">
+        var alertMessage = "<c:out value='${alertMessage}' />";
+        alert(alertMessage);
+    </c:if>
+</script>
 </body>
 </html>
