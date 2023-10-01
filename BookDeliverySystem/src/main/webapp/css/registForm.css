@@ -1,5 +1,34 @@
 /* 레이아웃 틀 */
 
+@charset "UTF-8";
+
+body{
+	width: 1280px;
+	margin:0 auto;
+}
+
+a.a{
+	text-decoration: none;
+	color: #222831;
+}
+
+
+.mainTitle{
+
+	text-align: center; 
+	font-size: 60px; 
+	color: white;
+  font-family: 'BMHANNAPro', fantasy;
+}
+
+.socialJoin{
+	text-align: center;
+}
+
+span{
+	font-size: 18px;
+}
+
 
 #logo {
     width: 240px;
@@ -8,13 +37,20 @@
 }
 
 #header {
-    padding-top: 62px;
     padding-bottom: 20px;
+    width: 460px;
     text-align: center;
+    margin: 0 auto;
+    border-bottom: 0.3px solid;
+    border-color: gray;
 }
 #wrapper {
     position: relative;
     height: 100%;
+}
+
+.headerTitle{
+	width:460px;
 }
 
 #content {

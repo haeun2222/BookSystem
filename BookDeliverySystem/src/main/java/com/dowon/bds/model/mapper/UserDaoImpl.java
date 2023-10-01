@@ -56,8 +56,4 @@ public class UserDaoImpl implements IUserDao {
 	public String findEmail(Map<String, Object> map) {
 		return sqlSession.selectOne(NS+"findEmail",map);
 	}
-
-
-
-	
 }

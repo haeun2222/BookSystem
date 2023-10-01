@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,15 +10,19 @@
 <link rel="stylesheet" href="css/registForm.css">
 </head>
 <body>
-<!-- header -->
 
-<!-- wrapper -->
+		<div>
+			<h1 class="mainTitle"> <a class="a" href="./index.jsp">계발의민족</a></h1>
+		</div>
+		
 <div id="wrapper">
     <form action="./socialRegist.do" id="frm" name="frm" method="post">
 
         <!-- content-->
         <div id="content">
-            <!-- ID -->
+	        <div>
+				<h2 class="join_title">소셜 간편가입 페이지</h2>
+			</div>
             <div>
                 <h3 class="join_title">
                     <label for="id">아이디(이메일)</label>
@@ -139,5 +144,11 @@
     </form>
 </div> 
 <script src="js/socialRegistForm.js"></script>
+<script type="text/javascript">
+    <c:if test="${not empty alertMessage}">
+        var alertMessage = "<c:out value='${alertMessage}' />";
+        alert(alertMessage);
+    </c:if>
+</script>
 </body>
 </html>

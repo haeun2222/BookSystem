@@ -4,6 +4,7 @@ package com.dowon.bds.model.mapper;
 import java.util.List;
 import java.util.Map;
 
+import com.dowon.bds.dto.NoticeBoardDto;
 import com.dowon.bds.dto.UserDto;
 
 public interface IUserDao {
