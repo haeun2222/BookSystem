@@ -63,7 +63,8 @@
                         <c:when test="${rent.RENT_STATUS eq 'Y'}">
                             <button class="btn" style="float: center; background-color: #00fff5; color: #393E46" onclick="location.href='./returnAddr.do?user_seq=${loginDto.user_seq}&book_seq=${rent.BOOK_SEQ}'" style="color: #393E46">수거요청</button>
                         </c:when>
-                        <c:otherwise></c:otherwise>
+                        <c:otherwise>
+                        </c:otherwise>
                     </c:choose>
                 </td>
                 <td>
