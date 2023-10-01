@@ -21,6 +21,7 @@ public class URLDto {
 	
 	//리다이렉트 URL
 	private String naverRedirect = "http://localhost:8099/BookDeliverySystem/naverLogin.do";
+	private String naverJoinRedirect = "http://localhost:8099/BookDeliverySystem/naverJoin.do";
 	private String kakaoRedirect = "http://localhost:8099/BookDeliverySystem/kakaoLogin.do";
 	
 	//토큰 요청 URL
@@ -31,11 +32,16 @@ public class URLDto {
 	
 	private String NaverInfo ="https://openapi.naver.com/v1/nid/me";
 	private String KakaoInfo ="https://kapi.kakao.com/v2/user/me";
+	
 	public String getNaverUrl() {
 		return naverUrl;
 	}
 	public String getKakaoUrl() {
 		return kakaoUrl;
+	}
+	
+	public String getNaverJoinRedirect() throws UnsupportedEncodingException {
+		return URLEncoder.encode(naverJoinRedirect,"UTF-8");
 	}
 	
 	public String getNaverRedirect() throws UnsupportedEncodingException {
@@ -44,6 +50,8 @@ public class URLDto {
 	public String getKakaoRedirect() throws UnsupportedEncodingException {
 		return URLEncoder.encode(kakaoRedirect,"UTF-8");
 	}
+	
+	
 	public String getNaverTokenUrl(String code, String state) {
 		return naverTokenUrl
 				+"&client_id="+dto.getNaverClientID()

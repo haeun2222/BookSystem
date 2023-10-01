@@ -4,6 +4,7 @@ package com.dowon.bds.model.mapper;
 import java.util.List;
 import java.util.Map;
 
+import com.dowon.bds.dto.NoticeBoardDto;
 import com.dowon.bds.dto.UserDto;
 
 public interface IUserDao {
@@ -14,4 +15,7 @@ public interface IUserDao {
 	public List<UserDto> getAllUser();
 	public Map<String, Object> getUserStatus(int user_seq);
 	public String findEmail(Map<String, Object> map);
+	
+	// 유저상세 상세조회
+	public UserDto userdDetail(int user_seq);
 }	
