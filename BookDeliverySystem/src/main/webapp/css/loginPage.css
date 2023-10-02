@@ -1,11 +1,16 @@
 @charset "UTF-8";
+
 body{
 	width: 1280px;
 	margin: 0 auto;
 }
 
 .mainTitle{
-	text-align: center; font-size: 60px; color: white;
+	text-align: center;
+	font-size: 60px; 
+	color: white;
+    font-family: 'BMHANNAPro', fantasy;
+    margin-top: 100px;
 }
 
 a.a{

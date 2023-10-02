@@ -31,7 +31,6 @@
 			<button style="margin-bottom: 10px; background-color: #00fff5; color: #000;" type="submit" class="btn">완료</button>
 		</form>
 	</div>
-
-
 </body>
+<%@ include file="footer.jsp" %>
 </html>

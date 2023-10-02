@@ -12,7 +12,6 @@
    			AND NAVER_KEY IS NOT NULL
 </select>
 
-
 <!-- 네이버소셜회원체크 -->
 <select id="checkSocialEmail" resultType="java.lang.Integer">
 SELECT COUNT(USER_EMAIL)

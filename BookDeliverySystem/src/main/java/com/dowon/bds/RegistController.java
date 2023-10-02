@@ -63,13 +63,13 @@ public class RegistController {
 		return "redirect:/index.jsp";
 	}
 	
-	//이메일 중복 체크 컨트롤러
-	@ResponseBody
-	@RequestMapping(value="/checkEmail.do", method = RequestMethod.POST)
-	public int checkEmail(@RequestParam String email) {
-		int cnt = service.checkEmail(email);
-		return cnt;
-		
-	}
+//	//이메일 중복 체크 컨트롤러
+//	@ResponseBody
+//	@RequestMapping(value="/checkEmail.do", method = RequestMethod.POST)
+//	public int checkEmail(@RequestParam String email) {
+//		int cnt = service.checkEmail(email);
+//		return cnt;
+//		
+//	}
 	
 }

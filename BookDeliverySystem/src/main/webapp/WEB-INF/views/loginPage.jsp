@@ -27,7 +27,7 @@
 	
 	
   <div class="flex-container" id="header">
-  <div>
+
   <!-- 일반회원 로그인 -->
   <form action="./login.do" method="post">
     <div class="form-group">
@@ -43,8 +43,7 @@
   
   
   <div>
-	  <a class="textlink" href="./searchForm.do">이메일 찾기</a>
-	  <a class="textlink" href="./searchForm.do">비밀번호 찾기</a>
+	  <a class="textlink" href="./searchForm.do">이메일 찾기 / 비밀번호 찾기</a>
 	  <a class="textlink" href="./nomalRegistForm.do">회원 가입</a>
   </div>
   
@@ -56,9 +55,6 @@
  	 </a>
   	</div>
   	</div>
- </div>
- 
- 
  <script type="text/javascript">
     <c:if test="${not empty alertMessage}">
         var alertMessage = "<c:out value='${alertMessage}' />";

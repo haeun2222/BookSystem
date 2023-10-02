@@ -31,10 +31,10 @@
 				</c:when>
 				<c:otherwise>
 					<span> 
-						${loginDto.user_name} 님 환영합니다. &nbsp;&nbsp;
+						${loginDto.user_name}님 &nbsp;&nbsp;
 						<c:if test="${loginDto.user_auth eq 'U'}">
-						대출상태 : <a href="./userRentPageList.do"> ${userStatus.RENT_STATUS} </a>&nbsp;&nbsp;
-						예약상태 : <a href="./userResvePageList.do"> ${userStatus.RESVE_STATUS} </a> &nbsp;&nbsp;
+						대출상태 : <a href="./userRentPageList.do"> ${sessionScope.userStatus.RENT_STATUS} </a>&nbsp;&nbsp;
+						예약상태 : <a href="./userResvePageList.do"> ${sessionScope.userStatus.RESVE_STATUS} </a> &nbsp;&nbsp;
 					 	</c:if>
 					 </span>
 					<c:if test="${loginDto.user_auth eq 'A'}">
@@ -42,10 +42,10 @@
 					관리자페이지
 					</button>
 					</c:if>
-					<button class="btn" id="logoutButton"
-						onclick="location.href='./logout.do'">
-						로그아웃
-					</button>
+					<span>
+						<button class="btn" id="headerButton" onclick="location.href='./myPage.do'">내 정보</button>
+						<button class="btn" id="headerButton" onclick="location.href='./logout.do'">로그아웃</button>
+					</span>
 				</c:otherwise>
 			</c:choose>
 		</div>

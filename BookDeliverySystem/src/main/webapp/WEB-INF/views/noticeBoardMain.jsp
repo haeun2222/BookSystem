@@ -37,4 +37,5 @@
         </c:forEach>
 </table>
 </body>
+<%@ include file="footer.jsp" %>
 </html>
