@@ -14,7 +14,8 @@
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/adminRentList.css">
 <title>Insert title here</title>
-<%@include file="/WEB-INF/views/header.jsp"%>
+<%-- <%@include file="/WEB-INF/views/header.jsp"%> --%>
+<%@ include file="/WEB-INF/views/adminHeader.jsp" %>
 </head>
 <c:set var="lists" value="${requestScope.lists}" />
 <c:set var="r" value="${requestScope.aPage}" />

@@ -31,6 +31,16 @@ li,.btn{
 	font-family: 'BMHANNAAir', fantasy;
    font-size: 20px;
 }
+
+span{
+	font-size: 18px;
+}
+
+.inline-elements {
+    display: inline-block;
+}
+
+
 .container-fluid {
     padding-right: 15px;
     padding-left: 15px;

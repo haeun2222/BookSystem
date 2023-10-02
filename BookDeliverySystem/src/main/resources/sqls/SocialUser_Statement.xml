@@ -12,7 +12,6 @@
    			AND NAVER_KEY IS NOT NULL
 </select>
 
-
 <!-- 네이버소셜회원체크 -->
 <select id="checkSocialEmail" resultType="java.lang.Integer">
 SELECT COUNT(USER_EMAIL)
@@ -22,11 +21,11 @@ SELECT COUNT(USER_EMAIL)
 	AND USER_NAME = #{user_name}
 </select>
 
-<!-- 소셜로그인 시도 시 사용자가 기존 아이디가 있는지 확인하는 쿼리 -->
-<select id="checkSocial" resultType="UserDto">
-	SELECT USER_EMAIL
+<!--네이버 로그인시 정보 가져오기 -->
+<select id="getScocialInfo" resultType="UserDto">
+SELECT USER_SEQ,USER_EMAIL,USER_PHONE,USER_BIRTH,JOINDATE,USER_NAME,USER_AUTH,USER_GENDER
 	FROM TB_USER
-	WHERE SNS_KEY = #{sns_key}
+	WHERE NAVER_KEY = #{naver_key}
 </select>
 
 <!-- 네이버 소셜 로그인(기존회원이 아닐 경우) 회원가입 -->

@@ -1,6 +1,7 @@
 package com.dowon.bds.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.dowon.bds.dto.BookDto;
 
@@ -11,7 +12,7 @@ public interface IBookDao {
 	public int registBook(BookDto dto);
 	public int checkIsbn(String isbn);
 	public List<BookDto> searchBooks(String keyword);
-	public int updateBook(String isbn, BookDto bookDto);
+	public int updateBook(Map<String, Object>map);
 
 }
 

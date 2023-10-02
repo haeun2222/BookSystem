@@ -20,7 +20,8 @@
 		</div>
 		
 		<div class="topLogo" id="loginBtn" style="margin-top: 30px;">
-			<button class="btn btn-info" onclick="location.href='./logout.do'">로그아웃</button>  
+			<span class="inline-elements">${loginDto.user_name} 님 환영합니다.</span>
+			<button class="btn btn-info inline-elements" onclick="location.href='./logout.do'">로그아웃</button>  
 		</div>
 	</div>
 
@@ -57,7 +58,6 @@
         <li><a href="./freeBoardList.do">자유게시판</a></li>
         <li><a href="./faqList.do">FAQ</a></li>
         <li><a href="./oldAdminRentList.do">회원 대출 관리</a></li>
-        <button id="rentListButton">대출관리(페이징중)</button>
       </ul>
     </div>
   </nav>

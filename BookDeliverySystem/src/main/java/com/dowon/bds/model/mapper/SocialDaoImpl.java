@@ -1,5 +1,7 @@
 package com.dowon.bds.model.mapper;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,6 +27,11 @@ public class SocialDaoImpl implements ISocialDao {
 	@Override
 	public int socialRegist(UserDto dto) {
 		return sqlSession.insert(NS+"naverJoin",dto);
+	}
+
+	@Override
+	public UserDto getScocialInfo(String naver_key) {
+		return sqlSession.selectOne(NS+"getScocialInfo",naver_key);
 	}
 	
 	

@@ -21,14 +21,13 @@
 		SecureRandom random = new SecureRandom();
 		String state = new BigInteger(130, random).toString();
 	%>
-<!-- <div class="container"> -->
 	<div>
 		<h1 class="mainTitle"><a class="a" href="./index.jsp">계발의민족</a></h1>
 	</div>	
 	
 	
   <div class="flex-container" id="header">
-  <div>
+
   <!-- 일반회원 로그인 -->
   <form action="./login.do" method="post">
     <div class="form-group">
@@ -44,20 +43,23 @@
   
   
   <div>
-	  <a class="textlink" href="./searchForm.do">이메일 찾기</a>
-	  <a class="textlink" href="./searchForm.do">비밀번호 찾기</a>
+	  <a class="textlink" href="./searchForm.do">이메일 찾기 / 비밀번호 찾기</a>
 	  <a class="textlink" href="./nomalRegistForm.do">회원 가입</a>
   </div>
   
   <!-- 네이버 아이디로 로그인  -->
-  <div>
+  	<div>
 	  <a href="<%=uDto.getNaverUrl()+"&client_id="+dto.getNaverClientID()+"&redirect_uri="+uDto.getNaverRedirect()+"&state="+state%>">
 	  <img height="50" src="img/btnG_icon_circle.png"/>
 	  <span>네이버 로그인</span>
  	 </a>
-  </div>
-  </div>
- </div>
-<!-- </div> -->
+  	</div>
+  	</div>
+ <script type="text/javascript">
+    <c:if test="${not empty alertMessage}">
+        var alertMessage = "<c:out value='${alertMessage}' />";
+        alert(alertMessage);
+    </c:if>
+</script>
 </body>
 </html>

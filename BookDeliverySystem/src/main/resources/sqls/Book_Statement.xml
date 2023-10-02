@@ -47,19 +47,17 @@ INSERT INTO TB_BOOK
 </select>
 
 <!-- 도서 수정하기 -->
-<update id="updateBook" parameterType="BookDto">
-UPDATE your_table_name
+<update id="updateBook" parameterType="java.util.Map">
+UPDATE TB_BOOK
 SET 
     BOOK_TITLE = #{book_title},
     BOOK_WRITER = #{book_writer},
-    BOOK_ISBN = #{book_isbn},
     BOOK_PUBLISHER = #{book_publisher},
-    BOOK_PUBLISHED_DATESTR = #{book_published_dateStr},
     BOOK_INTRO = #{book_intro},
     BOOK_INDEX = #{book_index},
     BOOK_SUMMARY = #{book_summary}
 WHERE
-    BOOK_ISBN = #{book_isbn};
+    BOOK_ISBN = #{book_isbn}
 </update>
 
 

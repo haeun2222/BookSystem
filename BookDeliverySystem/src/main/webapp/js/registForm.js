@@ -1,45 +1,96 @@
-/* 변수 선언 */
-var joinButton = document.getElementById('regist'); // 가입하기 버튼을 ID로 가져옴
-var yy = document.getElementById('yy'); // 연도 입력란
-var mm = document.getElementById('mm'); // 월 선택란
-var dd = document.getElementById('dd'); // 일 입력란
+var checkDuplication = false;
 
-/* 가입하기 버튼 클릭 이벤트 핸들러 연결 */
-joinButton.addEventListener("click", function () {
-    // 입력된 연도, 월, 일을 가져와서 yyyymmdd 형식의 문자열로 조합
-    var year = yy.value;
-    var month = mm.value;
-    var day = dd.value;
+// 유효성 검사 함수
+function validateForm() {
+    var email = document.getElementById("user_email").value;
+    var password = document.getElementById("pswd1").value;
+    var confirmPassword = document.getElementById("pswd2").value;
+    var name = document.getElementById("user_name").value;
+    var gender = document.getElementById("gender").value;
 
-    // 월과 일이 한 자리 숫자인 경우 앞에 0을 추가
-    if (month.length === 1) {
-        month = '0' + month;
-    }
-    if (day.length === 1) {
-        day = '0' + day;
+    // 이메일 유효성 검사 (간단한 형식 체크)
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.match(emailPattern)) {
+        alert("올바른 이메일 주소를 입력하세요.");
+        return false;
     }
 
-    // yyyymmdd 형식으로 조합
-    var birthdate = year + month + day;
+    // 비밀번호 유효성 검사 (예: 최소 6자 이상)
+    if (password.length < 6) {
+        alert("비밀번호는 최소 6자 이상이어야 합니다.");
+        return false;
+    }
 
-    // 조합된 생년월일을 hidden input에 설정
-    document.getElementsByName('user_birth')[0].value = birthdate;
+    // 비밀번호 재확인 일치 여부 검사
+    if (password !== confirmPassword) {
+        alert("비밀번호가 일치하지 않습니다.");
+        return false;
+    }
 
-    // 폼 제출
-    document.frm.submit();
+    // 이름이 비어있는지 검사
+    if (name.trim() === "") {
+        alert("이름을 입력하세요.");
+        return false;
+    }
+    
+    if (gender === "성별") {
+        alert("성별을 선택하세요.");
+        return false;
+    }
+
+    // 모든 유효성 검사를 통과하면 true 반환
+    return true;
+}
+
+
+//전화번호 중복 체크
+document.getElementById('checkPhone').addEventListener('click', function() {
+    var phoneNum = document.getElementById('user_phone').value;
+    var formatted_phone = phoneNum.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+    if (phoneNum.trim() === "") {
+        alert("전화번호를 입력하세요.");
+        return;
+    }
+    $.ajax({
+        url: "./checkPhone.do",
+        data : {
+				user_phone:formatted_phone
+				},
+        type: "POST",
+        success: function(response) {
+            if (response == 1) {
+                // 중복된 번호인 경우
+                alert("중복된 전화번호입니다.");
+            } else if (response == 0) {
+                // 중복되지 않은 번호인 경우
+                checkDuplication = true;
+                alert("사용 가능한 번호입니다.");
+            } else {
+                // 예상치 못한 응답인 경우에 대한 처리
+                alert("번호 중복 체크 중 오류가 발생했습니다.");
+            }
+        },
+        error: function() {
+            // 서버 요청 실패 시에 대한 처리
+            alert("번호 중복 체크 중 오류가 발생했습니다.");
+        }
+    });
 });
 
 //전화번호 유효성 검사 후 올바르면 coolsms에 문자 발송 요청
 function sendSMS(){ 
-   console.log()
+   console.log("sendSMS function called")
         var user_phone = document.getElementById("user_phone").value;
+        
         // 정규식을 사용하여 패턴 체크
         var pattern = /^01[016789]\d{7,8}$/;
 
       if(user_phone ==""){
          writenum();
-      }else{
-         
+      }else if(checkDuplication == false){
+		beforeCheck();
+		}
+      else{
         if(pattern.test(user_phone)) {
             isc = true;
         } else {
@@ -73,15 +124,21 @@ function confirmSMS(user_phone){
         }
     });
 }
+
+function beforeCheck(){
+	alert("번호중복체크부터해주세요");
+}
+
 function failalert(){
-   alert("잘못입력했어요")
+   alert("잘못입력했어요");
 }
 
 function writenum(){
-   alert("값을 입력하세요")
+   alert("값을 입력하세요");
 }
 
 var checkStatus = false;
+var checkEmail = false;
 
 function handleResponse(response) {
     if (response === "success") {
@@ -116,15 +173,62 @@ function verifyCode() {
     });
 }
 
+
+
 document.getElementById('regist').addEventListener('click', function(){
-	if(checkStatus){
-		console.log("checkStatus true");
-		alert("가입 완료 되었어요.");
-		
-	}else{
-		console.log("checkStatus false");
-		alert("휴대폰 인증부터 진행해 주세요.");
-	}
-	
-	
-})
+    if (checkStatus && validateForm() && checkEmail) {
+        console.log("checkStatus true");
+        var userInputPhone = document.getElementById('user_phone').value;
+        var formattedPhoneNumber = userInputPhone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+        document.getElementById('user_phone').value = formattedPhoneNumber;    
+        document.getElementById("frm").submit();
+        alert("가입 완료 되었어요.");
+    } else if (!checkStatus) {
+        console.log("checkStatus false");
+        alert("휴대폰 인증을 진행해 주세요.");
+    } else if (!validateForm()) {
+        console.log("validateForm false");
+        alert("유효성 검사를 통과하지 못함");
+    } else if (!checkEmail) {
+        console.log("checkEmail false");
+        alert("이메일 중복 체크를 진행해 주세요.");
+    } else {
+        console.log("checkStatus false, validateForm false, checkEmail false");
+        alert("유효성 검사, 휴대폰 인증, 이메일 중복 체크를 진행해 주세요.");
+    }
+});
+
+//이메일 중복 체크
+document.getElementById('checkEmailButton').addEventListener('click', function() {
+    var email = document.getElementById('user_email').value;
+    
+    if (email.trim() === "") {
+        alert("이메일을 입력하세요.");
+        return;
+    }
+    $.ajax({
+        url: "./checkEmail.do",
+        data : {
+				user_email:email
+				},
+        type: "POST",
+        success: function(response) {
+            if (response == 1) {
+                // 중복된 이메일인 경우
+                alert("중복된 이메일 주소입니다.");
+            } else if (response == 0) {
+                // 중복되지 않은 이메일인 경우
+                checkEmail = true;
+                alert("사용 가능한 이메일 주소입니다.");
+            } else {
+                // 예상치 못한 응답인 경우에 대한 처리
+                alert("이메일 중복 체크 중 오류가 발생했습니다.");
+            }
+        },
+        error: function() {
+            // 서버 요청 실패 시에 대한 처리
+            alert("이메일 중복 체크 중 오류가 발생했습니다.");
+        }
+    });
+});
+

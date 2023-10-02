@@ -24,12 +24,11 @@
     onclick="location.href='./updateNoticeView.do?notice_bseq=${dto.notice_bseq}&notice_title=${dto.notice_title}&notice_content=${fn:escapeXml(dto.notice_content)}'">
 	</c:if>
 	</h1>
-	 <c:set var="escapedContent" value="${fn:replace(dto.notice_content, '\\n', '<br>')}" />
 	<div>
-	    작성자<div class="form-control" style="font-size: 20px;">${dto.user_name}</div>
-	    내용<div class="form-control" style="height: 300px; font-size: 20px;">${escapedContent}</div>
-	    작성일<div class="form-control" style="font-size: 15px;"><fmt:formatDate value="${dto.notice_regdate}" pattern="yyyy-MM-dd HH:mm:ss" /></div>
-	</div>
+    작성자<div class="form-control" style="font-size: 20px;"><c:out value="${dto.user_name}" /></div>
+    내용<div class="form-control" style="height: 300px; font-size: 20px;"><c:out value="${dto.notice_content}" /></div>
+    작성일<div class="form-control" style="font-size: 15px;"><fmt:formatDate value="${dto.notice_regdate}" pattern="yyyy-MM-dd HH:mm:ss" /></div>
+</div>
 	
 </div>
 </body>
