@@ -32,5 +32,6 @@ public interface IAddrDao {
 	
 	public int deliRentStatus(int user_seq);
 	
+	public AddrDto findDelivery(int delivery_num);
 
 }

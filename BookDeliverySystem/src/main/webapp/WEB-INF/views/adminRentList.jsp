@@ -20,6 +20,7 @@
 <c:set var="lists" value="${requestScope.lists}" />
 <c:set var="r" value="${requestScope.aPage}" />
 <body>
+
 <div class="container">
     <h1 id="hh">계발의민족 회원 도서 대출 목록</h1>
     <table class="table" border="1">
@@ -164,15 +165,16 @@ async function handleActions(rentSeq, bookSeq) {
 
 function updateDelivery(index) {
     const deliveryNumInput = document.getElementById('deliveryNum'+index).value;
-//     const form = document.getElementById(`deliveryForm${index}`);
+// 	var user_seq = document.getElementById('user_seq').value;
+    //     const form = document.getElementById(`deliveryForm${index}`);
 	console.log(deliveryNumInput);
     // 운송장 번호 입력 필드에서 값을 가져온다
 //     const deliveryNum = deliveryNumInput.value;
 
     // AJAX를 사용하여 서버에 업데이트 요청을 보냄
     $.ajax({
-        url: './updateDeliveryNum.do', // 폼의 action 속성을 사용하여 업데이트 URL 지정
-        type: 'POST', // 폼의 method 속성을 사용하여 HTTP 메소드 지정
+    	url: './updateDeliveryNum.do', // 업데이트를 수행할 컨트롤러의 URL
+        type: 'POST', // POST 방식으로 요청
         data: {
             "delivery_num": deliveryNumInput
         },

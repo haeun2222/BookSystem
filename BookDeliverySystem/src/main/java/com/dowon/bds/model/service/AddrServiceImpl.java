@@ -78,5 +78,10 @@ public class AddrServiceImpl implements IAddrService {
         return result;
 	}
 
+	@Override
+	public AddrDto findDelivery(int delivery_num) {
+		log.info("운송장번호 조회 findDelivery");
+		return dao.findDelivery(delivery_num);
+	}
 
 }
