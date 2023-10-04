@@ -15,6 +15,11 @@
 <link rel="stylesheet" href="css/font.css">
 </head>
 <body>
+	<c:if test="${not empty failLogin}">
+        <script>
+            alert("${failLogin}");
+        </script>
+    </c:if>
 	<%
 		URLDto uDto = new URLDto();
 		SocialDto dto = new SocialDto();
