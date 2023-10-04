@@ -70,6 +70,7 @@ public class UserController {
 	    
 	    if (loginDto == null) {
 	        log.info("로그인 실패 {}", map);
+	        model.addAttribute("failLogin","로그인 실패, 다시 시도해주세요.");
 	        return "loginPage"; // 로그인 실패 시 로그인 페이지로 이동
 	    }
 	    

@@ -11,6 +11,7 @@
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/myPage.css">
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <body>
