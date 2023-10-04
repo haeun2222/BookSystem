@@ -73,5 +73,17 @@ public class UserServiceImpl implements IUserService {
 		log.info("UserServiceImpl findPW 임시비밀번호 유효성 체크 : {}",dto);
 		return dao.findPwCheck(dto);
 	}
+
+	@Override
+	public int modifyPassword(Map<String, Object> map) {
+		log.info("UserServiceImpl modifyPassword 비밀번호 수정 :{}",map);
+		return dao.modifyPassword(map);
+	}
+
+	@Override
+	public int checkPassword(Map<String, Object> map) {
+		log.info("UserServiceImpl checkPassword 비밀번호 체크 :{}",map);
+		return dao.checkPassword(map);
+	}
 	
 }

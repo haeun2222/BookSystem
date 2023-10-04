@@ -20,7 +20,21 @@
 <c:set var="lists" value="${requestScope.lists}" />
 <c:set var="resveDto" value="${requestScope.page}" />
 <body>
-<div class="container">
+<div id="sidebar">
+	<div>
+	<h4>${loginDto.user_name}님<br/></h4>
+	<h5>가입일 : <fmt:formatDate value="${loginDto.joindate}"/></h5> 
+	</div>
+	<ul>
+		<li onclick="window.location.href='checkUserInfo.do'">회원정보수정</li>
+		<li onclick="window.location.href='modifyPassword.do'">비밀번호수정</li>
+        <li>결제내역</li>
+        <li onclick="window.location.href='./userRentPageList.do'">대출내역</li>
+        <li onclick="window.location.href='./userResvePageList.do'">예약내역</li>
+	</ul>
+</div>	
+<div id="maincontent">
+<!-- <div class="container"> -->
 <c:set var="loginUser" value="${sessionScope.loginDto}" />
 		<h1>${loginUser.user_name}님의 예약 도서 목록 입니다</h1>
 		<button class="btn" id="refreshButton" style="float: right; background-color: #00fff5; color: #393E46">예약내역 갱신</button>
@@ -123,8 +137,8 @@
     </div>
 
 
+<!-- </div> -->
 </div>
-
 </body>
 <%@ include file="footer.jsp" %>
 </html>

@@ -50,12 +50,14 @@ public class NoticeServiceImpl implements INoticeService {
 
 	@Override
 	public int noticeBoardCount() {
-		return 0;
+		log.info("IFreeBoardServiceImpl FreeBoardCount 공지사항 전체 게시글 수");
+		return dao.noticeBoardCount();
 	}
 
 	@Override
 	public List<NoticeBoardDto> noticeBoardCountList(Map<String, Object> map) {
-		return null;
+		log.info("IFreeBoardServiceImpl FreeBoardCount 공지사항 게시글 페이징리스트{}",map);
+		return dao.noticeBoardCountList(map);
 	}
 
 }
