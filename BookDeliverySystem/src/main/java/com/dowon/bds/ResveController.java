@@ -22,6 +22,7 @@ import com.dowon.bds.dto.PagingDto;
 import com.dowon.bds.dto.ResveDto;
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IResveService;
+import com.dowon.bds.model.service.IUserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,6 +38,9 @@ public class ResveController {
 
 	@Autowired
 	private IResveService resveService;
+	
+	@Autowired
+	private IUserService userService;
 	
 	
 	//예약목록 (페이징처리)
@@ -79,7 +83,7 @@ public class ResveController {
 	
     @PostMapping("/resveBook.do")
     @ResponseBody
-    public ResponseEntity<String> resveBook(@RequestParam Map<String, Object> request) {
+    public ResponseEntity<String> resveBook(@RequestParam Map<String, Object> request, HttpSession session) {
     	log.info("Welcome ResveController resveBook 예약 신청 처리 Controller {}",request);
     	try {
             int bookSeq = Integer.parseInt((String) request.get("book_seq"));
@@ -87,6 +91,9 @@ public class ResveController {
             int result = resveService.resveBook(request);
 
             if (result > 0) {
+            	UserDto loginDto = (UserDto)session.getAttribute("loginDto");
+                Map<String, Object> userStatus = userService.getUserStatus(loginDto.getUser_seq());
+                session.setAttribute("userStatus",userStatus);
                 return ResponseEntity.ok("예약 신청이 완료되었습니다.");
             } else {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -100,7 +107,7 @@ public class ResveController {
     
     
     @PostMapping("/cancel.do")
-    public ResponseEntity<String> cancelReservation(@RequestBody Map<String, Object> params) {
+    public ResponseEntity<String> cancelReservation(@RequestBody Map<String, Object> params, HttpSession session) {
     	log.info("Welcome ResveController cancelReservation 예약 신청 취소 처리 Controller");
     	try {
             int bookSeq = (int) params.get("book_seq");
@@ -108,6 +115,9 @@ public class ResveController {
 
             int result = resveService.resveCancle(params);
             if (result > 0) {
+            	UserDto loginDto = (UserDto)session.getAttribute("loginDto");
+                Map<String, Object> userStatus = userService.getUserStatus(loginDto.getUser_seq());
+                session.setAttribute("userStatus",userStatus);
                 return ResponseEntity.ok("success");
             } else {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

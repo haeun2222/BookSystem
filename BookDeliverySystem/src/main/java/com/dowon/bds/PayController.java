@@ -31,6 +31,7 @@ import com.dowon.bds.model.service.IAddrService;
 import com.dowon.bds.model.service.IPaymentService;
 import com.dowon.bds.model.service.IRentService;
 import com.dowon.bds.model.service.IResveService;
+import com.dowon.bds.model.service.IUserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,6 +51,9 @@ public class PayController {
 	
 	@Autowired
 	private IAddrService addrService;
+	
+	@Autowired
+	private IUserService userService;
 	
 	
 	//2023.09.18 박하은- 결제시 같이 진행되는 대출,예약을 위한 Service 메소드 선언
@@ -159,6 +163,9 @@ public class PayController {
             int success = rentService.bookRent(params);
             
             if (success > 0) {
+            	UserDto loginDto = (UserDto)session.getAttribute("loginDto");
+            	Map<String, Object> userStatus = userService.getUserStatus(loginDto.getUser_seq());
+            	session.setAttribute("userStatus",userStatus);
                 return "success";
             } else {
                 return "failure";
@@ -171,12 +178,15 @@ public class PayController {
 
     @PostMapping("/reserveBook.do")
     @ResponseBody
-    public String reserveBook(@RequestBody Map<String, Integer> data) {
+    public String reserveBook(@RequestBody Map<String, Integer> data, HttpSession session) {
     	log.info("Welcome PayController reserveBook 예약상태 대출대기->진행완료 처리 AJAX Controller");
         try {
         	int bookSeq = Integer.parseInt(data.get("book_seq").toString());
             int success = resveService.resveAsRent(bookSeq);
             if (success > 0) {
+            	UserDto loginDto = (UserDto)session.getAttribute("loginDto");
+            	Map<String, Object> userStatus = userService.getUserStatus(loginDto.getUser_seq());
+            	session.setAttribute("userStatus",userStatus);
                 return "success";
             } else {
                 return "failure";
