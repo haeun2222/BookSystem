@@ -31,11 +31,11 @@
 				</c:when>
 				<c:otherwise>
 					<span> 
-						${loginDto.user_name}님 &nbsp;&nbsp;
-						<c:if test="${loginDto.user_auth eq 'U'}">
-						대출상태 : <a href="./userRentPageList.do"> ${sessionScope.userStatus.RENT_STATUS} </a>&nbsp;&nbsp;
-						예약상태 : <a href="./userResvePageList.do"> ${sessionScope.userStatus.RESVE_STATUS} </a> &nbsp;&nbsp;
-					 	</c:if>
+						${loginDto.user_name}님 환영합니다.
+				<!--		<c:if test="${loginDto.user_auth eq 'U'}"> -->
+			<!--			대출상태 : <a href="./userRentPageList.do"> ${sessionScope.userStatus.RENT_STATUS} </a>&nbsp;&nbsp; -->
+			<!--			예약상태 : <a href="./userResvePageList.do"> ${sessionScope.userStatus.RESVE_STATUS} </a> &nbsp;&nbsp; -->
+				<!--	 	</c:if> -->
 					 </span>
 					<c:if test="${loginDto.user_auth eq 'A'}">
 					<button class="btn" id="adminbutton" onclick="location.href='./moveAdminPage.do'">
@@ -58,11 +58,11 @@
 			<div class="navbar-header"></div>
 			<ul class="nav navbar-nav">
 				<li><a href="./noticeBoardList.do">공지사항</a></li>
-				<li><a href="./freeBoardList.do">자유게시판</a></li>
 				<li><a href="./userBookList.do">도서목록</a></li>
+
+				<li><a href="./freeBoardList.do">자유게시판</a></li>
+
 				<li><a href="./faqList.do">FAQ</a></li>
-<!-- 				<li><a href="./userRentPageList.do">대출목록</a></li> -->
-<!-- 				<li><a href="./userResvePageList.do">예약목록</a></li> -->
 			</ul>
 		</div>
 	</nav>
