@@ -30,12 +30,37 @@
 						onclick="location.href='./loginPage.do'">로그인</button>
 				</c:when>
 				<c:otherwise>
-					<span> 
-						${loginDto.user_name}님 환영합니다.
-				<!--		<c:if test="${loginDto.user_auth eq 'U'}"> -->
-			<!--			대출상태 : <a href="./userRentPageList.do"> ${sessionScope.userStatus.RENT_STATUS} </a>&nbsp;&nbsp; -->
-			<!--			예약상태 : <a href="./userResvePageList.do"> ${sessionScope.userStatus.RESVE_STATUS} </a> &nbsp;&nbsp; -->
-				<!--	 	</c:if> -->
+					<span id="rentInfo"> 
+						${loginDto.user_name}님&nbsp;&nbsp;
+<%-- 						<c:if test="${loginDto.user_auth eq 'U'}"> --%>
+<%-- 						대출상태 : <a href="./userRentPageList.do"> ${sessionScope.userStatus.RENT_STATUS} </a>&nbsp;&nbsp; --%>
+<%-- 						예약상태 : <a href="./userResvePageList.do"> ${sessionScope.userStatus.RESVE_STATUS} </a> &nbsp;&nbsp; --%>
+<%-- 					 	</c:if> --%>
+
+
+					<c:if test="${loginDto.user_auth eq 'U'}">
+					    대출상태 :
+					    <c:choose>
+					        <c:when test="${sessionScope.userStatus.RENT_STATUS eq 'Y'}">
+					            <a href="./userRentPageList.do">대출중</a>
+					        </c:when>
+					        <c:otherwise>
+					            <a href="./userRentPageList.do">조회</a>
+					        </c:otherwise>
+					    </c:choose>
+					    &nbsp;&nbsp;
+					    예약상태 :
+					    <c:choose>
+					        <c:when test="${sessionScope.userStatus.RESVE_STATUS eq 'Y' || sessionScope.userStatus.RESVE_STATUS eq 'R'}">
+					            <a href="./userResvePageList.do">예약중</a>
+					        </c:when>
+					        <c:otherwise>
+					            <a href="./userResvePageList.do">조회</a>
+					        </c:otherwise>
+					    </c:choose>
+					</c:if>
+					
+					
 					 </span>
 					<c:if test="${loginDto.user_auth eq 'A'}">
 					<button class="btn" id="adminbutton" onclick="location.href='./moveAdminPage.do'">

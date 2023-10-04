@@ -31,6 +31,7 @@ import com.dowon.bds.dto.PagingDto;
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IRentService;
 import com.dowon.bds.model.service.IResveService;
+import com.dowon.bds.model.service.IUserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -55,6 +56,9 @@ public class RentController {
 	
 	@Autowired
 	private IResveService resveService;
+	
+	@Autowired
+	private IUserService userService;
 	
 	
 	//회원 개인의 대출목록(페이징처리)
@@ -169,12 +173,15 @@ public class RentController {
 	
 	 @PostMapping("/confirmReturn.do")
 	 @ResponseBody
-	 public String confirmReturn(@RequestParam("rentSeq") int rentSeq, Model model) {
+	 public String confirmReturn(@RequestParam("rentSeq") int rentSeq, Model model, HttpSession session) {
 	     log.info("Welcome RentController confirmReturn 관리자의 도서대출 반납처리 AJAX Controller"); 
 		 try {
 	         int rowsAffected = rentService.rentStatus(rentSeq);
 	            
 	         if (rowsAffected > 0) {
+	        	 UserDto loginDto = (UserDto)session.getAttribute("loginDto");
+	               Map<String, Object> userStatus = userService.getUserStatus(loginDto.getUser_seq());
+	               session.setAttribute("userStatus",userStatus);
 	              return "success";
 	         }else {
 	            return "error";

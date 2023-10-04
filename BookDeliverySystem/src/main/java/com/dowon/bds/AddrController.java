@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dowon.bds.dto.AddrDto;
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IAddrService;
+import com.dowon.bds.model.service.IUserService;
 
 
 @Controller
@@ -42,6 +43,9 @@ public class AddrController {
 	
 	@Autowired
 	private IAddrService service;
+	
+	@Autowired
+	private IUserService userService;
 	
 	//book_seq때문에 addr 페이지로 돌아갈수 없음 23.09.18	
 	@RequestMapping(value = "/addr.do", method = RequestMethod.GET)
@@ -95,7 +99,9 @@ public class AddrController {
 		session.setAttribute("saveAddressReturn", addrDto);
 		
 		model.addAttribute("bookSeq",bookSeq);
-		
+		UserDto loginDto = (UserDto)session.getAttribute("loginDto");
+        Map<String, Object> userStatus = userService.getUserStatus(loginDto.getUser_seq());
+        session.setAttribute("userStatus",userStatus);
 		return "returnAddrCheck";
 	
 	}
