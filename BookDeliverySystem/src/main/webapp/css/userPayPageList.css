@@ -44,3 +44,11 @@ h5 {
 #sidebar li:hover {
     background-color: rgb(104, 236, 233);
 }
+
+#maincontent {
+/*     background: #9999ff; */
+/*     height: 600px; */
+	height: 64vh;
+    margin-left: 220px; /* 사이드바 너비(200px) + 여백(20px) */
+}
+
