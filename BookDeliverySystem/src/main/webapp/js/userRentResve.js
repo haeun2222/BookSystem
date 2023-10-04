@@ -42,7 +42,7 @@ function chkAvailability() {
     var button2 = "";
 	
     if (rentDataSize == 0 && resveDataSize == 0) {
-        modalContent = "<b>회원정보</b><br>이름 : " + userName + "<br>이메일 : " + userEmail + "<br><br><b>도서정보</b><br>도서명 : " + bookTitle + "<br>저자 : " + bookWriter + "<br><br><b>대출신청 확인</b><br>대출신청을 하시겠습니까?<br>대출신청 버튼을 누르면 배송지 입력으로 이동합니다.";
+        modalContent = "<b>회원정보</b><br>이름 : " + userName + "<br>이메일 : " + userEmail + "<br><br><b>도서정보</b><br>도서명 : " + bookTitle + "<br>저자 : " + bookWriter + "<br><br><b>대출신청 확인</b><br>대출신청을 하시겠습니까?"+"<p style='color:blue;'><br><b>대출신청 버튼을 누르면 배송지 입력으로 이동합니다.</b></p>";
         button1 = $('<button type="button" class="btn btn-primary ml-2">대출신청</button>');
         button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
 
@@ -54,7 +54,7 @@ function chkAvailability() {
         modalFooter.append(button2);
     } else {
         if (resveDataSize > 0) {
-            modalContent = "<b>회원정보</b><br>이름 : " + userName + "<br>이메일 : " + userEmail + "<br><br><b>예약정보</b><br>" + userName + "님은 현재<br>" + resveDataTitle + " 도서를 예약중입니다.<br>예약신청이 불가합니다.";
+            modalContent = "<b>회원정보</b><br>이름 : " + userName + "<br>이메일 : " + userEmail + "<br><br><b>예약정보</b><br>" + userName + "님은 현재<br>" + resveDataTitle + " 도서를 예약중입니다."+"<p style='color:red;'><br><b>대출신청이 불가합니다.</b></p>";
             button1 = $('<button type="button" class="btn btn-warning ml-2">예약조회</button>');
             button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
             
@@ -66,7 +66,7 @@ function chkAvailability() {
             modalFooter.append(button2);
         }
         if (rentDataSize > 0) {
-            modalContent = "<b>회원정보</b><br>이름 : " + userName + "<br>이메일 : " + userEmail + "<br><br><b>대출정보</b><br>" + userName + "님은 현재<br>" + rentDataTitle + " 도서를 대출중입니다.<br>대출신청이 불가합니다.";
+            modalContent = "<b>회원정보</b><br>이름 : " + userName + "<br>이메일 : " + userEmail + "<br><br><b>대출정보</b><br>" + userName + "님은 현재<br>" + rentDataTitle + " 도서를 대출중입니다."+"<p style='color:red;'><br><b>대출신청이 불가합니다.</b></p>";
             button1 = $('<button type="button" class="btn btn-warning ml-2">대출조회</button>');
             button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
 
@@ -94,7 +94,7 @@ function newResve1() {
     var button2 = "";
     
     if(rentDataSize == 0 && resveDataSize == 0){
-        modalContent = "<b>회원정보</b><br>이름 : " + userName + "<br>이메일 : " + userEmail + "<br><br><b>도서정보</b><br>도서명 : " + bookTitle + "<br>저자 : " + bookWriter + "<br><br><b>예약신청 확인</b><br>예약신청을 하시겠습니까?<br>예약신청 버튼을 누르면 신청이 완료됩니다.";
+        modalContent = "<b>회원정보</b><br>이름 : " + userName + "<br>이메일 : " + userEmail + "<br><br><b>도서정보</b><br>도서명 : " + bookTitle + "<br>저자 : " + bookWriter + "<br><br><b>예약신청 확인</b><br>예약신청을 하시겠습니까?"+"<p style='color:blue;'><br><b>예약신청 버튼을 누르면 신청이 완료됩니다.</b></p>";
         button1 = $('<button type="button" class="btn btn-primary ml-2">예약신청</button>');
         button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
 		console.log(typeof bookSeq);
@@ -127,7 +127,7 @@ function newResve1() {
     } else {
 		if(rentDataSize == 0 && resveDataSize > 0){
 	 	  console.log("test2");
-       modalContent = "<b>회원정보</b><br>이름 : " + userName + "<br>이메일 : " + userEmail + "<br><br><b>예약정보</b><br>" + userName + "님은 현재<br>" + resveDataTitle + " 도서를 예약중입니다.<br>예약신청이 불가합니다.";
+       modalContent = "<b>회원정보</b><br>이름 : " + userName + "<br>이메일 : " + userEmail + "<br><br><b>예약정보</b><br>" + userName + "님은 현재<br>" + resveDataTitle + " 도서를 예약중입니다."+"<p style='color:red;'><br><b>예약신청이 불가합니다.</b></p>";
         button1 = $('<button type="button" class="btn btn-warning ml-2" data-dismiss="modal">예약조회</button>');
         button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
 
@@ -143,7 +143,7 @@ function newResve1() {
     
     	if(resveDataSize == 0 && rentDataSize > 0){
 			console.log("test3");
-       modalContent = "<b>회원정보</b><br>이름 : " + userName + "<br>이메일 : " + userEmail + "<br><br><b>대출정보</b><br>" + userName + "님은 현재<br>" + rentDataTitle + " 도서를 대출중입니다.<br>예약신청이 불가합니다.";
+       modalContent = "<b>회원정보</b><br>이름 : " + userName + "<br>이메일 : " + userEmail + "<br><br><b>대출정보</b><br>" + userName + "님은 현재<br>" + rentDataTitle + " 도서를 대출중입니다."+"<p style='color:red;'><br><b>예약신청이 불가합니다.</b></p>";
         button1 = $('<button type="button" class="btn btn-warning ml-2" data-dismiss="modal">대출조회</button>');
         button2 = $('<button type="button" class="btn btn-danger ml-2" data-dismiss="modal">닫기</button>');
 
