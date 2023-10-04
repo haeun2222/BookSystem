@@ -18,6 +18,9 @@ h5 {
       font-family: 'BMHANNAAir', fantasy;
       color: #00ADB5;
 }
+h4 {
+      font-family: 'BMHANNAPro', fantasy;
+}
 .container {
 	height: 70vh;
 }
