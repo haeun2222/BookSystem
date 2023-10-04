@@ -50,8 +50,8 @@ svg > g > g:last-child { pointer-events: none }
 <!-- 도서관 이벤트 출력화면 gif-->
 	<div>
 	<h3>화제의 도서</h3>
-	<img id="event" src="./img/yr.gif">
-	<img id="event" src="./img/ban.gif">
+	<a href="http://localhost:8099/BookDeliverySystem/getDetailBook.do?book_seq=563"><img id="event" src="./img/yr.gif"></a>
+	<a href="http://localhost:8099/BookDeliverySystem/getDetailBook.do?book_seq=562"><img id="event" src="./img/ban.gif"></a>
 	</div>
 <!-- FAQ 리스트 메인 출력 div-->
 	<div style="text-align: center;">

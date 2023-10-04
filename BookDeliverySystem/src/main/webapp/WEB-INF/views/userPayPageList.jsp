@@ -18,6 +18,19 @@
 </head>
 <%@ include file="header.jsp" %>
 <body>
+<div id="sidebar">
+	<div>
+	<h4>${loginDto.user_name}님<br/></h4>
+	<h5>가입일 : <fmt:formatDate value="${loginDto.joindate}"/></h5> 
+	</div>
+	<ul>
+		<li onclick="window.location.href='checkUserInfo.do'">회원정보수정</li>
+		<li onclick="window.location.href='modifyPassword.do'">비밀번호수정</li>
+        <li onclick="window.location.href='./userPayPageList.do'">결제내역</li>
+        <li onclick="window.location.href='./userRentPageList.do'">대출내역</li>
+        <li onclick="window.location.href='./userResvePageList.do'">예약내역</li>
+	</ul>
+</div>	
 
 <div class="container">
 <c:set var="lists" value="${requestScope.lists}" />

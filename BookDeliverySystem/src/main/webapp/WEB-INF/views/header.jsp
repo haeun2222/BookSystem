@@ -60,7 +60,6 @@
 				<li><a href="./noticeBoardList.do">공지사항</a></li>
 				<li><a href="./freeBoardList.do">자유게시판</a></li>
 				<li><a href="./userBookList.do">도서목록</a></li>
-				<li><a href="./userPayPageList.do">결제내역</a></li>
 				<li><a href="./faqList.do">FAQ</a></li>
 <!-- 				<li><a href="./userRentPageList.do">대출목록</a></li> -->
 <!-- 				<li><a href="./userResvePageList.do">예약목록</a></li> -->
