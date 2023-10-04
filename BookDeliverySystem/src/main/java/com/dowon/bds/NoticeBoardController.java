@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dowon.bds.dto.NoticeBoardDto;
 import com.dowon.bds.dto.PagingDto;
@@ -127,7 +128,7 @@ public class NoticeBoardController {
 	
 	@PostMapping(value="/updateNoticeBoard.do")
 	public String updateNoticeBoard(@RequestParam("notice_bseq")int notice_bseq,@RequestParam("notice_content")String notice_content) {
-		log.info("FreeBoardController updateBoard 공지사항 글 수정");
+		log.info("NoticeBoardController updateBoard 공지사항 글 수정");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("notice_bseq", notice_bseq);
 		map.put("notice_content", notice_content);
@@ -137,5 +138,14 @@ public class NoticeBoardController {
 		}else {
 			return "noticeBoardDetail";
 		}
+	}
+	
+	@GetMapping(value="/mainNoticeList.do")
+	@ResponseBody
+	public List<NoticeBoardDto> mainNoticeList(Model model){
+		log.info("NoticeBoardController mainNoticeList 공지사항 메인 노출");
+		List<NoticeBoardDto> mainNoticeList = noticeService.mainNoitceList();
+		model.addAttribute("mainNoticeList",mainNoticeList);
+		return mainNoticeList;
 	}
 }

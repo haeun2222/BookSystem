@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dowon.bds.dto.FaqBoardDto;
 import com.dowon.bds.dto.NoticeBoardDto;
 import com.dowon.bds.model.mapper.INoticeBoardDao;
 
@@ -50,14 +51,22 @@ public class NoticeServiceImpl implements INoticeService {
 
 	@Override
 	public int noticeBoardCount() {
-		log.info("IFreeBoardServiceImpl FreeBoardCount 공지사항 전체 게시글 수");
+		log.info("NoticeServiceImpl FreeBoardCount 공지사항 전체 게시글 수");
 		return dao.noticeBoardCount();
 	}
 
 	@Override
 	public List<NoticeBoardDto> noticeBoardCountList(Map<String, Object> map) {
-		log.info("IFreeBoardServiceImpl FreeBoardCount 공지사항 게시글 페이징리스트{}",map);
+		log.info("NoticeServiceImpl FreeBoardCount 공지사항 게시글 페이징리스트{}",map);
 		return dao.noticeBoardCountList(map);
 	}
+
+	@Override
+	public List<NoticeBoardDto> mainNoitceList() {
+		log.info("NoticeServiceImpl mainNoitceList 공지사항 메인노출{}");
+		return dao.mainNoitceList();
+	}
+	
+	
 
 }

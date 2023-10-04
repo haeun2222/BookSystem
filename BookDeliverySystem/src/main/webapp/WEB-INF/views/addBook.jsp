@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>도서 등록 페이지</title>
+<link rel="stylesheet" href="css/font.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<link rel="stylesheet" href="css/adminHeader.css"/>
 <link rel="stylesheet" href="css/adminPage.css"/>
 <script src="js/addBook.js"></script>
 </head>
