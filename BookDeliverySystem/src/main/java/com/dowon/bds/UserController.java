@@ -219,8 +219,11 @@ public class UserController {
 	}
 	
 	@GetMapping(value="/myPage.do")
-	public String myPage() {
+	public String myPage(HttpSession session, Model model) {
 		log.info("UserController myPage 이동");
+		UserDto dto = (UserDto)session.getAttribute("loginDto");
+		UserDto userInfo = service.getUserDetail(dto.getUser_email());
+		model.addAttribute("userInfo",userInfo);
 		return "myPage";
 	}
 	

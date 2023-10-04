@@ -85,5 +85,11 @@ public class UserServiceImpl implements IUserService {
 		log.info("UserServiceImpl checkPassword 비밀번호 체크 :{}",map);
 		return dao.checkPassword(map);
 	}
+
+	@Override
+	public UserDto getUserDetail(String user_email) {
+		log.info("UserServiceImpl getUserDetail 유저상세정보 :{}",user_email);
+		return dao.getUserDetail(user_email);
+	}
 	
 }

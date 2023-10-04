@@ -17,6 +17,12 @@ SELECT COUNT(USER_PHONE)
 	WHERE USER_PHONE= #{user_phone}
 </select>
 
+<!-- 유저 상세 조회 -->
+<select id="getUserDetail" resultType="UserDto">
+SELECT USER_SEQ,USER_EMAIL,USER_NAME,USER_PHONE,USER_BIRTH,JOINDATE,USER_GENDER
+	FROM TB_USER
+	WHERE USER_EMAIL=#{user_email}
+</select>
 
 <!-- 로그인 구현 -->
 <select id="login" resultType="UserDto" parameterType="Map">

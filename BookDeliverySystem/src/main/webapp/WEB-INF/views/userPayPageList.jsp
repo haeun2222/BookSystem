@@ -24,6 +24,7 @@
 	<h5>가입일 : <fmt:formatDate value="${loginDto.joindate}"/></h5> 
 	</div>
 	<ul>
+		<li onclick="window.location.href='./myPage.do'">회원정보</li>
 		<li onclick="window.location.href='./moveModifyPW.do'">비밀번호수정</li>
         <li onclick="window.location.href='./userPayPageList.do'">결제내역</li>
         <li onclick="window.location.href='./userRentPageList.do'">대출내역</li>
