@@ -24,19 +24,18 @@
 	<h5>가입일 : <fmt:formatDate value="${loginDto.joindate}"/></h5> 
 	</div>
 	<ul>
-		<li onclick="window.location.href='checkUserInfo.do'">회원정보수정</li>
-		<li onclick="window.location.href='modifyPassword.do'">비밀번호수정</li>
+		<li onclick="window.location.href='./modifyPassword.do'">비밀번호수정</li>
         <li onclick="window.location.href='./userPayPageList.do'">결제내역</li>
         <li onclick="window.location.href='./userRentPageList.do'">대출내역</li>
         <li onclick="window.location.href='./userResvePageList.do'">예약내역</li>
 	</ul>
 </div>	
+<div id="maincontent">
 
-<div class="container">
-<c:set var="lists" value="${requestScope.lists}" />
-<c:set var="r" value="${requestScope.page}" />
-<c:set var="loginUser" value="${sessionScope.loginDto}" />
-<c:set var="payment" value="${sessionScope.payDto}" />
+	<c:set var="lists" value="${requestScope.lists}" />
+	<c:set var="r" value="${requestScope.page}" />
+	<c:set var="loginUser" value="${sessionScope.loginDto}" />
+	<c:set var="payment" value="${sessionScope.payDto}" />
 
 <h1>${loginUser.user_name}님의 결제내역 입니다.</h1>
 
@@ -66,7 +65,7 @@
 		     
         </tr>
     </c:forEach>
-    
+ 
 </table>
    <!-- 페이징 -->
    <div class="text-center">
@@ -107,10 +106,7 @@
                 <li><a href="./userPayPageList.do?page=${r.getTotalPage() - r.getTotalPage() % r.getCountList() + 1}">▷▷</a></li>
             </c:if>
    		</ul>
-   
    </div>
-   
-   
   </div> 
 </body>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
