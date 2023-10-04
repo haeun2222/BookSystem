@@ -41,4 +41,7 @@ public interface IUserService {
 	
 	//비밀번호 체크
 	public int checkPassword(Map<String, Object> map);
+	
+	//회원 상세조회
+	public UserDto getUserDetail(String user_email);
 }

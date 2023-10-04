@@ -4,13 +4,14 @@ body {
     width: 1280px;
 }
 
+h3, h4, h5 {
+	  text-align:center;
+	  margin:0 auto;
+	  padding-top: 15px;
+	  padding-bottom: 15px;
+      font-family: 'BMHANNAPro', fantasy;
+}
 
-h4 {
-      font-family: 'BMHANNAPro', fantasy;
-}
-h5 {
-      font-family: 'BMHANNAPro', fantasy;
-}
 .container {
    height: 70vh;
 }
@@ -20,6 +21,10 @@ h5 {
     float: left;
     width: 200px;
     height: 600px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #sidebar ul {
@@ -49,4 +54,46 @@ h5 {
     background: #ffcc99;
     height: 80px;
     clear: left;
+}
+
+/* 유저상세정보 css */
+.user-details {
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.detail-row {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.label-container {
+    background-color: #3498db;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px 0 0 5px;
+    font-weight: bold;
+    min-width: 100px; /* 라벨 컨테이너의 최소 너비 */
+    text-align: center; /* 라벨 텍스트 가운데 정렬 */
+}
+
+.value-container {
+    background-color: #f1f1f1;
+    padding: 8px 12px;
+    border-radius: 0 5px 5px 0;
+}
+
+.label-container, .value-container {
+    font-size: 18px;
+}
+
+.user-details h2 {
+    text-align: center;
+    margin-bottom: 20px;
 }

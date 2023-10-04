@@ -37,6 +37,7 @@ public interface INoticeBoardDao {
 	
 	//공지사항 메인 출력
 	public List<NoticeBoardDto> mainNoitceList();
+	
 
 }
 

@@ -97,4 +97,11 @@ public class UserDaoImpl implements IUserDao {
 		log.info("UserDaoImpl checkPassword 비밀번호체크");
 		return sqlSession.selectOne(NS+"checkPassword",map);
 	}
+
+
+	@Override
+	public UserDto getUserDetail(String user_email) {
+		log.info("UserDaoImpl getUserDetail 유저상세정보");
+		return sqlSession.selectOne(NS+"getUserDetail",user_email);
+	}
 }
