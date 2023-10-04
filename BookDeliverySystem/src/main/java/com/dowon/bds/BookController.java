@@ -30,6 +30,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dowon.bds.dto.BookDto;
+import com.dowon.bds.dto.NoticeBoardDto;
+import com.dowon.bds.dto.PagingDto;
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IBookService;
 import com.dowon.bds.model.service.IRentService;
@@ -61,9 +63,40 @@ public class BookController {
 	private IResveService resveService;
 
 	@GetMapping(value="/userBookList.do")
-	public String userBookList(Model model){
+	public String userBookList(@RequestParam(name = "page", defaultValue = "1") int selectPage,Model model){
 		log.info("사용자 userBookList 모든책정보 가져오기");
-		List<BookDto> userBookList = service.getAllBook();
+		
+		PagingDto pd = new PagingDto();
+		
+		// 총 게시물의 갯수
+	    pd.setTotalCount(service.bookCount());
+
+	    // 출력될 총 게시글의 갯수
+	    pd.setCountList(10);
+
+	    // 화면에 몇개의 페이지그룹
+	    pd.setCountPage(5);
+
+	    // 총페이지의 갯수
+	    pd.setTotalPage(pd.getTotalCount());
+
+	    // 요청되는페이지
+	    pd.setPage(selectPage);
+
+	    // 시작페이지 번호
+	    pd.setStartPage(selectPage);
+
+	    // 끝번호
+	    pd.setEndPage(pd.getCountPage());
+	    
+	  //게시글 조회
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("first", pd.getPage() * pd.getCountList() - (pd.getCountList() - 1));
+	    map.put("last", pd.getPage() * pd.getCountList());
+	    
+	    List<BookDto> userBookList = service.bookCountList(map);
+//		List<BookDto> userBookList = service.getAllBook();
+		model.addAttribute("pd", pd);
 		model.addAttribute("userBookList",userBookList);
 		return "userBookList";
 	}

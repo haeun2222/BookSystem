@@ -2,6 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.dowon.bds.model.mapper.BookDaoImpl">
 
+<!-- 도서목록 페이징 -->
+<select id="bookCount" resultType="java.lang.Integer">
+SELECT COUNT(*) 
+	FROM TB_BOOK
+</select>
+
+<select id="bookCountList" parameterType="java.util.Map" resultType="BookDto">
+    SELECT BOOK_SEQ, BOOK_TITLE, BOOK_WRITER, BOOK_IMG, BOOK_ISBN,
+           BOOK_INTRO, BOOK_PUBLISHER, BOOK_PUBLISHED_DATE, BOOK_INDEX, BOOK_SUMMARY
+    FROM (
+        SELECT tb.BOOK_SEQ, tb.BOOK_TITLE, tb.BOOK_WRITER, tb.BOOK_IMG, tb.BOOK_ISBN,
+               tb.BOOK_INTRO, tb.BOOK_PUBLISHER, tb.BOOK_PUBLISHED_DATE, tb.BOOK_INDEX, tb.BOOK_SUMMARY,
+               ROW_NUMBER() OVER (ORDER BY tb.BOOK_SEQ DESC) AS RN
+        FROM TB_BOOK tb
+    ) tt
+    WHERE RN BETWEEN #{first} AND #{last}
+</select>
+
+
 <!-- ISBN으로 도서 중복 등록 체크 -->
 <select id="checkIsbn" parameterType="String" resultType="Integer">
 SELECT COUNT(BOOK_ISBN)

@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -29,9 +31,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IUserService;
+
+import oracle.jdbc.proxy.annotation.Post;
 
 /**
  * 
@@ -214,8 +219,48 @@ public class UserController {
 	
 	@GetMapping(value="/myPage.do")
 	public String myPage() {
-		
+		log.info("UserController myPage 이동");
 		return "myPage";
 	}
 	
+	@GetMapping(value="/moveCheckUserInfo.do")
+	public String checkUserInfo() {
+		log.info("UserController checkUserInfo 이동");
+		return "myPageUserInfo";
+	}
+	
+	@GetMapping(value="/moveModifyPW.do")
+	public String moveModifyPassword() {
+		log.info("UserController modifyPassword 이동");
+		return "myPageModifyPW";
+	}
+	
+	@PostMapping(value="/modifyPassword.do")
+	public String modifyPassword(
+							   @RequestParam("currentPassword") String currentPassword,
+							   @RequestParam("newPassword") String newPassword,
+							   HttpSession session,
+							   Model model
+							   
+			) {
+		log.info("UserController modifyPassword 시작");
+		UserDto userDto = (UserDto)session.getAttribute("loginDto");
+		String user_email = userDto.getUser_email();
+		log.info("값확인★★★★:{}",user_email);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("currentPassword", currentPassword);
+		map.put("user_email",user_email);
+		map.put("user_password", newPassword);
+		
+		int n = service.checkPassword(map);
+		
+		if (n == 1) {
+		    service.modifyPassword(map);
+		    model.addAttribute("successModify","비밀번호 변경 성공");
+	        return "alert";
+		} else {
+			model.addAttribute("failModify","비밀번호 변경 실패");
+	        return "alert";
+		}
+	}
 }

@@ -35,4 +35,10 @@ public interface IUserDao {
 	
 	//임시비밀번호 발급시 유효성 체크
 	public int findPwCheck(UserDto dto);
+	
+	//비밀번호 수정
+	public int modifyPassword(Map<String, Object> map);
+	
+	//비밀번호 체크
+	public int checkPassword(Map<String, Object> map);
 }	

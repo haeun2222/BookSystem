@@ -80,6 +80,21 @@ UPDATE TB_USER SET USER_PASSWORD = #{user_password}
 	AND USER_PHONE = #{user_phone}
 </update>
 
+<!-- 비밀번호 체크 -->
+<select id="checkPassword" resultType="Integer">
+SELECT COUNT(*)
+	FROM TB_USER
+	WHERE USER_EMAIL = #{user_email}
+	AND USER_PASSWORD = #{currentPassword}
+</select>
+
+<!-- 비밀번호 업데이트 -->
+<update id="modifyPW">
+UPDATE TB_USER SET USER_PASSWORD = #{user_password}
+	WHERE USER_PASSWORD = #{currentPassword}
+	AND USER_EMAIL = #{user_email}
+</update>
+
 <!--임시비밀번호 찾기시 회원정보 일치 체크 -->
 <select id="findPWCheck" resultType="java.lang.Integer">
 SELECT COUNT(*)

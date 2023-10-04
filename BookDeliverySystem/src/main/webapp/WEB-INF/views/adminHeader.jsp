@@ -39,14 +39,6 @@
       <div class="navbar-header"></div>
       <ul class="nav navbar-nav">
         <li class="menu-item">
-          <a href="#">회원관리</a>
-          <div class="submenu">
-            <ul>
-              <li><a href="./userList.do">회원 목록</a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="menu-item">
           <a href="#">도서관리</a>
           <div class="submenu">
             <ul>
