@@ -21,7 +21,7 @@
 	<ul>
 		<li onclick="window.location.href='checkUserInfo.do'">회원정보수정</li>
 		<li onclick="window.location.href='modifyPassword.do'">비밀번호수정</li>
-        <li>결제내역</li>
+		<li onclick="window.location.href='userPayPageList.do'">결제내역</li>
         <li>대출내역</li>
         <li>예약내역</li>
 	</ul>
