@@ -5,6 +5,11 @@ body{
 	margin:0 auto;
 }
 
+a.a{
+	text-decoration: none;
+	color: #222831;
+}
+
 .mainTitle{
 	text-align: center; 
 	font-size: 60px; 

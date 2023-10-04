@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dowon.bds.dto.FaqBoardDto;
 import com.dowon.bds.dto.NoticeBoardDto;
 
 import lombok.extern.slf4j.Slf4j;
@@ -62,6 +63,11 @@ public class NoticeBoardDaoImpl implements INoticeBoardDao {
 	@Override
 	public List<NoticeBoardDto> noticeBoardCountList(Map<String, Object> map) {
 		return session.selectList(NS+"noticeBoardCountList",map);
+	}
+
+	@Override
+	public List<NoticeBoardDto> mainNoitceList() {
+		return session.selectList(NS+"mainNoitceList");
 	}
 
 }

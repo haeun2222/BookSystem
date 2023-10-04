@@ -68,10 +68,20 @@ svg > g > g:last-child { pointer-events: none }
 
     </div>
 	
-	<div style="text-align: center;">공지사항</div>
+		<div style="text-align: center;">
+			<h3>공지사항</h3>
+		        <table class="table" border="1" id="notice_table">
+		        <c:forEach var="notice" items="${mainNoticeList}">
+		            <tr>
+		                <td>
+		                    <h5 class="notice_title">${notice.notice_title}</h5>
+		                </td>
+		            </tr>
+		        </c:forEach>
+		    </table>
+		</div>
+	</div>
 </div>
-</div>
-
 </body>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 <script>
@@ -105,6 +115,44 @@ function loadFaqList() {
         },
         error: function(error) {
             console.error("FAQ 목록을 가져오는 중 오류 발생: " + error);
+        }
+    });
+}
+</script>
+
+
+<!-- 공지사항불러오기 -->
+<script>
+$(document).ready(function() {
+    loadNoticeList();// 페이지 로드 시 FAQ 목록을 가져옴
+});
+
+function loadNoticeList() {
+    $.ajax({
+        type: "GET",
+        url: "./mainNoticeList.do", 
+        dataType: "json", // JSON 형식의 응답
+        success: function(data) {
+            // FAQ 목록을 성공적으로 가져왔을 때 처리
+            var noticeTable = $("#notice_table");
+            noticeTable.empty(); // 새글이 올라오면 테이블 비우기
+
+            // 데이터를 반복하여 테이블에 추가
+            $.each(data, function(index, notice) {
+                var row = $("<tr>");
+                var cell = $("<td>").append($("<h5>").addClass("notice_title").text(notice.notice_title));
+                
+                // FAQ 클릭 이벤트 추가
+                cell.click(function() {
+                // FAQ 상세 정보 페이지로 이동
+                window.location.href = "./noticeBoardDetail.do?notice_bseq=" + notice.notice_bseq;
+                });
+                row.append(cell);
+                noticeTable.append(row);
+            });
+        },
+        error: function(error) {
+            console.error("Notice 목록을 가져오는 중 오류 발생: " + error);
         }
     });
 }

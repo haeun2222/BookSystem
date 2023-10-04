@@ -3,6 +3,7 @@ package com.dowon.bds.model.mapper;
 import java.util.List;
 import java.util.Map;
 
+import com.dowon.bds.dto.FaqBoardDto;
 import com.dowon.bds.dto.NoticeBoardDto;
 
 /**
@@ -33,6 +34,9 @@ public interface INoticeBoardDao {
 	public int noticeBoardCount();
 		
 	public List<NoticeBoardDto> noticeBoardCountList(Map<String, Object>map);
+	
+	//공지사항 메인 출력
+	public List<NoticeBoardDto> mainNoitceList();
 
 }
 

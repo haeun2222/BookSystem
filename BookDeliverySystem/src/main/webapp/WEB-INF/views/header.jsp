@@ -72,6 +72,7 @@
 					<span>
 					<c:if test="${loginDto.user_auth eq 'U'}">
 						<button class="btn" id="headerButton" onclick="location.href='./myPage.do'">내 정보</button>
+						<button class="btn" id="headerButton" onclick="location.href='./logout.do'">로그아웃</button>
 					</c:if>
 					</span>
 				</c:otherwise>

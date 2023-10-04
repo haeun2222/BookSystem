@@ -7,11 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 도서 리스트</title>
+<link rel="stylesheet" href="css/font.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/adminHeader.css"/>
 <link rel="stylesheet" href="css/bookList.css"/>
-<!-- <link rel="stylesheet" href="css/adminPage.css"/> -->
 </head>
 <c:if test="${not empty resultAddBook}">
         <script>
