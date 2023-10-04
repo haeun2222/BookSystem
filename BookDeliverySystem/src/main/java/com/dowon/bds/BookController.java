@@ -89,7 +89,7 @@ public class BookController {
 	    // 끝번호
 	    pd.setEndPage(pd.getCountPage());
 	    
-	  //게시글 조회
+	    //게시글 조회
 	    Map<String, Object> map = new HashMap<String, Object>();
 	    map.put("first", pd.getPage() * pd.getCountList() - (pd.getCountList() - 1));
 	    map.put("last", pd.getPage() * pd.getCountList());
@@ -177,19 +177,53 @@ public class BookController {
 	    int n = service.registBook(dto);
 	    if(n==1) {
 	    	log.info("Welcome registBook 도서 등록 성공");
-	    	model.addAttribute("result", "도서 등록 성공!");
-	    	return "redirect:/bookMagagement.do";
+	    	model.addAttribute("resultAddBook", "도서 등록 성공!");
+	    	return "bookManagement";
 	    }else {
 	    	log.info("Welcome registBook 도서 등록 실패");
-	    	model.addAttribute("result", "도서 등록 실패ㅜㅜ");
+	    	model.addAttribute("resultAddBook", "도서 등록 실패ㅜㅜ");
+	    	return "addBook";
 	    }
-	    return "redirect:addBook.do";
 	}
 	
 	//도서 검색 컨트롤러
 	@GetMapping(value="/searchBooks.do")
-	public String searchBooks(@RequestParam String keyword, Model model){
-		List<BookDto> lists = service.searchBooks(keyword);
+	public String searchBooks(@RequestParam String keyword, @RequestParam(name = "page", defaultValue = "1") int selectPage, Model model){
+		
+		PagingDto pd = new PagingDto();
+		
+		// 총 게시물의 갯수
+	    pd.setTotalCount(service.searchBookCount(keyword));
+	    
+	    // 출력될 총 게시글의 갯수
+	    pd.setCountList(10);
+
+	    // 화면에 몇개의 페이지그룹
+	    pd.setCountPage(5);
+
+	    // 총페이지의 갯수
+	    pd.setTotalPage(pd.getTotalCount());
+
+	    // 요청되는페이지
+	    pd.setPage(selectPage);
+
+	    // 시작페이지 번호
+	    pd.setStartPage(selectPage);
+
+	    // 끝번호
+	    pd.setEndPage(pd.getCountPage());
+	    
+	    //게시글 조회
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("book_title", keyword);
+	    map.put("book_writer", keyword);
+	    map.put("first", pd.getPage() * pd.getCountList() - (pd.getCountList() - 1));
+	    map.put("last", pd.getPage() * pd.getCountList());
+		
+//		List<BookDto> lists = service.searchBooks(keyword);
+	    List<BookDto> lists = service.searchBookList(map);
+		log.info("map 값 확인하기 (도서검색결과 페이징 쿼리 :{}",map);
+		model.addAttribute("pd", pd);
 		model.addAttribute("searchResults",lists);
 		return "searchBooks";
 	}

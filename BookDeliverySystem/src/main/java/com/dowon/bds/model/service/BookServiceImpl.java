@@ -79,6 +79,18 @@ public class BookServiceImpl implements IBookService {
 		log.info("BookServiceImpl bookCountList 도서 카운트리스트");
 		return dao.bookCountList(map);
 	}
+
+	@Override
+	public int searchBookCount(String keyword) {
+		log.info("BookServiceImpl searchBookCount 도서 검색 총 갯수");
+		return dao.searchBookCount(keyword);
+	}
+
+	@Override
+	public List<BookDto> searchBookList(Map<String, Object> map) {
+		log.info("BookServiceImpl searchBookCount 도서 검색 카운트");
+		return dao.searchBookList(map);
+	}
 	
 
 

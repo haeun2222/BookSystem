@@ -229,7 +229,7 @@ public class UserController {
 		log.info("UserController checkUserInfo 이동");
 		return "myPageUserInfo";
 	}
-	
+
 	@GetMapping(value="/moveModifyPW.do")
 	public String moveModifyPassword() {
 		log.info("UserController modifyPassword 이동");

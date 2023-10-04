@@ -60,4 +60,14 @@ public class BookDaoImpl implements IBookDao {
 		return sqlSession.selectList(NS+"bookCountList",map);
 	}
 
+	@Override
+	public int searchBookCount(String keyword) {
+		return sqlSession.selectOne(NS+"searchBookCount",keyword);
+	}
+
+	@Override
+	public List<BookDto> searchBookList(Map<String, Object> map) {
+		return sqlSession.selectList(NS+"searchBookList",map);
+	}
+
 }

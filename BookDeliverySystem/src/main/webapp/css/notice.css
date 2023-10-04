@@ -10,9 +10,12 @@ body {
    color: #222831
 
 }
-h1 {
-      font-family: 'BMHANNAPro', fantasy;
-      padding-bottom: 10px;	
+
+h1,.btn {
+		font-family: 'BMHANNAPro', fantasy;
+}
+.container {
+   height: 70vh;
 }
 
 input {
