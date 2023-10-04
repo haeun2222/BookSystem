@@ -19,57 +19,54 @@
 </head>
 <%@ include file="header.jsp" %>
 <body>
-<div class="container">
-	<h1>자주묻는질문</h1>
-	
-	<c:choose>
-    <c:when test="${loginDto != null && loginDto.user_auth == 'A'}">
-        <input class="btn" type="submit" onclick="location.href='./faqInsertView.do'" value="새글작성">
-        <br>
-        <br>
-        <br>
-    </c:when>
-	</c:choose>
-	
-    <table class="table" border="1">
-		<c:forEach var="faqBoard" items="${faqList}">
-		    <tr data-category="${faqBoard.faq_category}">
-		        <td>
-		            <h5 class="faq-title">
-		                ${faqBoard.faq_title}
-		            </h5>
-		            <div class="faq-content">
-		                ${faqBoard.faq_content}
-		            </div>
-		           <c:if test="${loginDto != null && loginDto.user_seq == faqBoard.user_seq}">
-		            <button class="btn btn-info" onclick="location.href='./faqBoardDetail.do?faq_seq=${faqBoard.faq_seq}'">관리</button>
-		           </c:if>
-		        </td>
-		    </tr>
-		</c:forEach>
-	</table>
-</div>
+		<div class="container">
+			<h1>자주묻는질문</h1>
+			
+			<c:choose>
+		    <c:when test="${loginDto != null && loginDto.user_auth == 'A'}">
+		        <input class="btn" type="submit" onclick="location.href='./faqInsertView.do'" value="새글작성">
+		        <br>
+		        <br>
+		        <br>
+		    </c:when>
+			</c:choose>
+			
+		    <table class="table" border="1">
+				<c:forEach var="faqBoard" items="${faqList}">
+				    <tr data-category="${faqBoard.faq_category}">
+				        <td>
+				            <h5 class="faq-title">
+				                ${faqBoard.faq_title}
+				           <c:if test="${loginDto != null && loginDto.user_seq == faqBoard.user_seq}">
+				            <button class="btn btn-info" style="margin-left: 10px;" onclick="location.href='./faqBoardDetail.do?faq_seq=${faqBoard.faq_seq}'">관리</button>
+				           </c:if>
+				            </h5>
+				            <div class="faq-content">
+				                ${faqBoard.faq_content}
+				            </div>
+				        </td>
+				    </tr>
+				</c:forEach>
+			</table>
+		</div>
 
-<div class="faq_search_wrap text-center">
-    <div class="inner">
-        <form action="#">
-            <div class="result_info">
-            </div>
-            <div class="category_search_wrap">
-                <div class="input_select_wrap2">
-                    <select title="컨텐츠 카테고리" name="faq_category" id="faq_category" style="color: black;">
-                        <option value="" style="color: black;">카테고리 전체</option>
-                        <option value="1" style="color: black;">도서관이용일반</option>
-                        <option value="2" style="color: black;">비치희망자료신청</option>
-                        <option value="3" style="color: black;">회원가입관련</option>
-                        <option value="4" style="color: black;">자료검색및대출</option>
-                    </select>
-                    <button class="btn_view" style="color: black;">검색</button>
+ 		<div class="search-container">
+            <form action="#" class="search">
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <select class="form-control" name="faq_category" id="faq_category">
+                            <option value="">카테고리 전체</option>
+                            <option value="1">도서관 이용 일반</option>
+                            <option value="2">비치 희망 자료 신청</option>
+                            <option value="3">회원가입 관련</option>
+                            <option value="4">자료 검색 및 대출</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-        </form>
-    </div>
-</div>
+            </form>
+        </div>
+	
+
 </body>
 <%@ include file="footer.jsp" %>
 </body>

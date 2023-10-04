@@ -47,13 +47,13 @@ svg > g > g:last-child { pointer-events: none }
 </form> 
 
 <div class="flex-container">
-<!-- 도서관 이벤트 출력화면 -->
+<!-- 도서관 이벤트 출력화면 gif-->
 	<div>
-	<h3>신간소개</h3>
+	<h3>화제의 도서</h3>
 	<img id="event" src="./img/yr.gif">
 	<img id="event" src="./img/ban.gif">
 	</div>
-<!-- FAQ 리스트 메인 출력 -->
+<!-- FAQ 리스트 메인 출력 div-->
 	<div style="text-align: center;">
 		<h3>FAQ</h3>
         <table class="table" border="1" id="faq-table">

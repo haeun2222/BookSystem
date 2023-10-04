@@ -178,7 +178,7 @@ function updateDelivery(index) {
         },
         success: function(response) {
         	if(response == "0"){
-	            alert('운송장 번호가 실패.', response);
+	            alert('운송장 번호 입력이 실패되었습니다', response);
         	}else{
 	            alert('운송장 번호가 업데이트되었습니다.', response);
         	}
