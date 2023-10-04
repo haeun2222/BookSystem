@@ -53,20 +53,6 @@
 		      background-color:#B2DFDB;
 		      transition: 0.2s;
 		  }
-		
-		.flex-container {
-		  display: flex;
-		  flex-direction: row-reverse;
-		  background-color: #2ac1bc;
-/* 		  height: 800px; */
-		}
-		
-		.flex-container > div {
-		  background-color: #2ac1bc;
-		  margin: 10px;
-		  padding: 20px;
-		  font-size: 30px;
-		}
 
 	   .container {
 		height: 70vh;
