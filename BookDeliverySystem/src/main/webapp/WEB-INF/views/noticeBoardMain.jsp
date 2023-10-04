@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/notice.css">
 </head>
+<c:set var="lists" value="${requestScope.lists}" />
+<c:set var="pd" value="${requestScope.pd}" />
 <%@ include file="header.jsp" %>
 <body>
 <h1>공지사항</h1>
@@ -27,15 +29,59 @@
             <th>작성자</th>
             <th>작성일</th>
     </tr>
-		<c:forEach var="noticeBoard" items="${noticeList}">
+		<c:forEach var="noticeBoard" items="${lists}" varStatus="status">
 		<tr>
-        <td><c:out value="${noticeBoard.notice_bseq}"/></td>
+<%--         <td><c:out value="${noticeBoard.notice_bseq}"/></td> --%>
+        <td>${pd.getTotalCount() - (pd.getPage() - 1) * pd.getCountList() - status.index}</td>
 		<td><a href="./noticeBoardDetail.do?notice_bseq=${noticeBoard.notice_bseq}">${noticeBoard.notice_title}</a></td>
 		<td>${noticeBoard.user_name}</td>
 		<td><fmt:formatDate value="${noticeBoard.notice_regdate}" pattern="yyyy-MM-dd"/> </td>
 		 </tr>
         </c:forEach>
 </table>
+
+<!-- 페이징처리 -->
+
+    <div class="text-center">
+        <ul class="pagination pagination-lg">
+            <c:if test="${pd.getStartPage() > 1}">
+                <li><a href="./noticeBoardList.do?page=1">첫페이지</a></li>
+            </c:if>
+    
+            <c:if test="${pd.getStartPage() > 1}">
+                <c:choose>
+                    <c:when test="${pd.getStartPage() - pd.getCountPage() <= 0}">
+                        <li><a href="./noticeBoardList.do?page=1">이전</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="./noticeBoardList.do?page=${pd.getStartPage() - pd.getCountPage()}">이전</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </c:if>
+    
+            <c:forEach begin="${pd.getStartPage()}" end="${pd.getEndPage()}" var="i">
+                <li <c:if test="${i == pd.getPage()}">class="active"</c:if>>
+                    <a href="./noticeBoardList.do?page=${i}">${i}</a>
+                </li>
+            </c:forEach>
+    
+            <c:if test="${pd.getPage() < pd.getTotalPage()}">
+                <c:choose>
+                    <c:when test="${pd.getStartPage() + pd.getCountPage() > pd.getTotalPage()}">
+                        <li><a href="./noticeBoardList.do?page=${pd.getTotalPage()}">다음</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="./noticeBoardList.do?page=${pd.getStartPage() + pd.getCountPage()}">다음</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </c:if>
+    
+            <c:if test="${pd.getEndPage() < pd.getTotalPage()}">
+                <li><a href="./noticeBoardList.do?page=${pd.getTotalPage() - pd.getTotalPage() % pd.getCountList() + 1}">끝페이지</a></li>
+            </c:if>
+        </ul>
+    </div>
+
 </body>
 <%@ include file="footer.jsp" %>
 </html>

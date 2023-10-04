@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -20,11 +19,11 @@
 	<h5>가입일 : <fmt:formatDate value="${loginDto.joindate}"/></h5> 
 	</div>
 	<ul>
-		<li onclick="window.location.href='./moveCheckUserInfo.do'">회원정보수정</li>
-		<li onclick="window.location.href='./moveModifyPW.do'">비밀번호수정</li>
+		<li onclick="window.location.href='checkUserInfo.do'">회원정보수정</li>
+		<li onclick="window.location.href='modifyPassword.do'">비밀번호수정</li>
         <li>결제내역</li>
-        <li onclick="window.location.href='./userRentPageList.do'">대출내역</li>
-        <li onclick="window.location.href='./userResvePageList.do'">예약내역</li>
+        <li>대출내역</li>
+        <li>예약내역</li>
 	</ul>
 </div>	
 	

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dowon.bds.dto.NoticeBoardDto;
+import com.dowon.bds.dto.PagingDto;
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.INoticeService;
 
@@ -27,11 +28,41 @@ public class NoticeBoardController {
 	private INoticeService noticeService;
 	
 	@GetMapping(value="/noticeBoardList.do")
-	public String noticeBoardList(Model model) {
+	public String noticeBoardList(@RequestParam(name = "page", defaultValue = "1") int selectPage, Model model) {
+		PagingDto pd = new PagingDto();
+		
+		// 총 게시물의 갯수
+	    pd.setTotalCount(noticeService.noticeBoardCount());
+
+	    // 출력될 총 게시글의 갯수
+	    pd.setCountList(10);
+
+	    // 화면에 몇개의 페이지그룹
+	    pd.setCountPage(5);
+
+	    // 총페이지의 갯수
+	    pd.setTotalPage(pd.getTotalCount());
+
+	    // 요청되는페이지
+	    pd.setPage(selectPage);
+
+	    // 시작페이지 번호
+	    pd.setStartPage(selectPage);
+
+	    // 끝번호
+	    pd.setEndPage(pd.getCountPage());
+		
+	    //게시글 조회
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("first", pd.getPage() * pd.getCountList() - (pd.getCountList() - 1));
+	    map.put("last", pd.getPage() * pd.getCountList());
+		
 		log.info("Welcome noticeBoardList로 이동 및 전체조회");
-		List<NoticeBoardDto> lists = noticeService.noticeeBoardList();
-		log.info("test :{} ",lists);
-		model.addAttribute("noticeList",lists);
+		List<NoticeBoardDto> lists = noticeService.noticeBoardCountList(map);
+		model.addAttribute("lists",lists);
+		model.addAttribute("pd", pd);
+		System.out.println("확인@@@@@@@@@@@@:"+pd);
+		log.info("Welcome NoticeBoardController PageList {}", lists);
 		return "noticeBoardMain";
 	}
 	

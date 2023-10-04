@@ -2,6 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.dowon.bds.model.mapper.NoticeBoardDaoImpl">
 
+<!-- 공지사항 페이징 -->
+<select id="noticeBoardCount" resultType="java.lang.Integer">
+SELECT COUNT(*) 
+	FROM TB_NOTICE_BOARD
+	WHERE NOTICE_DELFLAG = 'N'  
+</select>
+
+<select id="noticeBoardCountList" parameterType="java.util.Map" resultType="NoticeBoardDto">
+    SELECT NOTICE_BSEQ, USER_SEQ, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_REGDATE, NOTICE_DELFLAG,USER_NAME
+    FROM (
+        SELECT tnb.NOTICE_BSEQ, tnb.USER_SEQ, tnb.NOTICE_TITLE, tnb.NOTICE_CONTENT, 
+               tnb.NOTICE_REGDATE, tnb.NOTICE_DELFLAG,
+               tu.USER_NAME,
+               ROW_NUMBER() OVER (ORDER BY tnb.NOTICE_REGDATE DESC) AS RN
+        FROM TB_NOTICE_BOARD tnb
+        JOIN TB_USER tu ON tnb.USER_SEQ = tu.USER_SEQ
+        WHERE NOTICE_DELFLAG = 'N'
+    ) tt
+    WHERE RN BETWEEN #{first} AND #{last}
+</select>
+
 <!-- 공지사항 글 전체조회 -->
 <select id="noticeBoardList" resultType="NoticeBoardDto">
 SELECT tnb.NOTICE_BSEQ, tnb.USER_SEQ, tnb.NOTICE_TITLE, tnb.NOTICE_REGDATE, tu.USER_NAME

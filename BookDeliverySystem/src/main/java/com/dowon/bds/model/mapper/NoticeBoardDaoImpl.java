@@ -11,6 +11,13 @@ import com.dowon.bds.dto.NoticeBoardDto;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 
+ * @author 김영진
+ * @since 2023.10.03
+ * 공지사항 게시판 DaoImpl
+ */
+
 @Repository
 @Slf4j
 public class NoticeBoardDaoImpl implements INoticeBoardDao {
@@ -49,12 +56,12 @@ public class NoticeBoardDaoImpl implements INoticeBoardDao {
 
 	@Override
 	public int noticeBoardCount() {
-		return 0;
+		return session.selectOne(NS+"noticeBoardCount");
 	}
 
 	@Override
 	public List<NoticeBoardDto> noticeBoardCountList(Map<String, Object> map) {
-		return null;
+		return session.selectList(NS+"noticeBoardCountList",map);
 	}
 
 }

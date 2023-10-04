@@ -61,6 +61,24 @@ public class BookServiceImpl implements IBookService {
 		log.info("BookServiceImpl searchBooks 도서 수정하기");
 		return dao.updateBook(map);
 	}
+
+	@Override
+	public int checkIsbn(String isbn) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int bookCount() {
+		log.info("BookServiceImpl bookCount 도서 총 갯수");
+		return dao.bookCount();
+	}
+
+	@Override
+	public List<BookDto> bookCountList(Map<String, Object> map) {
+		log.info("BookServiceImpl bookCountList 도서 카운트리스트");
+		return dao.bookCountList(map);
+	}
 	
 
 

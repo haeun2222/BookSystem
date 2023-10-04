@@ -6,13 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Alert</title>
+    <script>
+        // 페이지 로드 시 실행되는 함수
+        window.onload = function() {
+            // successModify가 값이 있으면 알림 창 띄우고 리다이렉트
+            if("${successModify}" !== "") {
+                alert("${successModify}");
+                // 원하는 페이지로 리다이렉트
+                location.href = "./logout.do";
+            }
+            // failModify가 값이 있으면 알림 창 띄우고 리다이렉트
+            else if("${failModify}" !== "") {
+                alert("${failModify}");
+                // 원하는 페이지로 리다이렉트
+                location.href = "./moveModifyPW.do";
+            }
+        };
+    </script>
 </head>
 <body>
-<script>
-    var errorMessage = "<c:out value='${errorMessage}'/>";
-    var url = "<c:out value='${url}'/>";
-    alert(errorMessage);
-    window.location.href = url;
-</script>
 </body>
 </html>

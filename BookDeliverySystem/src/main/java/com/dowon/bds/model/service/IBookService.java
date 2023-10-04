@@ -8,9 +8,26 @@ import com.dowon.bds.dto.BookDto;
 
 public interface IBookService {
 	
-	public List<BookDto> getAllBook();
-	public BookDto detailBook(int seq);
-	public int registBook(BookDto dto);
-	public List<BookDto> searchBooks(String keyword);
-	public int updateBook(Map<String, Object>map);
+	//도서목록 조회
+		public List<BookDto> getAllBook();
+		
+		//도서상세 조회
+		public BookDto detailBook(int seq);
+		
+		//도서 등록
+		public int registBook(BookDto dto);
+		
+		//도서 중복체크
+		public int checkIsbn(String isbn);
+		
+		//도서 검색
+		public List<BookDto> searchBooks(String keyword);
+		
+		//도서수정
+		public int updateBook(Map<String, Object>map);
+		
+		//도서목록 페이징
+		public int bookCount();
+			
+		public List<BookDto> bookCountList(Map<String, Object>map);
 }

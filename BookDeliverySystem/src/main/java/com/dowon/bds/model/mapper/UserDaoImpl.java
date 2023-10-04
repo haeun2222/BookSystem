@@ -83,4 +83,18 @@ public class UserDaoImpl implements IUserDao {
 		log.info("UserDaoImpl findPwCheck 유효성 체크");
 		return sqlSession.selectOne(NS+"findPWCheck",dto);
 	}
+
+
+	@Override
+	public int modifyPassword(Map<String, Object> map) {
+		log.info("UserDaoImpl modifyPassword 비밀번호업데이트");
+		return sqlSession.update(NS+"modifyPW",map);
+	}
+
+
+	@Override
+	public int checkPassword(Map<String, Object> map) {
+		log.info("UserDaoImpl checkPassword 비밀번호체크");
+		return sqlSession.selectOne(NS+"checkPassword",map);
+	}
 }
