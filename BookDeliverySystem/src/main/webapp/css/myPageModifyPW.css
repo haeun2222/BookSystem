@@ -12,6 +12,10 @@
     margin-bottom: 15px;
 }
 
+#maincontent{
+	margin: 0 auto;
+}
+
 label {
     display: block;
     margin-bottom: 5px;

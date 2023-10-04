@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
+<link rel="stylesheet" href="css/font.css">
+<link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/adminPage.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>

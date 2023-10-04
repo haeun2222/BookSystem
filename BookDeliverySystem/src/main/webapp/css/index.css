@@ -42,10 +42,6 @@ input {
   outline: none;
 }
 
-button{
-	width: 20%;
-	margin-left: 0px;
-}
 .searching {
   width: 100%;
   top: 20%;

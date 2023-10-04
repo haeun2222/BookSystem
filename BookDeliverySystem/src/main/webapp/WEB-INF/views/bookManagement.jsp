@@ -13,6 +13,11 @@
 <link rel="stylesheet" href="css/bookList.css"/>
 <!-- <link rel="stylesheet" href="css/adminPage.css"/> -->
 </head>
+<c:if test="${not empty resultAddBook}">
+        <script>
+            alert("${resultAddBook}");
+        </script>
+    </c:if>
 <c:set var="lists" value="${requestScope.userBookList}" />
 <c:set var="pd" value="${requestScope.pd}" />
 <%@ include file="/WEB-INF/views/adminHeader.jsp" %>
@@ -29,7 +34,6 @@
         </tr>
         <c:forEach var="book" items="${getAllBooks}" varStatus="status">
             <tr>
-<%--                 <td >${book.book_seq}</td> --%>
 				<td>${pd.getTotalCount() - (pd.getPage() - 1) * pd.getCountList() - status.index}</td>
                 <td><a href='./getAdminDetailBook.do?book_seq=${book.book_seq}'><img src="${book.book_img}"></a></td>
      		    <td><a href='./getAdminDetailBook.do?book_seq=${book.book_seq}'>${book.book_title}</a></td>

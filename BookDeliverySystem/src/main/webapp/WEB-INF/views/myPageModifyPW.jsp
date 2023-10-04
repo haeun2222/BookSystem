@@ -10,6 +10,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/font.css">
+<link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/myPage.css">
 <link rel="stylesheet" href="css/myPageModifyPW.css">
 </head>
@@ -21,11 +23,10 @@
 	<h5>가입일 : <fmt:formatDate value="${loginDto.joindate}"/></h5> 
 	</div>
 	<ul>
-		<li onclick="window.location.href='./moveCheckUserInfo.do'">회원정보수정</li>
 		<li onclick="window.location.href='./moveModifyPW.do'">비밀번호수정</li>
-        <li>결제내역</li>
-        <li>대출내역</li>
-        <li>예약내역</li>
+        <li onclick="window.location.href='./userPayPageList.do'">결제내역</li>
+        <li onclick="window.location.href='./userRentPageList.do'">대출내역</li>
+        <li onclick="window.location.href='./userResvePageList.do'">예약내역</li>
 	</ul>
 </div>	
 	

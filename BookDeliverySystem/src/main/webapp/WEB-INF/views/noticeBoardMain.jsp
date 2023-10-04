@@ -7,14 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 전체 리스트</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/notice.css">
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <c:set var="lists" value="${requestScope.lists}" />
 <c:set var="pd" value="${requestScope.pd}" />
 <%@ include file="header.jsp" %>
 <body>
+<div class="container">
 <h1>공지사항</h1>
 	<c:choose>
 		<c:when test="${loginDto != null && loginDto.user_auth == 'A'}">
@@ -81,7 +85,7 @@
             </c:if>
         </ul>
     </div>
-
+</div>
 </body>
 <%@ include file="footer.jsp" %>
 </html>

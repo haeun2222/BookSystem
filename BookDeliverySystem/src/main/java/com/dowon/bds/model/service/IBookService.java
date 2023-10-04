@@ -30,4 +30,9 @@ public interface IBookService {
 		public int bookCount();
 			
 		public List<BookDto> bookCountList(Map<String, Object>map);
+		
+		//도서검색결과 페이징
+		public int searchBookCount(String keyword);
+		
+		public List<BookDto> searchBookList(Map<String, Object>map);
 }
