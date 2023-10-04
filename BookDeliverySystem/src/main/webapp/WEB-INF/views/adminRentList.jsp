@@ -11,8 +11,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/font.css">
-<link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/adminRentList.css">
+<link rel="stylesheet" href="css/adminHeader.css">
 <title>Insert title here</title>
 <%-- <%@include file="/WEB-INF/views/header.jsp"%> --%>
 <%@ include file="/WEB-INF/views/adminHeader.jsp" %>
@@ -21,7 +21,7 @@
 <c:set var="r" value="${requestScope.aPage}" />
 <body>
 <div class="container">
-    <h1>계발의민족 회원 도서 대출 목록</h1>
+    <h1 id="hh">계발의민족 회원 도서 대출 목록</h1>
     <table class="table" border="1">
         <tr>
         	<th>No.</th>
@@ -57,7 +57,7 @@
                 <td>
                     <c:choose>
                         <c:when test="${rent.RENT_STATUS eq 'B'}">
-                        <button onclick="handleActions(${rent.SEQ}, ${rent.BOOK_SEQ})" style="color: #263238">반납확인</button>
+                        <button onclick="handleActions(${rent.SEQ}, ${rent.BOOK_SEQ})" class="btn btn-info" style="color: #263238">반납확인</button>
                         </c:when>
                     </c:choose>
                 </td>
