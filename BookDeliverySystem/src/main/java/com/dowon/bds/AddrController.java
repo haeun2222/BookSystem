@@ -33,7 +33,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dowon.bds.dto.AddrDto;
 import com.dowon.bds.dto.UserDto;
 import com.dowon.bds.model.service.IAddrService;
-import com.dowon.bds.model.service.IUserService;
+
+import kotlin.reflect.jvm.internal.impl.descriptors.Visibilities.Public;
 
 
 @Controller
@@ -43,9 +44,6 @@ public class AddrController {
 	
 	@Autowired
 	private IAddrService service;
-	
-	@Autowired
-	private IUserService userService;
 	
 	//book_seq때문에 addr 페이지로 돌아갈수 없음 23.09.18	
 	@RequestMapping(value = "/addr.do", method = RequestMethod.GET)
@@ -99,9 +97,7 @@ public class AddrController {
 		session.setAttribute("saveAddressReturn", addrDto);
 		
 		model.addAttribute("bookSeq",bookSeq);
-		UserDto loginDto = (UserDto)session.getAttribute("loginDto");
-        Map<String, Object> userStatus = userService.getUserStatus(loginDto.getUser_seq());
-        session.setAttribute("userStatus",userStatus);
+		
 		return "returnAddrCheck";
 	
 	}
@@ -109,11 +105,13 @@ public class AddrController {
 	//운송장 번호 업데이트
 	@RequestMapping(value = "/updateDeliveryNum.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateDeliveryNum(@RequestParam("delivery_num") long delivery_num, Model model, HttpSession session) {
-		logger.info("Welcome! AddrController 수거요청 입력 returnAddrCheck : {}", delivery_num);
+	public String updateDeliveryNum(@RequestParam("delivery_num") long delivery_num,
+									//@RequestParam("user_seq") int user_seq, 
+									Model model, HttpSession session) {
+		logger.info("Welcome! AddrController 운송장 번호 입력 - delivery_num: {}", delivery_num);
 		UserDto loginDto = (UserDto)session.getAttribute("loginDto");
 		 Map<String, Object> map = new HashMap<>();
-		    map.put("user_seq", loginDto.getUser_seq());
+		  //  map.put("user_seq", user_seq);
 	        map.put("delivery_num", delivery_num);
 	        int n = service.updateDeliveryNum(map);
 	        if(n >0 ) {
@@ -124,24 +122,7 @@ public class AddrController {
 	        	return "0";
 	        }
 	}
-//	
-//	@PostMapping("/updateDeliveryNum.do")
-//	@ResponseBody
-//	public ResponseEntity<String> updateDeliveryNum(@RequestParam("user_seq") int userSeq, @RequestParam("delivery_num") String deliveryNum) {
-//	    try {
-//	        // 운송장 번호를 사용하여 DB에서 해당 사용자의 delivery_num을 업데이트합니다.
-//	        Map<String, Object> map = new HashMap<>();
-//	        map.put("user_seq", userSeq);
-//	        map.put("delivery_num", deliveryNum);
-//	        service.updateDeliveryNum(map);
-//	        return ResponseEntity.ok("운송장 번호가 업데이트되었습니다.");
-//	    } catch (Exception e) {
-//	        e.printStackTrace();
-//	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("운송장 번호 업데이트 중 오류가 발생했습니다.");
-//	    }
-//	}
 
-	
 
 	
 }

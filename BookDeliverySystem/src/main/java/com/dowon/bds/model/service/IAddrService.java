@@ -30,5 +30,6 @@ public interface IAddrService {
 	//도서 대출 상태 업데이트
 	public int deliRentStatus(int user_seq);
 
+	public AddrDto findDelivery(int delivery_num);
 	
 }

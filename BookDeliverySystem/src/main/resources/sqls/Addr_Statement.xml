@@ -62,9 +62,19 @@
 	<update id="updateDeliveryNum" parameterType="java.util.Map">
 		UPDATE  TB_DELIVERY 
 			SET DELIVERY_NUM = #{delivery_num}
-			WHERE USER_SEQ = #{user_seq}
 	</update>
 	
+	<!-- 운송장 번호 배송조회 -->
+	<select id="findDelivery" resultMap="addrResultMap">
+		SELECT DELIVERY_NUM
+		FROM (
+		    SELECT DELIVERY_NUM
+		    FROM TB_DELIVERY
+		    WHERE USER_SEQ = #{user_seq}
+		    ORDER BY DELIVERY_NUM DESC
+		)
+		WHERE ROWNUM = 1
+	</select>
 
  
 </mapper>

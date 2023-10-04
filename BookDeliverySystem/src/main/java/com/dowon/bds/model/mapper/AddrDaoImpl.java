@@ -63,6 +63,11 @@ public class AddrDaoImpl implements IAddrDao {
 		return session.insert(NS+"saveAddressReturn", addrDto);
 	}
 
+	@Override
+	public AddrDto findDelivery(int delivery_num) {
+		 return session.selectOne(NS + "findDelivery", delivery_num);
+	}
+
 
 
 
