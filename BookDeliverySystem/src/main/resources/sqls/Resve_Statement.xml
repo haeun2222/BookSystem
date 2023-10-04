@@ -102,6 +102,12 @@ SET RESVE_STATUS = 'N', RESVE_STEP = NULL
 WHERE BOOK_SEQ = #{book_seq} AND RESVE_STATUS = 'Y' AND USER_SEQ = #{user_seq}
 </update>
 
+<!-- <update id="resveCancle" parameterType="map"> -->
+<!-- UPDATE TB_RESVE -->
+<!-- SET RESVE_STATUS = 'N', RESVE_STEP = NULL -->
+<!-- WHERE BOOK_SEQ = #{book_seq} AND (RESVE_STATUS = 'Y' OR RESVE_STATUS = 'R') AND USER_SEQ = #{user_seq} -->
+<!-- </update> -->
+
 <!-- 대출+예약중인 도서 반납완료시, 예약순번 가장 빠른회원 대출대기 상태로 업데이트 -->
 <update id="rentStandby" parameterType="java.lang.Integer">
 UPDATE BOOK.TB_RESVE
