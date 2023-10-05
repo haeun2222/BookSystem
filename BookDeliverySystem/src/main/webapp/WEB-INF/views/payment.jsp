@@ -93,6 +93,7 @@
 	            var msg = '결제에 실패하였습니다.';
 	            msg += '에러내용 : ' + rsp.error_msg;
 	            console.log('결제실패');
+	            alert(msg);
 	        }
 	    } catch (error) {
 	        console.error('결제 요청 오류:', error);
@@ -159,7 +160,7 @@
 			배송비 결제페이지</h1>
 		<button class="button" onclick="requestPay()">결제하기</button>
 		<button class="button2"
-			onclick="location.href='./detailBook.do?user_seq=${loginDto.user_seq}'">취소</button>
+			onclick="javascript:history.back(-1)">취소</button>
 	</div>
 	</div>
 </body>
