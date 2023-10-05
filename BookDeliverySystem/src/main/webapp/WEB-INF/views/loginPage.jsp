@@ -20,6 +20,13 @@
             alert("${failLogin}");
         </script>
     </c:if>
+    
+    <c:if test="${not empty newPassword}">
+    	<script>
+    	alert("${newPassword}")
+    	</script>
+    </c:if>
+    
 	<%
 		URLDto uDto = new URLDto();
 		SocialDto dto = new SocialDto();

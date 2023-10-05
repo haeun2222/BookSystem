@@ -127,6 +127,9 @@ input {
     padding-right: 40px;
 }
 
+input::placeholder{
+	font-size: 14px;
+}
 
 #bir_wrap {
     display: table;

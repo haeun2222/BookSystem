@@ -6,13 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>도서 수정 페이지</title>
+<link rel="stylesheet" href="css/font.css">
 <link rel='stylesheet' href='./css/registBookForm.css'/>
 </head>
 <body>
 
 <div class="form-container">
 
-		<h1>도서 수정</h1>
+		<h1 style="text-align: center; font-family:'BMHANNAAir', fantasy;">도서 수정</h1>
         <form id="updateBookForm" action="./updateBook.do" method="post">
 			<div class="book-image">
 				<input type="hidden" name="book_img" value="${updateBook.book_img}">
@@ -45,6 +46,8 @@
             
             <div class="book-info">도서 요약:</div>
             <input type="text" name="book_summary" placeholder="book_summary 내용을 넣어주세요.">
+            
+            <input type="hidden" name="book_seq" value="${updateBook.book_seq}">
             
             <!--등록 폼 버튼 -->
             <div class="btn-container">

@@ -106,8 +106,13 @@ UPDATE TB_USER SET USER_PASSWORD = #{user_password}
 SELECT COUNT(*)
 	FROM TB_USER
 	WHERE USER_EMAIL = #{user_email}
-			ADN USER_PHONE = #{user_phone}
+			AND USER_PHONE = #{user_phone}
 </select>
 
+<!-- 소셜 연동하기 -->
+<update id="linkNaver">
+UPDATE TB_USER SET NAVER_KEY = #{naver_key}
+		WHERE USER_SEQ = #{user_seq}
+</update>
 
 </mapper>

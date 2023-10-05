@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
 <link rel="stylesheet" href="css/font.css">
-<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/adminHeader.css">
 <link rel="stylesheet" href="css/adminPage.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
@@ -15,6 +16,11 @@
 </head>
 <%@ include file="/WEB-INF/views/adminHeader.jsp" %>
 <body>
+<c:if test="${not empty resultAddBook}">
+        <script>
+            alert("${resultAddBook}");
+        </script>
+    </c:if>
 <c:set var="faqList" value="${faqList}"/>
 <div class="flex-container">
 <!-- 도서관 이벤트 출력화면 gif-->

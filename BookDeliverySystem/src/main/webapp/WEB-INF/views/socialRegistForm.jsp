@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>소셜 간편 가입 페이지</title>
+<link rel="stylesheet" href="css/font.css">
 <script type="text/javascript"src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <link rel="stylesheet" href="css/registForm.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 </head>
 <body>
 
@@ -27,16 +27,15 @@
 	        <div>
 				<h2 class="join_title">소셜 간편가입 페이지</h2>
 			</div>
-            <div>
-                <h3 class="join_title">
-                    <label for="id">아이디(이메일)</label>
-                </h3>
-                <span class="box int_id">
-                    <input type="text" id="user_email" name="user_email" class="int" maxlength="20" value="${socialInfo.user_email}">
-                    <button type="button" id="checkEmailButton">이메일 중복 체크</button>
-                </span>
-                <span id="emailCheckResult"></span>
-            </div>
+             <div>
+    <h3 class="join_title">
+        <label for="id">아이디(이메일)</label>
+    </h3>
+    <span class="box int_id">
+        <input type="text" id="user_email" name="user_email" class="int" maxlength="20">
+    </span>
+   		<button id="checkEmailButton" class="checkButton" type="button">이메일 중복 체크</button>
+</div>
 
             <!-- PW1 -->
             <div>
@@ -83,30 +82,39 @@
                 </span>
             </div>
 
-            <!-- MOBILE -->
-                <div>
-                    <h3 class="join_title">
-                    <label for="phoneNo">휴대전화</label></h3>
-                        <input type="tel" id="user_phone" name="user_phone" class="int" maxlength="16" placeholder="전화번호 입력">
-                 <button type="button" onclick="sendSMS()">인증 SMS 보내기</button>
-                </div>
-
-				    <!-- 사용자로부터 인증번호 입력 -->
-				    <input type="text" id="userInputCode" placeholder="인증번호 입력">
-				    <button type="button" onclick="verifyCode()">인증 확인</button>
-            <input type="hidden" name="naver_key" value="${socialInfo.naver_key}">
-            
-            <!-- JOIN BTN-->
-            <div class="btn_area">
-						<button type="button" id="regist">가입하기</button>
+           <!-- MOBILE -->
+					<div>
+					<h3 class="join_title">
+						<label for="user_phone">휴대전화</label>
+					</h3>
+					<span class="box int_phone">
+						<input type="tel" id="user_phone" name="user_phone" class="int"
+							maxlength="16" value="${socialInfo.user_phone}">
+					</span>
+					<button id="checkPhone" class="checkPhoneButton" type="button"> 번호 중복 체크 </button>
+					<button id="afterCheckPhone" class="checkPhoneButton" type="button" onclick="sendSMS()">인증문자 보내기</button>
+					</div>
+					<h3 class="join_title"></h3>
+					<!-- 사용자로부터 인증번호 입력 -->
+					<div>
+					<span class="box int_id">
+						<input type="text" id="userInputCode" class="int"
+							placeholder="인증번호 입력">
+					</span>
+					<button class="checkButton" type="button" onclick="verifyCode()">인증 확인</button>
+					</div>
+					
+					<!-- JOIN BTN-->
+					<div class="btn_area">
+						<button class="joinButton" type="button" id="regist">가입하기</button>
+					</div>
 			</div>
-       	 </div>
-        </div>
-        <!-- content-->
-        
-        <input type="hidden" id="formatted_phone" name="formatted_phone">
+            <!-- content-->
+            <input type="hidden" id="formatted_phone" name="formatted_phone">
+            <input type="hidden" name="naver_key" value="${socialInfo.naver_key}">
+            </div>
     </form>
-</div> 
+ </div>
 <script type="text/javascript">
     <c:if test="${not empty alertMessage}">
         var alertMessage = "<c:out value='${alertMessage}' />";

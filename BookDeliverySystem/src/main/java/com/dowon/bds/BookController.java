@@ -136,6 +136,7 @@ public class BookController {
 		
 	}
 	
+	//어드민도서상세보기
 	@GetMapping(value="/getAdminDetailBook.do")
 	public String adminDetailBook(@RequestParam("book_seq")int seq, Model model) {
 		log.info("Welcome BookController adminDetailBook 어드민 도서 상세페이지");
@@ -178,7 +179,7 @@ public class BookController {
 	    if(n==1) {
 	    	log.info("Welcome registBook 도서 등록 성공");
 	    	model.addAttribute("resultAddBook", "도서 등록 성공!");
-	    	return "bookManagement";
+	    	return "adminPage";
 	    }else {
 	    	log.info("Welcome registBook 도서 등록 실패");
 	    	model.addAttribute("resultAddBook", "도서 등록 실패ㅜㅜ");
@@ -245,7 +246,9 @@ public class BookController {
             @RequestParam("book_publisher") String publisher,
             @RequestParam("book_intro") String intro,
             @RequestParam("book_index") String index,
-            @RequestParam("book_summary") String summary) {
+            @RequestParam("book_summary") String summary,
+            @RequestParam("book_seq") int book_seq
+			) {
 		
 		log.info("FreeBoardController updateBoard 도서 수정");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -257,12 +260,13 @@ public class BookController {
 		map.put("book_index", index);
 		map.put("book_summary", summary);
 		
+		
 		log.info("map값 확인 : {} ",map);
 		
 		int n = service.updateBook(map);
 	
 	    if (n == 1) {
-	        return "redirect:/bookMagagement.do";
+	        return "redirect:/getAdminDetailBook.do?book_seq="+book_seq;
 	    }
 	    return "redirect:/updateBookForm.do";
 	}

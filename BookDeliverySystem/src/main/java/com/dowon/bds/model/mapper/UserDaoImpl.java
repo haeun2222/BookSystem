@@ -104,4 +104,11 @@ public class UserDaoImpl implements IUserDao {
 		log.info("UserDaoImpl getUserDetail 유저상세정보");
 		return sqlSession.selectOne(NS+"getUserDetail",user_email);
 	}
+
+
+	@Override
+	public int linknaver(Map<String, Object> map) {
+		log.info("UserDaoImpl linknaver 네이버연동하기");
+		return sqlSession.update(NS+"linkNaver",map);
+	}
 }

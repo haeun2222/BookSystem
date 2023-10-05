@@ -6,6 +6,7 @@ body {
   margin:0 auto;
 }
 
+
 /* 검색창 컨테이너 스타일링 */
 .search-container {
   display: flex;
@@ -39,7 +40,7 @@ h2{
   border-radius: 0 20px 20px 0;
   cursor: pointer;
   padding: 15px; /* 상하 패딩 유지 */
-   margin-right: auto; /* 오른쪽 마진 추가 */
+  margin-right: auto; /* 오른쪽 마진 추가 */
   margin-left: auto;
 }
 
@@ -59,12 +60,12 @@ a.a{
   text-align: center;
 }
 
-img {
-  width: 100%; /* 이미지는 항상 부모 요소의 너비에 맞게 표시됩니다. */
-  height: auto; /* 이미지 높이는 자동으로 조절됩니다. */
-  max-width: 100%; /* 화면을 벗어나지 않도록 최대 크기를 설정합니다. */
-  max-height: 100%; /* 화면을 벗어나지 않도록 최대 크기를 설정합니다. */
-}
+/* img { */
+/*   width: 100%; 이미지는 항상 부모 요소의 너비에 맞게 표시됩니다. */
+/*   height: auto; 이미지 높이는 자동으로 조절됩니다. */
+/*   max-width: 100%; 화면을 벗어나지 않도록 최대 크기를 설정합니다. */
+/*   max-height: 100%; 화면을 벗어나지 않도록 최대 크기를 설정합니다. */
+/* } */
 
 
 #event{
@@ -81,6 +82,9 @@ img {
   margin: 20px auto;
   border: 1px solid #bdc1c6;
   border-radius: 20px;
+}
+thead{
+	text-align: center;
 }
 
 input {

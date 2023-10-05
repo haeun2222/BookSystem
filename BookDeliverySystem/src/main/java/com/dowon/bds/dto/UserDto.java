@@ -37,7 +37,6 @@ public class UserDto {
 	private Date joindate;
 	private String user_gender;
 	private String naver_key;
-	private String kakao_key;
 	
 	public UserDto(String user_email, String user_name, String user_phone,String user_gender, String user_birth, String naver_key) {
 		super();
@@ -46,6 +45,11 @@ public class UserDto {
 		this.user_phone = user_phone;
 		this.user_gender = user_gender;
 		this.user_birth = user_birth;
+		this.naver_key = naver_key;
+	}
+	
+	public UserDto(String naver_key) {
+		super();
 		this.naver_key = naver_key;
 	}
 	

@@ -7,9 +7,9 @@
   SELECT COUNT(*)
    FROM TB_USER
    WHERE USER_NAME = #{user_name}
-   			AND USER_EMAIL = #{user_email}
+<!--    			AND USER_EMAIL = #{user_email} -->
    			AND USER_PHONE = #{user_phone}
-   			AND NAVER_KEY IS NOT NULL
+   			AND NAVER_KEY = #{naver_key}
 </select>
 
 <!-- 네이버소셜회원체크 -->
@@ -34,10 +34,10 @@ INSERT INTO TB_USER
 	(USER_SEQ,USER_EMAIL,USER_PASSWORD,
 	 USER_NAME,USER_PHONE,USER_BIRTH,
 	 USER_AUTH,USER_DELFLAG,JOINDATE,
-	 USER_GENDER,NAVER_KEY,KAKAO_KEY)
+	 USER_GENDER,NAVER_KEY)
 VALUES (SQ_USER.NEXTVAL,#{user_email},#{user_password},
 			#{user_name},#{user_phone},#{user_birth},
-			'U','N',SYSDATE,#{user_gender},#{naver_key},#{kakao_key, jdbcType=NULL})
+			'U','N',SYSDATE,#{user_gender},#{naver_key})
 </insert>
 
 <!-- 카카오 소셜 로그인(기존회원이 아닐 경우) 회원가입 -->

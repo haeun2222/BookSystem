@@ -13,6 +13,12 @@
 </head>
 <body>
 
+<c:if test="${not empty newPassword}">
+    	<script>
+    	alert("${failPassword}")
+    	</script>
+    </c:if>
+
 
 		<div>
 			<h1 class="mainTitle"> <a class="a" href="./index.jsp">계발의민족</a></h1>

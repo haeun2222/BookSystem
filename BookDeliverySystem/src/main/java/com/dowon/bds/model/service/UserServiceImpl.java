@@ -91,5 +91,11 @@ public class UserServiceImpl implements IUserService {
 		log.info("UserServiceImpl getUserDetail 유저상세정보 :{}",user_email);
 		return dao.getUserDetail(user_email);
 	}
+
+	@Override
+	public int linknaver(Map<String, Object> map) {
+		log.info("UserServiceImpl getUserDetail 유저상세정보 :{}",map);
+		return dao.linknaver(map);
+	}
 	
 }

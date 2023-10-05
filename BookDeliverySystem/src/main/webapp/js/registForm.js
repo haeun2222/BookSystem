@@ -15,11 +15,12 @@ function validateForm() {
         return false;
     }
 
-    // 비밀번호 유효성 검사 (예: 최소 6자 이상)
-    if (password.length < 6) {
-        alert("비밀번호는 최소 6자 이상이어야 합니다.");
-        return false;
-    }
+    // 비밀번호 유효성 검사 (예: 최소 8자 이상)
+    var passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,}$/;
+    if (!passwordRegex.test(password)) {
+   	 	alert("비밀번호는 영어 대문자, 소문자, 숫자, 특수문자를 각각 하나 이상 포함하여 최소 8자 이상이어야 합니다.");
+   		return false;
+}
 
     // 비밀번호 재확인 일치 여부 검사
     if (password !== confirmPassword) {

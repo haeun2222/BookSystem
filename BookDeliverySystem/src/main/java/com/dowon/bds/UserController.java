@@ -210,11 +210,11 @@ public class UserController {
 		if(n==1) {
 			log.info("UserController findPW 임시비밀번호 발급완료");
 			model.addAttribute("newPassword","임시비밀번호가 재발급 되었습니다. 메일을 확인해주세요.");
-			return "redirect:/loginPage.do";
+			return "loginPage";
 		}else {
 			log.info("UserController findPW 임시비밀번호 발급실패");
 			model.addAttribute("failPassword","임시비밀번호 재발급 실패.");
-			return "redirect:/moveSearchPW.do";
+			return "searchPW";
 		}
 	}
 	

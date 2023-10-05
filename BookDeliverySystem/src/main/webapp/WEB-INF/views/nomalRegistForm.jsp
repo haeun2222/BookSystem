@@ -9,8 +9,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/font.css">
 <title>회원가입 페이지</title>
+<link rel="stylesheet" href="css/font.css">
 <script type="text/javascript"src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <link rel="stylesheet" href="css/registForm.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,7 +55,8 @@
         <label for="id">아이디(이메일)</label>
     </h3>
     <span class="box int_id">
-        <input type="text" id="user_email" name="user_email" class="int" maxlength="20">
+        <input type="text" id="user_email" name="user_email" class="int" maxlength="24"
+        placeholder="ex) dowon@dowon.com">
     </span>
    		<button id="checkEmailButton" class="checkButton" type="button">이메일 중복 체크</button>
 </div>
@@ -64,7 +65,8 @@
 <div>
     <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
     <span class="box int_pass">
-        <input type="password" id="pswd1" name="user_password" class="int" maxlength="20">
+        <input type="password" id="pswd1" name="user_password" class="int" maxlength="24"
+        placeholder="영어 대,소문자, 숫자, 특수문자 하나 이상 포함,최소 8자 이상">
     </span>
 </div>
 
