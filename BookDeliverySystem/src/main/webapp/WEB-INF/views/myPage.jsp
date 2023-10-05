@@ -1,3 +1,7 @@
+<%@page import="java.math.BigInteger"%>
+<%@page import="java.security.SecureRandom"%>
+<%@page import="com.dowon.bds.dto.SocialDto"%>
+<%@page import="com.dowon.bds.dto.URLDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -16,6 +20,13 @@
 </head>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <body>
+<%
+		URLDto uDto = new URLDto();
+		SocialDto dto = new SocialDto();
+		SecureRandom random = new SecureRandom();
+		String state = new BigInteger(130, random).toString();
+	%>
+
 <div id="sidebar">
 	<div>
 		<h3> 마이페이지 </h3>
@@ -95,6 +106,12 @@
             ${userInfo.user_gender}
         </div>
     </div>
+    <div>
+	  <a href="<%=uDto.getNaverUrl()+"&client_id="+dto.getNaverClientID()+"&redirect_uri="+uDto.getNaverLinkRedirect()+"&state="+state%>">
+	  <img height="50" src="img/btnG_icon_circle.png"/>
+	  <span>네이버 연동하기</span>
+ 	 </a>
+  	</div>
 </div>
 </div>
 

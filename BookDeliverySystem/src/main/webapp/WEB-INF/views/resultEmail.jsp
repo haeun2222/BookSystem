@@ -36,7 +36,7 @@
 			</c:choose>
 			<div id="bottomButton">
 				<input class="loginButton" type="button" name="find" id="regist" value="로그인하기" onclick="location.href='./loginPage.do'">
-				<input class="findPW" type="button" name="cancle" value="비밀번호찾기" onclick="history.back()">
+				<input class="findPW" type="button" name="cancle" value="비밀번호찾기" onclick="location.href='./moveSearchPW.do'">
 			</div>
 		</div>
 </body>

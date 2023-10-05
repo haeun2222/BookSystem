@@ -90,3 +90,7 @@ span{
 .submenu a:hover {
   color: #e44d26;
 }
+
+h1,h2{
+      font-family: 'BMHANNAPro', fantasy;
+}

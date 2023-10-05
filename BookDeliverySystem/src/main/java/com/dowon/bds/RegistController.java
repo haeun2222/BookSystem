@@ -57,7 +57,7 @@ public class RegistController {
 	@RequestMapping(value="/socialRegist.do", method = RequestMethod.POST)
 	public String socialRegist(UserDto dto, Model model) {
 		log.info("socialRegist >> 소셜회원가입");
-		log.info("소셜회원가입 내용{}",dto);
+		log.info("socialRegist.do dto 값 체크",dto.getNaver_key());
 		int n = socialService.socialRegist(dto);
 		log.info("test :  {} ",n);
 		return "redirect:/index.jsp";

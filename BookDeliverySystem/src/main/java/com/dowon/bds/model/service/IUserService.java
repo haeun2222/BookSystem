@@ -44,4 +44,7 @@ public interface IUserService {
 	
 	//회원 상세조회
 	public UserDto getUserDetail(String user_email);
+	
+	//네이버 연동
+	public int linknaver(Map<String, Object> map);
 }

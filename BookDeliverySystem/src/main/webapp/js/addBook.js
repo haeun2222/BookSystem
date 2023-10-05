@@ -7,8 +7,8 @@ $(document).ready(function(){
             headers: { "Authorization": "KakaoAK deebb5b9fe3604c7cbb30baeb31b856e" }
         })
         .done(function(res){
-            var table = $('<table class="book-table" style="width: 1200px">');
-            table.append('<thead><tr><th>도서이미지</th><th>도서제목</th><th>도서내용</th><th>저자</th><th>출판사</th><th>도서등록하기</th></tr></thead>');
+            var table = $('<table class="book-table">');
+            table.append('<thead><tr><th>도서 이미지</th><th>도서 제목</th><th>도서 내용</th><th>저자</th><th>출판사</th><th>도서 등록</th></tr></thead>');
             var tbody = $('<tbody>');
 
             for (var i = 0; i <= 4 && i < res.documents.length; i++) {
@@ -30,7 +30,7 @@ $(document).ready(function(){
                 book += '<td>' + contents + '</td>';
                 book += '<td>' + bookData.authors + '</td>';
                 book += '<td>' + bookData.publisher + '</td>';
-                book += '<td><button onclick="location.href=\'./registBook.do?' + queryString + '\'">도서 등록하기</button></td>';
+                book += '<td><button onclick="location.href=\'./registBook.do?' + queryString + '\'">등록</button></td>';
                
                 book += '</tr>';
                 tbody.append(book);

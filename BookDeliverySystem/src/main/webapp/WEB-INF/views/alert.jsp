@@ -20,6 +20,12 @@
                 alert("${failModify}");
                 // 원하는 페이지로 리다이렉트
                 location.href = "./moveModifyPW.do";
+            }else if("${successLink}" !== ""){
+            	alert("${successLink}");
+          		location.href = "./index.jsp";
+            }else if("${failLink}" !== ""){
+            	alert("${failLink}");
+            	location.href = "./myPage.do";
             }
         };
     </script>

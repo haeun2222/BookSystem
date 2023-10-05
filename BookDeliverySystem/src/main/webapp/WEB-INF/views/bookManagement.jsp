@@ -14,11 +14,6 @@
 <link rel="stylesheet" href="css/adminHeader.css"/>
 <link rel="stylesheet" href="css/bookList.css"/>
 </head>
-<c:if test="${not empty resultAddBook}">
-        <script>
-            alert("${resultAddBook}");
-        </script>
-    </c:if>
 <c:set var="lists" value="${requestScope.userBookList}" />
 <c:set var="pd" value="${requestScope.pd}" />
 <%@ include file="/WEB-INF/views/adminHeader.jsp" %>
