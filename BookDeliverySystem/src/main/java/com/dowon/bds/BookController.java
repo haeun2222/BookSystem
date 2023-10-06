@@ -189,7 +189,7 @@ public class BookController {
 	
 	//도서 검색 컨트롤러
 	@GetMapping(value="/searchBooks.do")
-	public String searchBooks(@RequestParam String keyword, @RequestParam(name = "page", defaultValue = "1") int selectPage, Model model){
+	public String searchBooks(@RequestParam("keyword")String keyword, @RequestParam(name = "page", defaultValue = "1") int selectPage, Model model){
 		
 		PagingDto pd = new PagingDto();
 		
@@ -226,6 +226,8 @@ public class BookController {
 		log.info("map 값 확인하기 (도서검색결과 페이징 쿼리 :{}",map);
 		model.addAttribute("pd", pd);
 		model.addAttribute("searchResults",lists);
+		model.addAttribute("keyword",keyword);
+		log.info("값체킄ㅋㅋㅋㅋㅋㅋㅋㅋ:{}",lists);
 		return "searchBooks";
 	}
 	

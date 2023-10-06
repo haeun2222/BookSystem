@@ -93,15 +93,15 @@ function verifyCode() {
 document.getElementById('regist').addEventListener('click', function(){
 	var user_phone = document.getElementById("user_phone").value;
 	var formatted_phone = user_phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
-    var name = document.getElementById("user_name").value;
+    var email = document.getElementById("user_email").value;
     document.getElementById("formatted_phone").value = formatted_phone;
    
     if (checkStatus) {
         console.log("checkStatus true");
         document.getElementById("frm").submit();
-    }else if(name.trim() === ""){
-		console.log("이름을 입력하세요.")
-		alert("이름을 입력하세요.");
+    }else if(email.trim() === ""){
+		console.log("이메일을 입력하세요.")
+		alert("이메일을 입력하세요.");
      }
      else if (!checkStatus) {
         console.log("checkStatus false");

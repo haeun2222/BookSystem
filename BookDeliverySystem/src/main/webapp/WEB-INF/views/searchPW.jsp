@@ -64,5 +64,5 @@
 			</form>
 			</div>
 </body>
-<script src="js/searchID.js"></script>
+<script src="js/searchPW.js"></script>
 </html>

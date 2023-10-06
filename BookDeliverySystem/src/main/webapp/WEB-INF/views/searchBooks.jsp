@@ -18,6 +18,7 @@
 <c:set var="pd" value="${requestScope.pd}" />
 <%@ include file="header.jsp" %>
 <body>
+
     <h1>도서 검색 결과</h1>
     
        <table id="bookList">
@@ -55,33 +56,33 @@
                         <li><a href="./searchBooks.do?page=1">이전</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li><a href="./searchBooks.do?page=${pd.getStartPage() - pd.getCountPage()}">이전</a></li>
+                        <li><a href="./searchBooks.do?page=${pd.getStartPage() - pd.getCountPage()}&keyword=${keyword}">이전</a></li>
                     </c:otherwise>
                 </c:choose>
             </c:if>
     
             <c:forEach begin="${pd.getStartPage()}" end="${pd.getEndPage()}" var="i">
                 <li <c:if test="${i == pd.getPage()}">class="active"</c:if>>
-                    <a href="./searchBooks.do?page=${i}">${i}</a>
+                    <a href="./searchBooks.do?page=${i}&keyword=${keyword}">${i}</a>
                 </li>
             </c:forEach>
     
             <c:if test="${pd.getPage() < pd.getTotalPage()}">
                 <c:choose>
                     <c:when test="${pd.getStartPage() + pd.getCountPage() > pd.getTotalPage()}">
-                        <li><a href="./searchBooks.do?page=${pd.getTotalPage()}">다음</a></li>
+                        <li><a href="./searchBooks.do?page=${pd.getTotalPage()}&keyword=${keyword}">다음</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li><a href="./searchBooks.do?page=${pd.getStartPage() + pd.getCountPage()}">다음</a></li>
+                        <li><a href="./searchBooks.do?page=${pd.getStartPage() + pd.getCountPage()}&keyword=${keyword}">다음</a></li>
                     </c:otherwise>
                 </c:choose>
             </c:if>
     
             <c:if test="${pd.getEndPage() < pd.getTotalPage()}">
-                <li><a href="./searchBooks.do?page=${pd.getTotalPage() - pd.getTotalPage() % pd.getCountList() + 1}">끝페이지</a></li>
+                <li><a href="./searchBooks.do?page=${pd.getTotalPage() - pd.getTotalPage() % pd.getCountList() + 1}&keyword=${keyword}">끝페이지</a></li>
             </c:if>
         </ul>
-    </div>    
+    </div>
     
 </body>
 </html>
